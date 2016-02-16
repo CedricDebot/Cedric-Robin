@@ -1,0 +1,83 @@
+.root{
+    -fx-background-color: #EAEAEA;
+}
+
+#left{
+    -fx-padding: 100 100 100 100;
+    -fx-min-width: 400px;
+}
+
+#zoekscherm{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-color: black;
+    -fx-border-radius: 15;
+    -fx-border-width: 3;
+}
+
+#labels{
+    -fx-padding: 15 15 15 15;
+}
+
+#naamLeerling{
+    -fx-padding: 5 5 5 5;
+    -fx-spacing: 10;
+}
+
+#inschrijvingLeerling{
+    -fx-padding: 5 5 5 5;
+    -fx-spacing: 10;
+}
+
+#textField{ 
+    -fx-background-color: #EAEAEA;
+    -fx-border-color: black;
+    -fx-border-radius: 2;
+    -fx-border-width: 2;
+}
+#buttons{
+    -fx-padding: 15 15 15 15;
+    -fx-alignment: CENTER;
+    -fx-spacing: 20;
+}
+
+.button{
+    -fx-background-color: white;
+    -fx-background-radius: 2;
+    -fx-padding: 7 7 7 7;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-alignment: CENTER;
+}
+
+#right {
+    -fx-padding: 100 50 100 100;
+    -fx-min-width: 400;
+}
+
+#lijstLeerlingen {
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+}
+
+#buttonsRight{
+    -fx-padding: 15 15 15 0;
+    -fx-alignment: CENTER;
+    -fx-spacing: 80;
+}
+
+#btnVerwijder{
+    -fx-min-width: 150;
+}
+
+#btnSync{
+    -fx-min-width: 140;
+}
+
+#btnAllesVerwijderen{
+    -fx-max-width: 400;
+}
