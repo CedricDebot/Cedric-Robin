@@ -3,6 +3,7 @@ package gui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventType;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
@@ -11,31 +12,7 @@ public class Beginscherm extends HBox
 
     public Beginscherm()
     {
-        getChildren().addAll(left(), right());
-    }
-
-    public VBox left()
-    {
-        VBox left = new VBox();
-        left.setId("left");
-
-        left.getChildren().addAll(zoekscherm()); //+image
-
-        return left;
-    }
-
-    public VBox zoekscherm()
-    {
-        VBox zoekscherm = new VBox();
-        zoekscherm.setId("zoekscherm");
-
-        zoekscherm.getChildren().addAll(labels(), buttonsLeft());
-
-        return zoekscherm;
-    }
-
-    public VBox labels()
-    {
+        //Labels
         VBox labels = new VBox();
         labels.setId("labels");
         HBox naamLeerling = new HBox();
@@ -51,12 +28,8 @@ public class Beginscherm extends HBox
         inschrijvingsnummerTF.setId("textField");
         inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
         labels.getChildren().addAll(naamLeerling, inschrijvingLeerling);
-
-        return labels;
-    }
-
-    public HBox buttonsLeft()
-    {
+        
+        //ButtonLeft
         HBox buttons = new HBox();
         buttons.setId("buttons");
         Button zoek = new Button("Zoek");
@@ -64,33 +37,20 @@ public class Beginscherm extends HBox
         Button nieuw = new Button("Nieuw");
         nieuw.setId("btnNieuw");
         buttons.getChildren().addAll(zoek, nieuw);
-
-        return buttons;
-    }
-
-    public VBox right()
-    {
-        VBox right = new VBox();
-        right.setId("right");
-
-        right.getChildren().addAll(lijstLeerlingen(), buttonsRight(), btnAllesVerwijderen());
-
-        return right;
-    }
-
-    public ListView lijstLeerlingen()
-    {
+        
+        //ZoekScherm
+        VBox zoekscherm = new VBox();
+        zoekscherm.setId("zoekscherm");
+        zoekscherm.getChildren().addAll(labels, buttons);
+        
+        //LijstLeerlingen
         ObservableList<String> names = FXCollections.observableArrayList(
                 "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
         ListView lijstLeerlingen = new ListView();
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(names);
-
-        return lijstLeerlingen;
-    }
-
-    public HBox buttonsRight()
-    {
+        
+        //ButtonsRight
         HBox buttonsRight = new HBox();
         buttonsRight.setId("buttonsRight");
         Button verwijder = new Button("Verwijder");
@@ -98,16 +58,50 @@ public class Beginscherm extends HBox
         Button sync = new Button("Synchroniseer");
         sync.setId("btnSync");
         buttonsRight.getChildren().addAll(verwijder, sync);
-
-
-        return buttonsRight;
-    }
-
-    public Button btnAllesVerwijderen()
-    {
+        
+        //ButtonsAllesVerwijderen
         Button allesVerwijderen = new Button("Alles verwijderen");
         allesVerwijderen.setId("btnAllesVerwijderen");
         
-        return allesVerwijderen;
+        //NieuweLeerling
+        VBox nieuweLeerling = new VBox();
+        nieuweLeerling.setId("right");
+        
+        Label titel = new Label("Nieuwe Leerling");
+        titel.setId("titelNieuw");
+        Label nr = new Label("InschrijvingsNr:");
+        TextField inputNr = new TextField();
+        Label famNaam = new Label("Famillienaam:");
+        TextField inputFamillienaam = new TextField();
+        Label Voornaam = new Label("Voornaam:");
+        TextField inputVoornaam = new TextField();
+        Label Email = new Label("Email:");
+        TextField inputEmail = new TextField();
+        Button foto = new Button("Foto");
+        
+        nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
+                inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, foto);
+        
+        //LinkerScherm
+        VBox left = new VBox();
+        left.setId("left");
+        left.getChildren().addAll(zoekscherm); //+image
+        
+        //RechterScherm
+        VBox right = new VBox();
+        right.setId("right");
+        right.getChildren().addAll(lijstLeerlingen, buttonsRight, allesVerwijderen);
+        
+
+        getChildren().addAll(left, right);
+        
+        nieuw.setOnAction(e ->{
+            getChildren().remove(right);
+            getChildren().add(nieuweLeerling);
+        });
+        zoek.setOnAction(e -> {
+            getChildren().remove(nieuweLeerling);
+            getChildren().add(right);
+        });
     }
 }
