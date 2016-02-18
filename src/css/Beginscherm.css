@@ -1,10 +1,13 @@
 .root{
     -fx-background-color: #EAEAEA;
+    -fx-alignment: CENTER;
 }
 
 #left{
     -fx-padding: 100 100 100 100;
-    -fx-min-width: 400px;
+    -fx-min-width: 400;
+    -fx-alignment: TOP_CENTER;
+    -fx-spacing: 20;
 }
 
 #zoekscherm{
@@ -13,6 +16,7 @@
     -fx-border-color: black;
     -fx-border-radius: 15;
     -fx-border-width: 3;
+    -fx-min-width: 350;
 }
 
 #labels{
@@ -21,7 +25,7 @@
 
 #naamLeerling{
     -fx-padding: 5 5 5 5;
-    -fx-spacing: 10;
+    -fx-spacing: 85;
 }
 
 #inschrijvingLeerling{
@@ -43,7 +47,7 @@
 
 .button{
     -fx-background-color: white;
-    -fx-background-radius: 2;
+    -fx-background-radius: 5;
     -fx-padding: 7 7 7 7;
     -fx-text-fill: black;
     -fx-border-color: black;
@@ -54,30 +58,60 @@
 
 #right {
     -fx-padding: 100 50 100 100;
-    -fx-min-width: 400;
+    -fx-min-width: 500;
 }
 
 #lijstLeerlingen {
     -fx-background-radius: 5;
     -fx-border-color: black;
     -fx-border-radius: 5;
-    -fx-border-width: 3;
+    -fx-border-width: 1.5;
+    -fx-max-height: 300;
+}
+
+.list-cell{ //border aanpassen
+    -fx-cell-size: 50;        
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1.5; 
+}
+
+.list-cell:selected{ //text-fill aanpassen 
+    -fx-text-fill: red;
 }
 
 #buttonsRight{
-    -fx-padding: 15 15 15 0;
+    -fx-padding: 15 0 15 0;
     -fx-alignment: CENTER;
     -fx-spacing: 80;
+    -fx-max-width: 400;
 }
 
 #btnVerwijder{
-    -fx-min-width: 150;
+    -fx-pref-width: 210;
 }
 
 #btnSync{
-    -fx-min-width: 140;
+    -fx-pref-width: 210;
 }
 
 #btnAllesVerwijderen{
     -fx-max-width: 400;
+}
+
+#autoImg{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0 ,0, 0);
+    -fx-alignment: CENTER
+}
+
+#listViewTitle{
+    -fx-background-color: #4B4B4B;
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+    -fx-max-width: 400;
+    -fx-min-height: 40;
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
 }

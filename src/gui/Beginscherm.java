@@ -1,11 +1,14 @@
 package gui;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventType;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 
 public class Beginscherm extends HBox
 {
@@ -28,7 +31,7 @@ public class Beginscherm extends HBox
         inschrijvingsnummerTF.setId("textField");
         inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
         labels.getChildren().addAll(naamLeerling, inschrijvingLeerling);
-        
+
         //ButtonLeft
         HBox buttons = new HBox();
         buttons.setId("buttons");
@@ -37,18 +40,29 @@ public class Beginscherm extends HBox
         Button nieuw = new Button("Nieuw");
         nieuw.setId("btnNieuw");
         buttons.getChildren().addAll(zoek, nieuw);
-        
+
         //ZoekScherm
         VBox zoekscherm = new VBox();
         zoekscherm.setId("zoekscherm");
         zoekscherm.getChildren().addAll(labels, buttons);
-        
+
         //LijstLeerlingen
         ObservableList<String> names = FXCollections.observableArrayList(
-                "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
+              "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan");
         ListView lijstLeerlingen = new ListView();
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(names);
+        lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>()
+        {
+
+            @Override
+            public ObservableValue<Boolean> call(String item)
+            {
+                return null;
+            }
+        }));
+
+        
         
         //ButtonsRight
         HBox buttonsRight = new HBox();
@@ -58,15 +72,15 @@ public class Beginscherm extends HBox
         Button sync = new Button("Synchroniseer");
         sync.setId("btnSync");
         buttonsRight.getChildren().addAll(verwijder, sync);
-        
+
         //ButtonsAllesVerwijderen
         Button allesVerwijderen = new Button("Alles verwijderen");
         allesVerwijderen.setId("btnAllesVerwijderen");
-        
+
         //NieuweLeerling
         VBox nieuweLeerling = new VBox();
         nieuweLeerling.setId("right");
-        
+
         Label titel = new Label("Nieuwe Leerling");
         titel.setId("titelNieuw");
         Label nr = new Label("InschrijvingsNr:");
@@ -78,24 +92,38 @@ public class Beginscherm extends HBox
         Label Email = new Label("Email:");
         TextField inputEmail = new TextField();
         Button foto = new Button("Foto");
-        
+
         nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
                 inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, foto);
-        
+
         //LinkerScherm
         VBox left = new VBox();
         left.setId("left");
-        left.getChildren().addAll(zoekscherm); //+image
-        
+
+        Image auto = new Image("images/driving_school.png");
+        ImageView autoImg = new ImageView();
+        autoImg.setImage(auto);
+        autoImg.setId("autoImg");
+
+//        //lay-out (nog proberen in css te zetten)
+        autoImg.setFitWidth(200);
+        autoImg.setFitHeight(225);
+
+        left.getChildren().addAll(zoekscherm, autoImg); 
+
         //RechterScherm
         VBox right = new VBox();
         right.setId("right");
-        right.getChildren().addAll(lijstLeerlingen, buttonsRight, allesVerwijderen);
         
+        Label listViewTitle = new Label("Leerlingen");
+        listViewTitle.setId("listViewTitle");
+
+        
+        right.getChildren().addAll(listViewTitle, lijstLeerlingen, buttonsRight, allesVerwijderen);
 
         getChildren().addAll(left, right);
-        
-        nieuw.setOnAction(e ->{
+
+        nieuw.setOnAction(e -> {
             getChildren().remove(right);
             getChildren().add(nieuweLeerling);
         });
