@@ -1,9 +1,14 @@
 package gui;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 
 public class Beginscherm extends HBox
 {
@@ -26,7 +31,7 @@ public class Beginscherm extends HBox
         inschrijvingsnummerTF.setId("textField");
         inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
         labels.getChildren().addAll(naamLeerling, inschrijvingLeerling);
-        
+
         //ButtonLeft
         HBox buttons = new HBox();
         buttons.setId("buttons");
@@ -35,18 +40,29 @@ public class Beginscherm extends HBox
         Button nieuw = new Button("Nieuw");
         nieuw.setId("btnNieuw");
         buttons.getChildren().addAll(zoek, nieuw);
-        
+
         //ZoekScherm
         VBox zoekscherm = new VBox();
         zoekscherm.setId("zoekscherm");
         zoekscherm.getChildren().addAll(labels, buttons);
-        
+
         //LijstLeerlingen
         ObservableList<String> names = FXCollections.observableArrayList(
-                "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
+              "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan");
         ListView lijstLeerlingen = new ListView();
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(names);
+        lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>()
+        {
+
+            @Override
+            public ObservableValue<Boolean> call(String item)
+            {
+                return null;
+            }
+        }));
+
+        
         
         //ButtonsRight
         HBox buttonsRight = new HBox();
@@ -56,33 +72,37 @@ public class Beginscherm extends HBox
         Button sync = new Button("Synchroniseer");
         sync.setId("btnSync");
         buttonsRight.getChildren().addAll(verwijder, sync);
-        
+
         //ButtonsAllesVerwijderen
         Button allesVerwijderen = new Button("Alles verwijderen");
         allesVerwijderen.setId("btnAllesVerwijderen");
-        
+
         //NieuweLeerling
         VBox nieuweLeerling = new VBox();
+
         nieuweLeerling.setId("schermNieuweLeerling");
-        
+       
         Label titel = new Label("Nieuwe Leerling");
         titel.setId("listViewTitle");
         Label nr = new Label("InschrijvingsNr:");
         TextField inputNr = new TextField();
-        inputNr.setId("textFieldNieuw");
+        inputNr.setId("textField");
         Label famNaam = new Label("Famillienaam:");
         TextField inputFamillienaam = new TextField();
-        inputFamillienaam.setId("textFieldNieuw");
+        inputFamillienaam.setId("textField");
         Label Voornaam = new Label("Voornaam:");
         TextField inputVoornaam = new TextField();
-        inputVoornaam.setId("textFieldNieuw");
+        inputVoornaam.setId("textField");
         Label Email = new Label("Email:");
         TextField inputEmail = new TextField();
-        inputEmail.setId("textFieldNieuw");
+        inputEmail.setId("textField");
         Button foto = new Button("Foto");
+
         
-        nieuweLeerling.getChildren().addAll(nr, inputNr, famNaam,
+
+        nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
                 inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, foto);
+
         
         //buttonsNieuweLeerling
         Button ok = new Button("Ok");
@@ -99,17 +119,35 @@ public class Beginscherm extends HBox
         rightNieuw.setId("right");
         rightNieuw.getChildren().addAll(titel, nieuweLeerling, knoppenNieuw);       
         
+
         //LinkerScherm
         VBox left = new VBox();
         left.setId("left");
-        left.getChildren().addAll(zoekscherm); //+image
-        
+
+        Image auto = new Image("images/driving_school.png");
+        ImageView autoImg = new ImageView();
+        autoImg.setImage(auto);
+        autoImg.setId("autoImg");
+
+//        //lay-out (nog proberen in css te zetten)
+        autoImg.setFitWidth(200);
+        autoImg.setFitHeight(225);
+
+        left.getChildren().addAll(zoekscherm, autoImg); 
+
         //RechterScherm
         VBox right = new VBox();
         right.setId("right");
-        right.getChildren().addAll(lijstLeerlingen, buttonsRight, allesVerwijderen);
         
+
+        Label listViewTitle = new Label("Leerlingen");
+        listViewTitle.setId("listViewTitle");
+
+        
+        right.getChildren().addAll(listViewTitle, lijstLeerlingen, buttonsRight, allesVerwijderen);
+
         getChildren().addAll(left, right);
+
         
         nieuw.setOnAction(e ->{
             if(getChildren().contains(right)){
