@@ -2,8 +2,6 @@ package gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventType;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
@@ -65,22 +63,41 @@ public class Beginscherm extends HBox
         
         //NieuweLeerling
         VBox nieuweLeerling = new VBox();
-        nieuweLeerling.setId("right");
+        nieuweLeerling.setId("schermNieuweLeerling");
         
         Label titel = new Label("Nieuwe Leerling");
-        titel.setId("titelNieuw");
+        titel.setId("listViewTitle");
         Label nr = new Label("InschrijvingsNr:");
         TextField inputNr = new TextField();
+        inputNr.setId("textFieldNieuw");
         Label famNaam = new Label("Famillienaam:");
         TextField inputFamillienaam = new TextField();
+        inputFamillienaam.setId("textFieldNieuw");
         Label Voornaam = new Label("Voornaam:");
         TextField inputVoornaam = new TextField();
+        inputVoornaam.setId("textFieldNieuw");
         Label Email = new Label("Email:");
         TextField inputEmail = new TextField();
+        inputEmail.setId("textFieldNieuw");
         Button foto = new Button("Foto");
         
-        nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
+        nieuweLeerling.getChildren().addAll(nr, inputNr, famNaam,
                 inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, foto);
+        
+        //buttonsNieuweLeerling
+        Button ok = new Button("Ok");
+        ok.setId("btnVerwijder");
+        Button annuleer = new Button("Annuleer");
+        annuleer.setId("btnSync");
+        HBox knoppenNieuw = new HBox();
+        knoppenNieuw.setId("buttonsRight");
+        
+        knoppenNieuw.getChildren().addAll(ok,annuleer);
+        
+         //schermNieuwLeerling
+        VBox rightNieuw = new VBox();
+        rightNieuw.setId("right");
+        rightNieuw.getChildren().addAll(titel, nieuweLeerling, knoppenNieuw);       
         
         //LinkerScherm
         VBox left = new VBox();
@@ -92,16 +109,19 @@ public class Beginscherm extends HBox
         right.setId("right");
         right.getChildren().addAll(lijstLeerlingen, buttonsRight, allesVerwijderen);
         
-
         getChildren().addAll(left, right);
         
         nieuw.setOnAction(e ->{
+            if(getChildren().contains(right)){
             getChildren().remove(right);
-            getChildren().add(nieuweLeerling);
+            getChildren().add(rightNieuw);
+            }
         });
         zoek.setOnAction(e -> {
-            getChildren().remove(nieuweLeerling);
+            if(getChildren().contains(rightNieuw)){
+            getChildren().remove(rightNieuw);
             getChildren().add(right);
+            }
         });
     }
 }
