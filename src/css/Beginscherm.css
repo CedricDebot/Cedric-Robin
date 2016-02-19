@@ -72,14 +72,14 @@
     -fx-max-height: 300;
 }
 
-.list-cell{ //border aanpassen
+.list-cell{ 
     -fx-cell-size: 50;     
     -fx-background-color: white;
     -fx-border-color: black;
     -fx-border-width: 0 0 3 0;
 }
 
-.list-cell:selected{ //text-fill aanpassen 
+.list-cell:selected{ 
     -fx-background-color: #C4003E;
 }
 
@@ -155,4 +155,21 @@
     -fx-border-width: 8;
     -fx-border-radius: 3;
     -fx-pref-width: 150;
+}
+#evaluatieMoment{
+    -fx-padding: 10 0 10 0;
+    -fx-alignment: CENTER;
+}
+#momenten{
+    -fx-alignment: CENTER;
+    -fx-spacing: 15;
+    -fx-padding: 10 0 10 0;
+}
+#evaTitel{
+    -fx-alignment: CENTER;
+    -fx-pref-width: 100;
+}
+#momentKnop{
+   -fx-background-color: #EAEAEA;
+   -fx-pref-width: 40;
 }
