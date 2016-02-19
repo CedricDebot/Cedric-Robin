@@ -78,6 +78,7 @@
     -fx-border-color: black;
     -fx-border-width: 0 0 3 0;
 }
+
 .list-cell:selected{ //text-fill aanpassen 
     -fx-background-color: #C4003E;
 }
