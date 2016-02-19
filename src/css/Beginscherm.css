@@ -123,3 +123,33 @@
     -fx-alignment: CENTER;
     -fx-text-fill: white;
 }
+
+#leerlingImageView{
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-radius: 5;
+}
+
+#lblNaamLeerling{
+    -fx-background-color: #A4A4A4;
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-alignment: CENTER;
+    -fx-padding: 5;
+    -fx-pref-width: 150;
+}
+
+#dashboardRight{
+    -fx-spacing: 2;
+    -fx-padding: 10 10 10 10;
+    -fx-alignment: TOP_RIGHT;
+}
+
+#hBox_outterImage{
+    -fx-border-color: black;
+    -fx-border-width: 8;
+    -fx-border-radius: 3;
+    -fx-pref-width: 150;
+}
