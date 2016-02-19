@@ -38,6 +38,8 @@
     -fx-border-color: black;
     -fx-border-radius: 2;
     -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
 }
 #buttons{
     -fx-padding: 15 15 15 15;
@@ -54,6 +56,7 @@
     -fx-border-radius: 5;
     -fx-border-width: 2;
     -fx-alignment: CENTER;
+    -fx-pref-width: 100;
 }
 
 #right {
@@ -65,19 +68,18 @@
     -fx-background-radius: 5;
     -fx-border-color: black;
     -fx-border-radius: 5;
-    -fx-border-width: 1.5;
+    -fx-border-width: 3;
     -fx-max-height: 300;
 }
 
 .list-cell{ //border aanpassen
-    -fx-cell-size: 50;        
+    -fx-cell-size: 50;     
     -fx-background-color: white;
     -fx-border-color: black;
-    -fx-border-width: 1.5; 
+    -fx-border-width: 0 0 3 0;
 }
-
 .list-cell:selected{ //text-fill aanpassen 
-    -fx-text-fill: red;
+    -fx-background-color: #C4003E;
 }
 
 #buttonsRight{
@@ -101,7 +103,7 @@
 #schermNieuweLeerling{
     -fx-background-color: white;
     -fx-border-color: black;
-    -fx-border-radius: 15;
+    -fx-border-radius: 5;
     -fx-border-width: 3;
     -fx-background-radius: 15;
     -fx-padding: 10 10 10 10;

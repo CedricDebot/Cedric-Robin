@@ -1,5 +1,6 @@
 package gui;
 
+import domein.Leerling;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,10 +37,10 @@ public class Beginscherm extends HBox
         HBox buttons = new HBox();
         buttons.setId("buttons");
         Button zoek = new Button("Zoek");
-        zoek.setId("btnZoek");
         Button nieuw = new Button("Nieuw");
-        nieuw.setId("btnNieuw");
-        buttons.getChildren().addAll(zoek, nieuw);
+        Button start = new Button("Start");
+        
+        buttons.getChildren().addAll(zoek, nieuw, start);
 
         //ZoekScherm
         VBox zoekscherm = new VBox();
@@ -47,8 +48,7 @@ public class Beginscherm extends HBox
         zoekscherm.getChildren().addAll(labels, buttons);
 
         //LijstLeerlingen
-        ObservableList<String> names = FXCollections.observableArrayList(
-              "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan");
+        ObservableList<String> names = FXCollections.observableArrayList("Cédric","Robin","Dries","Milton");
         ListView lijstLeerlingen = new ListView();
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(names);
@@ -98,12 +98,9 @@ public class Beginscherm extends HBox
         inputEmail.setId("textField");
         Button foto = new Button("Foto");
 
-        
-
         nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
                 inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, foto);
-
-        
+   
         //buttonsNieuweLeerling
         Button ok = new Button("Ok");
         ok.setId("btnVerwijder");
@@ -156,6 +153,15 @@ public class Beginscherm extends HBox
             }
         });
         zoek.setOnAction(e -> {
+            if(getChildren().contains(rightNieuw)){
+            getChildren().remove(rightNieuw);
+            getChildren().add(right);
+            }
+        });
+        ok.setOnAction(e -> {
+            Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
+            names.add(leerling.getVoorNaam());
+            
             if(getChildren().contains(rightNieuw)){
             getChildren().remove(rightNieuw);
             getChildren().add(right);
