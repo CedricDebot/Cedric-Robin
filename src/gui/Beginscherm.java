@@ -14,6 +14,9 @@ import javafx.util.Callback;
 public class Beginscherm extends HBox
 {
 
+    private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
+    private ListView lijstLeerlingen = new ListView();
+
     public Beginscherm()
     {
         //Labels
@@ -39,7 +42,7 @@ public class Beginscherm extends HBox
         Button zoek = new Button("Zoek");
         Button nieuw = new Button("Nieuw");
         Button start = new Button("Start");
-        
+
         buttons.getChildren().addAll(zoek, nieuw, start);
 
         //ZoekScherm
@@ -48,8 +51,8 @@ public class Beginscherm extends HBox
         zoekscherm.getChildren().addAll(labels, buttons);
 
         //LijstLeerlingen
-        ObservableList<String> names = FXCollections.observableArrayList("Cédric","Robin","Dries","Milton");
-        ListView lijstLeerlingen = new ListView();
+//        ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
+//        ListView lijstLeerlingen = new ListView();
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(names);
         lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>()
@@ -62,8 +65,6 @@ public class Beginscherm extends HBox
             }
         }));
 
-        
-        
         //ButtonsRight
         HBox buttonsRight = new HBox();
         buttonsRight.setId("buttonsRight");
@@ -81,7 +82,7 @@ public class Beginscherm extends HBox
         VBox nieuweLeerling = new VBox();
 
         nieuweLeerling.setId("schermNieuweLeerling");
-       
+
         Label titel = new Label("Nieuwe Leerling");
         titel.setId("listViewTitle");
         Label nr = new Label("InschrijvingsNr:");
@@ -100,7 +101,7 @@ public class Beginscherm extends HBox
 
         nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
                 inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, foto);
-   
+
         //buttonsNieuweLeerling
         Button ok = new Button("Ok");
         ok.setId("btnVerwijder");
@@ -108,14 +109,13 @@ public class Beginscherm extends HBox
         annuleer.setId("btnSync");
         HBox knoppenNieuw = new HBox();
         knoppenNieuw.setId("buttonsRight");
-        
-        knoppenNieuw.getChildren().addAll(ok,annuleer);
-        
-         //schermNieuwLeerling
+
+        knoppenNieuw.getChildren().addAll(ok, annuleer);
+
+        //schermNieuwLeerling
         VBox rightNieuw = new VBox();
         rightNieuw.setId("right");
-        rightNieuw.getChildren().addAll(titel, nieuweLeerling, knoppenNieuw);       
-        
+        rightNieuw.getChildren().addAll(titel, nieuweLeerling, knoppenNieuw);
 
         //LinkerScherm
         VBox left = new VBox();
@@ -130,42 +130,65 @@ public class Beginscherm extends HBox
         autoImg.setFitWidth(200);
         autoImg.setFitHeight(225);
 
-        left.getChildren().addAll(zoekscherm, autoImg); 
+        left.getChildren().addAll(zoekscherm, autoImg);
 
         //RechterScherm
         VBox right = new VBox();
         right.setId("right");
-        
 
         Label listViewTitle = new Label("Leerlingen");
         listViewTitle.setId("listViewTitle");
 
-        
         right.getChildren().addAll(listViewTitle, lijstLeerlingen, buttonsRight, allesVerwijderen);
 
         getChildren().addAll(left, right);
 
-        
-        nieuw.setOnAction(e ->{
-            if(getChildren().contains(right)){
-            getChildren().remove(right);
-            getChildren().add(rightNieuw);
+        nieuw.setOnAction(e -> {
+            if (getChildren().contains(right)) {
+                getChildren().remove(right);
+                getChildren().add(rightNieuw);
             }
         });
         zoek.setOnAction(e -> {
-            if(getChildren().contains(rightNieuw)){
-            getChildren().remove(rightNieuw);
-            getChildren().add(right);
+            if (getChildren().contains(rightNieuw)) {
+                getChildren().remove(rightNieuw);
+                getChildren().add(right);
             }
+            String newVal = naamTF.getText();
+            ZoekFunctie(null, newVal);
         });
         ok.setOnAction(e -> {
             Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
             names.add(leerling.getVoorNaam());
-            
-            if(getChildren().contains(rightNieuw)){
-            getChildren().remove(rightNieuw);
-            getChildren().add(right);
+
+            if (getChildren().contains(rightNieuw)) {
+                getChildren().remove(rightNieuw);
+                getChildren().add(right);
             }
         });
+
+        //textfields nog leeg maken 
+        annuleer.setOnAction(e -> {
+            getChildren().remove(rightNieuw);
+            getChildren().add(right);
+        });
+    }
+
+    public void ZoekFunctie(String oldVal, String newVal)
+    {
+        //if (oldVal != null && (newVal.length() <= oldVal.length())) {
+            lijstLeerlingen.setItems(names);
+        //}
+        
+        newVal = newVal.toLowerCase();
+        
+        ObservableList<String> searchNames = FXCollections.observableArrayList();
+        for (Object entry : lijstLeerlingen.getItems()) {
+            String entryText = (String) entry;
+            if (entryText.toLowerCase().contains(newVal)) {
+                searchNames.add(entryText);
+            }
+        }
+        lijstLeerlingen.setItems(searchNames);
     }
 }
