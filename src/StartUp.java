@@ -13,8 +13,7 @@ public class StartUp extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-       // Beginscherm beginScherm = new Beginscherm();
-        Beginscherm Beginscherm = new Beginscherm();
+        Beginscherm beginscherm = new Beginscherm();
         Dashboard dashboard = new Dashboard();
         Scene scene = new Scene(dashboard, 1024, 768);
         stage.setScene(scene);
