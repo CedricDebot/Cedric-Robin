@@ -78,9 +78,31 @@ public class Dashboard extends HBox
         moment3.setId("momentKnop");
         momenten.getChildren().addAll(moment1, moment2, moment3);
         evaluatieMoment.getChildren().addAll(evaTitel, momenten);
-
-        right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment);
-
+        
+        //MenuKnoppen
+        Button menuOpties = new Button("Menu");
+        Button dashboardTerug = new Button("Terug");
+        
+        right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment, menuOpties, dashboardTerug);
+        
+        //Menu
+        VBox menu = new VBox();
+        Button attitude = new Button("attitude");
+        Button rijTechniek = new Button("rijtechniek");
+        Button verkeersTechniek = new Button("verkeerstechniek");
+        Button menuTerug = new Button("terug");
+        
+        menu.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
+        
+        menuOpties.setOnAction(e ->{
+            right.getChildren().removeAll(hBox_outter, naamLeerling, evaluatieMoment, menuOpties, dashboardTerug);
+            right.getChildren().addAll(menu);
+        });
+        menuTerug.setOnAction(e ->{
+            right.getChildren().removeAll(menu);
+            right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment, menuOpties, dashboardTerug);
+        });
+        
         //buttons
         moment1.setOnAction(e -> {
             if (moment1.getText().equals(" ")) {
