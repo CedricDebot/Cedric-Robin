@@ -197,7 +197,16 @@
 #grafiekMetLbl{
     -fx-alignment: TOP_CENTER;
 }
-
+#menuButton{
+    -fx-border-width: 5;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+#menuBox{
+    -fx-spacing: 20;
+    -fx-background-color: black;
+    -fx-padding: 10;
+}
 
 
 
