@@ -173,3 +173,31 @@
    -fx-background-color: #EAEAEA;
    -fx-pref-width: 40;
 }
+
+#evaluatiegrafiek{
+    -fx-padding: 20 5 0 5;
+    -fx-spacing: 2.5;
+    -fx-rotate: 180;
+}
+
+#btnGrafiek{
+    -fx-background-color: #EAEAEA;
+    -fx-border-style: none;
+    -fx-border-color: #EAEAEA;
+    -fx-border-radius: 0 0 0 0;
+    -fx-pref-width: 64;
+    -fx-pref-height: 64;
+}
+
+#evaluatiegrafiekOuter{
+    -fx-alignment: CENTER;
+    -fx-spacing: 15;
+}
+
+#grafiekMetLbl{
+    -fx-alignment: TOP_CENTER;
+}
+
+
+
+
