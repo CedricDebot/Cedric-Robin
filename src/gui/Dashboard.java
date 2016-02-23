@@ -1,16 +1,38 @@
 package gui;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 
-public class Dashboard extends HBox {
+public class Dashboard extends HBox
+{
 
-    public Dashboard() {
+    private int niveau = 11;
+    private Rectangle blok1 = new Rectangle(15, 30, Color.BLUE);
+    private Rectangle blok2 = new Rectangle(15, 40, Color.BLACK);
+    private Rectangle blok3 = new Rectangle(15, 50, Color.BLACK);
+    private Rectangle blok4 = new Rectangle(15, 60, Color.BLACK);
+    private Rectangle blok5 = new Rectangle(15, 70, Color.BLACK);
+    private Rectangle blok6 = new Rectangle(15, 80, Color.BLACK);
+    private Rectangle blok7 = new Rectangle(15, 90, Color.BLACK);
+    private Rectangle blok8 = new Rectangle(15, 100, Color.BLACK);
+    private Rectangle blok9 = new Rectangle(15, 110, Color.BLACK);
+    private Rectangle blok10 = new Rectangle(15, 120, Color.BLACK);
+    private Rectangle blok11 = new Rectangle(15, 130, Color.BLACK);
+    private Rectangle blok12 = new Rectangle(15, 140, Color.BLACK);
+
+    Rectangle[] grafiek = {blok12, blok11, blok10, blok9, blok8, blok7, blok6, blok5, blok4, blok3, blok2, blok1};
+
+    private Label voortgang = new Label();
+    
+    public Dashboard()
+    {
 
         HBox rootDashboard = new HBox();
 
@@ -59,9 +81,6 @@ public class Dashboard extends HBox {
 
         right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment);
 
-        //rootDashboard
-        rootDashboard.getChildren().addAll(right);
-
         //buttons
         moment1.setOnAction(e -> {
             if (moment1.getText().equals(" ")) {
@@ -85,7 +104,98 @@ public class Dashboard extends HBox {
             }
         });
 
+        //LEFT
+        VBox left = new VBox();
+        left.setId("dashboardLeft");
+
+        VBox grafiekMetLbl = new VBox();
+        grafiekMetLbl.setId("grafiekMetLbl");
+
+        HBox grafiekOuter = new HBox();
+        grafiekOuter.setId("evaluatiegrafiekOuter");
+
+        Image min = new Image("images/minus-circle.png");
+        ImageView minImageView = new ImageView(min);
+
+        Button minusBtn = new Button("", minImageView);
+        minusBtn.setId("btnGrafiek");
+
+        HBox grafiekInner = new HBox();
+        grafiekInner.setId("evaluatiegrafiek");
+
+        grafiekInner.getChildren().addAll(grafiek);
+
+        Image plus = new Image("images/icon-plus.png");
+        ImageView plusImageView = new ImageView(plus);
+
+        Button plusBtn = new Button("", plusImageView);
+        plusBtn.setId("btnGrafiek");
+
+        //Button minus
+        minusBtn.setOnAction(e -> {
+            minEen();
+            setVoortgang();
+        });
+
+        //button plus
+        plusBtn.setOnAction(e -> {
+            plusEen();
+            setVoortgang();
+        });
+        grafiekOuter.getChildren().addAll(minusBtn, grafiekInner, plusBtn);
+
+        voortgang.setId("voortgangLbl");
+        grafiekMetLbl.getChildren().addAll(grafiekOuter, voortgang);
+
+        left.getChildren().addAll(grafiekMetLbl);
+
+        //rootDashboard
+        rootDashboard.getChildren().addAll(left, right);
+
         getChildren().add(rootDashboard);
 
+    }
+
+    public void plusEen()
+    {
+        if (niveau != 0) {
+            Rectangle blokDelete = grafiek[niveau];
+            blokDelete.setFill(Color.BLACK);
+            grafiek[niveau] = blokDelete;
+
+            niveau--;
+            Rectangle blokAdd = grafiek[niveau];
+            blokAdd.setFill(Color.BLUE);
+            grafiek[niveau] = blokAdd;
+        }
+    }
+
+    public void minEen()
+    {
+        if (niveau != 11) {
+            Rectangle blokDelete = grafiek[niveau];
+            blokDelete.setFill(Color.BLACK);
+            grafiek[niveau] = blokDelete;
+
+            niveau++;
+            Rectangle blokAdd = grafiek[niveau];
+            blokAdd.setFill(Color.BLUE);
+            grafiek[niveau] = blokAdd;
+        }
+    }
+
+    public void setVoortgang()
+    {
+        if (niveau <= 7 && niveau >= 4) {
+            voortgang.setText("Klaar om met begeleider te oefenen");
+        }
+
+        if (niveau <= 3 && niveau >= 1) {
+            voortgang.setText("Klaar om alleen te oefenen");
+        }
+
+        if (niveau == 0) {
+            voortgang.setText("Klaar voor praktisch examen");
+        }
     }
 }
