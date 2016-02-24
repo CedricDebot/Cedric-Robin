@@ -1,14 +1,20 @@
 package gui;
 
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Dashboard extends HBox
@@ -31,7 +37,7 @@ public class Dashboard extends HBox
     Rectangle[] grafiek = {blok12, blok11, blok10, blok9, blok8, blok7, blok6, blok5, blok4, blok3, blok2, blok1};
 
     private Label voortgang = new Label();
-    
+
     public Dashboard()
     {
 
@@ -104,32 +110,32 @@ public class Dashboard extends HBox
         VBox menu = new VBox();
         menu.setId("menuBox");
         
-        Image attitudeImage = new Image("images/menuAttitude.PNG");
-        ImageView attitudeImageView = new ImageView(attitudeImage);
-        attitudeImageView.setFitWidth(100);
-        attitudeImageView.setFitHeight(50);
-        Button attitude = new Button("", attitudeImageView);
+        Image attitudeImageM = new Image("images/menuAttitude.PNG");
+        ImageView attitudeImageViewM = new ImageView(attitudeImageM);
+        attitudeImageViewM.setFitWidth(100);
+        attitudeImageViewM.setFitHeight(50);
+        Button attitude = new Button("", attitudeImageViewM);
         attitude.setId("menuButton");
         
-        Image rijImage = new Image("images/menuRijtechniek.PNG");
-        ImageView rijImageView = new ImageView(rijImage);
-        rijImageView.setFitWidth(100);
-        rijImageView.setFitHeight(50);
-        Button rijTechniek = new Button("", rijImageView);
+        Image rijImageM = new Image("images/menuRijtechniek.PNG");
+        ImageView rijImageViewM = new ImageView(rijImageM);
+        rijImageViewM.setFitWidth(100);
+        rijImageViewM.setFitHeight(50);
+        Button rijTechniek = new Button("", rijImageViewM);
         rijTechniek.setId("menuButton");
         
-        Image verkeersImage = new Image("images/menuVerkeerstechniek.PNG");
-        ImageView verkeersImageView = new ImageView(verkeersImage);
-        verkeersImageView.setFitWidth(100);
-        verkeersImageView.setFitHeight(50);
-        Button verkeersTechniek = new Button("", verkeersImageView);
+        Image verkeersImageM = new Image("images/menuVerkeerstechniek.PNG");
+        ImageView verkeersImageViewM = new ImageView(verkeersImageM);
+        verkeersImageViewM.setFitWidth(100);
+        verkeersImageViewM.setFitHeight(50);
+        Button verkeersTechniek = new Button("", verkeersImageViewM);
         verkeersTechniek.setId("menuButton");
         
-        Image menuTerugImage = new Image("images/dashboardTerug.PNG");
-        ImageView menuTerugImageView = new ImageView(menuTerugImage);
-        menuTerugImageView.setFitWidth(100);
-        menuTerugImageView.setFitHeight(50);
-        Button menuTerug = new Button("", menuTerugImageView);
+        Image menuTerugImageM = new Image("images/dashboardTerug.PNG");
+        ImageView menuTerugImageViewM = new ImageView(menuTerugImageM);
+        menuTerugImageViewM.setFitWidth(100);
+        menuTerugImageViewM.setFitHeight(50);
+        Button menuTerug = new Button("", menuTerugImageViewM);
         menuTerug.setId("menuButton");
         
         
@@ -170,6 +176,181 @@ public class Dashboard extends HBox
         //LEFT
         VBox left = new VBox();
         left.setId("dashboardLeft");
+
+        Image dashboardLayer1 = new Image("images/dashboard.png");
+        ImageView dashboardLayer1ImageView = new ImageView(dashboardLayer1);
+        dashboardLayer1ImageView.setId("dashboardLayer1ImageView");
+        dashboardLayer1ImageView.setFitWidth(800);
+        dashboardLayer1ImageView.setFitHeight(400);
+
+        GridPane dashboard = new GridPane();
+        dashboard.setId("dashboard");
+        dashboard.setHgap(5);
+        dashboard.setVgap(50);
+
+        ColumnConstraints col1 = new ColumnConstraints(266);
+        col1.setHalignment(HPos.CENTER);
+        ColumnConstraints col2 = new ColumnConstraints(250);
+        col2.setHalignment(HPos.CENTER);
+        ColumnConstraints col3 = new ColumnConstraints(260);
+        col3.setHalignment(HPos.CENTER);
+        
+        dashboard.getColumnConstraints().addAll(col1, col2, col3);
+        
+        RowConstraints row1 = new RowConstraints(250);
+        row1.setValignment(VPos.BOTTOM);
+        RowConstraints row2 = new RowConstraints(50);
+        row2.setValignment(VPos.BOTTOM);
+//        RowConstraints row3 = new RowConstraints(0);
+//        row3.setValignment(VPos.TOP);
+        
+        dashboard.getRowConstraints().addAll(row1, row2);
+        
+        Image rijtechniek = new Image("images/icoon-rijtechniek.png");
+        ImageView rijtechniekImageView = new ImageView(rijtechniek);
+        rijtechniekImageView.setFitWidth(100);
+        rijtechniekImageView.setFitHeight(100);
+        Button rijtechniekBtn = new Button("", rijtechniekImageView);
+        rijtechniekBtn.setId("groteBtnsDashboard");
+        dashboard.add(rijtechniekBtn, 0, 0);
+        
+        Image attitudeD = new Image("images/attitude.png");
+        ImageView attitudeImageView = new ImageView(attitudeD);
+        attitudeImageView.setFitWidth(100);
+        attitudeImageView.setFitHeight(100);
+        Button attitudeBtn = new Button("",attitudeImageView);
+        attitudeBtn.setId("groteBtnsDashboard");
+        dashboard.add(attitudeBtn,1, 0);
+        
+        Image verkeerstechniek = new Image("images/icoon-verkeerstechniek.png");
+        ImageView verkeerstechniekImageView = new ImageView(verkeerstechniek);
+        verkeerstechniekImageView.setFitWidth(100);
+        verkeerstechniekImageView.setFitHeight(100);
+        Button verkeerstechniekBtn = new Button("", verkeerstechniekImageView);
+        verkeerstechniekBtn.setId("groteBtnsDashboard");
+        dashboard.add(verkeerstechniekBtn, 2, 0);
+        
+        //hBox met icoontjes
+        HBox icoontjes = new HBox();
+        icoontjes.setId("icoontjesDashboard");
+
+        HBox icoontjesLinks = new HBox();
+        icoontjesLinks.setId("icoontjesLinks");
+
+        Image bandenSpanning = new Image("images/banden-spanning.png");
+        ImageView bandenSpanningImageView = new ImageView(bandenSpanning);
+        bandenSpanningImageView.setFitWidth(25);
+        bandenSpanningImageView.setFitHeight(25);
+        Button bandenSpanningBtn = new Button("", bandenSpanningImageView);
+        bandenSpanningBtn.setId("icoontjesBtns");
+
+        Image olie = new Image("images/olie.png");
+        ImageView olieImageView = new ImageView(olie);
+        olieImageView.setFitWidth(25);
+        olieImageView.setFitHeight(25);
+        Button olieBtn = new Button("", olieImageView);
+        olieBtn.setId("icoontjesBtns");
+        
+        Image lichten = new Image("images/lichten.png");
+        ImageView lichtenImageView = new ImageView(lichten);
+        lichtenImageView.setFitWidth(25);
+        lichtenImageView.setFitHeight(25);
+        Button lichtenBtn = new Button("", lichtenImageView);
+        lichtenBtn.setId("icoontjesBtns");
+        
+        icoontjesLinks.getChildren().addAll(bandenSpanningBtn, olieBtn, lichtenBtn);
+                
+        HBox icoontjesMidden = new HBox();
+        icoontjesMidden.setId("icoontjesMidden");
+        
+        Image rondpunt = new Image("images/rondpunt.png");
+        ImageView rondpuntImageView = new ImageView(rondpunt);
+        rondpuntImageView.setFitWidth(25);
+        rondpuntImageView.setFitHeight(25);
+        Button rondpuntBtn = new Button("", rondpuntImageView);
+        rondpuntBtn.setId("icoontjesBtns");
+        
+        Image rijbaan = new Image("images/rijbaan.png");
+        ImageView rijbaanImageView = new ImageView(rijbaan);
+        rijbaanImageView.setFitWidth(25);
+        rijbaanImageView.setFitHeight(25);
+        Button rijbaanBtn = new Button("", rijbaanImageView);
+        rijbaanBtn.setId("icoontjesBtns");
+        
+        Image stad = new Image("images/stad.png");
+        ImageView stadImageView = new ImageView(stad);
+        stadImageView.setFitWidth(25);
+        stadImageView.setFitHeight(25);
+        Button stadBtn = new Button("", stadImageView);
+        stadBtn.setId("icoontjesBtns");
+        
+        Image autosnelweg = new Image("images/autosnelweg.png");
+        ImageView autosnelwegImageView = new ImageView(autosnelweg);
+        autosnelwegImageView.setFitWidth(25);
+        autosnelwegImageView.setFitHeight(25);
+        Button autosnelwegBtn = new Button("", autosnelwegImageView);
+        autosnelwegBtn.setId("icoontjesBtns");
+        
+        icoontjesMidden.getChildren().addAll(rondpuntBtn, rijbaanBtn, stadBtn, autosnelwegBtn);
+        
+        HBox icoontjesRechts = new HBox();
+        icoontjesRechts.setId("icoontjesRechts");
+
+        Image tanken  = new Image("images/tanken.png");
+        ImageView tankenImageView = new ImageView(tanken);
+        tankenImageView.setFitWidth(25);
+        tankenImageView.setFitHeight(25);
+        Button tankenBtn = new Button("", tankenImageView);
+        tankenBtn.setId("icoontjesBtns");
+        
+        Image gps = new Image("images/GPS.png");
+        ImageView gpsImageView = new ImageView(gps);
+        gpsImageView.setFitWidth(25);
+        gpsImageView.setFitHeight(25);
+        Button gpsBtn = new Button("", gpsImageView);
+        gpsBtn.setId("icoontjesBtns");
+        
+        Image stop = new Image("images/stop.png");
+        ImageView stopImageView = new ImageView(stop);
+        stopImageView.setFitWidth(25);
+        stopImageView.setFitHeight(25);
+        Button stopBtn = new Button("", stopImageView);
+        stopBtn.setId("icoontjesBtns");
+        
+        icoontjesRechts.getChildren().addAll(tankenBtn, gpsBtn, stopBtn);
+        
+        icoontjes.getChildren().addAll(icoontjesLinks, icoontjesMidden, icoontjesRechts);
+        icoontjes.setBlendMode(BlendMode.ADD);
+        dashboard.add(icoontjes, 1, 1);
+        
+//        HBox hBoxLichten = new HBox();
+//        hBoxLichten.setId("hBoxLichten");
+//        
+//        Image groenLicht = new Image("images/verkeerslicht-groen.png");
+//        ImageView groenLichtImageView = new ImageView(groenLicht);
+//        groenLichtImageView.setFitWidth(25);
+//        groenLichtImageView.setFitHeight(25);
+//        
+//        Image oranjeLicht = new Image("images/verkeerslicht-oranje.png");
+//        ImageView oranjeLichtImageView = new ImageView(oranjeLicht);
+//        oranjeLichtImageView.setFitWidth(25);
+//        oranjeLichtImageView.setFitHeight(25);
+//        
+//        Image roodLicht = new Image("images/verkeerslicht-rood.png");
+//        ImageView roodLichtImageView = new ImageView(roodLicht);
+//        roodLichtImageView.setFitWidth(25);
+//        roodLichtImageView.setFitHeight(25);
+//                
+//        hBoxLichten.getChildren().addAll(groenLichtImageView, oranjeLichtImageView, roodLichtImageView);
+//        hBoxLichten.setBlendMode(BlendMode.ADD);
+//        dashboard.add(hBoxLichten, 1, 2);
+       
+        dashboard.setBlendMode(BlendMode.ADD);
+        
+        Group dashboardGroup = new Group();
+        dashboardGroup.setId("dashboardGroup");
+        dashboardGroup.getChildren().add(dashboardLayer1ImageView);
+        dashboardGroup.getChildren().add(dashboard);
 
         VBox grafiekMetLbl = new VBox();
         grafiekMetLbl.setId("grafiekMetLbl");
@@ -221,7 +402,7 @@ public class Dashboard extends HBox
         voortgang.setId("voortgangLbl");
         grafiekMetLbl.getChildren().addAll(grafiekOuter, voortgang);
 
-        left.getChildren().addAll(grafiekMetLbl);
+        left.getChildren().addAll(dashboardGroup, grafiekMetLbl);
 
         //rootDashboard
         rootDashboard.getChildren().addAll(left, right);
@@ -232,16 +413,10 @@ public class Dashboard extends HBox
 
     public void plusEen()
     {
-        if (niveau != 0) {
-            Rectangle blokDelete = grafiek[niveau];
-            blokDelete.setFill(Color.BLACK);
-            grafiek[niveau] = blokDelete;
-
             niveau--;
             Rectangle blokAdd = grafiek[niveau];
             blokAdd.setFill(Color.BLUE);
             grafiek[niveau] = blokAdd;
-        }
     }
 
     public void minEen()
