@@ -198,6 +198,44 @@
     -fx-alignment: TOP_CENTER;
 }
 
+#groteBtnsDashboard{
+    -fx-pref-width: 100;
+    -fx-pref-height: 100;
+    -fx-background-color: transparent;
+}
 
+#icoontjesBtns{
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+    -fx-background-color: transparent;
+}
 
+#icoontjesLinks{
+    -fx-pref-height: 10;
+}
+
+#icoontjesMidden{
+    -fx-pref-height: 10;
+}
+
+#icoonjesRechts{
+    -fx-pref-height: 10;
+}
+
+#icoontjesDashboard{
+    -fx-spacing: 20;
+}
+
+#hBoxLichten{
+    -fx-spacing: 10;
+    -fx-alignment: CENTER;
+}
+
+#dashboardGroup{
+    -fx-padding: 150 50 150 50;
+}
+
+#dashboardLeft{
+    -fx-padding: 25 0 0 25;
+}
 
