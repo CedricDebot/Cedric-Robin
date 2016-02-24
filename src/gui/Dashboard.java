@@ -131,6 +131,7 @@ public class Dashboard extends HBox
         Button menuTerug = new Button("", menuTerugImageView);
         menuTerug.setId("menuButton");
         
+        
         menu.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
         
         dashboardMenu.setOnAction(e ->{
