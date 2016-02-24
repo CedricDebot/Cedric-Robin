@@ -79,9 +79,71 @@ public class Dashboard extends HBox
         moment3.setId("momentKnop");
         momenten.getChildren().addAll(moment1, moment2, moment3);
         evaluatieMoment.getChildren().addAll(evaTitel, momenten);
-
-        right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment);
-
+        
+        //MenuKnoppen
+        VBox menuKnoppen = new VBox();
+        menuKnoppen.setId("menuKnoppen");
+        Image dashboardMenuImage = new Image("images/MenuKnop.png");
+        ImageView dashboardMenuImageView = new ImageView(dashboardMenuImage);
+        dashboardMenuImageView.setFitWidth(60);
+        dashboardMenuImageView.setFitHeight(50);
+        Button dashboardMenu = new Button("", dashboardMenuImageView);
+        dashboardMenu.setId("menuButton");
+        
+        Image dashboardTerugImage = new Image("images/dashboardTerug.PNG");
+        ImageView dashboardTerugImageView = new ImageView(dashboardTerugImage);
+        dashboardTerugImageView.setFitWidth(60);
+        dashboardTerugImageView.setFitHeight(50);
+        Button dashboardTerug = new Button("",dashboardTerugImageView);
+        dashboardTerug.setId("menuButton");
+        
+        menuKnoppen.getChildren().addAll( dashboardMenu, dashboardTerug);
+        right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment, menuKnoppen);
+        
+        //Menu
+        VBox menu = new VBox();
+        menu.setId("menuBox");
+        
+        Image attitudeImage = new Image("images/menuAttitude.PNG");
+        ImageView attitudeImageView = new ImageView(attitudeImage);
+        attitudeImageView.setFitWidth(100);
+        attitudeImageView.setFitHeight(50);
+        Button attitude = new Button("", attitudeImageView);
+        attitude.setId("menuButton");
+        
+        Image rijImage = new Image("images/menuRijtechniek.PNG");
+        ImageView rijImageView = new ImageView(rijImage);
+        rijImageView.setFitWidth(100);
+        rijImageView.setFitHeight(50);
+        Button rijTechniek = new Button("", rijImageView);
+        rijTechniek.setId("menuButton");
+        
+        Image verkeersImage = new Image("images/menuVerkeerstechniek.PNG");
+        ImageView verkeersImageView = new ImageView(verkeersImage);
+        verkeersImageView.setFitWidth(100);
+        verkeersImageView.setFitHeight(50);
+        Button verkeersTechniek = new Button("", verkeersImageView);
+        verkeersTechniek.setId("menuButton");
+        
+        Image menuTerugImage = new Image("images/dashboardTerug.PNG");
+        ImageView menuTerugImageView = new ImageView(menuTerugImage);
+        menuTerugImageView.setFitWidth(100);
+        menuTerugImageView.setFitHeight(50);
+        Button menuTerug = new Button("", menuTerugImageView);
+        menuTerug.setId("menuButton");
+        
+        
+        menu.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
+        
+        dashboardMenu.setOnAction(e ->{
+            right.getChildren().removeAll(hBox_outter, naamLeerling, evaluatieMoment,menuKnoppen);
+            right.getChildren().addAll(menu);
+        });
+        menuTerug.setOnAction(e ->{
+            right.getChildren().removeAll(menu);
+            right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment,menuKnoppen);
+        });
+        
         //buttons
         moment1.setOnAction(e -> {
             if (moment1.getText().equals(" ")) {
