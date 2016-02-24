@@ -4,7 +4,7 @@ import gui.Dashboard;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.scenicview.ScenicView;
+
 
 
 public class StartUp extends Application
@@ -20,7 +20,7 @@ public class StartUp extends Application
         stage.setTitle("App rijschool");
         scene.getStylesheets().add("css/Beginscherm.css");
         stage.show();
-        ScenicView.show(scene);
+        
     }
     
     public static void main(String[] args)
