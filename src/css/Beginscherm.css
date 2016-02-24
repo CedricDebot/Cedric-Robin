@@ -147,7 +147,7 @@
 #dashboardRight{
     -fx-spacing: 2;
     -fx-padding: 10 10 10 10;
-    -fx-alignment: TOP_RIGHT;
+    -fx-alignment: TOP_CENTER;
 }
 
 #hBox_outterImage{
@@ -204,8 +204,12 @@
 }
 #menuBox{
     -fx-spacing: 20;
-    -fx-background-color: black;
+    -fx-background-color: darkgrey;
     -fx-padding: 10;
+}
+#menuKnoppen{
+    -fx-spacing: 20;
+    -fx-alignment: CENTER;
 }
 
 
