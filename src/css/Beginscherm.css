@@ -197,6 +197,13 @@
 #grafiekMetLbl{
     -fx-alignment: TOP_CENTER;
 }
+#OpmerkingVeld{
+    -fx-pref-height: 100;
+    -fx-pref-width: 150;
+}
+#OpmerkingLabel{
+    -fx-padding: 5;
+}
 
 
 

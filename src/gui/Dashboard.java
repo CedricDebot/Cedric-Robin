@@ -2,6 +2,7 @@ package gui;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -142,7 +143,18 @@ public class Dashboard extends HBox
             plusEen();
             setVoortgang();
         });
-        grafiekOuter.getChildren().addAll(minusBtn, grafiekInner, plusBtn);
+        
+        //OpmerkingVak
+        VBox opmerkingenBox = new VBox();
+        Label opmerkingen = new Label("OPMERKING:");
+        opmerkingen.setId("OpmerkingLabel");
+        TextField opmerkingField = new TextField();
+        opmerkingField.setId("OpmerkingVeld");
+        opmerkingField.setEditable(false);
+        
+        opmerkingenBox.getChildren().addAll(opmerkingen, opmerkingField);
+        
+        grafiekOuter.getChildren().addAll(minusBtn, grafiekInner, plusBtn, opmerkingenBox);
 
         voortgang.setId("voortgangLbl");
         grafiekMetLbl.getChildren().addAll(grafiekOuter, voortgang);
