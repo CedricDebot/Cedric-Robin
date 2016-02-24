@@ -14,8 +14,8 @@ public class StartUp extends Application
     public void start(Stage stage) throws Exception
     {
         Beginscherm beginscherm = new Beginscherm();
-        Dashboard dashboard = new Dashboard();
-        Scene scene = new Scene(dashboard, 1024, 768);
+        Scene scene = new Scene(beginscherm, 1024, 768);
+        beginscherm.setScene(scene);
         stage.setScene(scene);
         stage.setTitle("App rijschool");
         scene.getStylesheets().add("css/Beginscherm.css");
