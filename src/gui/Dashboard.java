@@ -3,6 +3,7 @@ package gui;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -42,11 +43,15 @@ public class Dashboard extends HBox
     {
 
         HBox rootDashboard = new HBox();
+        rootDashboard.setId("rootDashboard");
 
         //RIGHT
         VBox right = new VBox();
         right.setId("dashboardRight");
 
+        VBox infoLeerling = new VBox();
+        infoLeerling.setId("infoLeerling");
+        
         Image fotoLeerling = new Image("images/character.png");
         ImageView leerlingImageView = new ImageView(fotoLeerling);
         leerlingImageView.setId("leerlingImageView");
@@ -68,6 +73,7 @@ public class Dashboard extends HBox
         hBox_inner.getChildren().add(leerlingImageView);
         hBox_outter.getChildren().add(hBox_inner);
 
+        infoLeerling.getChildren().addAll(hBox_outter, naamLeerling);
         //EvaluatieMoment
         VBox evaluatieMoment = new VBox();
         evaluatieMoment.setId("evaluatieMoment");
@@ -104,7 +110,7 @@ public class Dashboard extends HBox
         dashboardTerug.setId("menuButton");
         
         menuKnoppen.getChildren().addAll( dashboardMenu, dashboardTerug);
-        right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment, menuKnoppen);
+        right.getChildren().addAll(infoLeerling, evaluatieMoment, menuKnoppen);
         
         //Menu
         VBox menu = new VBox();
@@ -389,7 +395,7 @@ public class Dashboard extends HBox
         
         //OpmerkingVak
         VBox opmerkingenBox = new VBox();
-        Label opmerkingen = new Label("OPMERKING:");
+        Label opmerkingen = new Label("OPMERKINGEN:");
         opmerkingen.setId("OpmerkingLabel");
         TextField opmerkingField = new TextField();
         opmerkingField.setId("OpmerkingVeld");
@@ -397,12 +403,17 @@ public class Dashboard extends HBox
         
         opmerkingenBox.getChildren().addAll(opmerkingen, opmerkingField);
         
-        grafiekOuter.getChildren().addAll(minusBtn, grafiekInner, plusBtn, opmerkingenBox);
+        HBox hBoxOnder = new HBox();
+        hBoxOnder.setId("hBoxOnder");
+        
+        grafiekOuter.getChildren().addAll(minusBtn, grafiekInner, plusBtn);
 
         voortgang.setId("voortgangLbl");
         grafiekMetLbl.getChildren().addAll(grafiekOuter, voortgang);
+        
+        hBoxOnder.getChildren().addAll(grafiekMetLbl, opmerkingenBox);
 
-        left.getChildren().addAll(dashboardGroup, grafiekMetLbl);
+        left.getChildren().addAll(dashboardGroup, hBoxOnder);
 
         //rootDashboard
         rootDashboard.getChildren().addAll(left, right);
@@ -445,6 +456,10 @@ public class Dashboard extends HBox
 
         if (niveau == 0) {
             voortgang.setText("Klaar voor praktisch examen");
+        }
+        
+        if (niveau > 7){
+            voortgang.setText("");
         }
     }
 }

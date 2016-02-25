@@ -4,6 +4,7 @@ import domein.Leerling;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.*;
@@ -16,6 +17,8 @@ public class Beginscherm extends HBox
 
     private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
     private ListView lijstLeerlingen = new ListView();
+    
+    private Scene scene;
 
     public Beginscherm()
     {
@@ -166,6 +169,11 @@ public class Beginscherm extends HBox
                 getChildren().add(right);
             }
         });
+        
+        start.setOnAction(e ->{
+            Dashboard dashboard = new Dashboard();
+            scene.setRoot(dashboard);
+        });
 
         //textfields nog leeg maken 
         annuleer.setOnAction(e -> {
@@ -190,5 +198,9 @@ public class Beginscherm extends HBox
             }
         }
         lijstLeerlingen.setItems(searchNames);
+    }
+    
+    public void setScene(Scene scene){
+        this.scene = scene;
     }
 }
