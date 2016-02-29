@@ -424,10 +424,12 @@ public class Dashboard extends HBox
 
     public void plusEen()
     {
+        if (niveau != 0){
             niveau--;
             Rectangle blokAdd = grafiek[niveau];
             blokAdd.setFill(Color.BLUE);
             grafiek[niveau] = blokAdd;
+        }
     }
 
     public void minEen()
