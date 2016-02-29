@@ -1,5 +1,12 @@
 package gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.Animation;
+import static javafx.animation.Animation.Status.STOPPED;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
@@ -17,6 +24,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 public class Dashboard extends HBox
 {
@@ -147,13 +155,30 @@ public class Dashboard extends HBox
         
         menu.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
         
-        dashboardMenu.setOnAction(e ->{
-            right.getChildren().removeAll(hBox_outter, naamLeerling, evaluatieMoment,menuKnoppen);
+        dashboardMenu.setOnAction(e -> {
+            right.getChildren().removeAll(infoLeerling, evaluatieMoment,menuKnoppen);
+            
+            TranslateTransition tt = new TranslateTransition(Duration.millis(2000), menu);
+            
+            tt.setFromX(100.0 + menu.getLayoutX());
+            tt.setByX(-107);
+            tt.setCycleCount(1);
+            
+            tt.play();
+            
             right.getChildren().addAll(menu);
         });
-        menuTerug.setOnAction(e ->{
+        menuTerug.setOnAction(e ->{      
+            TranslateTransition tt = new TranslateTransition(Duration.millis(2000), menu);
+            
+            tt.setFromX(menu.getLayoutX());
+            tt.setByX(107);
+            tt.setCycleCount(1);
+            
+            tt.play();
+            
             right.getChildren().removeAll(menu);
-            right.getChildren().addAll(hBox_outter, naamLeerling, evaluatieMoment,menuKnoppen);
+            right.getChildren().addAll(infoLeerling, evaluatieMoment,menuKnoppen);
         });
         
         //buttons
