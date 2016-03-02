@@ -1,16 +1,9 @@
 package gui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.Animation;
-import static javafx.animation.Animation.Status.STOPPED;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -170,15 +163,18 @@ public class Dashboard extends HBox
         });
         menuTerug.setOnAction(e ->{      
             TranslateTransition tt = new TranslateTransition(Duration.millis(2000), menu);
+            tt.setOnFinished(ev ->{
+                right.getChildren().removeAll(menu);
+                right.getChildren().addAll(infoLeerling, evaluatieMoment,menuKnoppen);
+            });
             
             tt.setFromX(menu.getLayoutX());
             tt.setByX(107);
             tt.setCycleCount(1);
             
             tt.play();
+            tt.onFinishedProperty();
             
-            right.getChildren().removeAll(menu);
-            right.getChildren().addAll(infoLeerling, evaluatieMoment,menuKnoppen);
         });
         
         //buttons
