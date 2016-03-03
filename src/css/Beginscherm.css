@@ -208,6 +208,7 @@
     -fx-pref-width: 20;
     -fx-pref-height: 20;
     -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 #icoontjesLinks{
