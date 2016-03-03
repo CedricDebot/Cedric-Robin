@@ -279,3 +279,18 @@
 #infoLeerling{
     -fx-spacing: 15;
 }
+#OpmerkingenVeld{
+    -fx-max-width: 300;
+    -fx-max-height: 200;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+}
+#OpmeringenList{
+    -fx-max-width: 300;
+    -fx-max-height: 600;
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+}
