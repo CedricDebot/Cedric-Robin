@@ -1,4 +1,5 @@
 
+import gui.Attitude;
 import gui.Beginscherm;
 import gui.Dashboard;
 import javafx.application.Application;
@@ -14,7 +15,8 @@ public class StartUp extends Application
     public void start(Stage stage) throws Exception
     {
         Beginscherm beginscherm = new Beginscherm();
-        Scene scene = new Scene(beginscherm, 1024, 768);
+        Attitude attitude = new Attitude();
+        Scene scene = new Scene(attitude, 1024, 768);
         beginscherm.setScene(scene);
         stage.setScene(scene);
         stage.setTitle("App rijschool");
