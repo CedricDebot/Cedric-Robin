@@ -265,7 +265,7 @@
 }
 #OpmerkingLabel{
     -fx-padding: 5;
-    -fx-font: 15px bold;
+    -fx-font: 30px bold;
 }
 
 #rootDashboard{
@@ -285,12 +285,23 @@
     -fx-border-color: black;
     -fx-border-radius: 5;
     -fx-border-width: 2;
+    -fx-focus-color: none;
 }
 #OpmeringenList{
-    -fx-max-width: 300;
-    -fx-max-height: 600;
     -fx-background-radius: 5;
     -fx-border-color: black;
     -fx-border-radius: 5;
     -fx-border-width: 3;
+}
+#attitudeList{
+    -fx-max-width: 300;
+    -fx-max-height: 700;
+    -fx-alignment: CENTER;
+    -fx-spacing: 25;
+}
+#attitudeVoegToe{
+    
+}
+#nieuwHB{
+    -fx-spacing: 15;
 }
