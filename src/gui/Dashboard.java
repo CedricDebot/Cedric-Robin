@@ -52,14 +52,14 @@ public class Dashboard extends HBox
         right.setId("dashboardRight");
         
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuStandaard();
+        VBox menuStandaard = menu.buildMenuDashboard();
         menuStandaard.setId("dashboardRight");
         right.getChildren().add(menuStandaard);
         
         //Menu
         VBox menuBalk = menu.buildMenu();
             
-        menu.getDashboardMenu().setOnAction(e -> {
+        menu.getMenuKnop().setOnAction(e -> {
             right.getChildren().remove(menuStandaard);
             
             TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
