@@ -42,6 +42,7 @@ public class Dashboard extends HBox
 
     public Dashboard()
     {
+        Menu menu = new Menu();
 
         HBox rootDashboard = new HBox();
         rootDashboard.setId("rootDashboard");
@@ -49,126 +50,36 @@ public class Dashboard extends HBox
         //RIGHT
         VBox right = new VBox();
         right.setId("dashboardRight");
-
-        VBox infoLeerling = new VBox();
-        infoLeerling.setId("infoLeerling");
         
-        Image fotoLeerling = new Image("images/character.png");
-        ImageView leerlingImageView = new ImageView(fotoLeerling);
-        leerlingImageView.setId("leerlingImageView");
-
-        //lay-out (nog proberen in css te zetten)
-        leerlingImageView.setFitWidth(120);
-        leerlingImageView.setFitHeight(150);
-
-        Label naamLeerling = new Label("Jules");
-        naamLeerling.setId("lblNaamLeerling");
-
-        //Inner border
-        HBox hBox_inner = new HBox();
-
-        //Outter border
-        HBox hBox_outter = new HBox();
-        hBox_outter.setId("hBox_outterImage");
-
-        hBox_inner.getChildren().add(leerlingImageView);
-        hBox_outter.getChildren().add(hBox_inner);
-
-        infoLeerling.getChildren().addAll(hBox_outter, naamLeerling);
-        //EvaluatieMoment
-        VBox evaluatieMoment = new VBox();
-        evaluatieMoment.setId("evaluatieMoment");
-
-        Label evaTitel = new Label("Evaluatie Moment");
-        evaTitel.setId("evaTitel");
-
-        HBox momenten = new HBox();
-        momenten.setId("momenten");
-        Button moment1 = new Button(" ");
-        moment1.setId("momentKnop");
-        Button moment2 = new Button(" ");
-        moment2.setId("momentKnop");
-        Button moment3 = new Button(" ");
-        moment3.setId("momentKnop");
-        momenten.getChildren().addAll(moment1, moment2, moment3);
-        evaluatieMoment.getChildren().addAll(evaTitel, momenten);
-        
-        //MenuKnoppen
-        VBox menuKnoppen = new VBox();
-        menuKnoppen.setId("menuKnoppen");
-        Image dashboardMenuImage = new Image("images/MenuKnop.png");
-        ImageView dashboardMenuImageView = new ImageView(dashboardMenuImage);
-        dashboardMenuImageView.setFitWidth(60);
-        dashboardMenuImageView.setFitHeight(50);
-        Button dashboardMenu = new Button("", dashboardMenuImageView);
-        dashboardMenu.setId("menuButton");
-        
-        Image dashboardTerugImage = new Image("images/dashboardTerug.PNG");
-        ImageView dashboardTerugImageView = new ImageView(dashboardTerugImage);
-        dashboardTerugImageView.setFitWidth(60);
-        dashboardTerugImageView.setFitHeight(50);
-        Button dashboardTerug = new Button("",dashboardTerugImageView);
-        dashboardTerug.setId("menuButton");
-        
-        menuKnoppen.getChildren().addAll( dashboardMenu, dashboardTerug);
-        right.getChildren().addAll(infoLeerling, evaluatieMoment, menuKnoppen);
+        //MenuStandaard
+        VBox menuStandaard = menu.buildMenuStandaard();
+        menuStandaard.setId("dashboardRight");
+        right.getChildren().add(menuStandaard);
         
         //Menu
-        VBox menu = new VBox();
-        menu.setId("menuBox");
-        
-        Image attitudeImageM = new Image("images/menuAttitude.PNG");
-        ImageView attitudeImageViewM = new ImageView(attitudeImageM);
-        attitudeImageViewM.setFitWidth(100);
-        attitudeImageViewM.setFitHeight(50);
-        Button attitude = new Button("", attitudeImageViewM);
-        attitude.setId("menuButton");
-        
-        Image rijImageM = new Image("images/menuRijtechniek.PNG");
-        ImageView rijImageViewM = new ImageView(rijImageM);
-        rijImageViewM.setFitWidth(100);
-        rijImageViewM.setFitHeight(50);
-        Button rijTechniek = new Button("", rijImageViewM);
-        rijTechniek.setId("menuButton");
-        
-        Image verkeersImageM = new Image("images/menuVerkeerstechniek.PNG");
-        ImageView verkeersImageViewM = new ImageView(verkeersImageM);
-        verkeersImageViewM.setFitWidth(100);
-        verkeersImageViewM.setFitHeight(50);
-        Button verkeersTechniek = new Button("", verkeersImageViewM);
-        verkeersTechniek.setId("menuButton");
-        
-        Image menuTerugImageM = new Image("images/dashboardTerug.PNG");
-        ImageView menuTerugImageViewM = new ImageView(menuTerugImageM);
-        menuTerugImageViewM.setFitWidth(100);
-        menuTerugImageViewM.setFitHeight(50);
-        Button menuTerug = new Button("", menuTerugImageViewM);
-        menuTerug.setId("menuButton");
-        
-        
-        menu.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
-        
-        dashboardMenu.setOnAction(e -> {
-            right.getChildren().removeAll(infoLeerling, evaluatieMoment,menuKnoppen);
+        VBox menuBalk = menu.buildMenu();
             
-            TranslateTransition tt = new TranslateTransition(Duration.millis(2000), menu);
+        menu.getDashboardMenu().setOnAction(e -> {
+            right.getChildren().remove(menuStandaard);
             
-            tt.setFromX(100.0 + menu.getLayoutX());
+            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            
+            tt.setFromX(100.0 + menuBalk.getLayoutX());
             tt.setByX(-107);
             tt.setCycleCount(1);
             
             tt.play();
             
-            right.getChildren().addAll(menu);
+            right.getChildren().addAll(menuBalk);
         });
-        menuTerug.setOnAction(e ->{      
-            TranslateTransition tt = new TranslateTransition(Duration.millis(2000), menu);
+        menu.getMenuTerug().setOnAction(e ->{      
+            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
             tt.setOnFinished(ev ->{
-                right.getChildren().removeAll(menu);
-                right.getChildren().addAll(infoLeerling, evaluatieMoment,menuKnoppen);
+                right.getChildren().removeAll(menuBalk);
+                right.getChildren().add(menuStandaard);
             });
             
-            tt.setFromX(menu.getLayoutX());
+            tt.setFromX(menuBalk.getLayoutX());
             tt.setByX(107);
             tt.setCycleCount(1);
             
@@ -177,26 +88,26 @@ public class Dashboard extends HBox
             
         });
         
-        //buttons
-        moment1.setOnAction(e -> {
-            if (moment1.getText().equals(" ")) {
-                moment1.setText("1");
+        //EvaluatieMoment Buttons
+        menu.getMoment1().setOnAction(e -> {
+            if (menu.getMoment1().getText().equals(" ")) {
+                menu.getMoment1().setText("1");
             } else {
-                moment1.setText(" ");
+                menu.getMoment1().setText(" ");
             }
         });
-        moment2.setOnAction(e -> {
-            if (moment2.getText().equals(" ")) {
-                moment2.setText("2");
+        menu.getMoment2().setOnAction(e -> {
+            if (menu.getMoment2().getText().equals(" ")) {
+                menu.getMoment2().setText("2");
             } else {
-                moment2.setText(" ");
+                menu.getMoment2().setText(" ");
             }
         });
-        moment3.setOnAction(e -> {
-            if (moment3.getText().equals(" ")) {
-                moment3.setText("3");
+        menu.getMoment3().setOnAction(e -> {
+            if (menu.getMoment3().getText().equals(" ")) {
+                menu.getMoment3().setText("3");
             } else {
-                moment3.setText(" ");
+                menu.getMoment3().setText(" ");
             }
         });
 
