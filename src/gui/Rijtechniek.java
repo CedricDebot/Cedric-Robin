@@ -1,23 +1,32 @@
 package gui;
 
+import com.sun.prism.paint.Color;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class Rijtechniek extends HBox {
 
     public Rijtechniek() {
+        setId("rijtechniekHBox");
         GridPane grid = new GridPane();
-//        grid.setGridLinesVisible(true);
-        
+        grid.setGridLinesVisible(true);
+
         ColumnConstraints col1 = new ColumnConstraints(100);
         col1.setHalignment(HPos.RIGHT);
         ColumnConstraints col2 = new ColumnConstraints(100);
@@ -32,8 +41,7 @@ public class Rijtechniek extends HBox {
         col6.setHalignment(HPos.LEFT);
 
         grid.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6);
-       
-       
+
         RowConstraints row1 = new RowConstraints(100);
         row1.setValignment(VPos.BOTTOM);
         RowConstraints row2 = new RowConstraints(100);
@@ -150,12 +158,11 @@ public class Rijtechniek extends HBox {
         middenGridImageView.setFitWidth(150);
         middenGridImageView.setFitHeight(150);
         grid.add(middenGridImageView, 2, 2, 2, 2);
-        
+
         Image cirkel = new Image("images/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
         cirkelImageView.setFitWidth(600);
         cirkelImageView.setFitHeight(600);
-        //cirkelImageView.setBlendMode(BlendMode.ADD);
 
         grid.setBlendMode(BlendMode.ADD);
 
@@ -164,7 +171,95 @@ public class Rijtechniek extends HBox {
         evaluatieGroup.getChildren().add(cirkelImageView);
         evaluatieGroup.getChildren().add(grid);
 
-        getChildren().addAll(evaluatieGroup);
+        VBox left = new VBox();
+        left.setId("randinfoLeft");
+
+        Image terugPijl = new Image("images/terug-pijl.png");
+        ImageView terugPijlImageView = new ImageView(terugPijl);
+        terugPijlImageView.setFitWidth(100);
+        terugPijlImageView.setFitHeight(50);
+        Button terugBtn = new Button("", terugPijlImageView);
+        terugBtn.setId("menuButton");
+
+        Image rechthoek = new Image("images/verkeerslicht.png");
+        ImageView rechthoekImageView = new ImageView(rechthoek);
+        rechthoekImageView.setFitWidth(70);
+        rechthoekImageView.setFitHeight(200);
+
+        VBox lichten = new VBox();
+        lichten.setId("lichten");
+        Image groenLicht = new Image("images/verkeerslicht-groen.png");
+
+        Image roodLicht = new Image("images/verkeerslicht-rood.png");
+        ImageView roodLichtImageView = new ImageView(roodLicht);
+        roodLichtImageView.setFitWidth(40);
+        roodLichtImageView.setFitHeight(40);
+        Button roodLichtButton = new Button("", roodLichtImageView);
+        roodLichtButton.setId("icoontjesBtns");
+
+        Image oranjeLicht = new Image("images/verkeerslicht-oranje.png");
+        ImageView oranjeLichtImageView = new ImageView(oranjeLicht);
+        oranjeLichtImageView.setFitWidth(40);
+        oranjeLichtImageView.setFitHeight(40);
+        Button oranjeLichtButton = new Button("", oranjeLichtImageView);
+        oranjeLichtButton.setId("icoontjesBtns");
+
+        ImageView groenLichtImageView = new ImageView(groenLicht);
+        groenLichtImageView.setFitWidth(40);
+        groenLichtImageView.setFitHeight(40);
+        Button groenLichtButton = new Button("", groenLichtImageView);
+        groenLichtButton.setId("icoontjesBtns");
+
+        lichten.getChildren().addAll(roodLichtButton, oranjeLichtButton, groenLichtButton);
+        lichten.setBlendMode(BlendMode.ADD);
+
+        Group verkeerslicht = new Group();
+        verkeerslicht.setId("groupVerkeerslicht");
+        verkeerslicht.getChildren().add(rechthoekImageView);
+        verkeerslicht.getChildren().add(lichten);
+
+        left.getChildren().addAll(terugBtn, verkeerslicht);
+        Menu menu = new Menu();
+        
+        VBox right = new VBox();
+
+        VBox menuStandaard = menu.buildMenuStandaard();
+
+        right.getChildren().add(menuStandaard);
+        
+        VBox menuBalk = menu.buildMenu();
+
+        menu.getMenuKnop().setOnAction(e -> {
+            right.getChildren().remove(menuStandaard);
+            
+                        
+            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            
+            tt.setFromX(100.0 + menuBalk.getLayoutX());
+            tt.setByX(-107);
+            tt.setCycleCount(1);
+            
+            tt.play();
+            
+            right.getChildren().addAll(menuBalk);
+        });
+        
+        menu.getMenuTerug().setOnAction(e -> {
+              TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            tt.setOnFinished(ev ->{
+                right.getChildren().removeAll(menuBalk);
+                right.getChildren().add(menuStandaard);
+            });
+            
+            tt.setFromX(menuBalk.getLayoutX());
+            tt.setByX(107);
+            tt.setCycleCount(1);
+            
+            tt.play();
+            tt.onFinishedProperty();
+        });
+
+        getChildren().addAll(left, evaluatieGroup, right);
     }
 
 }

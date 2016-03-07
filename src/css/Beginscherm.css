@@ -170,8 +170,8 @@
     -fx-pref-width: 100;
 }
 #momentKnop{
-   -fx-background-color: #EAEAEA;
-   -fx-pref-width: 40;
+    -fx-background-color: #EAEAEA;
+    -fx-pref-width: 40;
 }
 
 #evaluatiegrafiek{
@@ -280,6 +280,22 @@
 #infoLeerling{
     -fx-spacing: 15;
 }
+
 #menuStandaard{
+    -fx-padding: 20 10 10 10;
     -fx-spacing: 300;
+}
+
+#rijtechniekHBox{
+    -fx-spacing: 50;
+}
+
+#randinfoLeft{
+    -fx-padding: 50 0 0 0;
+    -fx-spacing: 380;
+    -fx-alignment: TOP_CENTER;
+}
+
+#lichten{
+    -fx-padding: 15 0 15 5;
 }

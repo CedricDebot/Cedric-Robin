@@ -88,28 +88,28 @@ public class Dashboard extends HBox
             
         });
         
-//        //EvaluatieMoment Buttons
-//        menu.getMoment1().setOnAction(e -> {
-//            if (menu.getMoment1().getText().equals(" ")) {
-//                menu.getMoment1().setText("1");
-//            } else {
-//                menu.getMoment1().setText(" ");
-//            }
-//        });
-//        menu.getMoment2().setOnAction(e -> {
-//            if (menu.getMoment2().getText().equals(" ")) {
-//                menu.getMoment2().setText("2");
-//            } else {
-//                menu.getMoment2().setText(" ");
-//            }
-//        });
-//        menu.getMoment3().setOnAction(e -> {
-//            if (menu.getMoment3().getText().equals(" ")) {
-//                menu.getMoment3().setText("3");
-//            } else {
-//                menu.getMoment3().setText(" ");
-//            }
-//        });
+        //EvaluatieMoment Buttons
+        menu.getMoment1().setOnAction(e -> {
+            if (menu.getMoment1().getText().equals(" ")) {
+                menu.getMoment1().setText("1");
+            } else {
+                menu.getMoment1().setText(" ");
+            }
+        });
+        menu.getMoment2().setOnAction(e -> {
+            if (menu.getMoment2().getText().equals(" ")) {
+                menu.getMoment2().setText("2");
+            } else {
+                menu.getMoment2().setText(" ");
+            }
+        });
+        menu.getMoment3().setOnAction(e -> {
+            if (menu.getMoment3().getText().equals(" ")) {
+                menu.getMoment3().setText("3");
+            } else {
+                menu.getMoment3().setText(" ");
+            }
+        });
 
         //LEFT
         VBox left = new VBox();
