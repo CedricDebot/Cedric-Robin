@@ -16,7 +16,7 @@ public class StartUp extends Application
     {
         Beginscherm beginscherm = new Beginscherm();
         Attitude attitude = new Attitude();
-        Scene scene = new Scene(attitude, 1024, 768);
+        Scene scene = new Scene(beginscherm, 1024, 768);
         beginscherm.setScene(scene);
         stage.setScene(scene);
         stage.setTitle("App rijschool");
