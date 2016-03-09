@@ -266,7 +266,7 @@
 }
 #OpmerkingLabel{
     -fx-padding: 5;
-    -fx-font: 15px bold;
+    -fx-font: 30px bold;
 }
 
 #rootDashboard{
@@ -299,3 +299,31 @@
 #lichten{
     -fx-padding: 15 0 15 5;
 }
+
+#OpmerkingenVeld{
+    -fx-max-width: 300;
+    -fx-max-height: 200;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-focus-color: none;
+}
+#OpmeringenList{
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+}
+#attitudeList{
+    -fx-max-width: 300;
+    -fx-max-height: 700;
+    -fx-alignment: CENTER;
+    -fx-spacing: 25;
+}
+#attitudeVoegToe{
+    
+}
+#nieuwHB{
+    -fx-spacing: 15;
+}
+
