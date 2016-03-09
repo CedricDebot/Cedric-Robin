@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import javafx.animation.TranslateTransition;
@@ -28,7 +23,7 @@ public class VerkeersTechniek extends HBox{
     
     public VerkeersTechniek(){
         GridPane grid = new GridPane();
-        grid.setGridLinesVisible(true);
+        grid.setGridLinesVisible(false);
         
         ColumnConstraints col0 = new ColumnConstraints(100);
         col0.setHalignment(HPos.RIGHT);
@@ -61,15 +56,15 @@ public class VerkeersTechniek extends HBox{
         grid.getRowConstraints().addAll(row0, row1, row2, row3, row4, row5);
         
         //Buttons met images
-        Image voorrang = new Image("images/voorrang.png");
+        Image voorrang = new Image("images/verkeersTechniek/voorrang.png");
         ImageView voorrangImageView = new ImageView(voorrang);
         voorrangImageView.setFitWidth(50);
         voorrangImageView.setFitHeight(50);
         Button voorrangBtn = new Button("", voorrangImageView);
         voorrangBtn.setId("icoontjesBtns");
-        grid.add(voorrangBtn, 2, 0);
+        grid.add(voorrangBtn, 2, 0, 2 , 1);
         
-        Image orderOpvolgen = new Image("images/ordersOpvolgen.png");
+        Image orderOpvolgen = new Image("images/verkeersTechniek/ordersOpvolgen.png");
         ImageView ordersOpvolgenView = new ImageView(orderOpvolgen);
         ordersOpvolgenView.setFitWidth(50);
         ordersOpvolgenView.setFitHeight(50);
@@ -77,7 +72,7 @@ public class VerkeersTechniek extends HBox{
         orderOpvolgenBtn.setId("icoontjesBtns");
         grid.add(orderOpvolgenBtn, 4, 1);
         
-        Image snelheid = new Image("images/snelheid.png");
+        Image snelheid = new Image("images/verkeersTechniek/snelheid.png");
         ImageView snelheidView = new ImageView(snelheid);
         snelheidView.setFitWidth(50);
         snelheidView.setFitHeight(50);
@@ -85,7 +80,7 @@ public class VerkeersTechniek extends HBox{
         snelheidBtn.setId("icoontjesBtns");
         grid.add(snelheidBtn, 5, 2);
         
-        Image afstand = new Image("images/afstand.png");
+        Image afstand = new Image("images/verkeersTechniek/afstand.png");
         ImageView afstandView = new ImageView(afstand);
         afstandView.setFitWidth(50);
         afstandView.setFitHeight(50);
@@ -93,7 +88,7 @@ public class VerkeersTechniek extends HBox{
         afstandBtn.setId("icoontjesBtns");
         grid.add(afstandBtn, 5, 3);
         
-        Image voorrang2 = new Image("images/Voorrang2.png");
+        Image voorrang2 = new Image("images/verkeersTechniek/Voorrang2.png");
         ImageView voorrang2View = new ImageView(voorrang2);
         voorrang2View.setFitWidth(50);
         voorrang2View.setFitHeight(50);
@@ -101,15 +96,15 @@ public class VerkeersTechniek extends HBox{
         voorrang2Btn.setId("icoontjesBtns");
         grid.add(voorrang2Btn, 4, 4);
         
-        Image groenePijl = new Image("images/1.png");
+        Image groenePijl = new Image("images/verkeersTechniek/1.png");
         ImageView groenePijlView = new ImageView(groenePijl);
         groenePijlView.setFitWidth(50);
         groenePijlView.setFitHeight(50);
         Button groenePijlBtn = new Button("", groenePijlView);
         groenePijlBtn.setId("icoontjesBtns");
-        grid.add(groenePijlBtn, 2, 5);
+        grid.add(groenePijlBtn, 2, 5, 2, 1);
         
-        Image linksAfslaan = new Image("images/linksAfslaan.png");
+        Image linksAfslaan = new Image("images/verkeersTechniek/linksAfslaan.png");
         ImageView linksAfslaanView = new ImageView(linksAfslaan);
         linksAfslaanView.setFitWidth(50);
         linksAfslaanView.setFitHeight(50);
@@ -117,7 +112,7 @@ public class VerkeersTechniek extends HBox{
         linksAfslaanBtn.setId("icoontjesBtns");
         grid.add(linksAfslaanBtn, 1, 4);
         
-        Image rechtsAfslaan = new Image("images/rechtsAfslaan.png");
+        Image rechtsAfslaan = new Image("images/verkeersTechniek/rechtsAfslaan.png");
         ImageView rechtsAfslaanView = new ImageView(rechtsAfslaan);
         rechtsAfslaanView.setFitWidth(50);
         rechtsAfslaanView.setFitHeight(50);
@@ -125,7 +120,7 @@ public class VerkeersTechniek extends HBox{
         rechtsAfslaanBtn.setId("icoontjesBtns");
         grid.add(rechtsAfslaanBtn, 0, 3);
         
-        Image pinkers = new Image("images/pinkers.png");
+        Image pinkers = new Image("images/verkeersTechniek/pinkers.png");
         ImageView pinkersView = new ImageView(pinkers);
         pinkersView.setFitWidth(50);
         pinkersView.setFitHeight(50);
@@ -134,7 +129,7 @@ public class VerkeersTechniek extends HBox{
         grid.add(pinkersBtn, 0, 2);
         
         
-        Image OW = new Image("images/OW.png");
+        Image OW = new Image("images/verkeersTechniek/OW.png");
         ImageView OWView = new ImageView(OW);
         OWView.setFitWidth(50);
         OWView.setFitHeight(50);
@@ -142,13 +137,13 @@ public class VerkeersTechniek extends HBox{
         OWBtn.setId("icoontjesBtns");
         grid.add(OWBtn, 1, 1);
         
-        Image middenGrid = new Image("images/icoon-verkeerstechniek.png");
+        Image middenGrid = new Image("images/verkeersTechniek/icoon-verkeerstechniek.png");
         ImageView middenGridImageView = new ImageView(middenGrid);
         middenGridImageView.setFitWidth(150);
         middenGridImageView.setFitHeight(150);
         grid.add(middenGridImageView, 2, 2, 2, 2);
         
-        Image cirkel = new Image("images/cirkel.png");
+        Image cirkel = new Image("images/verkeersTechniek/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
         cirkelImageView.setFitWidth(600);
         cirkelImageView.setFitHeight(600);
@@ -223,10 +218,10 @@ public class VerkeersTechniek extends HBox{
             right.getChildren().remove(menuStandaard);
             
                         
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
             
-            tt.setFromX(100.0 + menuBalk.getLayoutX());
-            tt.setByX(-107);
+            tt.setFromX(150.0 + menuBalk.getLayoutX());
+            tt.setByX(-80);
             tt.setCycleCount(1);
             
             tt.play();
@@ -235,14 +230,14 @@ public class VerkeersTechniek extends HBox{
         });
         
         menu.getMenuTerug().setOnAction(e -> {
-              TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+              TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
             tt.setOnFinished(ev ->{
                 right.getChildren().removeAll(menuBalk);
                 right.getChildren().add(menuStandaard);
             });
             
-            tt.setFromX(menuBalk.getLayoutX());
-            tt.setByX(107);
+            tt.setFromX(menuBalk.getLayoutX() + 100);
+            tt.setByX(100);
             tt.setCycleCount(1);
             
             tt.play();
@@ -250,7 +245,5 @@ public class VerkeersTechniek extends HBox{
         });
         
         getChildren().addAll(left, evaluatieGroup,right);
-    }
-    
-    
+    }   
 }
