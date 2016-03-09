@@ -4,6 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
@@ -16,7 +17,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class Rijtechniek extends HBox {
-
+    
+    private Scene scene;
     public Rijtechniek() {
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
@@ -176,6 +178,12 @@ public class Rijtechniek extends HBox {
         Button terugBtn = new Button("", terugPijlImageView);
         terugBtn.setId("menuButton");
 
+        terugBtn.setOnAction(e -> {
+            Dashboard dashboard = new Dashboard();
+            dashboard.setScene(scene);
+            scene.setRoot(dashboard);
+        });
+        
         Image rechthoek = new Image("images/verkeerslicht.png");
         ImageView rechthoekImageView = new ImageView(rechthoek);
         rechthoekImageView.setFitWidth(70);
@@ -257,4 +265,7 @@ public class Rijtechniek extends HBox {
         getChildren().addAll(left, evaluatieGroup, right);
     }
 
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
 }

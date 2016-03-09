@@ -172,6 +172,7 @@ public class Beginscherm extends HBox
         
         start.setOnAction(e ->{
             Dashboard dashboard = new Dashboard();
+            dashboard.setScene(scene);
             scene.setRoot(dashboard);
         });
 

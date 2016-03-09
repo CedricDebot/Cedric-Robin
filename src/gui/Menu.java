@@ -5,6 +5,7 @@
  */
 package gui;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -17,6 +18,8 @@ import javafx.scene.layout.VBox;
  * @author Robin
  */
 public class Menu {
+
+    private Scene scene;
 
     private Button menuTerug;
     private Button menuKnop;
@@ -62,19 +65,31 @@ public class Menu {
         Button attitude = new Button("", attitudeImageViewM);
         attitude.setId("menuButton");
 
-        Image rijImageM = new Image("images/menuRijtechniek.PNG");
+        attitude.setOnAction(e -> {
+            Attitude attitudeScherm = new Attitude();
+            attitudeScherm.setScene(scene);
+            scene.setRoot(attitudeScherm);
+        });
+
+        Image rijImageM = new Image("images/menuVerkeerstechniek.PNG");
         ImageView rijImageViewM = new ImageView(rijImageM);
         rijImageViewM.setFitWidth(100);
         rijImageViewM.setFitHeight(50);
         Button rijTechniek = new Button("", rijImageViewM);
         rijTechniek.setId("menuButton");
 
-        Image verkeersImageM = new Image("images/menuVerkeerstechniek.PNG");
+        Image verkeersImageM = new Image("images/menuRijtechniek.PNG");
         ImageView verkeersImageViewM = new ImageView(verkeersImageM);
         verkeersImageViewM.setFitWidth(100);
         verkeersImageViewM.setFitHeight(50);
         Button verkeersTechniek = new Button("", verkeersImageViewM);
         verkeersTechniek.setId("menuButton");
+
+        verkeersTechniek.setOnAction(e -> {
+            VerkeersTechniek verkeersTechniekScherm = new VerkeersTechniek();
+            verkeersTechniekScherm.setScene(scene);
+            scene.setRoot(verkeersTechniekScherm);
+        });
 
         Image menuTerugImageM = new Image("images/dashboardTerug.PNG");
         ImageView menuTerugImageViewM = new ImageView(menuTerugImageM);
@@ -89,7 +104,7 @@ public class Menu {
     }
 
     public VBox buildMenuDashboard() {
-        VBox menuDashboard = new VBox();        
+        VBox menuDashboard = new VBox();
 
         //MenuKnoppenDashboard
         VBox menuKnoppenDashboard = new VBox();
@@ -114,39 +129,39 @@ public class Menu {
 
         return menuDashboard;
     }
-    
-    public VBox buildMenuStandaard(){
-        
-        VBox menuStandaard = new VBox(); 
+
+    public VBox buildMenuStandaard() {
+
+        VBox menuStandaard = new VBox();
         menuStandaard.setId("menuStandaard");
-        
-        VBox menuKnoppen = new VBox(); 
+
+        VBox menuKnoppen = new VBox();
         menuKnoppen.setId("menuKnoppen");
-        
+
         Image menuTerugImage = new Image("images/menuArrowLeft.png");
         ImageView menuTerugImageView = new ImageView(menuTerugImage);
         menuTerugImageView.setFitWidth(60);
         menuTerugImageView.setFitHeight(50);
         menuTerug = new Button("", menuTerugImageView);
         menuTerug.setId("menuButton");
-        
+
         Image dashboardMenuImage = new Image("images/MenuKnop.png");
         ImageView dashboardMenuImageView = new ImageView(dashboardMenuImage);
         dashboardMenuImageView.setFitWidth(60);
         dashboardMenuImageView.setFitHeight(50);
         menuKnop = new Button("", dashboardMenuImageView);
         menuKnop.setId("menuButton");
-        
+
         menuKnoppen.getChildren().addAll(menuKnop, menuTerug);
-            
+
         menuStandaard.getChildren().addAll(InfoLeerling(), menuKnoppen);
 
         return menuStandaard;
     }
-    
-    public VBox EvaluatieMoment(){
-        
-         //EvaluatieMoment
+
+    public VBox EvaluatieMoment() {
+
+        //EvaluatieMoment
         VBox evaluatieMoment = new VBox();
         evaluatieMoment.setId("evaluatieMoment");
 
@@ -163,11 +178,11 @@ public class Menu {
         moment3.setId("momentKnop");
         momenten.getChildren().addAll(moment1, moment2, moment3);
         evaluatieMoment.getChildren().addAll(evaTitel, momenten);
-        
+
         return evaluatieMoment;
     }
-    
-    public VBox InfoLeerling(){
+
+    public VBox InfoLeerling() {
         VBox infoLeerling = new VBox();
         infoLeerling.setId("infoLeerling");
 
@@ -193,7 +208,11 @@ public class Menu {
         hBox_outter.getChildren().add(hBox_inner);
 
         infoLeerling.getChildren().addAll(hBox_outter, naamLeerling);
-        
+
         return infoLeerling;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
 }
