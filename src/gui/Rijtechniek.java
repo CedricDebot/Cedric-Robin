@@ -1,16 +1,11 @@
 package gui;
 
-import com.sun.prism.paint.Color;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -159,7 +154,7 @@ public class Rijtechniek extends HBox {
         middenGridImageView.setFitHeight(150);
         grid.add(middenGridImageView, 2, 2, 2, 2);
 
-        Image cirkel = new Image("images/cirkel.png");
+        Image cirkel = new Image("images/verkeersTechniek/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
         cirkelImageView.setFitWidth(600);
         cirkelImageView.setFitHeight(600);
@@ -233,10 +228,10 @@ public class Rijtechniek extends HBox {
             right.getChildren().remove(menuStandaard);
             
                         
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
             
-            tt.setFromX(100.0 + menuBalk.getLayoutX());
-            tt.setByX(-107);
+            tt.setFromX(150.0 + menuBalk.getLayoutX());
+            tt.setByX(-130);
             tt.setCycleCount(1);
             
             tt.play();
@@ -245,14 +240,14 @@ public class Rijtechniek extends HBox {
         });
         
         menu.getMenuTerug().setOnAction(e -> {
-              TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+              TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
             tt.setOnFinished(ev ->{
                 right.getChildren().removeAll(menuBalk);
                 right.getChildren().add(menuStandaard);
             });
             
-            tt.setFromX(menuBalk.getLayoutX());
-            tt.setByX(107);
+            tt.setFromX(menuBalk.getLayoutX() + 50);
+            tt.setByX(100);
             tt.setCycleCount(1);
             
             tt.play();
