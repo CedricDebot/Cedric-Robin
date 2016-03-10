@@ -22,7 +22,7 @@ public class Rijtechniek extends HBox {
     public Rijtechniek() {
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
-        grid.setGridLinesVisible(true);
+        //grid.setGridLinesVisible(true);
 
         ColumnConstraints col1 = new ColumnConstraints(100);
         col1.setHalignment(HPos.RIGHT);

@@ -105,7 +105,8 @@ public class Menu {
 
     public VBox buildMenuDashboard() {
         VBox menuDashboard = new VBox();
-
+        menuDashboard.setId("menuTest");
+        
         //MenuKnoppenDashboard
         VBox menuKnoppenDashboard = new VBox();
         menuKnoppenDashboard.setId("menuKnoppen");
@@ -152,7 +153,7 @@ public class Menu {
         menuKnop = new Button("", dashboardMenuImageView);
         menuKnop.setId("menuButton");
 
-        menuKnoppen.getChildren().addAll(menuKnop, menuTerug);
+        menuKnoppen.getChildren().addAll(menuKnop);
 
         menuStandaard.getChildren().addAll(InfoLeerling(), menuKnoppen);
 

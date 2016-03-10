@@ -243,12 +243,12 @@
 #menuButton{
     -fx-border-width: 5;
     -fx-border-radius: 15;
-    -fx-background-radius: 15;
+    -fx-background-radius: 20;
     -fx-pref-width: 80;
 }
 #menuBox{
     -fx-spacing: 20;
-    -fx-background-color: #848482;
+    -fx-background-color: #333333;
     -fx-padding: 20;
     -fx-min-height: 768;
     -fx-alignment: CENTER;
@@ -326,4 +326,3 @@
 #nieuwHB{
     -fx-spacing: 15;
 }
-

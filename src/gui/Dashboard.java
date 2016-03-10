@@ -51,7 +51,7 @@ public class Dashboard extends HBox {
 
         //RIGHT
         VBox right = new VBox();
-        right.setId("dashboardRight");
+        //right.setId("dashboardRight");
 
         //MenuStandaard
         VBox menuStandaard = menu.buildMenuDashboard();
