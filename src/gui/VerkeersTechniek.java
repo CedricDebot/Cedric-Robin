@@ -25,6 +25,7 @@ public class VerkeersTechniek extends HBox {
     private Scene scene;
 
     public VerkeersTechniek() {
+        setId("rijtechniekHBox");
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(false);
 
