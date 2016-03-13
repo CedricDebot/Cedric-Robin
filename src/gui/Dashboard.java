@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class Dashboard extends HBox {
+public class Dashboard extends GridPane {
 
     private Scene scene;
     
@@ -115,8 +115,6 @@ public class Dashboard extends HBox {
         });
 
         //LEFT
-        VBox left = new VBox();
-        left.setId("dashboardLeft");
         
         Image dashboardLayer1 = new Image("images/dashboard.png");
         ImageView dashboardLayer1ImageView = new ImageView(dashboardLayer1);
@@ -483,22 +481,64 @@ public class Dashboard extends HBox {
         
         opmerkingenBox.getChildren().addAll(opmerkingen, opmerkingField);
         
-        HBox hBoxOnder = new HBox();
-        hBoxOnder.setId("hBoxOnder");
         
         grafiekOuter.getChildren().addAll(minusBtn, grafiekInner, plusBtn);
         
         voortgang.setId("voortgangLbl");
         grafiekMetLbl.getChildren().addAll(grafiekOuter, voortgang);
         
-        hBoxOnder.getChildren().addAll(grafiekMetLbl, opmerkingenBox);
-        
-        left.getChildren().addAll(dashboardGroup, hBoxOnder);
+        HBox hBoxOnder = new HBox();
+        hBoxOnder.setId("hBoxOnder");
+        hBoxOnder.getChildren().addAll(grafiekMetLbl, opmerkingenBox);  
 
-        //rootDashboard
-        rootDashboard.getChildren().addAll(left, right);
+//        //rootDashboard
+//        rootDashboard.getChildren().addAll(left, right);
+//        
+//        getChildren().add(rootDashboard);
+
+        //HoofdGrid
+        GridPane dashboardGrid = new GridPane();
         
-        getChildren().add(rootDashboard);
+        ColumnConstraints subCol0 = new ColumnConstraints();
+        subCol0.setPercentWidth(100);
+        subCol0.setHalignment(HPos.CENTER);
+        
+        RowConstraints subRow0 = new RowConstraints();
+        subRow0.setPercentHeight(70);
+        subRow0.setValignment(VPos.CENTER);
+        RowConstraints subRow1 = new RowConstraints();
+        subRow1.setPercentHeight(30);
+        subRow1.setValignment(VPos.CENTER);
+        
+        dashboardGrid.getColumnConstraints().add(subCol0);
+        dashboardGrid.getRowConstraints().addAll(subRow0, subRow1);
+        
+        dashboardGrid.add(dashboardGroup, 0, 0);
+        dashboardGrid.add(hBoxOnder, 0, 1);
+        dashboardGrid.setId("dashboardLeft");
+        
+        
+        ColumnConstraints hoofdCol0 = new ColumnConstraints();
+        hoofdCol0.setPercentWidth(80);
+        hoofdCol0.setHalignment(HPos.CENTER);
+        ColumnConstraints hoofdCol1 = new ColumnConstraints();
+        hoofdCol1.setPercentWidth(20);
+        hoofdCol1.setHalignment(HPos.CENTER);
+        
+        getColumnConstraints().addAll(hoofdCol0, hoofdCol1);
+        
+        RowConstraints hoofdRow0 = new RowConstraints();
+        hoofdRow0.setPercentHeight(100);
+        
+        getRowConstraints().add(hoofdRow0);
+        
+        add(dashboardGrid, 0, 0);
+        add(menuStandaard, 1, 0);
+        
+        setGridLinesVisible(true);
+        dashboardGrid.setGridLinesVisible(true);
+        
+        
         
     }
     
