@@ -326,3 +326,14 @@
 #nieuwHB{
     -fx-spacing: 15;
 }
+
+#evamomenten{
+    -fx-max-height: 30;  
+    -fx-spacing: 10;
+    -fx-padding: 10 0 0 10;
+}
+
+#icoonMetEva{
+    -fx-padding: 20 0 0 0;  
+    -fx-spacing: -10;
+}

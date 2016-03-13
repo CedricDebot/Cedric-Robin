@@ -71,14 +71,21 @@ public class Menu {
             scene.setRoot(attitudeScherm);
         });
 
-        Image rijImageM = new Image("images/menuVerkeerstechniek.PNG");
+        Image rijImageM = new Image("images/menuRijtechniek.PNG");
         ImageView rijImageViewM = new ImageView(rijImageM);
         rijImageViewM.setFitWidth(100);
         rijImageViewM.setFitHeight(50);
         Button rijTechniek = new Button("", rijImageViewM);
         rijTechniek.setId("menuButton");
 
-        Image verkeersImageM = new Image("images/menuRijtechniek.PNG");
+//        rijTechniek.setOnAction(e -> {
+//            Rijtechniek rijtechniekScherm = new Rijtechniek();
+//            rijtechniekScherm.setScene(scene);
+//            scene.setRoot(rijtechniekScherm);
+//        });
+        
+        
+        Image verkeersImageM = new Image("images/menuVerkeerstechniek.PNG");
         ImageView verkeersImageViewM = new ImageView(verkeersImageM);
         verkeersImageViewM.setFitWidth(100);
         verkeersImageViewM.setFitHeight(50);
@@ -99,7 +106,7 @@ public class Menu {
         menuTerug.setId("menuButton");
 
         menuBalk.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
-
+          
         return menuBalk;
     }
 
