@@ -5,6 +5,7 @@
  */
 package gui;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -22,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 /**
  *
@@ -34,7 +36,7 @@ public class Attitude extends GridPane{
     public Attitude() {
         
         //HoofdGrid
-         gridLinesVisibleProperty().set(false);
+         gridLinesVisibleProperty().set(true);
          ColumnConstraints col0 = new ColumnConstraints();
          col0.setPercentWidth(40);
          
@@ -84,7 +86,7 @@ public class Attitude extends GridPane{
          opmerkingVeld.setId("OpmerkingenVeld");
          OpmerkingenPane.add(opmerkingVeld, 0, 2);
          
-         add(OpmerkingenPane,0,0);
+         
          
          //listview
          ListView opmerkingenList = new ListView();
@@ -107,7 +109,55 @@ public class Attitude extends GridPane{
          attitudeList.setId("attitudeList");
          
          attitudeList.getChildren().addAll(opmerkingenList, nieuwHB);
+         
+         
+         //Menu
+        Menu menu = new Menu();
+        //RIGHT
+        VBox right = new VBox();
+        //MenuStandaard
+        VBox menuStandaard = menu.buildMenuStandaard();
+        menuStandaard.setId("menuRight");
+        right.getChildren().add(menuStandaard);
+        
+        
+        //Menu
+        VBox menuBalk = menu.buildMenu();
+        
+        menu.getMenuKnop().setOnAction(e -> {
+            right.getChildren().remove(menuStandaard);        
+                       
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
+            
+            tt.setFromX(100.0 + menuBalk.getLayoutX());
+            tt.setByX(-90);
+            tt.setCycleCount(1);
+            
+            tt.play();
+            
+            right.getChildren().addAll(menuBalk);
+        });
+        
+        menu.getMenuTerug().setOnAction(e -> {            
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
+            tt.setOnFinished(ev -> {
+                right.getChildren().removeAll(menuBalk);
+                right.getChildren().add(menuStandaard);
+            });
+            
+            tt.setFromX(menuBalk.getLayoutX());
+            tt.setByX(120);
+            tt.setCycleCount(1);
+            
+            tt.play();
+            tt.onFinishedProperty();
+            
+        });
+        
+        
+         add(OpmerkingenPane,0,0);
          add(attitudeList, 1, 0);
+         add(right, 2 , 0);
          
          voegToe.setOnAction(e ->{
              standaarOpmerkingen.add(nieuw.getText());
