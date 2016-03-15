@@ -14,15 +14,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class Rijtechniek extends HBox {
-    
+
     private Scene scene;
+
     public Rijtechniek() {
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
-        //grid.setGridLinesVisible(true);
+        grid.setGridLinesVisible(true);
 
         ColumnConstraints col1 = new ColumnConstraints(100);
         col1.setHalignment(HPos.RIGHT);
@@ -54,29 +57,71 @@ public class Rijtechniek extends HBox {
 
         grid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6);
 
+        HBox stuurHBox = new HBox();
+        stuurHBox.setId("icoonMetEva");
         Image stuur = new Image("images/stuur.png");
         ImageView stuurImageView = new ImageView(stuur);
         stuurImageView.setFitWidth(50);
         stuurImageView.setFitHeight(50);
         Button stuurBtn = new Button("", stuurImageView);
         stuurBtn.setId("icoontjesBtns");
-        grid.add(stuurBtn, 3, 0);
+        //grid.add(stuurBtn, 3, 0);
 
+        Rectangle stuurEva1 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle stuurEva2 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle stuurEva3 = new Rectangle(12, 12, Color.WHITE);
+
+        VBox stuurEvamomenten = new VBox();
+        stuurEvamomenten.setId("evamomenten");
+        stuurEvamomenten.getChildren().addAll(stuurEva1, stuurEva2, stuurEva3);
+
+        stuurHBox.getChildren().addAll(stuurBtn, stuurEvamomenten);
+
+        grid.add(stuurHBox, 3, 0);
+
+        HBox schakelenHBox = new HBox();
+        schakelenHBox.setId("icoonMetEva");
         Image schakelen = new Image("images/schakelen.png");
         ImageView schakelenImageView = new ImageView(schakelen);
         schakelenImageView.setFitWidth(50);
         schakelenImageView.setFitHeight(50);
         Button schakelenBtn = new Button("", schakelenImageView);
         schakelenBtn.setId("icoontjesBtns");
-        grid.add(schakelenBtn, 4, 1);
+        //grid.add(schakelenBtn, 4, 1);
 
+        Rectangle schakelenEva1 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle schakelenEva2 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle schakelenEva3 = new Rectangle(12, 12, Color.WHITE);
+        
+        VBox schakelenEvamomenten = new VBox();
+        schakelenEvamomenten.setId("evamomenten");
+        schakelenEvamomenten.getChildren().addAll(schakelenEva1, schakelenEva2, schakelenEva3);
+        
+        schakelenHBox.getChildren().addAll(schakelenBtn, schakelenEvamomenten);
+        
+        grid.add(schakelenHBox, 4, 1);
+        
+        HBox kijkenHBox = new HBox();
+        kijkenHBox.setId("icoonMetEva");
         Image kijken = new Image("images/kijken.png");
         ImageView kijkenImageView = new ImageView(kijken);
         kijkenImageView.setFitWidth(50);
         kijkenImageView.setFitHeight(50);
         Button kijkenBtn = new Button("", kijkenImageView);
         kijkenBtn.setId("icoontjesBtns");
-        grid.add(kijkenBtn, 5, 2);
+        //grid.add(kijkenBtn, 5, 2);
+        
+        Rectangle kijkenEva1 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle kijkenEva2 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle kijkenEva3 = new Rectangle(12, 12, Color.WHITE);
+        
+        VBox kijkenEvamomenten = new VBox();
+        kijkenEvamomenten.setId("evamomenten");
+        kijkenEvamomenten.getChildren().addAll(kijkenEva1, kijkenEva2, kijkenEva3);
+        
+        kijkenHBox.getChildren().addAll(kijkenBtn, kijkenEvamomenten);
+        
+        grid.add(kijkenHBox, 5, 2);
 
         Image parkeren = new Image("images/Parkeren.png");
         ImageView parkerenImageView = new ImageView(parkeren);
@@ -118,38 +163,94 @@ public class Rijtechniek extends HBox {
         achtBtn.setId("icoontjesBtns");
         grid.add(achtBtn, 1, 4);
 
+        HBox bergopHBox = new HBox();
+        bergopHBox.setId("icoonMetEva");
         Image bergop = new Image("images/bergop.png");
         ImageView bergopImageView = new ImageView(bergop);
         bergopImageView.setFitWidth(50);
         bergopImageView.setFitHeight(50);
         Button bergopBtn = new Button("", bergopImageView);
         bergopBtn.setId("icoontjesBtns");
-        grid.add(bergopBtn, 0, 3);
+        //grid.add(bergopBtn, 0, 3);
+        
+        Rectangle bergopEva1 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle bergopEva2 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle bergopEva3 = new Rectangle(12, 12, Color.WHITE);
+        
+        VBox bergopEvamomenten = new VBox();
+        bergopEvamomenten.setId("evamomenten");
+        bergopEvamomenten.getChildren().addAll(bergopEva1, bergopEva2, bergopEva3);
+        
+        bergopHBox.getChildren().addAll(bergopBtn, bergopEvamomenten);
+        
+        grid.add(bergopHBox, 0, 3);
 
+        HBox zithoudingHBox = new HBox();
+        zithoudingHBox.setId("icoonMetEva");
         Image zithouding = new Image("images/zithouding.png");
         ImageView zithoudingImageView = new ImageView(zithouding);
         zithoudingImageView.setFitWidth(50);
         zithoudingImageView.setFitHeight(50);
         Button zithoudingBtn = new Button("", zithoudingImageView);
         zithoudingBtn.setId("icoontjesBtns");
-        grid.add(zithoudingBtn, 0, 2);
+        //grid.add(zithoudingBtn, 0, 2);
 
+        Rectangle zithoudingEva1 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle zithoudingEva2 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle zithoudingEva3 = new Rectangle(12, 12, Color.WHITE);
+        
+        VBox zithoudingEvamomenten = new VBox();
+        zithoudingEvamomenten.setId("evamomenten");
+        zithoudingEvamomenten.getChildren().addAll(zithoudingEva1, zithoudingEva2, zithoudingEva3);
+        
+        zithoudingHBox.getChildren().addAll(zithoudingBtn, zithoudingEvamomenten);
+        
+        grid.add(zithoudingHBox, 0, 2);
+        
+        HBox remtechniekHBox = new HBox();
+        remtechniekHBox.setId("icoonMetEva");
         Image remtechniek = new Image("images/remtechniek.png");
         ImageView remtechniekImageView = new ImageView(remtechniek);
         remtechniekImageView.setFitWidth(50);
         remtechniekImageView.setFitHeight(50);
         Button remtechniekBtn = new Button("", remtechniekImageView);
         remtechniekBtn.setId("icoontjesBtns");
-        grid.add(remtechniekBtn, 1, 1);
+        //grid.add(remtechniekBtn, 1, 1);
 
+        Rectangle remtechniekEva1 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle remtechniekEva2 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle remtechniekEva3 = new Rectangle(12, 12, Color.WHITE);
+        
+        VBox remtechniekEvamomenten = new VBox();
+        remtechniekEvamomenten.setId("evamomenten");
+        remtechniekEvamomenten.getChildren().addAll(remtechniekEva1, remtechniekEva2, remtechniekEva3);
+        
+        remtechniekHBox.getChildren().addAll(remtechniekBtn, remtechniekEvamomenten);
+        
+        grid.add(remtechniekHBox, 1, 1);
+        
+        HBox embrayageHBox = new HBox();
+        embrayageHBox.setId("icoonMetEva");
         Image embrayage = new Image("images/embrayage.png");
         ImageView embrayageImageView = new ImageView(embrayage);
         embrayageImageView.setFitWidth(50);
         embrayageImageView.setFitHeight(50);
         Button embrayageBtn = new Button("", embrayageImageView);
         embrayageBtn.setId("icoontjesBtns");
-        grid.add(embrayageBtn, 2, 0);
+        //grid.add(embrayageBtn, 2, 0);
 
+        Rectangle embrayageEva1 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle embrayageEva2 = new Rectangle(12, 12, Color.WHITE);
+        Rectangle embrayageEva3 = new Rectangle(12, 12, Color.WHITE);
+        
+        VBox embrayageEvamomenten = new VBox();
+        embrayageEvamomenten.setId("evamomenten");
+        embrayageEvamomenten.getChildren().addAll(embrayageEva1, embrayageEva2, embrayageEva3);
+        
+        embrayageHBox.getChildren().addAll(embrayageBtn, embrayageEvamomenten);
+        
+        grid.add(embrayageHBox, 2, 0);
+        
         Image middenGrid = new Image("images/icoon-rijtechniek.png");
         ImageView middenGridImageView = new ImageView(middenGrid);
         middenGridImageView.setFitWidth(150);
@@ -183,7 +284,7 @@ public class Rijtechniek extends HBox {
             dashboard.setScene(scene);
             scene.setRoot(dashboard);
         });
-        
+
         Image rechthoek = new Image("images/verkeerslicht.png");
         ImageView rechthoekImageView = new ImageView(rechthoek);
         rechthoekImageView.setFitWidth(70);
@@ -223,41 +324,40 @@ public class Rijtechniek extends HBox {
 
         left.getChildren().addAll(terugBtn, verkeerslicht);
         Menu menu = new Menu();
-        
+
         VBox right = new VBox();
 
         VBox menuStandaard = menu.buildMenuStandaard();
 
         right.getChildren().add(menuStandaard);
-        
+
         VBox menuBalk = menu.buildMenu();
 
         menu.getMenuKnop().setOnAction(e -> {
             right.getChildren().remove(menuStandaard);
-            
-                        
+
             TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
-            
+
             tt.setFromX(150.0 + menuBalk.getLayoutX());
             tt.setByX(-130);
             tt.setCycleCount(1);
-            
+
             tt.play();
-            
+
             right.getChildren().addAll(menuBalk);
         });
-        
+
         menu.getMenuTerug().setOnAction(e -> {
-              TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
-            tt.setOnFinished(ev ->{
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
+            tt.setOnFinished(ev -> {
                 right.getChildren().removeAll(menuBalk);
                 right.getChildren().add(menuStandaard);
             });
-            
+
             tt.setFromX(menuBalk.getLayoutX() + 50);
             tt.setByX(100);
             tt.setCycleCount(1);
-            
+
             tt.play();
             tt.onFinishedProperty();
         });
