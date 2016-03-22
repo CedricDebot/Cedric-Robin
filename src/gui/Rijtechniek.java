@@ -1,5 +1,7 @@
 package gui;
 
+import domein.RijtechniekDom;
+import domein.Toestand;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -21,6 +23,7 @@ import javafx.util.Duration;
 public class Rijtechniek extends HBox {
 
     private Scene scene;
+    private RijtechniekDom rijtechniekdom = new RijtechniekDom();
 
     public Rijtechniek() {
         setId("rijtechniekHBox");
@@ -59,13 +62,33 @@ public class Rijtechniek extends HBox {
 
         HBox stuurHBox = new HBox();
         stuurHBox.setId("icoonMetEva");
-        Image stuur = new Image("images/stuur.png");
-        ImageView stuurImageView = new ImageView(stuur);
+        Image stuurWit = new Image("images/stuur.png");
+        ImageView stuurImageView = new ImageView(stuurWit);
         stuurImageView.setFitWidth(50);
         stuurImageView.setFitHeight(50);
         Button stuurBtn = new Button("", stuurImageView);
         stuurBtn.setId("icoontjesBtns");
         //grid.add(stuurBtn, 3, 0);
+
+        Image stuurRood = new Image("images/stuur.png");
+        Image stuurOranje = new Image("images/stuur.png");
+        Image stuurGroen = new Image("images/stuur.png");
+
+        stuurBtn.setOnAction(e -> {
+            if (rijtechniekdom.getStuurTechniek() == Toestand.WIT) {
+                rijtechniekdom.setStuurTechniek(Toestand.ROOD);
+                stuurImageView.setImage(stuurRood);
+            } else if (rijtechniekdom.getStuurTechniek() == Toestand.ROOD) {
+                rijtechniekdom.setStuurTechniek(Toestand.ORANJE);
+                stuurImageView.setImage(stuurOranje);
+            } else if (rijtechniekdom.getStuurTechniek() == Toestand.ORANJE) {
+                rijtechniekdom.setStuurTechniek(Toestand.GROEN);
+                stuurImageView.setImage(stuurGroen);
+            } else if (rijtechniekdom.getStuurTechniek() == Toestand.GROEN) {
+                rijtechniekdom.setStuurTechniek(Toestand.WIT);
+                stuurImageView.setImage(stuurWit);
+            }
+        });
 
         Rectangle stuurEva1 = new Rectangle(12, 12, Color.WHITE);
         Rectangle stuurEva2 = new Rectangle(12, 12, Color.WHITE);
@@ -81,176 +104,396 @@ public class Rijtechniek extends HBox {
 
         HBox schakelenHBox = new HBox();
         schakelenHBox.setId("icoonMetEva");
-        Image schakelen = new Image("images/schakelen.png");
-        ImageView schakelenImageView = new ImageView(schakelen);
+        Image schakelenWit = new Image("images/schakelen.png");
+        ImageView schakelenImageView = new ImageView(schakelenWit);
         schakelenImageView.setFitWidth(50);
         schakelenImageView.setFitHeight(50);
         Button schakelenBtn = new Button("", schakelenImageView);
         schakelenBtn.setId("icoontjesBtns");
         //grid.add(schakelenBtn, 4, 1);
 
+        Image schakelenRood = new Image("images/stuur.png");
+        Image schakelenOranje = new Image("images/stuur.png");
+        Image schakelenGroen = new Image("images/stuur.png");
+
+        schakelenBtn.setOnAction(e -> {
+            if (rijtechniekdom.getSchakelTechniek() == Toestand.WIT) {
+                rijtechniekdom.setSchakelTechniek(Toestand.ROOD);
+                schakelenImageView.setImage(schakelenRood);
+            } else if (rijtechniekdom.getSchakelTechniek() == Toestand.ROOD) {
+                rijtechniekdom.setSchakelTechniek(Toestand.ORANJE);
+                schakelenImageView.setImage(schakelenOranje);
+            } else if (rijtechniekdom.getSchakelTechniek() == Toestand.ORANJE) {
+                rijtechniekdom.setSchakelTechniek(Toestand.GROEN);
+                schakelenImageView.setImage(schakelenGroen);
+            } else if (rijtechniekdom.getSchakelTechniek() == Toestand.GROEN) {
+                rijtechniekdom.setSchakelTechniek(Toestand.WIT);
+                schakelenImageView.setImage(schakelenWit);
+            }
+        });
+
         Rectangle schakelenEva1 = new Rectangle(12, 12, Color.WHITE);
         Rectangle schakelenEva2 = new Rectangle(12, 12, Color.WHITE);
         Rectangle schakelenEva3 = new Rectangle(12, 12, Color.WHITE);
-        
+
         VBox schakelenEvamomenten = new VBox();
         schakelenEvamomenten.setId("evamomenten");
         schakelenEvamomenten.getChildren().addAll(schakelenEva1, schakelenEva2, schakelenEva3);
-        
+
         schakelenHBox.getChildren().addAll(schakelenBtn, schakelenEvamomenten);
-        
+
         grid.add(schakelenHBox, 4, 1);
-        
+
         HBox kijkenHBox = new HBox();
         kijkenHBox.setId("icoonMetEva");
-        Image kijken = new Image("images/kijken.png");
-        ImageView kijkenImageView = new ImageView(kijken);
+        Image kijkenWit = new Image("images/kijken.png");
+        ImageView kijkenImageView = new ImageView(kijkenWit);
         kijkenImageView.setFitWidth(50);
         kijkenImageView.setFitHeight(50);
         Button kijkenBtn = new Button("", kijkenImageView);
         kijkenBtn.setId("icoontjesBtns");
         //grid.add(kijkenBtn, 5, 2);
-        
+
+        Image kijkenRood = new Image("images/stuur.png");
+        Image kijkenOranje = new Image("images/stuur.png");
+        Image kijkenGroen = new Image("images/stuur.png");
+
+        kijkenBtn.setOnAction(e -> {
+            if (rijtechniekdom.getKijkTechniek() == Toestand.WIT) {
+                rijtechniekdom.setKijkTechniek(Toestand.ROOD);
+                kijkenImageView.setImage(kijkenRood);
+            } else if (rijtechniekdom.getKijkTechniek() == Toestand.ROOD) {
+                rijtechniekdom.setKijkTechniek(Toestand.ORANJE);
+                kijkenImageView.setImage(kijkenOranje);
+            } else if (rijtechniekdom.getKijkTechniek() == Toestand.ORANJE) {
+                rijtechniekdom.setKijkTechniek(Toestand.GROEN);
+                kijkenImageView.setImage(kijkenGroen);
+            } else if (rijtechniekdom.getKijkTechniek() == Toestand.GROEN) {
+                rijtechniekdom.setKijkTechniek(Toestand.WIT);
+                kijkenImageView.setImage(kijkenWit);
+            }
+        });
+
         Rectangle kijkenEva1 = new Rectangle(12, 12, Color.WHITE);
         Rectangle kijkenEva2 = new Rectangle(12, 12, Color.WHITE);
         Rectangle kijkenEva3 = new Rectangle(12, 12, Color.WHITE);
-        
+
         VBox kijkenEvamomenten = new VBox();
         kijkenEvamomenten.setId("evamomenten");
         kijkenEvamomenten.getChildren().addAll(kijkenEva1, kijkenEva2, kijkenEva3);
-        
+
         kijkenHBox.getChildren().addAll(kijkenBtn, kijkenEvamomenten);
-        
+
         grid.add(kijkenHBox, 5, 2);
 
-        Image parkeren = new Image("images/Parkeren.png");
-        ImageView parkerenImageView = new ImageView(parkeren);
+        Image parkerenWit = new Image("images/Parkeren.png");
+        ImageView parkerenImageView = new ImageView(parkerenWit);
         parkerenImageView.setFitWidth(50);
         parkerenImageView.setFitHeight(50);
         Button parkerenBtn = new Button("", parkerenImageView);
         parkerenBtn.setId("icoontjesBtns");
         grid.add(parkerenBtn, 5, 3);
 
-        Image keren = new Image("images/keren.png");
-        ImageView kerenImageView = new ImageView(keren);
+        Image parkerenRood = new Image("images/stuur.png");
+        Image parkerenOranje = new Image("images/stuur.png");
+        Image parkerenGroen = new Image("images/stuur.png");
+
+        parkerenBtn.setOnAction(e -> {
+            if (rijtechniekdom.getParkeren() == Toestand.WIT) {
+                rijtechniekdom.setParkeren(Toestand.ROOD);
+                parkerenImageView.setImage(parkerenRood);
+            } else if (rijtechniekdom.getParkeren() == Toestand.ROOD) {
+                rijtechniekdom.setParkeren(Toestand.ORANJE);
+                parkerenImageView.setImage(parkerenOranje);
+            } else if (rijtechniekdom.getParkeren() == Toestand.ORANJE) {
+                rijtechniekdom.setParkeren(Toestand.GROEN);
+                parkerenImageView.setImage(parkerenGroen);
+            } else if (rijtechniekdom.getParkeren() == Toestand.GROEN) {
+                rijtechniekdom.setParkeren(Toestand.WIT);
+                parkerenImageView.setImage(parkerenWit);
+            }
+        });
+
+        Image kerenWit = new Image("images/keren.png");
+        ImageView kerenImageView = new ImageView(kerenWit);
         kerenImageView.setFitWidth(50);
         kerenImageView.setFitHeight(50);
         Button kerenBtn = new Button("", kerenImageView);
         kerenBtn.setId("icoontjesBtns");
         grid.add(kerenBtn, 4, 4);
 
-        Image garage = new Image("images/garage.png");
-        ImageView garageImageView = new ImageView(garage);
+        Image kerenRood = new Image("images/stuur.png");
+        Image kerenOranje = new Image("images/stuur.png");
+        Image kerenGroen = new Image("images/stuur.png");
+
+        kerenBtn.setOnAction(e -> {
+            if (rijtechniekdom.getKijkTechniek() == Toestand.WIT) {
+                rijtechniekdom.setKijkTechniek(Toestand.ROOD);
+                kijkenImageView.setImage(kijkenRood);
+            } else if (rijtechniekdom.getKijkTechniek() == Toestand.ROOD) {
+                rijtechniekdom.setKijkTechniek(Toestand.ORANJE);
+                kijkenImageView.setImage(kijkenOranje);
+            } else if (rijtechniekdom.getKijkTechniek() == Toestand.ORANJE) {
+                rijtechniekdom.setKijkTechniek(Toestand.GROEN);
+                kijkenImageView.setImage(kijkenGroen);
+            } else if (rijtechniekdom.getKijkTechniek() == Toestand.GROEN) {
+                rijtechniekdom.setKijkTechniek(Toestand.WIT);
+                kijkenImageView.setImage(kijkenWit);
+            }
+        });
+
+        Image garageWit = new Image("images/garage.png");
+        ImageView garageImageView = new ImageView(garageWit);
         garageImageView.setFitWidth(50);
         garageImageView.setFitHeight(50);
         Button garageBtn = new Button("", garageImageView);
         garageBtn.setId("icoontjesBtns");
         grid.add(garageBtn, 3, 5);
 
-        Image achteruit = new Image("images/achteruit.png");
-        ImageView achteruitImageView = new ImageView(achteruit);
+        Image garageRood = new Image("images/stuur.png");
+        Image garageOranje = new Image("images/stuur.png");
+        Image garageGroen = new Image("images/stuur.png");
+
+        garageBtn.setOnAction(e -> {
+            if (rijtechniekdom.getGarage() == Toestand.WIT) {
+                rijtechniekdom.setGarage(Toestand.ROOD);
+                garageImageView.setImage(garageRood);
+            } else if (rijtechniekdom.getGarage() == Toestand.ROOD) {
+                rijtechniekdom.setGarage(Toestand.ORANJE);
+                garageImageView.setImage(garageOranje);
+            } else if (rijtechniekdom.getGarage() == Toestand.ORANJE) {
+                rijtechniekdom.setGarage(Toestand.GROEN);
+                garageImageView.setImage(garageGroen);
+            } else if (rijtechniekdom.getGarage() == Toestand.GROEN) {
+                rijtechniekdom.setGarage(Toestand.WIT);
+                garageImageView.setImage(garageWit);
+            }
+        });
+
+        Image achteruitWit = new Image("images/achteruit.png");
+        ImageView achteruitImageView = new ImageView(achteruitWit);
         achteruitImageView.setFitWidth(50);
         achteruitImageView.setFitHeight(50);
         Button achteruitBtn = new Button("", achteruitImageView);
         achteruitBtn.setId("icoontjesBtns");
         grid.add(achteruitBtn, 2, 5);
 
-        Image acht = new Image("images/acht.png");
-        ImageView achtImageView = new ImageView(acht);
+        Image achteruitRood = new Image("images/stuur.png");
+        Image achteruitOranje = new Image("images/stuur.png");
+        Image achteruitGroen = new Image("images/stuur.png");
+
+        achteruitBtn.setOnAction(e -> {
+            if (rijtechniekdom.getAchteruit()== Toestand.WIT) {
+                rijtechniekdom.setAchteruit(Toestand.ROOD);
+                achteruitImageView.setImage(achteruitRood);
+            } else if (rijtechniekdom.getAchteruit()== Toestand.ROOD) {
+                rijtechniekdom.setAchteruit(Toestand.ORANJE);
+                achteruitImageView.setImage(achteruitOranje);
+            } else if (rijtechniekdom.getAchteruit()== Toestand.ORANJE) {
+                rijtechniekdom.setAchteruit(Toestand.GROEN);
+                achteruitImageView.setImage(achteruitGroen);
+            } else if (rijtechniekdom.getAchteruit()== Toestand.GROEN) {
+                rijtechniekdom.setAchteruit(Toestand.WIT);
+                achteruitImageView.setImage(achteruitWit);
+            }
+        });
+
+        Image achtWit = new Image("images/acht.png");
+        ImageView achtImageView = new ImageView(achtWit);
         achtImageView.setFitWidth(50);
         achtImageView.setFitHeight(50);
         Button achtBtn = new Button("", achtImageView);
         achtBtn.setId("icoontjesBtns");
         grid.add(achtBtn, 1, 4);
 
+        Image achtRood = new Image("images/stuur.png");
+        Image achtOranje = new Image("images/stuur.png");
+        Image achtGroen = new Image("images/stuur.png");
+        
+        achtBtn.setOnAction(e -> {
+            if(rijtechniekdom.getAcht()== Toestand.WIT){
+                rijtechniekdom.setAcht(Toestand.ROOD);
+                achtImageView.setImage(achtRood);
+            }else if(rijtechniekdom.getAcht()== Toestand.ROOD){
+                rijtechniekdom.setAcht(Toestand.ORANJE);
+                achtImageView.setImage(achtOranje);
+            }else if(rijtechniekdom.getAcht()== Toestand.ORANJE){
+                rijtechniekdom.setAcht(Toestand.GROEN);
+                achtImageView.setImage(achtGroen);
+            }else if(rijtechniekdom.getAcht()== Toestand.GROEN){
+                rijtechniekdom.setAcht(Toestand.WIT);
+                achtImageView.setImage(achtWit);
+            }
+        });
+        
         HBox bergopHBox = new HBox();
         bergopHBox.setId("icoonMetEva");
-        Image bergop = new Image("images/bergop.png");
-        ImageView bergopImageView = new ImageView(bergop);
-        bergopImageView.setFitWidth(50);
-        bergopImageView.setFitHeight(50);
-        Button bergopBtn = new Button("", bergopImageView);
-        bergopBtn.setId("icoontjesBtns");
+        Image hellingWit = new Image("images/bergop.png");
+        ImageView hellingImageView = new ImageView(hellingWit);
+        hellingImageView.setFitWidth(50);
+        hellingImageView.setFitHeight(50);
+        Button hellingBtn = new Button("", hellingImageView);
+        hellingBtn.setId("icoontjesBtns");
         //grid.add(bergopBtn, 0, 3);
+
+        Image hellingRood = new Image("images/stuur.png");
+        Image hellingOranje = new Image("images/stuur.png");
+        Image hellingGroen = new Image("images/stuur.png");
+        
+        hellingBtn.setOnAction(e -> {
+            if(rijtechniekdom.getHelling() == Toestand.WIT){
+                rijtechniekdom.setHelling(Toestand.ROOD);
+                hellingImageView.setImage(hellingRood);
+            }else if(rijtechniekdom.getHelling()== Toestand.ROOD){
+                rijtechniekdom.setHelling(Toestand.ORANJE);
+                hellingImageView.setImage(hellingOranje);
+            }else if(rijtechniekdom.getHelling()== Toestand.ORANJE){
+                rijtechniekdom.setHelling(Toestand.GROEN);
+                hellingImageView.setImage(hellingGroen);
+            }else if(rijtechniekdom.getHelling()== Toestand.GROEN){
+                rijtechniekdom.setHelling(Toestand.WIT);
+                hellingImageView.setImage(hellingWit);
+            }
+        });
         
         Rectangle bergopEva1 = new Rectangle(12, 12, Color.WHITE);
         Rectangle bergopEva2 = new Rectangle(12, 12, Color.WHITE);
         Rectangle bergopEva3 = new Rectangle(12, 12, Color.WHITE);
-        
+
         VBox bergopEvamomenten = new VBox();
         bergopEvamomenten.setId("evamomenten");
         bergopEvamomenten.getChildren().addAll(bergopEva1, bergopEva2, bergopEva3);
-        
-        bergopHBox.getChildren().addAll(bergopBtn, bergopEvamomenten);
-        
+
+        bergopHBox.getChildren().addAll(hellingBtn, bergopEvamomenten);
+
         grid.add(bergopHBox, 0, 3);
 
         HBox zithoudingHBox = new HBox();
         zithoudingHBox.setId("icoonMetEva");
-        Image zithouding = new Image("images/zithouding.png");
-        ImageView zithoudingImageView = new ImageView(zithouding);
+        Image zithoudingWit = new Image("images/zithouding.png");
+        ImageView zithoudingImageView = new ImageView(zithoudingWit);
         zithoudingImageView.setFitWidth(50);
         zithoudingImageView.setFitHeight(50);
         Button zithoudingBtn = new Button("", zithoudingImageView);
         zithoudingBtn.setId("icoontjesBtns");
         //grid.add(zithoudingBtn, 0, 2);
 
+        Image zithoudingRood = new Image("images/stuur.png");
+        Image zithoudingOranje = new Image("images/stuur.png");
+        Image zithoudingGroen = new Image("images/stuur.png");
+        
+        zithoudingBtn.setOnAction(e -> {
+            if(rijtechniekdom.getZithouding()== Toestand.WIT){
+                rijtechniekdom.setZithouding(Toestand.ROOD);
+                zithoudingImageView.setImage(zithoudingRood);
+            }else if(rijtechniekdom.getZithouding()== Toestand.ROOD){
+                rijtechniekdom.setZithouding(Toestand.ORANJE);
+                zithoudingImageView.setImage(zithoudingOranje);
+            }else if(rijtechniekdom.getZithouding()== Toestand.ORANJE){
+                rijtechniekdom.setZithouding(Toestand.GROEN);
+                zithoudingImageView.setImage(zithoudingGroen);
+            }else if(rijtechniekdom.getZithouding()== Toestand.GROEN){
+                rijtechniekdom.setZithouding(Toestand.WIT);
+                zithoudingImageView.setImage(zithoudingWit);
+            }
+        });
+        
         Rectangle zithoudingEva1 = new Rectangle(12, 12, Color.WHITE);
         Rectangle zithoudingEva2 = new Rectangle(12, 12, Color.WHITE);
         Rectangle zithoudingEva3 = new Rectangle(12, 12, Color.WHITE);
-        
+
         VBox zithoudingEvamomenten = new VBox();
         zithoudingEvamomenten.setId("evamomenten");
         zithoudingEvamomenten.getChildren().addAll(zithoudingEva1, zithoudingEva2, zithoudingEva3);
-        
+
         zithoudingHBox.getChildren().addAll(zithoudingBtn, zithoudingEvamomenten);
-        
+
         grid.add(zithoudingHBox, 0, 2);
-        
+
         HBox remtechniekHBox = new HBox();
         remtechniekHBox.setId("icoonMetEva");
-        Image remtechniek = new Image("images/remtechniek.png");
-        ImageView remtechniekImageView = new ImageView(remtechniek);
+        Image remtechniekWit = new Image("images/remtechniek.png");
+        ImageView remtechniekImageView = new ImageView(remtechniekWit);
         remtechniekImageView.setFitWidth(50);
         remtechniekImageView.setFitHeight(50);
         Button remtechniekBtn = new Button("", remtechniekImageView);
         remtechniekBtn.setId("icoontjesBtns");
         //grid.add(remtechniekBtn, 1, 1);
 
+        Image remtechniekRood = new Image("images/stuur.png");
+        Image remtechniekOranje = new Image("images/stuur.png");
+        Image remtechniekGroen = new Image("images/stuur.png");
+        
+        remtechniekBtn.setOnAction(e -> {
+            if(rijtechniekdom.getRemtechniek()== Toestand.WIT){
+                rijtechniekdom.setRemtechniek(Toestand.ROOD);
+                remtechniekImageView.setImage(remtechniekRood);
+            }else if(rijtechniekdom.getRemtechniek()== Toestand.ROOD){
+                rijtechniekdom.setRemtechniek(Toestand.ORANJE);
+                remtechniekImageView.setImage(remtechniekOranje);
+            }else if(rijtechniekdom.getRemtechniek()== Toestand.ORANJE){
+                rijtechniekdom.setRemtechniek(Toestand.GROEN);
+                remtechniekImageView.setImage(remtechniekGroen);
+            }else if(rijtechniekdom.getRemtechniek()== Toestand.GROEN){
+                rijtechniekdom.setRemtechniek(Toestand.WIT);
+                remtechniekImageView.setImage(remtechniekWit);
+            }
+        });
+        
         Rectangle remtechniekEva1 = new Rectangle(12, 12, Color.WHITE);
         Rectangle remtechniekEva2 = new Rectangle(12, 12, Color.WHITE);
         Rectangle remtechniekEva3 = new Rectangle(12, 12, Color.WHITE);
-        
+
         VBox remtechniekEvamomenten = new VBox();
         remtechniekEvamomenten.setId("evamomenten");
         remtechniekEvamomenten.getChildren().addAll(remtechniekEva1, remtechniekEva2, remtechniekEva3);
-        
+
         remtechniekHBox.getChildren().addAll(remtechniekBtn, remtechniekEvamomenten);
-        
+
         grid.add(remtechniekHBox, 1, 1);
-        
+
         HBox embrayageHBox = new HBox();
         embrayageHBox.setId("icoonMetEva");
-        Image embrayage = new Image("images/embrayage.png");
-        ImageView embrayageImageView = new ImageView(embrayage);
+        Image embrayageWit = new Image("images/embrayage.png");
+        ImageView embrayageImageView = new ImageView(embrayageWit);
         embrayageImageView.setFitWidth(50);
         embrayageImageView.setFitHeight(50);
         Button embrayageBtn = new Button("", embrayageImageView);
         embrayageBtn.setId("icoontjesBtns");
         //grid.add(embrayageBtn, 2, 0);
 
+        Image embrayageRood = new Image("images/stuur.png");
+        Image embrayageOranje = new Image("images/stuur.png");
+        Image embrayageGroen = new Image("images/stuur.png");
+        
+        embrayageBtn.setOnAction(e -> {
+            if(rijtechniekdom.getKoppeling()== Toestand.WIT){
+                rijtechniekdom.setKoppeling(Toestand.ROOD);
+                embrayageImageView.setImage(embrayageRood);
+            }else if(rijtechniekdom.getKoppeling()== Toestand.ROOD){
+                rijtechniekdom.setKoppeling(Toestand.ORANJE);
+                embrayageImageView.setImage(embrayageOranje);
+            }else if(rijtechniekdom.getKoppeling()== Toestand.ORANJE){
+                rijtechniekdom.setKoppeling(Toestand.GROEN);
+                embrayageImageView.setImage(embrayageGroen);
+            }else if(rijtechniekdom.getKoppeling()== Toestand.GROEN){
+                rijtechniekdom.setKoppeling(Toestand.WIT);
+                embrayageImageView.setImage(embrayageWit);
+            }
+        });
+        
         Rectangle embrayageEva1 = new Rectangle(12, 12, Color.WHITE);
         Rectangle embrayageEva2 = new Rectangle(12, 12, Color.WHITE);
         Rectangle embrayageEva3 = new Rectangle(12, 12, Color.WHITE);
-        
+
         VBox embrayageEvamomenten = new VBox();
         embrayageEvamomenten.setId("evamomenten");
         embrayageEvamomenten.getChildren().addAll(embrayageEva1, embrayageEva2, embrayageEva3);
-        
+
         embrayageHBox.getChildren().addAll(embrayageBtn, embrayageEvamomenten);
-        
+
         grid.add(embrayageHBox, 2, 0);
-        
+
         Image middenGrid = new Image("images/icoon-rijtechniek.png");
         ImageView middenGridImageView = new ImageView(middenGrid);
         middenGridImageView.setFitWidth(150);
