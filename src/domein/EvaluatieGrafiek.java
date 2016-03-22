@@ -9,8 +9,7 @@ public class EvaluatieGrafiek {
     private int positie = 11;
     private String voortgang = "";
 
-    public EvaluatieGrafiek(int positie) {
-        this.positie = positie;
+    public EvaluatieGrafiek() {
     }
 
     public int getPositie() {
