@@ -26,7 +26,7 @@ import javafx.util.Duration;
 public class Dashboard extends GridPane {
 
     private Scene scene;
-    private EvaluatieGrafiek evaGraf;
+    private EvaluatieGrafiek evaGraf = new EvaluatieGrafiek();
     private DashboardDom dashboardDom = new DashboardDom();
 
     private Rectangle blok1 = new Rectangle(15, 30, Color.BLUE);
@@ -573,7 +573,7 @@ public class Dashboard extends GridPane {
             voortgang.setText(evaGraf.getVoortgang());
         }
 
-        if (evaGraf.getPositie() == 11) {
+        if (evaGraf.getPositie() == 0) {
             evaGraf.setVoortgang("Klaar voor praktijk examen");
             voortgang.setText(evaGraf.getVoortgang());
         }
