@@ -1,7 +1,7 @@
 package gui;
 
+import domein.EvaluatieGrafiek;
 import javafx.animation.TranslateTransition;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
@@ -24,8 +24,8 @@ import javafx.util.Duration;
 public class Dashboard extends GridPane {
 
     private Scene scene;
+    private EvaluatieGrafiek evaGraf;
     
-    private int niveau = 11;
     private Rectangle blok1 = new Rectangle(15, 30, Color.BLUE);
     private Rectangle blok2 = new Rectangle(15, 40, Color.BLACK);
     private Rectangle blok3 = new Rectangle(15, 50, Color.BLACK);
@@ -202,68 +202,50 @@ public class Dashboard extends GridPane {
         bandenSpanningBtn.setId("icoontjesBtns");
         
         Image bandenSpanningGroen = new Image("images/bandenspanningGroen.png");
-        Image bandenSpanningOranje = new Image("images/bandenspanningOranje.png");
-        Image bandenSpanningRood = new Image("images/bandenspanningRood.png");
         
         bandenSpanningBtn.setOnAction(e -> {
             if (bandenSpanningImageView.getImage() == bandenSpanning) {
-                bandenSpanningImageView.setImage(bandenSpanningRood);
-            } else if (bandenSpanningImageView.getImage() == bandenSpanningRood) {
-                bandenSpanningImageView.setImage(bandenSpanningOranje);
-            } else if (bandenSpanningImageView.getImage() == bandenSpanningOranje) {
                 bandenSpanningImageView.setImage(bandenSpanningGroen);
             } else if (bandenSpanningImageView.getImage() == bandenSpanningGroen) {
                 bandenSpanningImageView.setImage(bandenSpanning);
-            }
+            } 
         });
         
-        Image olie = new Image("images/olie.png");
-        ImageView olieImageView = new ImageView(olie);
+        Image olieWit = new Image("images/olieWit.png");
+        ImageView olieImageView = new ImageView(olieWit);
         olieImageView.setFitWidth(25);
         olieImageView.setFitHeight(25);
         Button olieBtn = new Button("", olieImageView);
         olieBtn.setId("icoontjesBtns");
         
         Image olieGroen = new Image("images/olieGroen.png");
-        Image olieOranje = new Image("images/olieOranje.png");
-        Image olieRood = new Image("images/olieRood.png");
         
         olieBtn.setOnAction(e -> {
-            if (olieImageView.getImage() == olie) {
-                olieImageView.setImage(olieRood);
-            } else if (olieImageView.getImage() == olieRood) {
-                olieImageView.setImage(olieOranje);
-            } else if (olieImageView.getImage() == olieOranje) {
+            if (olieImageView.getImage() == olieWit) {
                 olieImageView.setImage(olieGroen);
             } else if (olieImageView.getImage() == olieGroen) {
-                olieImageView.setImage(olie);
+                olieImageView.setImage(olieWit);
             }
         });
         
-        Image lichten = new Image("images/lichten.png");
-        ImageView lichtenImageView = new ImageView(lichten);
+        Image schakelaarsWit = new Image("images/schakelaarsWit.png");
+        ImageView lichtenImageView = new ImageView(schakelaarsWit);
         lichtenImageView.setFitWidth(25);
         lichtenImageView.setFitHeight(25);
-        Button lichtenBtn = new Button("", lichtenImageView);
-        lichtenBtn.setId("icoontjesBtns");
+        Button schakelaarsBtn = new Button("", lichtenImageView);
+        schakelaarsBtn.setId("icoontjesBtns");
         
-        Image lichtenGroen = new Image("images/lichtenGroen.png");
-        Image lichtenOranje = new Image("images/lichtenOranje.png");
-        Image lichtenRood = new Image("images/lichtenRood.png");
+        Image schakelaarsGroen = new Image("images/schakelaarsGroen.png");
         
-        lichtenBtn.setOnAction(e -> {
-            if (lichtenImageView.getImage() == lichten) {
-                lichtenImageView.setImage(lichtenRood);
-            } else if (lichtenImageView.getImage() == lichtenRood) {
-                lichtenImageView.setImage(lichtenOranje);
-            } else if (lichtenImageView.getImage() == lichtenOranje) {
-                lichtenImageView.setImage(lichtenGroen);
-            } else if (lichtenImageView.getImage() == lichtenGroen) {
-                lichtenImageView.setImage(lichten);
-            }
+        schakelaarsBtn.setOnAction(e -> {
+            if (lichtenImageView.getImage() == schakelaarsWit) {
+                lichtenImageView.setImage(schakelaarsGroen);
+            } else if (lichtenImageView.getImage() == schakelaarsGroen) {
+                lichtenImageView.setImage(schakelaarsWit);
+            } 
         });
         
-        icoontjesLinks.getChildren().addAll(bandenSpanningBtn, olieBtn, lichtenBtn);
+        icoontjesLinks.getChildren().addAll(bandenSpanningBtn, olieBtn, schakelaarsBtn);
         
         HBox icoontjesMidden = new HBox();
         icoontjesMidden.setId("icoontjesMidden");
@@ -276,19 +258,13 @@ public class Dashboard extends GridPane {
         rondpuntBtn.setId("icoontjesBtns");
         
         Image rondpuntGroen = new Image("images/rondpuntGroen.png");
-        Image rondpuntOranje = new Image("images/rondpuntOranje.png");
-        Image rondpuntRood = new Image("images/rondpuntRood.png");
         
         rondpuntBtn.setOnAction(e -> {
             if (rondpuntImageView.getImage() == rondpunt) {
-                rondpuntImageView.setImage(rondpuntRood);
-            } else if (rondpuntImageView.getImage() == rondpuntRood) {
-                rondpuntImageView.setImage(rondpuntOranje);
-            } else if (rondpuntImageView.getImage() == rondpuntOranje) {
                 rondpuntImageView.setImage(rondpuntGroen);
             } else if (rondpuntImageView.getImage() == rondpuntGroen) {
                 rondpuntImageView.setImage(rondpunt);
-            }
+            } 
         });
         
         Image rijbaan = new Image("images/rijbaan.png");
@@ -299,15 +275,9 @@ public class Dashboard extends GridPane {
         rijbaanBtn.setId("icoontjesBtns");
         
         Image rijbaanGroen = new Image("images/rijbaanGroen.png");
-        Image rijbaanOranje = new Image("images/rijbaanOranje.png");
-        Image rijbaanRood = new Image("images/rijbaanRood.png");
         
         rijbaanBtn.setOnAction(e -> {
             if (rijbaanImageView.getImage() == rijbaan) {
-                rijbaanImageView.setImage(rijbaanRood);
-            } else if (rijbaanImageView.getImage() == rijbaanRood) {
-                rijbaanImageView.setImage(rijbaanOranje);
-            } else if (rijbaanImageView.getImage() == rijbaanOranje) {
                 rijbaanImageView.setImage(rijbaanGroen);
             } else if (rijbaanImageView.getImage() == rijbaanGroen) {
                 rijbaanImageView.setImage(rijbaan);
@@ -322,19 +292,13 @@ public class Dashboard extends GridPane {
         stadBtn.setId("icoontjesBtns");
         
         Image stadGroen = new Image("images/stadGroen.png");
-        Image stadOranje = new Image("images/stadOranje.png");
-        Image stadRood = new Image("images/stadRood.png");
         
         stadBtn.setOnAction(e -> {
             if (stadImageView.getImage() == stad) {
-                stadImageView.setImage(stadRood);
-            } else if (stadImageView.getImage() == stadRood) {
-                stadImageView.setImage(stadOranje);
-            } else if (stadImageView.getImage() == stadOranje) {
                 stadImageView.setImage(stadGroen);
             } else if (stadImageView.getImage() == stadGroen) {
                 stadImageView.setImage(stad);
-            }
+            } 
         });
         
         Image autosnelweg = new Image("images/autosnelweg.png");
@@ -345,19 +309,13 @@ public class Dashboard extends GridPane {
         autosnelwegBtn.setId("icoontjesBtns");
         
         Image autosnelwegGroen = new Image("images/autosnelwegGroen.png");
-        Image autosnelwegOranje = new Image("images/autosnelwegOranje.png");
-        Image autosnelwegRood = new Image("images/autosnelwegRood.png");
         
         autosnelwegBtn.setOnAction(e -> {
             if (autosnelwegImageView.getImage() == autosnelweg) {
-                autosnelwegImageView.setImage(autosnelwegRood);
-            } else if (autosnelwegImageView.getImage() == autosnelwegRood) {
-                autosnelwegImageView.setImage(autosnelwegOranje);
-            } else if (autosnelwegImageView.getImage() == autosnelwegOranje) {
                 autosnelwegImageView.setImage(autosnelwegGroen);
             } else if (autosnelwegImageView.getImage() == autosnelwegGroen) {
                 autosnelwegImageView.setImage(autosnelweg);
-            }
+            } 
         });
         
         icoontjesMidden.getChildren().addAll(rondpuntBtn, rijbaanBtn, stadBtn, autosnelwegBtn);
@@ -365,42 +323,56 @@ public class Dashboard extends GridPane {
         HBox icoontjesRechts = new HBox();
         icoontjesRechts.setId("icoontjesRechts");
         
-        Image tanken = new Image("images/tanken.png");
-        ImageView tankenImageView = new ImageView(tanken);
+        Image tankenWit = new Image("images/tankenWit.png");
+        ImageView tankenImageView = new ImageView(tankenWit);
         tankenImageView.setFitWidth(25);
         tankenImageView.setFitHeight(25);
         Button tankenBtn = new Button("", tankenImageView);
         tankenBtn.setId("icoontjesBtns");
         
         Image tankenGroen = new Image("images/tankenGroen.png");
-        Image tankenOranje = new Image("images/tankenOranje.png");
-        Image tankenRood = new Image("images/tankenRood.png");
         
         tankenBtn.setOnAction(e -> {
-            if (tankenImageView.getImage() == tanken) {
-                tankenImageView.setImage(tankenRood);
-            } else if (tankenImageView.getImage() == tankenRood) {
-                tankenImageView.setImage(tankenOranje);
-            } else if (tankenImageView.getImage() == tankenOranje) {
+            if (tankenImageView.getImage() == tankenWit) {
                 tankenImageView.setImage(tankenGroen);
             } else if (tankenImageView.getImage() == tankenGroen) {
-                tankenImageView.setImage(tanken);
-            }
+                tankenImageView.setImage(tankenWit);
+            } 
         });
         
-        Image gps = new Image("images/GPS.png");
-        ImageView gpsImageView = new ImageView(gps);
+        Image gpsWit = new Image("images/gpsWit.png");
+        ImageView gpsImageView = new ImageView(gpsWit);
         gpsImageView.setFitWidth(25);
         gpsImageView.setFitHeight(25);
         Button gpsBtn = new Button("", gpsImageView);
         gpsBtn.setId("icoontjesBtns");
         
-        Image stop = new Image("images/stop.png");
-        ImageView stopImageView = new ImageView(stop);
+        Image gpsGroen = new Image("images/gpsGroen.png");
+        
+        gpsBtn.setOnAction(e -> {
+            if(gpsImageView.getImage() == gpsWit){
+                gpsImageView.setImage(gpsGroen);
+            }else if(gpsImageView.getImage() == gpsGroen){
+                gpsImageView.setImage(gpsWit);
+            }
+        });
+        
+        Image noodstopWit = new Image("images/noodstopWit.png");
+        ImageView stopImageView = new ImageView(noodstopWit);
         stopImageView.setFitWidth(25);
         stopImageView.setFitHeight(25);
         Button stopBtn = new Button("", stopImageView);
         stopBtn.setId("icoontjesBtns");
+        
+        Image noodstopGroen = new Image("images/noodstopGroen.png");
+        
+        stopBtn.setOnAction(e -> {
+            if(stopImageView.getImage() == noodstopWit){
+                stopImageView.setImage(noodstopGroen);
+            } else if (stopImageView.getImage() == noodstopGroen){
+                stopImageView.setImage(noodstopWit);
+            }
+        });
         
         icoontjesRechts.getChildren().addAll(tankenBtn, gpsBtn, stopBtn);
         
@@ -461,13 +433,45 @@ public class Dashboard extends GridPane {
 
         //Button minus
         minusBtn.setOnAction(e -> {
-            minEen();
+            //minEen();
+            Rectangle blokDelete = grafiek[evaGraf.getPositie()];
+            blokDelete.setFill(Color.BLACK);
+            grafiek[evaGraf.getPositie()] = blokDelete;
+            
+            evaGraf.minEen();
+            
+            Rectangle blokAdd = grafiek[evaGraf.getPositie()];
+            blokAdd.setFill(Color.BLUE);
+            grafiek[evaGraf.getPositie()] = blokAdd;
             setVoortgang();
         });
-
+    
+//    public void minEen() {
+//        if (niveau != 11) {
+//            Rectangle blokDelete = grafiek[niveau];
+//            blokDelete.setFill(Color.BLACK);
+//            grafiek[niveau] = blokDelete;
+//            
+//            niveau++;
+//            Rectangle blokAdd = grafiek[niveau];
+//            blokAdd.setFill(Color.BLUE);
+//            grafiek[niveau] = blokAdd;
+//        }
+//    }
+//    public void plusEen() {
+//        if (niveau != 0) {
+//            niveau--;
+//            Rectangle blokAdd = grafiek[niveau];
+//            blokAdd.setFill(Color.BLUE);
+//            grafiek[niveau] = blokAdd;
+//        }
+//    }
         //button plus
         plusBtn.setOnAction(e -> {
-            plusEen();
+            evaGraf.plusEen();
+            Rectangle blokAdd = grafiek[evaGraf.getPositie()];
+            blokAdd.setFill(Color.BLUE);
+            grafiek[evaGraf.getPositie()] = blokAdd;
             setVoortgang();
         });
 
@@ -542,42 +546,25 @@ public class Dashboard extends GridPane {
         
     }
     
-    public void plusEen() {
-        if (niveau != 0) {
-            niveau--;
-            Rectangle blokAdd = grafiek[niveau];
-            blokAdd.setFill(Color.BLUE);
-            grafiek[niveau] = blokAdd;
-        }
-    }
     
-    public void minEen() {
-        if (niveau != 11) {
-            Rectangle blokDelete = grafiek[niveau];
-            blokDelete.setFill(Color.BLACK);
-            grafiek[niveau] = blokDelete;
-            
-            niveau++;
-            Rectangle blokAdd = grafiek[niveau];
-            blokAdd.setFill(Color.BLUE);
-            grafiek[niveau] = blokAdd;
-        }
-    }
     
     public void setVoortgang() {
-        if (niveau <= 7 && niveau >= 4) {
-            voortgang.setText("Klaar om met begeleider te oefenen");
+        if (evaGraf.getPositie() >= 3 && evaGraf.getPositie() <= 8) {
+            evaGraf.setVoortgang("Klaar om met begeleider te oefenen");
+            voortgang.setText(evaGraf.getVoortgang());
         }
         
-        if (niveau <= 3 && niveau >= 1) {
-            voortgang.setText("Klaar om alleen te oefenen");
+        if (evaGraf.getPositie() >= 9 && evaGraf.getPositie() <= 10) {
+            evaGraf.setVoortgang("Klaar om alleen te oefenen");
+            voortgang.setText(evaGraf.getVoortgang());
         }
         
-        if (niveau == 0) {
-            voortgang.setText("Klaar voor praktisch examen");
+        if (evaGraf.getPositie() == 11) {
+            evaGraf.setVoortgang("Klaar voor praktijk examen");
+            voortgang.setText(evaGraf.getVoortgang());
         }
         
-        if (niveau > 7) {
+        if (evaGraf.getPositie() < 3) {
             voortgang.setText("");
         }
     }
