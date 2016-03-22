@@ -5,6 +5,8 @@
  */
 package gui;
 
+import domein.AttitudeOpmerking;
+import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +38,7 @@ public class Attitude extends GridPane{
     public Attitude() {
         
         //HoofdGrid
-         gridLinesVisibleProperty().set(true);
+         gridLinesVisibleProperty().set(false);
          ColumnConstraints col0 = new ColumnConstraints();
          col0.setPercentWidth(40);
          
@@ -46,6 +48,7 @@ public class Attitude extends GridPane{
          
          ColumnConstraints col2 = new ColumnConstraints();
          col2.setPercentWidth(20);
+         col2.setHalignment(HPos.CENTER);
          
          getColumnConstraints().addAll(col0, col1, col2);
             
@@ -60,23 +63,39 @@ public class Attitude extends GridPane{
          ColumnConstraints col0OpmerkingPane = new ColumnConstraints();
          col0OpmerkingPane.setPercentWidth(100);
          col0OpmerkingPane.setHalignment(HPos.CENTER);
-         RowConstraints row0AttitudeLogo = new RowConstraints();
-         row0AttitudeLogo.setPercentHeight(45);
+         
+         RowConstraints row0Terug = new RowConstraints();
+         row0Terug.setPercentHeight(22.5);
          
          RowConstraints row1Label = new RowConstraints();
          row1Label.setPercentHeight(10);
+         row1Label.setValignment(VPos.BOTTOM);
          
          RowConstraints row2Text = new RowConstraints();
          row2Text.setPercentHeight(45);
-         row2Text.setValignment(VPos.TOP);
+         row2Text.setValignment(VPos.CENTER);
+         
+         RowConstraints row3Bewaar = new RowConstraints();
+         row3Bewaar.setPercentHeight(22.5);
+         row3Bewaar.setValignment(VPos.TOP);
          
          OpmerkingenPane.getColumnConstraints().add(col0OpmerkingPane);
-         OpmerkingenPane.getRowConstraints().addAll(row0AttitudeLogo,row1Label,row2Text);
+         OpmerkingenPane.getRowConstraints().addAll(row0Terug,row1Label,row2Text,row3Bewaar);
          
-         Image attitude = new Image("images/attitude-placeholder.png");
-         ImageView attitudeView = new ImageView(attitude);
-         attitudeView.setId("AttitudeImage");
-         OpmerkingenPane.add(attitudeView,0 , 0);
+         Image terugPijl = new Image("images/terug-pijl.png");
+         ImageView terugPijlImageView = new ImageView(terugPijl);
+         terugPijlImageView.setFitWidth(100);
+         terugPijlImageView.setFitHeight(50);
+         Button terugBtn = new Button("", terugPijlImageView);
+         terugBtn.setId("menuButton");
+        
+         OpmerkingenPane.add(terugBtn,0 , 0);
+         
+         terugBtn.setOnAction(e -> {
+            Dashboard dashboard = new Dashboard();
+            dashboard.setScene(scene);
+            scene.setRoot(dashboard);
+        });
          
          Label opmerking = new Label("Opmerking");
          opmerking.setId("OpmerkingLabel");
@@ -86,18 +105,55 @@ public class Attitude extends GridPane{
          opmerkingVeld.setId("OpmerkingenVeld");
          OpmerkingenPane.add(opmerkingVeld, 0, 2);
          
-         
+         Button bewaarOpmerking = new Button("Bewaar");
+         OpmerkingenPane.add(bewaarOpmerking, 0, 3);
          
          //listview
+         //standaardOpmerkingen
+         AttitudeOpmerking Zenuwachtig = new AttitudeOpmerking("Zenuwachtig", "");
+         AttitudeOpmerking Concentratie = new AttitudeOpmerking("Concentratie", "");
+         AttitudeOpmerking Schrik = new AttitudeOpmerking("Schrik", "");
+         AttitudeOpmerking Asociaal = new AttitudeOpmerking("Asociaal", "");
+         AttitudeOpmerking Verkeersgevaarlijk = new AttitudeOpmerking("Verkeersgevaarlijk", "");
+         AttitudeOpmerking AgressiefRijgedrag = new AttitudeOpmerking("Agressief rijgedrag", "");
+         AttitudeOpmerking Inzet = new AttitudeOpmerking("Inzet", "");
+         AttitudeOpmerking Verstrooid = new AttitudeOpmerking("Verstrooid", "");
+         AttitudeOpmerking Eigenwijs = new AttitudeOpmerking("Eigenwijs", "");
+         
+         ArrayList<AttitudeOpmerking> StandaardOpmerkingenList = new ArrayList<>();
+         StandaardOpmerkingenList.add(Zenuwachtig);
+         StandaardOpmerkingenList.add(Concentratie);
+         StandaardOpmerkingenList.add(Schrik);
+         StandaardOpmerkingenList.add(Asociaal);
+         StandaardOpmerkingenList.add(Verkeersgevaarlijk);
+         StandaardOpmerkingenList.add(AgressiefRijgedrag);
+         StandaardOpmerkingenList.add(Inzet);
+         StandaardOpmerkingenList.add(Verstrooid);
+         StandaardOpmerkingenList.add(Eigenwijs);
+         
+         //Listview
          ListView opmerkingenList = new ListView();
-         opmerkingenList.setId("OpmeringenList");
+         opmerkingenList.setId("OpmerkingenList");
          ObservableList<String> standaarOpmerkingen = 
-                 FXCollections.observableArrayList("Zenuwachtig",
-                         "Concentratie", "Schrik", "Asociaal","Verkeersgevaarlijk",
-                         "Ongeduldig", "Agressief rijgedrag", "Inzet", "Verstrooid",
-                         "Eigenwijs");
+                 FXCollections.observableArrayList();
+         
+         StandaardOpmerkingenList.stream().forEach((Opmerking) -> {
+             standaarOpmerkingen.add(Opmerking.getNaam());
+        });
+         
          opmerkingenList.setItems(standaarOpmerkingen);
          
+         opmerkingenList.setOnMouseClicked(event ->{
+             
+             String selectedOpmerking2 = opmerkingenList.getSelectionModel().getSelectedItem().toString();
+             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
+                 if(opmerkingske.getNaam().equals(selectedOpmerking2)){
+                     
+                     opmerkingVeld.setText(opmerkingske.getOpmerking());
+                 }
+             });
+         });
+         //voegtoe
          Button voegToe = new Button("Voeg Toe");
          TextField nieuw = new TextField();
          HBox nieuwHB = new HBox();
@@ -111,13 +167,24 @@ public class Attitude extends GridPane{
          attitudeList.getChildren().addAll(opmerkingenList, nieuwHB);
          
          
+         bewaarOpmerking.setOnAction(e ->{
+             
+             String selectedOpmerking = opmerkingenList.getSelectionModel().getSelectedItem().toString();
+             
+             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
+                 if(opmerkingske.getNaam().equals(selectedOpmerking)){
+                     opmerkingske.setOpmerking(opmerkingVeld.getText());
+                 }
+             });
+             opmerkingVeld.clear();
+         });
+         
          //Menu
         Menu menu = new Menu();
         //RIGHT
         VBox right = new VBox();
         //MenuStandaard
         VBox menuStandaard = menu.buildMenuStandaard();
-        menuStandaard.setId("menuRight");
         right.getChildren().add(menuStandaard);
         
         
@@ -160,8 +227,15 @@ public class Attitude extends GridPane{
          add(right, 2 , 0);
          
          voegToe.setOnAction(e ->{
-             standaarOpmerkingen.add(nieuw.getText());
+             if(nieuw.getText().equalsIgnoreCase("")){
+                 
+             }else{
+             AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
+             StandaardOpmerkingenList.add(nieuweStand);
+             standaarOpmerkingen.add(nieuweStand.getNaam());
              nieuw.clear();
+             opmerkingVeld.clear();
+             }
          });
     }
 

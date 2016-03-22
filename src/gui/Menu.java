@@ -199,7 +199,7 @@ public class Menu {
         leerlingImageView.setId("leerlingImageView");
 
         //lay-out (nog proberen in css te zetten)
-        leerlingImageView.setFitWidth(120);
+        leerlingImageView.setFitWidth(130);
         leerlingImageView.setFitHeight(150);
 
         Label naamLeerling = new Label("Jules");

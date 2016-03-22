@@ -80,7 +80,7 @@
 }
 
 .list-cell:selected{ 
-    -fx-background-color: #C4003E;
+    -fx-background-color: #A4A4A4;
 }
 
 #buttonsRight{
@@ -278,11 +278,14 @@
 
 #infoLeerling{
     -fx-spacing: 15;
+    -fx-alignment: CENTER;
+    -fx-max-width: 130;
 }
 
 #menuStandaard{
     -fx-padding: 20 10 10 10;
     -fx-spacing: 300;
+    -fx-alignment: center;
 }
 
 #rijtechniekHBox{
@@ -301,13 +304,13 @@
 
 #OpmerkingenVeld{
     -fx-max-width: 300;
-    -fx-max-height: 200;
+    -fx-max-height: 250;
     -fx-border-color: black;
     -fx-border-radius: 5;
     -fx-border-width: 2;
     -fx-focus-color: none;
 }
-#OpmeringenList{
+#OpmerkingenList{
     -fx-background-radius: 5;
     -fx-border-color: black;
     -fx-border-radius: 5;
