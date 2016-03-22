@@ -1,6 +1,7 @@
 package gui;
 
 import domein.Leerling;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,11 +43,10 @@ public class Beginscherm extends HBox
         //ButtonLeft
         HBox buttons = new HBox();
         buttons.setId("buttons");
-        Button zoek = new Button("Zoek");
         Button nieuw = new Button("Nieuw");
         Button start = new Button("Start");
 
-        buttons.getChildren().addAll(zoek, nieuw, start);
+        buttons.getChildren().addAll(nieuw, start);
 
         //ZoekScherm
         VBox zoekscherm = new VBox();
@@ -152,14 +152,14 @@ public class Beginscherm extends HBox
                 getChildren().add(rightNieuw);
             }
         });
-        zoek.setOnAction(e -> {
-            if (getChildren().contains(rightNieuw)) {
-                getChildren().remove(rightNieuw);
-                getChildren().add(right);
+        
+        naamTF.textProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                ZoekFunctie((String) oldValue, (String) newValue); 
             }
-            String newVal = naamTF.getText();
-            ZoekFunctie(null, newVal);
         });
+
         ok.setOnAction(e -> {
             Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
             names.add(leerling.getVoorNaam());
@@ -182,12 +182,12 @@ public class Beginscherm extends HBox
             getChildren().add(right);
         });
     }
-
+    
     public void ZoekFunctie(String oldVal, String newVal)
     {
-        //if (oldVal != null && (newVal.length() <= oldVal.length())) {
+        if (oldVal != null && (newVal.length() < oldVal.length())) {
             lijstLeerlingen.setItems(names);
-        //}
+        }
         
         newVal = newVal.toLowerCase();
         
