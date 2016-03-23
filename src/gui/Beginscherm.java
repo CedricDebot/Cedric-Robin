@@ -1,7 +1,8 @@
 package gui;
 
 import domein.Leerling;
-import javafx.beans.value.ChangeListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,16 +14,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
-public class Beginscherm extends HBox
-{
+public class Beginscherm extends HBox {
 
     private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
     private ListView lijstLeerlingen = new ListView();
-    
+
     private Scene scene;
 
-    public Beginscherm()
-    {
+    public Beginscherm() {
         //Labels
         VBox labels = new VBox();
         labels.setId("labels");
@@ -58,12 +57,10 @@ public class Beginscherm extends HBox
 //        ListView lijstLeerlingen = new ListView();
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(names);
-        lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>()
-        {
+        lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>() {
 
             @Override
-            public ObservableValue<Boolean> call(String item)
-            {
+            public ObservableValue<Boolean> call(String item) {
                 return null;
             }
         }));
@@ -101,9 +98,14 @@ public class Beginscherm extends HBox
         TextField inputEmail = new TextField();
         inputEmail.setId("textField");
         Button foto = new Button("Foto");
+        Label feedback = new Label("");
+
+        HBox fotoEnLabel = new HBox();
+        fotoEnLabel.setId("fotoEnLabel");
+        fotoEnLabel.getChildren().addAll(foto, feedback);
 
         nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
-                inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, foto);
+                inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, fotoEnLabel);
 
         //buttonsNieuweLeerling
         Button ok = new Button("Ok");
@@ -161,16 +163,28 @@ public class Beginscherm extends HBox
         });
 
         ok.setOnAction(e -> {
-            Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
-            names.add(leerling.getVoorNaam());
+            if(inputNr.getText().isEmpty()) {
+                feedback.setText("Je moet het inschrijvingsNr invullen.");
+            } else if(inputFamillienaam.getText().isEmpty()){
+                feedback.setText("Je moet de famillienaam invullen.");
+            }else if(inputVoornaam.getText().isEmpty()){
+                feedback.setText("Je moet de voornaam invullen.");
+            }else if(inputEmail.getText().isEmpty()){
+                feedback.setText("Je moet het e-mailadres invullen.");
+            }else if(validateEmail(inputEmail.getText())){
+                feedback.setText("Het e-mailadres is niet correct.");
+            }else{
+                Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
+                names.add(leerling.getVoorNaam());
 
-            if (getChildren().contains(rightNieuw)) {
-                getChildren().remove(rightNieuw);
-                getChildren().add(right);
+                if (getChildren().contains(rightNieuw)) {
+                    getChildren().remove(rightNieuw);
+                    getChildren().add(right);
+                }
             }
         });
-        
-        start.setOnAction(e ->{
+
+        start.setOnAction(e -> {
             Dashboard dashboard = new Dashboard();
             dashboard.setScene(scene);
             scene.setRoot(dashboard);
@@ -182,15 +196,14 @@ public class Beginscherm extends HBox
             getChildren().add(right);
         });
     }
-    
-    public void ZoekFunctie(String oldVal, String newVal)
-    {
-        if (oldVal != null && (newVal.length() < oldVal.length())) {
-            lijstLeerlingen.setItems(names);
-        }
-        
+
+    public void ZoekFunctie(String oldVal, String newVal) {
+        //if (oldVal != null && (newVal.length() <= oldVal.length())) {
+        lijstLeerlingen.setItems(names);
+        //}
+
         newVal = newVal.toLowerCase();
-        
+
         ObservableList<String> searchNames = FXCollections.observableArrayList();
         for (Object entry : lijstLeerlingen.getItems()) {
             String entryText = (String) entry;
@@ -200,8 +213,16 @@ public class Beginscherm extends HBox
         }
         lijstLeerlingen.setItems(searchNames);
     }
-    
-    public void setScene(Scene scene){
+
+    public boolean validateEmail(String email) {
+        System.out.printf(email);
+        Pattern ptr = Pattern.compile("[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}");
+        return ptr.matcher(email).matches();
+    }
+    public void setScene(Scene scene) {
         this.scene = scene;
     }
+    
+    
+
 }
