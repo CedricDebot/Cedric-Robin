@@ -1,6 +1,8 @@
 package gui;
 
 import domein.Leerling;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -163,13 +165,15 @@ public class Beginscherm extends HBox {
         });
         ok.setOnAction(e -> {
             if(inputNr.getText().isEmpty()) {
-                feedback.setText("Je moet het inschrijvingsNr invullen");
+                feedback.setText("Je moet het inschrijvingsNr invullen.");
             } else if(inputFamillienaam.getText().isEmpty()){
-                feedback.setText("Je moet de famillienaam invullen");
+                feedback.setText("Je moet de famillienaam invullen.");
             }else if(inputVoornaam.getText().isEmpty()){
-                feedback.setText("Je moet de voornaam invullen");
+                feedback.setText("Je moet de voornaam invullen.");
             }else if(inputEmail.getText().isEmpty()){
-                feedback.setText("Je moet het e-mailadres invullen");
+                feedback.setText("Je moet het e-mailadres invullen.");
+            }else if(validateEmail(inputEmail.getText()) == false){
+                feedback.setText("Het e-mailadres is niet correct.");
             }else{
                 Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
                 names.add(leerling.getVoorNaam());
@@ -211,7 +215,15 @@ public class Beginscherm extends HBox {
         lijstLeerlingen.setItems(searchNames);
     }
 
+    public boolean validateEmail(String email) {
+        System.out.printf(email);
+        Pattern ptr = Pattern.compile("[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}");
+        return ptr.matcher(email).matches();
+    }
     public void setScene(Scene scene) {
         this.scene = scene;
     }
+    
+    
+
 }
