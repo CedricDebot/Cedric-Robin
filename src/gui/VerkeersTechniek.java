@@ -1,7 +1,9 @@
 package gui;
 
+import domein.AttitudeOpmerking;
 import domein.Toestand;
 import domein.VerkeerstechniekDom;
+import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -598,6 +600,147 @@ public class VerkeersTechniek extends HBox {
         });
 
         getChildren().addAll(left, evaluatieGroup, right);
+        
+        //Opmerkingen
+        voorrangBtn.setOnMouseDragged(e->{
+            ArrayList<AttitudeOpmerking> VoorrangOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking Voorrang = new AttitudeOpmerking("Voorrang", "");
+            VoorrangOpmerkingen.add(Voorrang);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(VoorrangOpmerkingen, "images/verkeersTechniek/voorrang.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+        });
+        
+        OWBtn.setOnMouseDragged(e->{
+            ArrayList<AttitudeOpmerking> OwOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking Openbaar = new AttitudeOpmerking("Openbare weg", "");
+            AttitudeOpmerking voorsorteren = new AttitudeOpmerking("Voorsorteren", "");
+            
+            OwOpmerkingen.add(Openbaar);
+            OwOpmerkingen.add(voorsorteren);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(OwOpmerkingen, "images/verkeersTechniek/OW.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+        });
+       pinkersBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> PinkersOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking gebruik = new AttitudeOpmerking("Gebruik", "");
+            AttitudeOpmerking tijdig = new AttitudeOpmerking("Tijdig aangeven", "");
+            
+            PinkersOpmerkingen.add(gebruik);
+            PinkersOpmerkingen.add(tijdig);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(PinkersOpmerkingen, "images/verkeersTechniek/pinkers.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       orderOpvolgenBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> orderOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking verkeerstekens = new AttitudeOpmerking("Verkeerstekens", "");
+            AttitudeOpmerking bevelen = new AttitudeOpmerking("Bevelen", "");
+            
+            orderOpmerkingen.add(verkeerstekens);
+            orderOpmerkingen.add(bevelen);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(orderOpmerkingen, "images/verkeersTechniek/ordersOpvolgen.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       snelheidBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> snelheidOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking snelheid = new AttitudeOpmerking("Snelheid", "");
+            
+            snelheidOpmerkingen.add(snelheid);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(snelheidOpmerkingen, "images/verkeersTechniek/snelheid.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       afstandBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> afstandOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking volgAfstand = new AttitudeOpmerking("Volgafstand", "");
+            AttitudeOpmerking zijdeAfstand = new AttitudeOpmerking("Zijdelingse afstand", "");
+            
+            afstandOpmerkingen.add(volgAfstand);
+            afstandOpmerkingen.add(zijdeAfstand);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(afstandOpmerkingen, "images/verkeersTechniek/afstand.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       inhalenBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> inhalenOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking inhalen = new AttitudeOpmerking("Inhalen", "");
+            AttitudeOpmerking voorbijrijden = new AttitudeOpmerking("Voorbijrijden", "");
+            
+            inhalenOpmerkingen.add(inhalen);
+            inhalenOpmerkingen.add(voorbijrijden);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(inhalenOpmerkingen, "images/verkeersTechniek/Voorrang2.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       kruisenlBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> kruisenOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking kruisen = new AttitudeOpmerking("Kruisen", "");
+            
+            kruisenOpmerkingen.add(kruisen);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(kruisenOpmerkingen, "images/verkeersTechniek/1.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       linksAfslaanBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> linksAfslaanOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking linksafslaan = new AttitudeOpmerking("Linksaf", "");
+            AttitudeOpmerking opstelling = new AttitudeOpmerking("Opstelling", "");
+            AttitudeOpmerking uitvoering = new AttitudeOpmerking("Uitvoering", "");
+            
+            linksAfslaanOpmerkingen.add(linksafslaan);
+            linksAfslaanOpmerkingen.add(opstelling);
+            linksAfslaanOpmerkingen.add(uitvoering);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(linksAfslaanOpmerkingen, "images/verkeersTechniek/linksAfslaan.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       rechtsAfslaanBtn.setOnMouseDragged(e->{
+           ArrayList<AttitudeOpmerking> rechtsAfslaanOpmerkingen = new ArrayList<>();
+            
+            AttitudeOpmerking rechtsaf = new AttitudeOpmerking("Rechtsaf", "");
+            AttitudeOpmerking opstelling = new AttitudeOpmerking("Opstelling", "");
+            AttitudeOpmerking uitvoering = new AttitudeOpmerking("Uitvoering", "");
+            
+            rechtsAfslaanOpmerkingen.add(rechtsaf);
+            rechtsAfslaanOpmerkingen.add(opstelling);
+            rechtsAfslaanOpmerkingen.add(uitvoering);
+            
+            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(rechtsAfslaanOpmerkingen, "images/verkeersTechniek/rechtsAfslaan.png");
+            
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
+       });
+       
     }
 
     public void setScene(Scene scene) {
