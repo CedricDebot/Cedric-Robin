@@ -80,7 +80,7 @@
 }
 
 .list-cell:selected{ 
-    -fx-background-color: #A4A4A4;
+    -fx-background-color: #22567B;
 }
 
 #buttonsRight{
@@ -237,7 +237,7 @@
 }
 
 #dashboardLeft{
-/*    -fx-padding: 25 5 0 25;*/
+    /*    -fx-padding: 25 5 0 25;*/
 }
 #menuButton{
     -fx-border-width: 5;
@@ -323,7 +323,7 @@
     -fx-spacing: 25;
 }
 #attitudeVoegToe{
-    
+
 }
 #nieuwHB{
     -fx-spacing: 15;
@@ -337,5 +337,94 @@
 
 #icoonMetEva{
     -fx-padding: 20 0 0 0;  
+    -fx-spacing: -10;
+}
+
+#stuurHBox{
+    -fx-padding: 50 0 0 0;
+    -fx-spacing: -10;
+}
+
+#schakelenHBox{
+    -fx-padding: 5 0 0 15;
+    -fx-spacing: -10;
+}
+
+#kijkenHBox{
+    -fx-padding: 5 0 0 -20;
+    -fx-spacing: -10;
+}
+
+#parkerenIcoon{
+    -fx-padding: 5 0 0 -50;
+}
+
+#hellingHBox{
+    -fx-padding: 20 -15 0 25;
+    -fx-spacing: -10;
+}
+
+#zithoudingHBox{
+    -fx-padding: 20 -15 0 25;
+    -fx-spacing: -10;
+}
+
+#remtechniekHBox{
+    -fx-padding: 5 0 0 0;
+    -fx-spacing: -10;
+}
+
+#embrayageHBox{
+    -fx-padding: 50 0 0 0;
+    -fx-spacing: -10;
+}
+
+#voorrangHBox{
+    -fx-padding: 50 0 0 67;
+    -fx-spacing: -10;
+}
+
+#orderOpvolgenHBox{
+    -fx-padding: 10 0 0 20;
+    -fx-spacing: -10;
+}
+
+#snelheidHBox{
+    -fx-padding: 20 0 0 -20;
+    -fx-spacing: -10;    
+}
+
+#afstandHBox{
+    -fx-padding: 20 0 0 -20;
+    -fx-spacing: -10;
+}
+
+#inhalenHBox{
+    -fx-padding: 20 0 0 20;
+    -fx-spacing: -10;
+}
+
+#kruisenHBox{
+    -fx-padding: 0 0 50 67;
+    -fx-spacing: -10;
+}
+
+#linksAfslaanHBox{
+    -fx-padding: 20 0 0 -10;
+    -fx-spacing: -10;
+}
+
+#rechtsAfslaanHBox{
+    -fx-padding: 20 -10 0 50;
+    -fx-spacing: -10;
+}
+
+#pinkersHBox{
+    -fx-padding: 20 -10 0 50;
+    -fx-spacing: -10;
+}
+
+#OWHBox{
+    -fx-padding: 10 0 0 -10;
     -fx-spacing: -10;
 }

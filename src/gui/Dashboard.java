@@ -258,14 +258,14 @@ public class Dashboard extends GridPane {
         HBox icoontjesMidden = new HBox();
         icoontjesMidden.setId("icoontjesMidden");
 
-        Image rotondeWit = new Image("images/rondpunt.png");
+        Image rotondeWit = new Image("images/rotondeWit.png");
         ImageView rotondeImageView = new ImageView(rotondeWit);
         rotondeImageView.setFitWidth(25);
         rotondeImageView.setFitHeight(25);
         Button rotondeBtn = new Button("", rotondeImageView);
         rotondeBtn.setId("icoontjesBtns");
 
-        Image rotondeGroen = new Image("images/rondpuntGroen.png");
+        Image rotondeGroen = new Image("images/rotondeGroen.png");
 
         rotondeBtn.setOnAction(e -> {
             if (dashboardDom.getRotonde() == GezienNietGezien.NIETGEZIEN) {
@@ -277,7 +277,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image rijbaanWit = new Image("images/rijbaan.png");
+        Image rijbaanWit = new Image("images/rijbaanWit.png");
         ImageView rijbaanImageView = new ImageView(rijbaanWit);
         rijbaanImageView.setFitWidth(25);
         rijbaanImageView.setFitHeight(25);
@@ -296,7 +296,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image stadWit = new Image("images/stad.png");
+        Image stadWit = new Image("images/stadWit.png");
         ImageView stadImageView = new ImageView(stadWit);
         stadImageView.setFitWidth(25);
         stadImageView.setFitHeight(25);
@@ -315,7 +315,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image autosnelwegWit = new Image("images/autosnelweg.png");
+        Image autosnelwegWit = new Image("images/autosnelwegWit.png");
         ImageView autosnelwegImageView = new ImageView(autosnelwegWit);
         autosnelwegImageView.setFitWidth(25);
         autosnelwegImageView.setFitHeight(25);

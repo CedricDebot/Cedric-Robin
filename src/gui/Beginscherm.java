@@ -124,14 +124,14 @@ public class Beginscherm extends HBox
         VBox left = new VBox();
         left.setId("left");
 
-        Image auto = new Image("images/driving_school.png");
+        Image auto = new Image("images/logo_mobix_app.png");
         ImageView autoImg = new ImageView();
         autoImg.setImage(auto);
         autoImg.setId("autoImg");
 
 //        //lay-out (nog proberen in css te zetten)
-        autoImg.setFitWidth(200);
-        autoImg.setFitHeight(225);
+        autoImg.setFitWidth(230);
+        autoImg.setFitHeight(230);
 
         left.getChildren().addAll(zoekscherm, autoImg);
 

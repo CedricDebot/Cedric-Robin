@@ -5,7 +5,7 @@ public class VerkeerstechniekDom {
     public VerkeerstechniekDom() {
     }
     
-    private Toestand richtingaanwijzers;
+    private Toestand richtingaanwijzers = Toestand.WIT;
 
     public Toestand getRichtingaanwijzers() {
         return richtingaanwijzers;
@@ -15,7 +15,7 @@ public class VerkeerstechniekDom {
         this.richtingaanwijzers = richtingaanwijzers;
     }
     
-    private Toestand openbareWeg;
+    private Toestand openbareWeg = Toestand.WIT;
 
     public Toestand getOpenbareWeg() {
         return openbareWeg;
@@ -25,7 +25,7 @@ public class VerkeerstechniekDom {
         this.openbareWeg = openbareWeg;
     }
     
-    private Toestand voorrang;
+    private Toestand voorrang = Toestand.WIT;
 
     public Toestand getVoorrang() {
         return voorrang;
@@ -35,7 +35,7 @@ public class VerkeerstechniekDom {
         this.voorrang = voorrang;
     }
     
-    private Toestand verkeerstekens;
+    private Toestand verkeerstekens = Toestand.WIT;
 
     public Toestand getVerkeerstekens() {
         return verkeerstekens;
@@ -45,7 +45,7 @@ public class VerkeerstechniekDom {
         this.verkeerstekens = verkeerstekens;
     }
     
-    private Toestand snelheid;
+    private Toestand snelheid = Toestand.WIT;
 
     public Toestand getSnelheid() {
         return snelheid;
@@ -55,7 +55,7 @@ public class VerkeerstechniekDom {
         this.snelheid = snelheid;
     }
     
-    private Toestand afstandHouden;
+    private Toestand afstandHouden = Toestand.WIT;
 
     public Toestand getAfstandHouden() {
         return afstandHouden;
@@ -65,7 +65,7 @@ public class VerkeerstechniekDom {
         this.afstandHouden = afstandHouden;
     }
     
-    private Toestand inhalen;
+    private Toestand inhalen = Toestand.WIT;
 
     public Toestand getInhalen() {
         return inhalen;
@@ -75,7 +75,7 @@ public class VerkeerstechniekDom {
         this.inhalen = inhalen;
     }
     
-    private Toestand kruisen;
+    private Toestand kruisen = Toestand.WIT;
 
     public Toestand getKruisen() {
         return kruisen;
@@ -85,7 +85,7 @@ public class VerkeerstechniekDom {
         this.kruisen = kruisen;
     }
     
-    private Toestand linksaf;
+    private Toestand linksaf = Toestand.WIT;
 
     public Toestand getLinksaf() {
         return linksaf;
@@ -95,7 +95,7 @@ public class VerkeerstechniekDom {
         this.linksaf = linksaf;
     }
     
-    private Toestand rechtsaf;
+    private Toestand rechtsaf = Toestand.WIT;
 
     public Toestand getRechtsaf() {
         return rechtsaf;
