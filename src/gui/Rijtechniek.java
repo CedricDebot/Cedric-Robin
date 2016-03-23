@@ -577,6 +577,7 @@ public class Rijtechniek extends HBox {
         VBox menuBalk = menu.buildMenu();
 
         menu.getMenuKnop().setOnAction(e -> {
+            menu.setScene(scene);
             right.getChildren().remove(menuStandaard);
 
             TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);

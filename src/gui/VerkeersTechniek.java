@@ -562,12 +562,13 @@ public class VerkeersTechniek extends HBox {
         Menu menu = new Menu();
         VBox right = new VBox();
         VBox menuStandaard = menu.buildMenuStandaard();
-
+        
         right.getChildren().add(menuStandaard);
 
         VBox menuBalk = menu.buildMenu();
 
         menu.getMenuKnop().setOnAction(e -> {
+            menu.setScene(scene);
             right.getChildren().remove(menuStandaard);
 
             TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);

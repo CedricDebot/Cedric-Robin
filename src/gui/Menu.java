@@ -78,11 +78,11 @@ public class Menu {
         Button rijTechniek = new Button("", rijImageViewM);
         rijTechniek.setId("menuButton");
 
-//        rijTechniek.setOnAction(e -> {
-//            Rijtechniek rijtechniekScherm = new Rijtechniek();
-//            rijtechniekScherm.setScene(scene);
-//            scene.setRoot(rijtechniekScherm);
-//        });
+        rijTechniek.setOnAction(e -> {
+            Rijtechniek rijtechniekScherm = new Rijtechniek();
+            rijtechniekScherm.setScene(scene);
+            scene.setRoot(rijtechniekScherm);
+        });
         
         
         Image verkeersImageM = new Image("images/menuVerkeerstechniek.PNG");
