@@ -172,7 +172,7 @@ public class Beginscherm extends HBox {
                 feedback.setText("Je moet de voornaam invullen.");
             }else if(inputEmail.getText().isEmpty()){
                 feedback.setText("Je moet het e-mailadres invullen.");
-            }else if(validateEmail(inputEmail.getText()) == false){
+            }else if(validateEmail(inputEmail.getText())){
                 feedback.setText("Het e-mailadres is niet correct.");
             }else{
                 Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
