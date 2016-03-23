@@ -322,9 +322,6 @@
     -fx-alignment: CENTER;
     -fx-spacing: 25;
 }
-#attitudeVoegToe{
-    
-}
 #nieuwHB{
     -fx-spacing: 15;
 }
@@ -338,4 +335,14 @@
 #icoonMetEva{
     -fx-padding: 20 0 0 0;  
     -fx-spacing: -10;
+}
+#fotoEnLabel{
+    -fx-spacing: 30;
+    -fx-alignment: CENTER_LEFT;
+}
+#OpmerkingenListVerkeer{
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
 }
