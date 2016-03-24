@@ -150,8 +150,8 @@
 }
 
 #dashboardRight{
-    -fx-spacing: 50;
-    -fx-padding: 20 10 10 10;
+    -fx-spacing: 70;
+    -fx-padding: 30 10 10 10;
     -fx-alignment: CENTER;
 }
 
@@ -279,6 +279,7 @@
 
 #hBoxOnder{
     -fx-spacing: 75;
+    -fx-alignment: CENTER;
 }
 
 #infoLeerling{
