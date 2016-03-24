@@ -13,7 +13,7 @@ public class StartUp extends Application
 
     @Override
     public void start(Stage stage) throws Exception
-    {
+    { 
         Beginscherm beginscherm = new Beginscherm();
         Scene scene = new Scene(beginscherm, 1024, 768);   
         beginscherm.setScene(scene);
@@ -21,7 +21,7 @@ public class StartUp extends Application
         stage.setTitle("App rijschool");
         scene.getStylesheets().add("css/Beginscherm.css");
         stage.show();
-        
+        stage.setFullScreen(true); 
     }
     
     public static void main(String[] args)

@@ -68,19 +68,19 @@ public class Dashboard extends GridPane {
             menu.setScene(scene);
             right.getChildren().remove(menuStandaard);
 
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
 
             tt.setFromX(100.0 + menuBalk.getLayoutX());
-            tt.setByX(-107);
+            tt.setByX(-100);
             tt.setCycleCount(1);
 
             tt.play();
 
-            right.getChildren().addAll(menuBalk);
+            right.getChildren().add(menuBalk);
         });
 
         menu.getMenuTerug().setOnAction(e -> {
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
             tt.setOnFinished(ev -> {
                 right.getChildren().removeAll(menuBalk);
                 right.getChildren().add(menuStandaard);
@@ -556,10 +556,10 @@ public class Dashboard extends GridPane {
         getRowConstraints().add(hoofdRow0);
 
         add(dashboardGrid, 0, 0);
-        add(menuStandaard, 1, 0);
+        add(right, 1, 0);
 
-        setGridLinesVisible(true);
-        dashboardGrid.setGridLinesVisible(true);
+        setGridLinesVisible(false);
+        dashboardGrid.setGridLinesVisible(false);
 
     }
 

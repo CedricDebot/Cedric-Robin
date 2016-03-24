@@ -576,7 +576,7 @@ public class VerkeersTechniek extends HBox {
             TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
 
             tt.setFromX(150.0 + menuBalk.getLayoutX());
-            tt.setByX(-80);
+            tt.setByX(-140);
             tt.setCycleCount(1);
 
             tt.play();
@@ -591,7 +591,7 @@ public class VerkeersTechniek extends HBox {
                 right.getChildren().add(menuStandaard);
             });
 
-            tt.setFromX(menuBalk.getLayoutX() + 100);
+            tt.setFromX(menuBalk.getLayoutX() + 50);
             tt.setByX(100);
             tt.setCycleCount(1);
 
