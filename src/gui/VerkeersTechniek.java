@@ -34,7 +34,7 @@ public class VerkeersTechniek extends HBox {
     public VerkeersTechniek() {
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
-        grid.setGridLinesVisible(false);
+        //grid.setGridLinesVisible(true);
 
         ColumnConstraints col0 = new ColumnConstraints(100);
         col0.setHalignment(HPos.RIGHT);
@@ -68,8 +68,8 @@ public class VerkeersTechniek extends HBox {
 
         //Buttons met images
         HBox voorrangHBox = new HBox();
-        voorrangHBox.setId("icoonMetEva");
-        Image voorrangWit = new Image("images/verkeersTechniek/voorrang.png");
+        voorrangHBox.setId("voorrangHBox");
+        Image voorrangWit = new Image("images/verkeersTechniek/voorrangWit.png");
         ImageView voorrangImageView = new ImageView(voorrangWit);
         voorrangImageView.setFitWidth(50);
         voorrangImageView.setFitHeight(50);
@@ -77,9 +77,9 @@ public class VerkeersTechniek extends HBox {
         voorrangBtn.setId("icoontjesBtns");
         //grid.add(voorrangBtn, 2, 0, 2, 1);
 
-        Image voorrangRood = new Image("images/stuur.png");
-        Image voorrangOranje = new Image("images/stuur.png");
-        Image voorrangGroen = new Image("images/stuur.png");
+        Image voorrangRood = new Image("images/verkeersTechniek/voorrangRood.png");
+        Image voorrangOranje = new Image("images/verkeersTechniek/voorrangOranje.png");
+        Image voorrangGroen = new Image("images/verkeersTechniek/voorrangGroen.png");
 
         voorrangBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getVoorrang() == Toestand.WIT) {
@@ -110,8 +110,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(voorrangHBox, 2, 0, 2, 1);
 
         HBox orderOpvolgenHBox = new HBox();
-        orderOpvolgenHBox.setId("icoonMetEva");
-        Image orderOpvolgenWit = new Image("images/verkeersTechniek/ordersOpvolgen.png");
+        orderOpvolgenHBox.setId("orderOpvolgenHBox");
+        Image orderOpvolgenWit = new Image("images/verkeersTechniek/ordersWit.png");
         ImageView ordersOpvolgenView = new ImageView(orderOpvolgenWit);
         ordersOpvolgenView.setFitWidth(50);
         ordersOpvolgenView.setFitHeight(50);
@@ -119,9 +119,9 @@ public class VerkeersTechniek extends HBox {
         orderOpvolgenBtn.setId("icoontjesBtns");
         //grid.add(orderOpvolgenBtn, 4, 1);
 
-        Image orderOpvolgenRood = new Image("images/stuur.png");
-        Image orderOpvolgenOranje = new Image("images/stuur.png");
-        Image orderOpvolgenGroen = new Image("images/stuur.png");
+        Image orderOpvolgenRood = new Image("images/verkeersTechniek/ordersRood.png");
+        Image orderOpvolgenOranje = new Image("images/verkeersTechniek/ordersOranje.png");
+        Image orderOpvolgenGroen = new Image("images/verkeersTechniek/ordersGroen.png");
 
         orderOpvolgenBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getVerkeerstekens() == Toestand.WIT) {
@@ -152,8 +152,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(orderOpvolgenHBox, 4, 1);
 
         HBox snelheidHBox = new HBox();
-        snelheidHBox.setId("icoonMetEva");
-        Image snelheidWit = new Image("images/verkeersTechniek/snelheid.png");
+        snelheidHBox.setId("snelheidHBox");
+        Image snelheidWit = new Image("images/verkeersTechniek/snelheidWit.png");
         ImageView snelheidView = new ImageView(snelheidWit);
         snelheidView.setFitWidth(50);
         snelheidView.setFitHeight(50);
@@ -161,9 +161,9 @@ public class VerkeersTechniek extends HBox {
         snelheidBtn.setId("icoontjesBtns");
         //grid.add(snelheidBtn, 5, 2);
 
-        Image snelheidRood = new Image("images/stuur.png");
-        Image snelheidOranje = new Image("images/stuur.png");
-        Image snelheidGroen = new Image("images/stuur.png");
+        Image snelheidRood = new Image("images/verkeersTechniek/snelheidRood.png");
+        Image snelheidOranje = new Image("images/verkeersTechniek/snelheidOranje.png");
+        Image snelheidGroen = new Image("images/verkeersTechniek/snelheidGroen.png");
 
         snelheidBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getSnelheid() == Toestand.WIT) {
@@ -194,8 +194,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(snelheidHBox, 5, 2);
 
         HBox afstandHBox = new HBox();
-        afstandHBox.setId("icoonMetEva");
-        Image afstandWit = new Image("images/verkeersTechniek/afstand.png");
+        afstandHBox.setId("afstandHBox");
+        Image afstandWit = new Image("images/verkeersTechniek/afstandWit.png");
         ImageView afstandView = new ImageView(afstandWit);
         afstandView.setFitWidth(50);
         afstandView.setFitHeight(50);
@@ -203,9 +203,9 @@ public class VerkeersTechniek extends HBox {
         afstandBtn.setId("icoontjesBtns");
         //grid.add(afstandBtn, 5, 3);
 
-        Image afstandRood = new Image("images/stuur.png");
-        Image afstandOranje = new Image("images/stuur.png");
-        Image afstandGroen = new Image("images/stuur.png");
+        Image afstandRood = new Image("images/verkeersTechniek/afstandRood.png");
+        Image afstandOranje = new Image("images/verkeersTechniek/afstandOranje.png");
+        Image afstandGroen = new Image("images/verkeersTechniek/afstandGroen.png");
 
         afstandBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getAfstandHouden() == Toestand.WIT) {
@@ -236,8 +236,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(afstandHBox, 5, 3);
 
         HBox inhalenHBox = new HBox();
-        inhalenHBox.setId("icoonMetEva");
-        Image inhalenWit = new Image("images/verkeersTechniek/Voorrang2.png");
+        inhalenHBox.setId("inhalenHBox");
+        Image inhalenWit = new Image("images/verkeersTechniek/inhalenWit.png");
         ImageView inhalenView = new ImageView(inhalenWit);
         inhalenView.setFitWidth(50);
         inhalenView.setFitHeight(50);
@@ -245,9 +245,9 @@ public class VerkeersTechniek extends HBox {
         inhalenBtn.setId("icoontjesBtns");
         //grid.add(voorrang2Btn, 4, 4);
 
-        Image inhalenRood = new Image("images/stuur.png");
-        Image inhalenOranje = new Image("images/stuur.png");
-        Image inhalenGroen = new Image("images/stuur.png");
+        Image inhalenRood = new Image("images/verkeersTechniek/inhalenRood.png");
+        Image inhalenOranje = new Image("images/verkeersTechniek/inhalenOranje.png");
+        Image inhalenGroen = new Image("images/verkeersTechniek/inhalenGroen.png");
 
         inhalenBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getInhalen() == Toestand.WIT) {
@@ -278,8 +278,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(inhalenHBox, 4, 4);
 
         HBox kruisenHBox = new HBox();
-        kruisenHBox.setId("icoonMetEva");
-        Image kruisenWit = new Image("images/verkeersTechniek/1.png");
+        kruisenHBox.setId("kruisenHBox");
+        Image kruisenWit = new Image("images/verkeersTechniek/kruisenWit.png");
         ImageView kruisenView = new ImageView(kruisenWit);
         kruisenView.setFitWidth(50);
         kruisenView.setFitHeight(50);
@@ -287,9 +287,9 @@ public class VerkeersTechniek extends HBox {
         kruisenlBtn.setId("icoontjesBtns");
         //grid.add(groenePijlBtn, 2, 5, 2, 1);
 
-        Image kruisenRood = new Image("images/stuur.png");
-        Image kruisenOranje = new Image("images/stuur.png");
-        Image kruisenGroen = new Image("images/stuur.png");
+        Image kruisenRood = new Image("images/verkeersTechniek/kruisenRood.png");
+        Image kruisenOranje = new Image("images/verkeersTechniek/kruisenOranje.png");
+        Image kruisenGroen = new Image("images/verkeersTechniek/kruisenGroen.png");
 
         kruisenlBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getKruisen() == Toestand.WIT) {
@@ -312,7 +312,7 @@ public class VerkeersTechniek extends HBox {
         Rectangle groenePijlEva3 = new Rectangle(12, 12, Color.WHITE);
 
         VBox groenePijlEvamomenten = new VBox();
-        groenePijlEvamomenten.setId("icoonMetEva");
+        groenePijlEvamomenten.setId("evamomenten");
         groenePijlEvamomenten.getChildren().addAll(groenePijlEva1, groenePijlEva2, groenePijlEva3);
 
         kruisenHBox.getChildren().addAll(kruisenlBtn, groenePijlEvamomenten);
@@ -320,8 +320,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(kruisenHBox, 2, 5, 2, 1);
 
         HBox linksAfslaanHBox = new HBox();
-        linksAfslaanHBox.setId("icoonMetEva");
-        Image linksAfslaanWit = new Image("images/verkeersTechniek/linksAfslaan.png");
+        linksAfslaanHBox.setId("linksAfslaanHBox");
+        Image linksAfslaanWit = new Image("images/verkeersTechniek/linksAfWit.png");
         ImageView linksAfslaanView = new ImageView(linksAfslaanWit);
         linksAfslaanView.setFitWidth(50);
         linksAfslaanView.setFitHeight(50);
@@ -329,9 +329,9 @@ public class VerkeersTechniek extends HBox {
         linksAfslaanBtn.setId("icoontjesBtns");
         //grid.add(linksAfslaanBtn, 1, 4);
 
-        Image linksAfslaanRood = new Image("images/stuur.png");
-        Image linksAfslaanOranje = new Image("images/stuur.png");
-        Image linksAfslaanGroen = new Image("images/stuur.png");
+        Image linksAfslaanRood = new Image("images/verkeersTechniek/linksAfRood.png");
+        Image linksAfslaanOranje = new Image("images/verkeersTechniek/linksAfOranje.png");
+        Image linksAfslaanGroen = new Image("images/verkeersTechniek/linksAfGroen.png");
 
         linksAfslaanBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getLinksaf() == Toestand.WIT) {
@@ -354,7 +354,7 @@ public class VerkeersTechniek extends HBox {
         Rectangle linksAfslaanEva3 = new Rectangle(12, 12, Color.WHITE);
 
         VBox linksAfslaanEvamomenten = new VBox();
-        linksAfslaanEvamomenten.setId("icoonMetEva");
+        linksAfslaanEvamomenten.setId("evamomenten");
         linksAfslaanEvamomenten.getChildren().addAll(linksAfslaanEva1, linksAfslaanEva2, linksAfslaanEva3);
 
         linksAfslaanHBox.getChildren().addAll(linksAfslaanBtn, linksAfslaanEvamomenten);
@@ -362,8 +362,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(linksAfslaanHBox, 1, 4);
 
         HBox rechtsAfslaanHBox = new HBox();
-        rechtsAfslaanHBox.setId("icoonMetEva");
-        Image rechtsAfslaanWit = new Image("images/verkeersTechniek/rechtsAfslaan.png");
+        rechtsAfslaanHBox.setId("rechtsAfslaanHBox");
+        Image rechtsAfslaanWit = new Image("images/verkeersTechniek/rechtsAfWit.png");
         ImageView rechtsAfslaanView = new ImageView(rechtsAfslaanWit);
         rechtsAfslaanView.setFitWidth(50);
         rechtsAfslaanView.setFitHeight(50);
@@ -371,9 +371,9 @@ public class VerkeersTechniek extends HBox {
         rechtsAfslaanBtn.setId("icoontjesBtns");
         //grid.add(rechtsAfslaanBtn, 0, 3);
 
-        Image rechtsAfslaanRood = new Image("images/stuur.png");
-        Image rechtsAfslaanOranje = new Image("images/stuur.png");
-        Image rechtsAfslaanGroen = new Image("images/stuur.png");
+        Image rechtsAfslaanRood = new Image("images/verkeersTechniek/rechtsAfRood.png");
+        Image rechtsAfslaanOranje = new Image("images/verkeersTechniek/rechtsAfOranje.png");
+        Image rechtsAfslaanGroen = new Image("images/verkeersTechniek/rechtsAfGroen.png");
 
         rechtsAfslaanBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getRechtsaf() == Toestand.WIT) {
@@ -396,7 +396,7 @@ public class VerkeersTechniek extends HBox {
         Rectangle rechtsAfslaanEva3 = new Rectangle(12, 12, Color.WHITE);
 
         VBox rechtsAfslaanEvamomenten = new VBox();
-        rechtsAfslaanEvamomenten.setId("icoonMetEva");
+        rechtsAfslaanEvamomenten.setId("evamomenten");
         rechtsAfslaanEvamomenten.getChildren().addAll(rechtsAfslaanEva1, rechtsAfslaanEva2, rechtsAfslaanEva3);
 
         rechtsAfslaanHBox.getChildren().addAll(rechtsAfslaanBtn, rechtsAfslaanEvamomenten);
@@ -404,8 +404,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(rechtsAfslaanHBox, 0, 3);
 
         HBox pinkersHBox = new HBox();
-        pinkersHBox.setId("icoonMetEva");
-        Image pinkersWit = new Image("images/verkeersTechniek/pinkers.png");
+        pinkersHBox.setId("pinkersHBox");
+        Image pinkersWit = new Image("images/verkeersTechniek/pinkersWit.png");
         ImageView pinkersView = new ImageView(pinkersWit);
         pinkersView.setFitWidth(50);
         pinkersView.setFitHeight(50);
@@ -413,9 +413,9 @@ public class VerkeersTechniek extends HBox {
         pinkersBtn.setId("icoontjesBtns");
         //grid.add(pinkersBtn, 0, 2);
 
-        Image pinkersRood = new Image("images/stuur.png");
-        Image pinkersOranje = new Image("images/stuur.png");
-        Image pinkersGroen = new Image("images/stuur.png");
+        Image pinkersRood = new Image("images/verkeersTechniek/pinkersRood.png");
+        Image pinkersOranje = new Image("images/verkeersTechniek/pinkersOranje.png");
+        Image pinkersGroen = new Image("images/verkeersTechniek/pinkersGroen.png");
 
         pinkersBtn.setOnAction(e -> {
             if (verkeerstechniekDom.getRichtingaanwijzers() == Toestand.WIT) {
@@ -438,16 +438,16 @@ public class VerkeersTechniek extends HBox {
         Rectangle pinkersEva3 = new Rectangle(12, 12, Color.WHITE);
 
         VBox pinkersEvamomenten = new VBox();
-        pinkersEvamomenten.setId("icoonMetEva");
-        pinkersEvamomenten.getChildren().addAll(linksAfslaanEva1, linksAfslaanEva2, linksAfslaanEva3);
+        pinkersEvamomenten.setId("evamomenten");
+        pinkersEvamomenten.getChildren().addAll(pinkersEva1, pinkersEva2, pinkersEva3);
 
         pinkersHBox.getChildren().addAll(pinkersBtn, pinkersEvamomenten);
 
         grid.add(pinkersHBox, 0, 2);
 
         HBox OWHBox = new HBox();
-        OWHBox.setId("icoonMetEva");
-        Image OWWit = new Image("images/verkeersTechniek/OW.png");
+        OWHBox.setId("OWHBox");
+        Image OWWit = new Image("images/verkeersTechniek/OWWit.png");
         ImageView OWView = new ImageView(OWWit);
         OWView.setFitWidth(50);
         OWView.setFitHeight(50);
@@ -455,21 +455,21 @@ public class VerkeersTechniek extends HBox {
         OWBtn.setId("icoontjesBtns");
         //grid.add(OWBtn, 1, 1);
 
-        Image OWRood = new Image("images/stuur.png");
-        Image OWOranje = new Image("images/stuur.png");
-        Image OWGroen = new Image("images/stuur.png");
+        Image OWRood = new Image("images/verkeersTechniek/OWRood.png");
+        Image OWOranje = new Image("images/verkeersTechniek/OWOranje.png");
+        Image OWGroen = new Image("images/verkeersTechniek/OWGroen.png");
 
         OWBtn.setOnAction(e -> {
-            if (verkeerstechniekDom.getOpenbareWeg()== Toestand.WIT) {
+            if (verkeerstechniekDom.getOpenbareWeg() == Toestand.WIT) {
                 verkeerstechniekDom.setOpenbareWeg(Toestand.ROOD);
                 OWView.setImage(OWRood);
-            } else if (verkeerstechniekDom.getOpenbareWeg()== Toestand.ROOD) {
+            } else if (verkeerstechniekDom.getOpenbareWeg() == Toestand.ROOD) {
                 verkeerstechniekDom.setOpenbareWeg(Toestand.ORANJE);
                 OWView.setImage(OWOranje);
-            } else if (verkeerstechniekDom.getOpenbareWeg()== Toestand.ORANJE) {
+            } else if (verkeerstechniekDom.getOpenbareWeg() == Toestand.ORANJE) {
                 verkeerstechniekDom.setOpenbareWeg(Toestand.GROEN);
                 OWView.setImage(OWGroen);
-            } else if (verkeerstechniekDom.getOpenbareWeg()== Toestand.GROEN) {
+            } else if (verkeerstechniekDom.getOpenbareWeg() == Toestand.GROEN) {
                 verkeerstechniekDom.setOpenbareWeg(Toestand.WIT);
                 OWView.setImage(OWWit);
             }
@@ -480,14 +480,14 @@ public class VerkeersTechniek extends HBox {
         Rectangle OWEva3 = new Rectangle(12, 12, Color.WHITE);
 
         VBox OWEvamomenten = new VBox();
-        OWEvamomenten.setId("icoonMetEva");
+        OWEvamomenten.setId("evamomenten");
         OWEvamomenten.getChildren().addAll(OWEva1, OWEva2, OWEva3);
 
         OWHBox.getChildren().addAll(OWBtn, OWEvamomenten);
 
         grid.add(OWHBox, 1, 1);
 
-        Image middenGrid = new Image("images/verkeersTechniek/icoon-verkeerstechniek.png");
+        Image middenGrid = new Image("images/verkeerstechniekWit.png");
         ImageView middenGridImageView = new ImageView(middenGrid);
         middenGridImageView.setFitWidth(150);
         middenGridImageView.setFitHeight(150);
@@ -564,7 +564,7 @@ public class VerkeersTechniek extends HBox {
         Menu menu = new Menu();
         VBox right = new VBox();
         VBox menuStandaard = menu.buildMenuStandaard();
-        
+
         right.getChildren().add(menuStandaard);
 
         VBox menuBalk = menu.buildMenu();
@@ -600,147 +600,282 @@ public class VerkeersTechniek extends HBox {
         });
 
         getChildren().addAll(left, evaluatieGroup, right);
-        
+
         //Opmerkingen
-        voorrangBtn.setOnMouseDragged(e->{
+        voorrangBtn.setOnMouseDragged(e -> {
             ArrayList<AttitudeOpmerking> VoorrangOpmerkingen = new ArrayList<>();
-            
+
             AttitudeOpmerking Voorrang = new AttitudeOpmerking("Voorrang", "");
             VoorrangOpmerkingen.add(Voorrang);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(VoorrangOpmerkingen, "images/verkeersTechniek/voorrang.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
+
+            if (verkeerstechniekDom.getVoorrang() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(VoorrangOpmerkingen, "images/verkeersTechniek/voorrangRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getVoorrang() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(VoorrangOpmerkingen, "images/verkeersTechniek/voorrangOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getVoorrang() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(VoorrangOpmerkingen, "images/verkeersTechniek/voorrangGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
         });
-        
-        OWBtn.setOnMouseDragged(e->{
+
+        OWBtn.setOnMouseDragged(e -> {
             ArrayList<AttitudeOpmerking> OwOpmerkingen = new ArrayList<>();
-            
+
             AttitudeOpmerking Openbaar = new AttitudeOpmerking("Openbare weg", "");
             AttitudeOpmerking voorsorteren = new AttitudeOpmerking("Voorsorteren", "");
-            
+
             OwOpmerkingen.add(Openbaar);
             OwOpmerkingen.add(voorsorteren);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(OwOpmerkingen, "images/verkeersTechniek/OW.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
+
+            if (verkeerstechniekDom.getOpenbareWeg() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(OwOpmerkingen, "images/verkeersTechniek/OWRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getOpenbareWeg() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(OwOpmerkingen, "images/verkeersTechniek/OWOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getOpenbareWeg() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(OwOpmerkingen, "images/verkeersTechniek/OWGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
         });
-       pinkersBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> PinkersOpmerkingen = new ArrayList<>();
-            
+        pinkersBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> PinkersOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking gebruik = new AttitudeOpmerking("Gebruik", "");
             AttitudeOpmerking tijdig = new AttitudeOpmerking("Tijdig aangeven", "");
-            
+
             PinkersOpmerkingen.add(gebruik);
             PinkersOpmerkingen.add(tijdig);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(PinkersOpmerkingen, "images/verkeersTechniek/pinkers.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       orderOpvolgenBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> orderOpmerkingen = new ArrayList<>();
-            
+
+            if (verkeerstechniekDom.getRichtingaanwijzers() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(PinkersOpmerkingen, "images/verkeersTechniek/pinkersRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getRichtingaanwijzers() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(PinkersOpmerkingen, "images/verkeersTechniek/pinkersOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getRichtingaanwijzers() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(PinkersOpmerkingen, "images/verkeersTechniek/pinkersGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+        });
+
+        orderOpvolgenBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> orderOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking verkeerstekens = new AttitudeOpmerking("Verkeerstekens", "");
             AttitudeOpmerking bevelen = new AttitudeOpmerking("Bevelen", "");
-            
+
             orderOpmerkingen.add(verkeerstekens);
             orderOpmerkingen.add(bevelen);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(orderOpmerkingen, "images/verkeersTechniek/ordersOpvolgen.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       snelheidBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> snelheidOpmerkingen = new ArrayList<>();
-            
+
+            if (verkeerstechniekDom.getVerkeerstekens() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(orderOpmerkingen, "images/verkeersTechniek/ordersRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getVerkeerstekens() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(orderOpmerkingen, "images/verkeersTechniek/ordersOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getVerkeerstekens() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(orderOpmerkingen, "images/verkeersTechniek/ordersGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+        });
+        snelheidBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> snelheidOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking snelheid = new AttitudeOpmerking("Snelheid", "");
-            
+
             snelheidOpmerkingen.add(snelheid);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(snelheidOpmerkingen, "images/verkeersTechniek/snelheid.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       afstandBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> afstandOpmerkingen = new ArrayList<>();
-            
+
+            if (verkeerstechniekDom.getSnelheid() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(snelheidOpmerkingen, "images/verkeersTechniek/snelheidRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getSnelheid() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(snelheidOpmerkingen, "images/verkeersTechniek/snelheidOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getSnelheid() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(snelheidOpmerkingen, "images/verkeersTechniek/snelheidGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+        });
+        afstandBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> afstandOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking volgAfstand = new AttitudeOpmerking("Volgafstand", "");
             AttitudeOpmerking zijdeAfstand = new AttitudeOpmerking("Zijdelingse afstand", "");
-            
+
             afstandOpmerkingen.add(volgAfstand);
             afstandOpmerkingen.add(zijdeAfstand);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(afstandOpmerkingen, "images/verkeersTechniek/afstand.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       inhalenBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> inhalenOpmerkingen = new ArrayList<>();
-            
+
+            if (verkeerstechniekDom.getAfstandHouden() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(afstandOpmerkingen, "images/verkeersTechniek/afstandRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getAfstandHouden() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(afstandOpmerkingen, "images/verkeersTechniek/afstandOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getAfstandHouden() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(afstandOpmerkingen, "images/verkeersTechniek/afstandGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+        });
+
+        inhalenBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> inhalenOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking inhalen = new AttitudeOpmerking("Inhalen", "");
             AttitudeOpmerking voorbijrijden = new AttitudeOpmerking("Voorbijrijden", "");
-            
+
             inhalenOpmerkingen.add(inhalen);
             inhalenOpmerkingen.add(voorbijrijden);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(inhalenOpmerkingen, "images/verkeersTechniek/Voorrang2.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       kruisenlBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> kruisenOpmerkingen = new ArrayList<>();
-            
+
+            if (verkeerstechniekDom.getInhalen() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(inhalenOpmerkingen, "images/verkeersTechniek/inhalenRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getInhalen() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(inhalenOpmerkingen, "images/verkeersTechniek/inhalenOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getInhalen() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(inhalenOpmerkingen, "images/verkeersTechniek/inhalenGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+        });
+
+        kruisenlBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> kruisenOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking kruisen = new AttitudeOpmerking("Kruisen", "");
-            
+
             kruisenOpmerkingen.add(kruisen);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(kruisenOpmerkingen, "images/verkeersTechniek/1.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       linksAfslaanBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> linksAfslaanOpmerkingen = new ArrayList<>();
-            
+
+            if (verkeerstechniekDom.getKruisen() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(kruisenOpmerkingen, "images/verkeersTechniek/kruisenRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getKruisen() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(kruisenOpmerkingen, "images/verkeersTechniek/kruisenOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getKruisen() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(kruisenOpmerkingen, "images/verkeersTechniek/kruisenGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+        });
+        linksAfslaanBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> linksAfslaanOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking linksafslaan = new AttitudeOpmerking("Linksaf", "");
             AttitudeOpmerking opstelling = new AttitudeOpmerking("Opstelling", "");
             AttitudeOpmerking uitvoering = new AttitudeOpmerking("Uitvoering", "");
-            
+
             linksAfslaanOpmerkingen.add(linksafslaan);
             linksAfslaanOpmerkingen.add(opstelling);
             linksAfslaanOpmerkingen.add(uitvoering);
-            
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(linksAfslaanOpmerkingen, "images/verkeersTechniek/linksAfslaan.png");
-            
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       rechtsAfslaanBtn.setOnMouseDragged(e->{
-           ArrayList<AttitudeOpmerking> rechtsAfslaanOpmerkingen = new ArrayList<>();
-            
+
+            if (verkeerstechniekDom.getLinksaf() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(linksAfslaanOpmerkingen, "images/verkeersTechniek/linksAfRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getLinksaf() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(linksAfslaanOpmerkingen, "images/verkeersTechniek/linksAfOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+
+            if (verkeerstechniekDom.getLinksaf() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(linksAfslaanOpmerkingen, "images/verkeersTechniek/linksAfGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+        });
+        rechtsAfslaanBtn.setOnMouseDragged(e -> {
+            ArrayList<AttitudeOpmerking> rechtsAfslaanOpmerkingen = new ArrayList<>();
+
             AttitudeOpmerking rechtsaf = new AttitudeOpmerking("Rechtsaf", "");
             AttitudeOpmerking opstelling = new AttitudeOpmerking("Opstelling", "");
             AttitudeOpmerking uitvoering = new AttitudeOpmerking("Uitvoering", "");
-            
+
             rechtsAfslaanOpmerkingen.add(rechtsaf);
             rechtsAfslaanOpmerkingen.add(opstelling);
             rechtsAfslaanOpmerkingen.add(uitvoering);
+
+            if (verkeerstechniekDom.getRechtsaf() == Toestand.ROOD) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(rechtsAfslaanOpmerkingen, "images/verkeersTechniek/rechtsAfRood.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
             
-            VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(rechtsAfslaanOpmerkingen, "images/verkeersTechniek/rechtsAfslaan.png");
+            if (verkeerstechniekDom.getRechtsaf() == Toestand.ORANJE) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(rechtsAfslaanOpmerkingen, "images/verkeersTechniek/rechtsAfOranje.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
             
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-       });
-       
+            if (verkeerstechniekDom.getRechtsaf() == Toestand.GROEN) {
+                VerkeersTechniekOpmerkingen verkeersTechniek = new VerkeersTechniekOpmerkingen(rechtsAfslaanOpmerkingen, "images/verkeersTechniek/rechtsAfGroen.png");
+                verkeersTechniek.setScene(scene);
+                scene.setRoot(verkeersTechniek);
+            }
+        });
+
     }
 
     public void setScene(Scene scene) {

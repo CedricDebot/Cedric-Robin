@@ -92,12 +92,19 @@ public class Beginscherm extends HBox {
         Label famNaam = new Label("Famillienaam:");
         TextField inputFamillienaam = new TextField();
         inputFamillienaam.setId("textField");
+        Label famillienaamFout = new Label();
+        famillienaamFout.setId("foutboodschap");
+        famillienaamFout.setVisible(false);
         Label Voornaam = new Label("Voornaam:");
         TextField inputVoornaam = new TextField();
         inputVoornaam.setId("textField");
+        Label voornaamFout = new Label();
+        voornaamFout.setId("foutboodschap");
         Label Email = new Label("Email:");
         TextField inputEmail = new TextField();
         inputEmail.setId("textField");
+        Label emailFout = new Label();
+        emailFout.setId("foutboodschap");
         Button foto = new Button("Foto");
         Label feedback = new Label("");
 
@@ -106,7 +113,7 @@ public class Beginscherm extends HBox {
         fotoEnLabel.getChildren().addAll(foto, feedback);
 
         nieuweLeerling.getChildren().addAll(titel, nr, inputNr, famNaam,
-                inputFamillienaam, Voornaam, inputVoornaam, Email, inputEmail, fotoEnLabel);
+                inputFamillienaam, famillienaamFout, Voornaam, inputVoornaam, voornaamFout, Email, inputEmail, emailFout, fotoEnLabel);
 
         //buttonsNieuweLeerling
         Button ok = new Button("Ok");
@@ -127,14 +134,14 @@ public class Beginscherm extends HBox {
         VBox left = new VBox();
         left.setId("left");
 
-        Image auto = new Image("images/driving_school.png");
+        Image auto = new Image("images/logo_mobix_app.png");
         ImageView autoImg = new ImageView();
         autoImg.setImage(auto);
         autoImg.setId("autoImg");
 
 //        //lay-out (nog proberen in css te zetten)
-        autoImg.setFitWidth(200);
-        autoImg.setFitHeight(225);
+        autoImg.setFitWidth(230);
+        autoImg.setFitHeight(230);
 
         left.getChildren().addAll(zoekscherm, autoImg);
 
@@ -155,34 +162,50 @@ public class Beginscherm extends HBox {
                 getChildren().add(rightNieuw);
             }
         });
-        
+
         naamTF.textProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                ZoekFunctie((String) oldValue, (String) newValue); 
+                ZoekFunctie((String) oldValue, (String) newValue);
             }
         });
 
         ok.setOnAction(e -> {
-            if(inputNr.getText().isEmpty()) {
-                feedback.setText("Je moet het inschrijvingsNr invullen.");
-            } else if(inputFamillienaam.getText().isEmpty()){
-                feedback.setText("Je moet de famillienaam invullen.");
-            }else if(inputVoornaam.getText().isEmpty()){
-                feedback.setText("Je moet de voornaam invullen.");
-            }else if(inputEmail.getText().isEmpty()){
-                feedback.setText("Je moet het e-mailadres invullen.");
-            }else if(validateEmail(inputEmail.getText())){
-                feedback.setText("Het e-mailadres is niet correct.");
-            }else{
-                Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
-                names.add(leerling.getVoorNaam());
-
-                if (getChildren().contains(rightNieuw)) {
-                    getChildren().remove(rightNieuw);
-                    getChildren().add(right);
+//            if(inputNr.getText().isEmpty()) {
+//                feedback.setText("Je moet het inschrijvingsNr invullen.");
+//            } else 
+            if (inputFamillienaam.getText().isEmpty()) {
+                famillienaamFout.setVisible(true);
+                famillienaamFout.setText("Famillienaam is niet ingevuld!");
+                if (!inputVoornaam.getText().isEmpty() && !inputEmail.getText().isEmpty() && !validateEmail(inputEmail.getText())) {
+                    return;
                 }
             }
+            if (inputVoornaam.getText().isEmpty()) {
+                voornaamFout.setText("Voornaam is niet ingevuld!");
+                if (!inputFamillienaam.getText().isEmpty() && !inputEmail.getText().isEmpty() && !validateEmail(inputEmail.getText())) {
+                    return;
+                }
+            }
+            if (inputEmail.getText().isEmpty()) {
+                emailFout.setText("E-mailadres is niet ingevuld!");
+                if (!inputFamillienaam.getText().isEmpty() && !inputVoornaam.getText().isEmpty() && !validateEmail(inputEmail.getText())) {
+                    return;
+                }
+            }
+            if (!validateEmail(inputEmail.getText())) {
+                emailFout.setText("Het e-mailadres is niet correct.");              
+                    return;
+
+            }
+            Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
+            names.add(leerling.getVoorNaam());
+
+            if (getChildren().contains(rightNieuw)) {
+                getChildren().remove(rightNieuw);
+                getChildren().add(right);
+            }
+
         });
 
         start.setOnAction(e -> {
@@ -220,10 +243,9 @@ public class Beginscherm extends HBox {
         Pattern ptr = Pattern.compile("[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}");
         return ptr.matcher(email).matches();
     }
+
     public void setScene(Scene scene) {
         this.scene = scene;
     }
-    
-    
 
 }

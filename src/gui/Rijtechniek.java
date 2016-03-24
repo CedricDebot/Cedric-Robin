@@ -28,7 +28,7 @@ public class Rijtechniek extends HBox {
     public Rijtechniek() {
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
-        grid.setGridLinesVisible(true);
+        //grid.setGridLinesVisible(true);
 
         ColumnConstraints col1 = new ColumnConstraints(100);
         col1.setHalignment(HPos.RIGHT);
@@ -61,8 +61,8 @@ public class Rijtechniek extends HBox {
         grid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6);
 
         HBox stuurHBox = new HBox();
-        stuurHBox.setId("icoonMetEva");
-        Image stuurWit = new Image("images/stuur.png");
+        stuurHBox.setId("stuurHBox");
+        Image stuurWit = new Image("images/stuurWit.png");
         ImageView stuurImageView = new ImageView(stuurWit);
         stuurImageView.setFitWidth(50);
         stuurImageView.setFitHeight(50);
@@ -70,9 +70,14 @@ public class Rijtechniek extends HBox {
         stuurBtn.setId("icoontjesBtns");
         //grid.add(stuurBtn, 3, 0);
 
-        Image stuurRood = new Image("images/stuur.png");
-        Image stuurOranje = new Image("images/stuur.png");
-        Image stuurGroen = new Image("images/stuur.png");
+        stuurBtn.setOnMouseDragged(e ->{
+            IcoonStuurOpm icoonStuur = new IcoonStuurOpm();
+            icoonStuur.setScene(scene);
+            scene.setRoot(icoonStuur);
+        });
+        Image stuurRood = new Image("images/stuurRood.png");
+        Image stuurOranje = new Image("images/stuurOranje.png");
+        Image stuurGroen = new Image("images/stuurGroen.png");
 
         stuurBtn.setOnAction(e -> {
             if (rijtechniekdom.getStuurTechniek() == Toestand.WIT) {
@@ -100,11 +105,11 @@ public class Rijtechniek extends HBox {
 
         stuurHBox.getChildren().addAll(stuurBtn, stuurEvamomenten);
 
-        grid.add(stuurHBox, 3, 0);
+        grid.add(stuurHBox, 3, 0, 2, 1);
 
         HBox schakelenHBox = new HBox();
-        schakelenHBox.setId("icoonMetEva");
-        Image schakelenWit = new Image("images/schakelen.png");
+        schakelenHBox.setId("schakelenHBox");
+        Image schakelenWit = new Image("images/schakelenWit.png");
         ImageView schakelenImageView = new ImageView(schakelenWit);
         schakelenImageView.setFitWidth(50);
         schakelenImageView.setFitHeight(50);
@@ -112,9 +117,9 @@ public class Rijtechniek extends HBox {
         schakelenBtn.setId("icoontjesBtns");
         //grid.add(schakelenBtn, 4, 1);
 
-        Image schakelenRood = new Image("images/stuur.png");
-        Image schakelenOranje = new Image("images/stuur.png");
-        Image schakelenGroen = new Image("images/stuur.png");
+        Image schakelenRood = new Image("images/schakelenRood.png");
+        Image schakelenOranje = new Image("images/schakelenOranje.png");
+        Image schakelenGroen = new Image("images/schakelenGroen.png");
 
         schakelenBtn.setOnAction(e -> {
             if (rijtechniekdom.getSchakelTechniek() == Toestand.WIT) {
@@ -145,8 +150,8 @@ public class Rijtechniek extends HBox {
         grid.add(schakelenHBox, 4, 1);
 
         HBox kijkenHBox = new HBox();
-        kijkenHBox.setId("icoonMetEva");
-        Image kijkenWit = new Image("images/kijken.png");
+        kijkenHBox.setId("kijkenHBox");
+        Image kijkenWit = new Image("images/kijkenWit.png");
         ImageView kijkenImageView = new ImageView(kijkenWit);
         kijkenImageView.setFitWidth(50);
         kijkenImageView.setFitHeight(50);
@@ -154,9 +159,9 @@ public class Rijtechniek extends HBox {
         kijkenBtn.setId("icoontjesBtns");
         //grid.add(kijkenBtn, 5, 2);
 
-        Image kijkenRood = new Image("images/stuur.png");
-        Image kijkenOranje = new Image("images/stuur.png");
-        Image kijkenGroen = new Image("images/stuur.png");
+        Image kijkenRood = new Image("images/kijkenRood.png");
+        Image kijkenOranje = new Image("images/kijkenOranje.png");
+        Image kijkenGroen = new Image("images/kijkenGroen.png");
 
         kijkenBtn.setOnAction(e -> {
             if (rijtechniekdom.getKijkTechniek() == Toestand.WIT) {
@@ -186,17 +191,18 @@ public class Rijtechniek extends HBox {
 
         grid.add(kijkenHBox, 5, 2);
 
-        Image parkerenWit = new Image("images/Parkeren.png");
+        Image parkerenWit = new Image("images/parkerenWit.png");
         ImageView parkerenImageView = new ImageView(parkerenWit);
+        parkerenImageView.setId("parkerenIcoon");
         parkerenImageView.setFitWidth(50);
         parkerenImageView.setFitHeight(50);
         Button parkerenBtn = new Button("", parkerenImageView);
         parkerenBtn.setId("icoontjesBtns");
         grid.add(parkerenBtn, 5, 3);
 
-        Image parkerenRood = new Image("images/stuur.png");
-        Image parkerenOranje = new Image("images/stuur.png");
-        Image parkerenGroen = new Image("images/stuur.png");
+        Image parkerenRood = new Image("images/parkerenRood.png");
+        Image parkerenOranje = new Image("images/parkerenOranje.png");
+        Image parkerenGroen = new Image("images/parkerenGroen.png");
 
         parkerenBtn.setOnAction(e -> {
             if (rijtechniekdom.getParkeren() == Toestand.WIT) {
@@ -214,7 +220,7 @@ public class Rijtechniek extends HBox {
             }
         });
 
-        Image kerenWit = new Image("images/keren.png");
+        Image kerenWit = new Image("images/kerenWit.png");
         ImageView kerenImageView = new ImageView(kerenWit);
         kerenImageView.setFitWidth(50);
         kerenImageView.setFitHeight(50);
@@ -222,27 +228,27 @@ public class Rijtechniek extends HBox {
         kerenBtn.setId("icoontjesBtns");
         grid.add(kerenBtn, 4, 4);
 
-        Image kerenRood = new Image("images/stuur.png");
-        Image kerenOranje = new Image("images/stuur.png");
-        Image kerenGroen = new Image("images/stuur.png");
+        Image kerenRood = new Image("images/kerenRood.png");
+        Image kerenOranje = new Image("images/kerenOranje.png");
+        Image kerenGroen = new Image("images/kerenGroen.png");
 
         kerenBtn.setOnAction(e -> {
-            if (rijtechniekdom.getKijkTechniek() == Toestand.WIT) {
-                rijtechniekdom.setKijkTechniek(Toestand.ROOD);
-                kijkenImageView.setImage(kijkenRood);
-            } else if (rijtechniekdom.getKijkTechniek() == Toestand.ROOD) {
-                rijtechniekdom.setKijkTechniek(Toestand.ORANJE);
-                kijkenImageView.setImage(kijkenOranje);
-            } else if (rijtechniekdom.getKijkTechniek() == Toestand.ORANJE) {
-                rijtechniekdom.setKijkTechniek(Toestand.GROEN);
-                kijkenImageView.setImage(kijkenGroen);
-            } else if (rijtechniekdom.getKijkTechniek() == Toestand.GROEN) {
-                rijtechniekdom.setKijkTechniek(Toestand.WIT);
-                kijkenImageView.setImage(kijkenWit);
+            if (rijtechniekdom.getKeren()== Toestand.WIT) {
+                rijtechniekdom.setKeren(Toestand.ROOD);
+                kerenImageView.setImage(kerenRood);
+            } else if (rijtechniekdom.getKeren()== Toestand.ROOD) {
+                rijtechniekdom.setKeren(Toestand.ORANJE);
+                kerenImageView.setImage(kerenOranje);
+            } else if (rijtechniekdom.getKeren()== Toestand.ORANJE) {
+                rijtechniekdom.setKeren(Toestand.GROEN);
+                kerenImageView.setImage(kerenGroen);
+            } else if (rijtechniekdom.getKeren()== Toestand.GROEN) {
+                rijtechniekdom.setKeren(Toestand.WIT);
+                kerenImageView.setImage(kerenWit);
             }
         });
 
-        Image garageWit = new Image("images/garage.png");
+        Image garageWit = new Image("images/garageWit.png");
         ImageView garageImageView = new ImageView(garageWit);
         garageImageView.setFitWidth(50);
         garageImageView.setFitHeight(50);
@@ -250,9 +256,9 @@ public class Rijtechniek extends HBox {
         garageBtn.setId("icoontjesBtns");
         grid.add(garageBtn, 3, 5);
 
-        Image garageRood = new Image("images/stuur.png");
-        Image garageOranje = new Image("images/stuur.png");
-        Image garageGroen = new Image("images/stuur.png");
+        Image garageRood = new Image("images/garageRood.png");
+        Image garageOranje = new Image("images/garageOranje.png");
+        Image garageGroen = new Image("images/garageGroen.png");
 
         garageBtn.setOnAction(e -> {
             if (rijtechniekdom.getGarage() == Toestand.WIT) {
@@ -270,7 +276,7 @@ public class Rijtechniek extends HBox {
             }
         });
 
-        Image achteruitWit = new Image("images/achteruit.png");
+        Image achteruitWit = new Image("images/achteruitWit.png");
         ImageView achteruitImageView = new ImageView(achteruitWit);
         achteruitImageView.setFitWidth(50);
         achteruitImageView.setFitHeight(50);
@@ -278,9 +284,9 @@ public class Rijtechniek extends HBox {
         achteruitBtn.setId("icoontjesBtns");
         grid.add(achteruitBtn, 2, 5);
 
-        Image achteruitRood = new Image("images/stuur.png");
-        Image achteruitOranje = new Image("images/stuur.png");
-        Image achteruitGroen = new Image("images/stuur.png");
+        Image achteruitRood = new Image("images/achteruitRood.png");
+        Image achteruitOranje = new Image("images/achteruitOranje.png");
+        Image achteruitGroen = new Image("images/achteruitGroen.png");
 
         achteruitBtn.setOnAction(e -> {
             if (rijtechniekdom.getAchteruit()== Toestand.WIT) {
@@ -298,7 +304,7 @@ public class Rijtechniek extends HBox {
             }
         });
 
-        Image achtWit = new Image("images/acht.png");
+        Image achtWit = new Image("images/achtWit.png");
         ImageView achtImageView = new ImageView(achtWit);
         achtImageView.setFitWidth(50);
         achtImageView.setFitHeight(50);
@@ -306,9 +312,9 @@ public class Rijtechniek extends HBox {
         achtBtn.setId("icoontjesBtns");
         grid.add(achtBtn, 1, 4);
 
-        Image achtRood = new Image("images/stuur.png");
-        Image achtOranje = new Image("images/stuur.png");
-        Image achtGroen = new Image("images/stuur.png");
+        Image achtRood = new Image("images/achtRood.png");
+        Image achtOranje = new Image("images/achtOranje.png");
+        Image achtGroen = new Image("images/achtGroen.png");
         
         achtBtn.setOnAction(e -> {
             if(rijtechniekdom.getAcht()== Toestand.WIT){
@@ -327,8 +333,8 @@ public class Rijtechniek extends HBox {
         });
         
         HBox bergopHBox = new HBox();
-        bergopHBox.setId("icoonMetEva");
-        Image hellingWit = new Image("images/bergop.png");
+        bergopHBox.setId("hellingHBox");
+        Image hellingWit = new Image("images/hellingWit.png");
         ImageView hellingImageView = new ImageView(hellingWit);
         hellingImageView.setFitWidth(50);
         hellingImageView.setFitHeight(50);
@@ -336,9 +342,9 @@ public class Rijtechniek extends HBox {
         hellingBtn.setId("icoontjesBtns");
         //grid.add(bergopBtn, 0, 3);
 
-        Image hellingRood = new Image("images/stuur.png");
-        Image hellingOranje = new Image("images/stuur.png");
-        Image hellingGroen = new Image("images/stuur.png");
+        Image hellingRood = new Image("images/hellingRood.png");
+        Image hellingOranje = new Image("images/hellingOranje.png");
+        Image hellingGroen = new Image("images/hellingGroen.png");
         
         hellingBtn.setOnAction(e -> {
             if(rijtechniekdom.getHelling() == Toestand.WIT){
@@ -369,8 +375,8 @@ public class Rijtechniek extends HBox {
         grid.add(bergopHBox, 0, 3);
 
         HBox zithoudingHBox = new HBox();
-        zithoudingHBox.setId("icoonMetEva");
-        Image zithoudingWit = new Image("images/zithouding.png");
+        zithoudingHBox.setId("zithoudingHBox");
+        Image zithoudingWit = new Image("images/zithoudingWit.png");
         ImageView zithoudingImageView = new ImageView(zithoudingWit);
         zithoudingImageView.setFitWidth(50);
         zithoudingImageView.setFitHeight(50);
@@ -378,9 +384,9 @@ public class Rijtechniek extends HBox {
         zithoudingBtn.setId("icoontjesBtns");
         //grid.add(zithoudingBtn, 0, 2);
 
-        Image zithoudingRood = new Image("images/stuur.png");
-        Image zithoudingOranje = new Image("images/stuur.png");
-        Image zithoudingGroen = new Image("images/stuur.png");
+        Image zithoudingRood = new Image("images/zithoudingRood.png");
+        Image zithoudingOranje = new Image("images/zithoudingOranje.png");
+        Image zithoudingGroen = new Image("images/zithoudingGroen.png");
         
         zithoudingBtn.setOnAction(e -> {
             if(rijtechniekdom.getZithouding()== Toestand.WIT){
@@ -411,8 +417,8 @@ public class Rijtechniek extends HBox {
         grid.add(zithoudingHBox, 0, 2);
 
         HBox remtechniekHBox = new HBox();
-        remtechniekHBox.setId("icoonMetEva");
-        Image remtechniekWit = new Image("images/remtechniek.png");
+        remtechniekHBox.setId("remtechniekHBox");
+        Image remtechniekWit = new Image("images/remWit.png");
         ImageView remtechniekImageView = new ImageView(remtechniekWit);
         remtechniekImageView.setFitWidth(50);
         remtechniekImageView.setFitHeight(50);
@@ -420,9 +426,9 @@ public class Rijtechniek extends HBox {
         remtechniekBtn.setId("icoontjesBtns");
         //grid.add(remtechniekBtn, 1, 1);
 
-        Image remtechniekRood = new Image("images/stuur.png");
-        Image remtechniekOranje = new Image("images/stuur.png");
-        Image remtechniekGroen = new Image("images/stuur.png");
+        Image remtechniekRood = new Image("images/remRood.png");
+        Image remtechniekOranje = new Image("images/remOranje.png");
+        Image remtechniekGroen = new Image("images/remGroen.png");
         
         remtechniekBtn.setOnAction(e -> {
             if(rijtechniekdom.getRemtechniek()== Toestand.WIT){
@@ -453,8 +459,8 @@ public class Rijtechniek extends HBox {
         grid.add(remtechniekHBox, 1, 1);
 
         HBox embrayageHBox = new HBox();
-        embrayageHBox.setId("icoonMetEva");
-        Image embrayageWit = new Image("images/embrayage.png");
+        embrayageHBox.setId("embrayageHBox");
+        Image embrayageWit = new Image("images/embrayageWit.png");
         ImageView embrayageImageView = new ImageView(embrayageWit);
         embrayageImageView.setFitWidth(50);
         embrayageImageView.setFitHeight(50);
@@ -462,9 +468,9 @@ public class Rijtechniek extends HBox {
         embrayageBtn.setId("icoontjesBtns");
         //grid.add(embrayageBtn, 2, 0);
 
-        Image embrayageRood = new Image("images/stuur.png");
-        Image embrayageOranje = new Image("images/stuur.png");
-        Image embrayageGroen = new Image("images/stuur.png");
+        Image embrayageRood = new Image("images/embrayageRood.png");
+        Image embrayageOranje = new Image("images/embrayageOranje.png");
+        Image embrayageGroen = new Image("images/embrayageGroen.png");
         
         embrayageBtn.setOnAction(e -> {
             if(rijtechniekdom.getKoppeling()== Toestand.WIT){
@@ -494,7 +500,7 @@ public class Rijtechniek extends HBox {
 
         grid.add(embrayageHBox, 2, 0);
 
-        Image middenGrid = new Image("images/icoon-rijtechniek.png");
+        Image middenGrid = new Image("images/rijtechniekWit.png");
         ImageView middenGridImageView = new ImageView(middenGrid);
         middenGridImageView.setFitWidth(150);
         middenGridImageView.setFitHeight(150);
