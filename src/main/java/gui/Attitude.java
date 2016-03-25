@@ -120,16 +120,16 @@ public class Attitude extends GridPane{
          AttitudeOpmerking Verstrooid = new AttitudeOpmerking("Verstrooid", "");
          AttitudeOpmerking Eigenwijs = new AttitudeOpmerking("Eigenwijs", "");
          
-         ArrayList<AttitudeOpmerking> StandaardOpmerkingenList = new ArrayList<>();
-         StandaardOpmerkingenList.add(Zenuwachtig);
-         StandaardOpmerkingenList.add(Concentratie);
-         StandaardOpmerkingenList.add(Schrik);
-         StandaardOpmerkingenList.add(Asociaal);
-         StandaardOpmerkingenList.add(Verkeersgevaarlijk);
-         StandaardOpmerkingenList.add(AgressiefRijgedrag);
-         StandaardOpmerkingenList.add(Inzet);
-         StandaardOpmerkingenList.add(Verstrooid);
-         StandaardOpmerkingenList.add(Eigenwijs);
+         ArrayList<AttitudeOpmerking> standaardOpmerkingenList = new ArrayList<>();
+         standaardOpmerkingenList.add(Zenuwachtig);
+         standaardOpmerkingenList.add(Concentratie);
+         standaardOpmerkingenList.add(Schrik);
+         standaardOpmerkingenList.add(Asociaal);
+         standaardOpmerkingenList.add(Verkeersgevaarlijk);
+         standaardOpmerkingenList.add(AgressiefRijgedrag);
+         standaardOpmerkingenList.add(Inzet);
+         standaardOpmerkingenList.add(Verstrooid);
+         standaardOpmerkingenList.add(Eigenwijs);
          
          //Listview
          ListView opmerkingenList = new ListView();
@@ -137,21 +137,22 @@ public class Attitude extends GridPane{
          ObservableList<String> standaarOpmerkingen = 
                  FXCollections.observableArrayList();
          
-         StandaardOpmerkingenList.stream().forEach((Opmerking) -> {
-             standaarOpmerkingen.add(Opmerking.getNaam());
-        });
+        for (AttitudeOpmerking attitudeOpm : standaardOpmerkingenList) {
+            standaarOpmerkingen.add(attitudeOpm.getNaam());
+        }
          
          opmerkingenList.setItems(standaarOpmerkingen);
          
          opmerkingenList.setOnMouseClicked(event ->{
              
              String selectedOpmerking2 = opmerkingenList.getSelectionModel().getSelectedItem().toString();
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
-                 if(opmerkingske.getNaam().equals(selectedOpmerking2)){
+             
+             for (AttitudeOpmerking attitudeOpm : standaardOpmerkingenList) {
+                 if(attitudeOpm.getNaam().equals(selectedOpmerking2)){
                      
-                     opmerkingVeld.setText(opmerkingske.getOpmerking());
+                     opmerkingVeld.setText(attitudeOpm.getOpmerking());
                  }
-             });
+             }
          });
          //voegtoe
          Button voegToe = new Button("Voeg Toe");
@@ -171,11 +172,12 @@ public class Attitude extends GridPane{
              
              String selectedOpmerking = opmerkingenList.getSelectionModel().getSelectedItem().toString();
              
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
-                 if(opmerkingske.getNaam().equals(selectedOpmerking)){
-                     opmerkingske.setOpmerking(opmerkingVeld.getText());
+             for (AttitudeOpmerking attitudeOpm : standaardOpmerkingenList) {
+                 if(attitudeOpm.getNaam().equals(selectedOpmerking)){
+                     attitudeOpm.setOpmerking(opmerkingVeld.getText());
                  }
-             });
+             }
+             
              opmerkingVeld.clear();
          });
          
@@ -232,7 +234,7 @@ public class Attitude extends GridPane{
                  
              }else{
              AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
-             StandaardOpmerkingenList.add(nieuweStand);
+             standaardOpmerkingenList.add(nieuweStand);
              standaarOpmerkingen.add(nieuweStand.getNaam());
              nieuw.clear();
              opmerkingVeld.clear();

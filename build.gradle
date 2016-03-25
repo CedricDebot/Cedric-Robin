@@ -33,6 +33,7 @@ jfxmobile {
     ios {
         infoPList = file('src/ios/Default-Info.plist')
         forceLinkClasses = [
+            //'controllers.**.*', alle klassen meenemen
                 'com.gluonhq.**.*',
                 'io.datafx.**.*',
                 'javax.annotations.**.*',
