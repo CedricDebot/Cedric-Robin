@@ -5,6 +5,8 @@
  */
 package domein;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author Robin Lanneer
@@ -15,12 +17,22 @@ public class Leerling {
     private String voorNaam;
     private String email;
     //attribuut foto
-
-    public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email) {
+    //Implementatie foto via tablet?
+    private Image foto;
+    
+    private DashboardDom dashboardDom;
+    private RijtechniekDom rijtechniekDom;
+    private VerkeerstechniekDom verkeerstechniekDom;
+    
+    public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email, Image foto) {
         this.famillieNaam = famillieNaam;
         this.voorNaam = voorNaam;
         this.email = email;
         this.inschrijvingsNr = inschrijvingsNr;
+        this.foto = foto;
+        dashboardDom = new DashboardDom();
+        rijtechniekDom = new RijtechniekDom();
+        verkeerstechniekDom = new VerkeerstechniekDom();
     }
 
     public String getInschrijvingsNr() {
@@ -54,5 +66,39 @@ public class Leerling {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setFoto(Image foto) {
+        this.foto = foto;
+    }
+
+    public Image getFoto() {
+        return foto;
+    }
+
+    public DashboardDom getDashboardDom() {
+        return dashboardDom;
+    }
+
+    public void setDashboardDom(DashboardDom dashboardDom) {
+        this.dashboardDom = dashboardDom;
+    }
+
+    public void setRijtechniekDom(RijtechniekDom rijtechniekDom) {
+        this.rijtechniekDom = rijtechniekDom;
+    }
+
+    public RijtechniekDom getRijtechniekDom() {
+        return rijtechniekDom;
+    }
+
+    public void setVerkeerstechniekDom(VerkeerstechniekDom verkeerstechniekDom) {
+        this.verkeerstechniekDom = verkeerstechniekDom;
+    }
+
+    public VerkeerstechniekDom getVerkeerstechniekDom() {
+        return verkeerstechniekDom;
+    }
+    
+    
     
 }

@@ -36,7 +36,8 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
   
     private Scene scene;
     
-    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> StandaardOpmerkingenList, String icoonPad) {
+    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> standaardOpmerkingenList, String icoonPad, Dashboard dashboard) {
+        
         
         //HoofdGrid
          gridLinesVisibleProperty().set(false);
@@ -93,7 +94,7 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
          OpmerkingenPane.add(terugBtn,0 , 0);
          
          terugBtn.setOnAction(e -> {
-            VerkeersTechniek verkeersTechniek = new VerkeersTechniek();
+            VerkeersTechniek verkeersTechniek = new VerkeersTechniek(dashboard);
             verkeersTechniek.setScene(scene);
             scene.setRoot(verkeersTechniek);
         });
@@ -115,21 +116,21 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
          ObservableList<String> standaarOpmerkingen = 
                  FXCollections.observableArrayList();
          
-         StandaardOpmerkingenList.stream().forEach((Opmerking) -> {
-             standaarOpmerkingen.add(Opmerking.getNaam());
-        });
+         for (AttitudeOpmerking opm : standaardOpmerkingenList) {
+             standaarOpmerkingen.add(opm.getNaam());
+         }
          
          opmerkingenList.setItems(standaarOpmerkingen);
          
          opmerkingenList.setOnMouseClicked(event ->{
              
              String selectedOpmerking2 = opmerkingenList.getSelectionModel().getSelectedItem().toString();
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
+             for (AttitudeOpmerking opmerkingske : standaardOpmerkingenList) {
                  if(opmerkingske.getNaam().equals(selectedOpmerking2)){
                      
                      opmerkingVeld.setText(opmerkingske.getOpmerking());
                  }
-             });
+             }
          });
          //voegtoe
          Button voegToe = new Button("Voeg Toe");
@@ -155,11 +156,11 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
              
              String selectedOpmerking = opmerkingenList.getSelectionModel().getSelectedItem().toString();
              
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
-                 if(opmerkingske.getNaam().equals(selectedOpmerking)){
-                     opmerkingske.setOpmerking(opmerkingVeld.getText());
+             for (AttitudeOpmerking opm : standaardOpmerkingenList) {
+                 if(opm.getNaam().equals(selectedOpmerking)){
+                     opm.setOpmerking(opmerkingVeld.getText());
                  }
-             });
+             }
              opmerkingVeld.clear();
          });
          
@@ -168,12 +169,12 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
         //RIGHT
         VBox right = new VBox();
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuStandaard();
+        VBox menuStandaard = menu.buildMenuStandaard(dashboard.getLeerling());
         right.getChildren().add(menuStandaard);
         
         
         //Menu
-        VBox menuBalk = menu.buildMenu();
+        VBox menuBalk = menu.buildMenu(dashboard);
         
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
@@ -216,14 +217,14 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
                  
              }else{
              AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
-             StandaardOpmerkingenList.add(nieuweStand);
+             standaardOpmerkingenList.add(nieuweStand);
              standaarOpmerkingen.add(nieuweStand.getNaam());
              nieuw.clear();
              opmerkingVeld.clear();
              }
          });
     }
-
+    
     public void setScene(Scene scene) {
         this.scene = scene;
     }

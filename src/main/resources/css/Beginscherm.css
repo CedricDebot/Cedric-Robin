@@ -17,12 +17,17 @@
     -fx-border-radius: 15;
     -fx-border-width: 3;
     -fx-min-width: 350;
+    -fx-alignment: CENTER;
 }
 
 #labels{
     -fx-padding: 15 15 15 15;
 }
 
+#feedbackLogin{
+    -fx-padding: 5 5 5 5;
+     -fx-text-fill: red;
+}
 #naamLeerling{
     -fx-padding: 5 5 5 5;
     -fx-spacing: 85;

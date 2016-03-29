@@ -1,7 +1,6 @@
 package gui;
 
 import domein.Leerling;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +15,9 @@ import javafx.util.Callback;
 
 public class Beginscherm extends HBox {
 
-    private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
+//    private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
+    
+    private ObservableList<Leerling> leerlingen = FXCollections.observableArrayList();
     private ListView lijstLeerlingen = new ListView();
 
     private Scene scene;
@@ -48,23 +48,46 @@ public class Beginscherm extends HBox {
 
         buttons.getChildren().addAll(nieuw, start);
 
+        //Feedback
+        Label feedbackInlog = new Label("");
+        feedbackInlog.setId("feedbackLogin");
         //ZoekScherm
         VBox zoekscherm = new VBox();
         zoekscherm.setId("zoekscherm");
-        zoekscherm.getChildren().addAll(labels, buttons);
+        zoekscherm.getChildren().addAll(labels, buttons, feedbackInlog);
 
-        //LijstLeerlingen
-//        ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
-//        ListView lijstLeerlingen = new ListView();
+        
+        //ListViewShenanigans
+        VulLeerlingen();
+
         lijstLeerlingen.setId("lijstLeerlingen");
-        lijstLeerlingen.setItems(names);
-        lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>() {
-
+        lijstLeerlingen.setItems(leerlingen);
+//        lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>() {
+//
+//            @Override
+//            public ObservableValue<Boolean> call(String item) {
+//                return null;
+//            }
+//        }));
+        
+            lijstLeerlingen.setCellFactory(new Callback<ListView<Leerling>, ListCell<Leerling>>(){
+ 
             @Override
-            public ObservableValue<Boolean> call(String item) {
-                return null;
+            public ListCell<Leerling> call(ListView<Leerling> p) {
+                 
+                ListCell<Leerling> cell = new ListCell<Leerling>(){
+ 
+                    @Override
+                    protected void updateItem(Leerling l, boolean bln) {
+                        super.updateItem(l, bln);
+                        if (l != null) {
+                            setText(l.getVoorNaam());
+                        }
+                    }
+                }; 
+                return cell;
             }
-        }));
+        });
 
         //ButtonsRight
         HBox buttonsRight = new HBox();
@@ -198,8 +221,8 @@ public class Beginscherm extends HBox {
                     return;
 
             }
-            Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText());
-            names.add(leerling.getVoorNaam());
+            Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText(), null);
+//            names.add(leerling.getVoorNaam());
 
             if (getChildren().contains(rightNieuw)) {
                 getChildren().remove(rightNieuw);
@@ -209,9 +232,17 @@ public class Beginscherm extends HBox {
         });
 
         start.setOnAction(e -> {
-            Dashboard dashboard = new Dashboard();
+            if(lijstLeerlingen.getSelectionModel().getSelectedItem() == null){
+                feedbackInlog.setText("Geen leerling geselecteerd.");
+           }else{            
+                Leerling leerling = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
+                //haal leerling op uit db/backend
+                
+            
+            Dashboard dashboard = new Dashboard(leerling);
             dashboard.setScene(scene);
             scene.setRoot(dashboard);
+            }
         });
 
         //textfields nog leeg maken 
@@ -223,16 +254,16 @@ public class Beginscherm extends HBox {
 
     public void ZoekFunctie(String oldVal, String newVal) {
         //if (oldVal != null && (newVal.length() <= oldVal.length())) {
-        lijstLeerlingen.setItems(names);
+        lijstLeerlingen.setItems(leerlingen);
         //}
 
         newVal = newVal.toLowerCase();
 
-        ObservableList<String> searchNames = FXCollections.observableArrayList();
-        for (Object entry : lijstLeerlingen.getItems()) {
-            String entryText = (String) entry;
+        ObservableList<Leerling> searchNames = FXCollections.observableArrayList();
+        for (Leerling leerling : leerlingen) {
+            String entryText = leerling.getVoorNaam();
             if (entryText.toLowerCase().contains(newVal)) {
-                searchNames.add(entryText);
+                searchNames.add(new Leerling(null, null, leerling.getVoorNaam(), null, new Image("images/testLeerlingen/1.png")));
             }
         }
         lijstLeerlingen.setItems(searchNames);
@@ -246,6 +277,24 @@ public class Beginscherm extends HBox {
 
     public void setScene(Scene scene) {
         this.scene = scene;
+    }
+
+    private void VulLeerlingen() {
+        Image CedricFoto = new Image("images/testLeerlingen/1.png");
+        Leerling Cedric = new Leerling(null, null, "Cédric", null, CedricFoto);
+        leerlingen.add(Cedric);
+        
+        Image RobinFoto = new Image("images/testLeerlingen/pepe.jpg");
+        Leerling Robin = new Leerling(null, null, "Robin", null, RobinFoto);
+        leerlingen.add(Robin);
+        
+        Image DriesFoto = new Image("images/testLeerlingen/2.png");
+        Leerling Dries = new Leerling(null, null, "Dries", null, DriesFoto);
+        leerlingen.add(Dries);
+        
+        Image MiltonFoto = new Image("images/testLeerlingen/3.png");
+        Leerling Milton = new Leerling(null, null, "Milton", null, MiltonFoto);
+        leerlingen.add(Milton);
     }
 
 }

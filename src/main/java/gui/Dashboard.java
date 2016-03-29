@@ -3,6 +3,7 @@ package gui;
 import domein.DashboardDom;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
+import domein.Leerling;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -27,7 +28,7 @@ public class Dashboard extends GridPane {
 
     private Scene scene;
     private EvaluatieGrafiek evaGraf = new EvaluatieGrafiek();
-    private DashboardDom dashboardDom = new DashboardDom();
+//    private DashboardDom dashboardDom = new DashboardDom();
 
     private Rectangle blok1 = new Rectangle(15, 30, Color.BLUE);
     private Rectangle blok2 = new Rectangle(15, 40, Color.BLACK);
@@ -45,8 +46,12 @@ public class Dashboard extends GridPane {
     Rectangle[] grafiek = {blok12, blok11, blok10, blok9, blok8, blok7, blok6, blok5, blok4, blok3, blok2, blok1};
 
     private Label voortgang = new Label();
-
-    public Dashboard() {
+    private Leerling leerling;
+    
+    public Dashboard(Leerling leerling) {
+        
+        this.leerling = leerling;
+        
         Menu menu = new Menu();
 
         HBox rootDashboard = new HBox();
@@ -57,12 +62,12 @@ public class Dashboard extends GridPane {
         //right.setId("dashboardRight");
 
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuDashboard();
+        VBox menuStandaard = menu.buildMenuDashboard(leerling);
         menuStandaard.setId("dashboardRight");
         right.getChildren().add(menuStandaard);
 
         //Menu
-        VBox menuBalk = menu.buildMenu();
+        VBox menuBalk = menu.buildMenu(this);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
@@ -117,6 +122,12 @@ public class Dashboard extends GridPane {
                 menu.getMoment3().setText(" ");
             }
         });
+        
+        menu.getDashboardTerug().setOnAction(e ->{
+            Beginscherm begin = new Beginscherm();
+            begin.setScene(scene);
+            scene.setRoot(begin);
+        });
 
         //LEFT
         Image dashboardLayer1 = new Image("images/dashboard.png");
@@ -157,7 +168,7 @@ public class Dashboard extends GridPane {
         dashboard.add(rijtechniekBtn, 0, 0);
 
         rijtechniekBtn.setOnAction(e -> {
-            Rijtechniek rijtechniekScherm = new Rijtechniek();
+            Rijtechniek rijtechniekScherm = new Rijtechniek(this);
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
         });
@@ -170,7 +181,7 @@ public class Dashboard extends GridPane {
         dashboard.add(attitudeBtn, 1, 0);
 
         attitudeBtn.setOnAction(e -> {
-            Attitude attitude = new Attitude();
+            Attitude attitude = new Attitude(this);
             attitude.setScene(scene);
             scene.setRoot(attitude);
         });
@@ -184,7 +195,7 @@ public class Dashboard extends GridPane {
         dashboard.add(verkeerstechniekBtn, 2, 0);
 
         verkeerstechniekBtn.setOnAction(e -> {
-            VerkeersTechniek verkeersTechniek = new VerkeersTechniek();
+            VerkeersTechniek verkeersTechniek = new VerkeersTechniek(this);
             verkeersTechniek.setScene(scene);
             scene.setRoot(verkeersTechniek);
         });
@@ -206,11 +217,11 @@ public class Dashboard extends GridPane {
         Image bandenSpanningGroen = new Image("images/bandenspanningGroen.png");
 
         bandenSpanningBtn.setOnAction(e -> {
-            if (dashboardDom.getBanden() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setBanden(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getBanden() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setBanden(GezienNietGezien.GEZIEN);
                 bandenSpanningImageView.setImage(bandenSpanningGroen);
-            } else if (dashboardDom.getBanden() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setBanden(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getBanden() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setBanden(GezienNietGezien.NIETGEZIEN);
                 bandenSpanningImageView.setImage(bandenSpanningWit);
             }
         });
@@ -225,11 +236,11 @@ public class Dashboard extends GridPane {
         Image vloeistoffenGroen = new Image("images/olieGroen.png");
 
         vloeistoffenBtn.setOnAction(e -> {
-            if (dashboardDom.getVloeistoffen() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setVloeistoffen(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getVloeistoffen() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setVloeistoffen(GezienNietGezien.GEZIEN);
                 vloeistoffenImageView.setImage(vloeistoffenGroen);
-            } else if (dashboardDom.getVloeistoffen() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setVloeistoffen(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getVloeistoffen() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setVloeistoffen(GezienNietGezien.NIETGEZIEN);
                 vloeistoffenImageView.setImage(vloeistoffenWit);
             }
         });
@@ -244,11 +255,11 @@ public class Dashboard extends GridPane {
         Image schakelaarsGroen = new Image("images/schakelaarsGroen.png");
 
         schakelaarsBtn.setOnAction(e -> {
-            if (dashboardDom.getSchakelaars() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setSchakelaars(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getSchakelaars() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setSchakelaars(GezienNietGezien.GEZIEN);
                 schakelaarsImageView.setImage(schakelaarsGroen);
-            } else if (dashboardDom.getSchakelaars() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setSchakelaars(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getSchakelaars() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setSchakelaars(GezienNietGezien.NIETGEZIEN);
                 schakelaarsImageView.setImage(schakelaarsWit);
             }
         });
@@ -268,11 +279,11 @@ public class Dashboard extends GridPane {
         Image rotondeGroen = new Image("images/rotondeGroen.png");
 
         rotondeBtn.setOnAction(e -> {
-            if (dashboardDom.getRotonde() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setRotonde(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getRotonde() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setRotonde(GezienNietGezien.GEZIEN);
                 rotondeImageView.setImage(rotondeGroen);
-            } else if (dashboardDom.getRotonde() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setRotonde(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getRotonde() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setRotonde(GezienNietGezien.NIETGEZIEN);
                 rotondeImageView.setImage(rotondeWit);
             }
         });
@@ -287,11 +298,11 @@ public class Dashboard extends GridPane {
         Image rijbaanGroen = new Image("images/rijbaanGroen.png");
 
         rijbaanBtn.setOnAction(e -> {
-            if (dashboardDom.getRijbaan() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setRijbaan(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getRijbaan() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setRijbaan(GezienNietGezien.GEZIEN);
                 rijbaanImageView.setImage(rijbaanGroen);
-            } else if (dashboardDom.getRijbaan() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setRijbaan(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getRijbaan() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setRijbaan(GezienNietGezien.NIETGEZIEN);
                 rijbaanImageView.setImage(rijbaanWit);
             }
         });
@@ -306,11 +317,11 @@ public class Dashboard extends GridPane {
         Image stadGroen = new Image("images/stadGroen.png");
 
         stadBtn.setOnAction(e -> {
-            if (dashboardDom.getStad() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setStad(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getStad() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setStad(GezienNietGezien.GEZIEN);
                 stadImageView.setImage(stadGroen);
-            } else if (dashboardDom.getStad() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setStad(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getStad() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setStad(GezienNietGezien.NIETGEZIEN);
                 stadImageView.setImage(stadWit);
             }
         });
@@ -325,11 +336,11 @@ public class Dashboard extends GridPane {
         Image autosnelwegGroen = new Image("images/autosnelwegGroen.png");
 
         autosnelwegBtn.setOnAction(e -> {
-            if (dashboardDom.getAutosnelweg() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setAutosnelweg(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getAutosnelweg() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setAutosnelweg(GezienNietGezien.GEZIEN);
                 autosnelwegImageView.setImage(autosnelwegGroen);
-            } else if (dashboardDom.getAutosnelweg() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setAutosnelweg(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getAutosnelweg() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setAutosnelweg(GezienNietGezien.NIETGEZIEN);
                 autosnelwegImageView.setImage(autosnelwegWit);
             }
         });
@@ -349,11 +360,11 @@ public class Dashboard extends GridPane {
         Image tankenGroen = new Image("images/tankenGroen.png");
 
         tankenBtn.setOnAction(e -> {
-            if (dashboardDom.getTanken() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setTanken(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getTanken() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setTanken(GezienNietGezien.GEZIEN);
                 tankenImageView.setImage(tankenGroen);
-            } else if (dashboardDom.getTanken() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setTanken(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getTanken() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setTanken(GezienNietGezien.NIETGEZIEN);
                 tankenImageView.setImage(tankenWit);
             }
         });
@@ -368,11 +379,11 @@ public class Dashboard extends GridPane {
         Image gpsGroen = new Image("images/gpsGroen.png");
 
         gpsBtn.setOnAction(e -> {
-            if (dashboardDom.getGps() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setGps(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getGps() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setGps(GezienNietGezien.GEZIEN);
                 gpsImageView.setImage(gpsGroen);
-            } else if (dashboardDom.getGps() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setGps(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getGps() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setGps(GezienNietGezien.NIETGEZIEN);
                 gpsImageView.setImage(gpsWit);
             }
         });
@@ -387,11 +398,11 @@ public class Dashboard extends GridPane {
         Image noodstopGroen = new Image("images/noodstopGroen.png");
 
         stopBtn.setOnAction(e -> {
-            if (dashboardDom.getStop() == GezienNietGezien.NIETGEZIEN) {
-                dashboardDom.setStop(GezienNietGezien.GEZIEN);
+            if (leerling.getDashboardDom().getStop() == GezienNietGezien.NIETGEZIEN) {
+                leerling.getDashboardDom().setStop(GezienNietGezien.GEZIEN);
                 stopImageView.setImage(noodstopGroen);
-            } else if (dashboardDom.getStop() == GezienNietGezien.GEZIEN) {
-                dashboardDom.setStop(GezienNietGezien.NIETGEZIEN);
+            } else if (leerling.getDashboardDom().getStop() == GezienNietGezien.GEZIEN) {
+                leerling.getDashboardDom().setStop(GezienNietGezien.NIETGEZIEN);
                 stopImageView.setImage(noodstopWit);
                 }
         });
@@ -584,7 +595,12 @@ public class Dashboard extends GridPane {
         }
     }
 
+    public Leerling getLeerling() {
+        return leerling;
+    }
+    
     public void setScene(Scene scene) {
         this.scene = scene;
     }
+    
 }

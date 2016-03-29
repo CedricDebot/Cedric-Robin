@@ -25,7 +25,7 @@ public class Rijtechniek extends HBox {
     private Scene scene;
     private RijtechniekDom rijtechniekdom = new RijtechniekDom();
 
-    public Rijtechniek() {
+    public Rijtechniek(Dashboard dashboard) {
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
         //grid.setGridLinesVisible(true);
@@ -71,7 +71,7 @@ public class Rijtechniek extends HBox {
         //grid.add(stuurBtn, 3, 0);
 
         stuurBtn.setOnMouseDragged(e ->{
-            IcoonStuurOpm icoonStuur = new IcoonStuurOpm();
+            IcoonStuurOpm icoonStuur = new IcoonStuurOpm(dashboard);
             icoonStuur.setScene(scene);
             scene.setRoot(icoonStuur);
         });
@@ -529,7 +529,6 @@ public class Rijtechniek extends HBox {
         terugBtn.setId("menuButton");
 
         terugBtn.setOnAction(e -> {
-            Dashboard dashboard = new Dashboard();
             dashboard.setScene(scene);
             scene.setRoot(dashboard);
         });
@@ -576,11 +575,11 @@ public class Rijtechniek extends HBox {
 
         VBox right = new VBox();
 
-        VBox menuStandaard = menu.buildMenuStandaard();
+        VBox menuStandaard = menu.buildMenuStandaard(dashboard.getLeerling());
 
         right.getChildren().add(menuStandaard);
 
-        VBox menuBalk = menu.buildMenu();
+        VBox menuBalk = menu.buildMenu(dashboard);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);

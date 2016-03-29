@@ -35,7 +35,7 @@ public class Attitude extends GridPane{
 
     private Scene scene;
     
-    public Attitude() {
+    public Attitude(Dashboard dashboard) {
         
         //HoofdGrid
          gridLinesVisibleProperty().set(false);
@@ -92,7 +92,6 @@ public class Attitude extends GridPane{
          OpmerkingenPane.add(terugBtn,0 , 0);
          
          terugBtn.setOnAction(e -> {
-            Dashboard dashboard = new Dashboard();
             dashboard.setScene(scene);
             scene.setRoot(dashboard);
         });
@@ -134,24 +133,24 @@ public class Attitude extends GridPane{
          //Listview
          ListView opmerkingenList = new ListView();
          opmerkingenList.setId("OpmerkingenList");
-         ObservableList<String> standaarOpmerkingen = 
+         ObservableList<String> standaardOpmerkingen = 
                  FXCollections.observableArrayList();
          
-         StandaardOpmerkingenList.stream().forEach((Opmerking) -> {
-             standaarOpmerkingen.add(Opmerking.getNaam());
-        });
+         for (AttitudeOpmerking opm : StandaardOpmerkingenList) {
+            standaardOpmerkingen.add(opm.getNaam());
+        }
          
-         opmerkingenList.setItems(standaarOpmerkingen);
+         opmerkingenList.setItems(standaardOpmerkingen);
          
          opmerkingenList.setOnMouseClicked(event ->{
              
              String selectedOpmerking2 = opmerkingenList.getSelectionModel().getSelectedItem().toString();
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
-                 if(opmerkingske.getNaam().equals(selectedOpmerking2)){
+             for (AttitudeOpmerking opm : StandaardOpmerkingenList) {
+                 if(opm.getNaam().equals(selectedOpmerking2)){
                      
-                     opmerkingVeld.setText(opmerkingske.getOpmerking());
+                     opmerkingVeld.setText(opm.getOpmerking());
                  }
-             });
+             }
          });
          //voegtoe
          Button voegToe = new Button("Voeg Toe");
@@ -171,11 +170,12 @@ public class Attitude extends GridPane{
              
              String selectedOpmerking = opmerkingenList.getSelectionModel().getSelectedItem().toString();
              
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
-                 if(opmerkingske.getNaam().equals(selectedOpmerking)){
-                     opmerkingske.setOpmerking(opmerkingVeld.getText());
+             for (AttitudeOpmerking opm : StandaardOpmerkingenList) {
+                 if(opm.getNaam().equals(selectedOpmerking)){
+                     opm.setOpmerking(opmerkingVeld.getText());
                  }
-             });
+             }
+
              opmerkingVeld.clear();
          });
          
@@ -184,12 +184,12 @@ public class Attitude extends GridPane{
         //RIGHT
         VBox right = new VBox();
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuStandaard();
+        VBox menuStandaard = menu.buildMenuStandaard(dashboard.getLeerling());
         right.getChildren().add(menuStandaard);
         
         
         //Menu
-        VBox menuBalk = menu.buildMenu();
+        VBox menuBalk = menu.buildMenu(dashboard);
         
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
@@ -233,7 +233,7 @@ public class Attitude extends GridPane{
              }else{
              AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
              StandaardOpmerkingenList.add(nieuweStand);
-             standaarOpmerkingen.add(nieuweStand.getNaam());
+             standaardOpmerkingen.add(nieuweStand.getNaam());
              nieuw.clear();
              opmerkingVeld.clear();
              }
