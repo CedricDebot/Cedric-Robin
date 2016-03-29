@@ -16,7 +16,6 @@ import javafx.util.Callback;
 public class Beginscherm extends HBox {
 
 //    private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
-    
     private ObservableList<Leerling> leerlingen = FXCollections.observableArrayList();
     private ListView lijstLeerlingen = new ListView();
 
@@ -56,7 +55,6 @@ public class Beginscherm extends HBox {
         zoekscherm.setId("zoekscherm");
         zoekscherm.getChildren().addAll(labels, buttons, feedbackInlog);
 
-        
         //ListViewShenanigans
         VulLeerlingen();
 
@@ -69,14 +67,14 @@ public class Beginscherm extends HBox {
 //                return null;
 //            }
 //        }));
-        
-            lijstLeerlingen.setCellFactory(new Callback<ListView<Leerling>, ListCell<Leerling>>(){
- 
+
+        lijstLeerlingen.setCellFactory(new Callback<ListView<Leerling>, ListCell<Leerling>>() {
+
             @Override
             public ListCell<Leerling> call(ListView<Leerling> p) {
-                 
-                ListCell<Leerling> cell = new ListCell<Leerling>(){
- 
+
+                ListCell<Leerling> cell = new ListCell<Leerling>() {
+
                     @Override
                     protected void updateItem(Leerling l, boolean bln) {
                         super.updateItem(l, bln);
@@ -84,7 +82,7 @@ public class Beginscherm extends HBox {
                             setText(l.getVoorNaam());
                         }
                     }
-                }; 
+                };
                 return cell;
             }
         });
@@ -194,54 +192,57 @@ public class Beginscherm extends HBox {
         });
 
         ok.setOnAction(e -> {
-//            if(inputNr.getText().isEmpty()) {
-//                feedback.setText("Je moet het inschrijvingsNr invullen.");
-//            } else 
-            if (inputFamillienaam.getText().isEmpty()) {
-                famillienaamFout.setVisible(true);
-                famillienaamFout.setText("Famillienaam is niet ingevuld!");
-                if (!inputVoornaam.getText().isEmpty() && !inputEmail.getText().isEmpty() && !validateEmail(inputEmail.getText())) {
-                    return;
-                }
-            }
-            if (inputVoornaam.getText().isEmpty()) {
-                voornaamFout.setText("Voornaam is niet ingevuld!");
-                if (!inputFamillienaam.getText().isEmpty() && !inputEmail.getText().isEmpty() && !validateEmail(inputEmail.getText())) {
-                    return;
-                }
-            }
-            if (inputEmail.getText().isEmpty()) {
-                emailFout.setText("E-mailadres is niet ingevuld!");
-                if (!inputFamillienaam.getText().isEmpty() && !inputVoornaam.getText().isEmpty() && !validateEmail(inputEmail.getText())) {
-                    return;
-                }
-            }
-            if (!validateEmail(inputEmail.getText())) {
-                emailFout.setText("Het e-mailadres is niet correct.");              
-                    return;
-
-            }
-            Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText(), null);
+//            int geldig = 0;
+//
+//            if (geldig != 5) {
+//                if (inputFamillienaam.getText().equals("")) {
+//                    famillienaamFout.setVisible(true);
+//                    famillienaamFout.setText("Famillienaam is niet ingevuld!");
+//                } else {
+//                    famillienaamFout.setVisible(false);
+//                    geldig++;
+//                }
+//                if (inputVoornaam.getText().equals("")) {
+//                    voornaamFout.setText("Voornaam is niet ingevuld!");
+//
+//                } else {
+//                    voornaamFout.setVisible(false);
+//                    geldig++;
+//                }
+//                if (inputEmail.getText().equals("")) {
+//                    emailFout.setText("E-mailadres is niet ingevuld!");
+//                } else {
+//                    emailFout.setVisible(false);
+//                    geldig++;
+//                }
+//                if (validateEmail(inputEmail.getText()) == false) {
+//                    emailFout.setText(inputEmail.getText());
+//                } else {
+//                    emailFout.setVisible(false);
+//                    geldig++;
+//                }
+//            } else {
+                Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText(), null);
 //            names.add(leerling.getVoorNaam());
+                leerlingen.add(leerling);
 
-            if (getChildren().contains(rightNieuw)) {
-                getChildren().remove(rightNieuw);
-                getChildren().add(right);
-            }
-
+                if (getChildren().contains(rightNieuw)) {
+                    getChildren().remove(rightNieuw);
+                    getChildren().add(right);
+                }
+//            }
         });
 
         start.setOnAction(e -> {
-            if(lijstLeerlingen.getSelectionModel().getSelectedItem() == null){
+            if (lijstLeerlingen.getSelectionModel().getSelectedItem() == null) {
                 feedbackInlog.setText("Geen leerling geselecteerd.");
-           }else{            
+            } else {
                 Leerling leerling = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
                 //haal leerling op uit db/backend
-                
-            
-            Dashboard dashboard = new Dashboard(leerling);
-            dashboard.setScene(scene);
-            scene.setRoot(dashboard);
+
+                Dashboard dashboard = new Dashboard(leerling);
+                dashboard.setScene(scene);
+                scene.setRoot(dashboard);
             }
         });
 
@@ -254,25 +255,22 @@ public class Beginscherm extends HBox {
 
     public void ZoekFunctie(String oldVal, String newVal) {
         //if (oldVal != null && (newVal.length() <= oldVal.length())) {
-        lijstLeerlingen.setItems(leerlingen);
+//        lijstLeerlingen.setItems(leerlingen);
         //}
-
         newVal = newVal.toLowerCase();
 
         ObservableList<Leerling> searchNames = FXCollections.observableArrayList();
         for (Leerling leerling : leerlingen) {
-            String entryText = leerling.getVoorNaam();
+            String entryText = (String)leerling.getVoorNaam();
             if (entryText.toLowerCase().contains(newVal)) {
-                searchNames.add(new Leerling(null, null, leerling.getVoorNaam(), null, new Image("images/testLeerlingen/1.png")));
+                searchNames.add(leerling);
             }
         }
         lijstLeerlingen.setItems(searchNames);
     }
 
     public boolean validateEmail(String email) {
-        System.out.printf(email);
-        Pattern ptr = Pattern.compile("[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}");
-        return ptr.matcher(email).matches();
+        return email.matches("[A-Z0-9._%+-][A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{3}");
     }
 
     public void setScene(Scene scene) {
@@ -283,15 +281,15 @@ public class Beginscherm extends HBox {
         Image CedricFoto = new Image("images/testLeerlingen/1.png");
         Leerling Cedric = new Leerling(null, null, "Cédric", null, CedricFoto);
         leerlingen.add(Cedric);
-        
+
         Image RobinFoto = new Image("images/testLeerlingen/pepe.jpg");
         Leerling Robin = new Leerling(null, null, "Robin", null, RobinFoto);
         leerlingen.add(Robin);
-        
+
         Image DriesFoto = new Image("images/testLeerlingen/2.png");
         Leerling Dries = new Leerling(null, null, "Dries", null, DriesFoto);
         leerlingen.add(Dries);
-        
+
         Image MiltonFoto = new Image("images/testLeerlingen/3.png");
         Leerling Milton = new Leerling(null, null, "Milton", null, MiltonFoto);
         leerlingen.add(Milton);
