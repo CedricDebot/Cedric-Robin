@@ -5,6 +5,7 @@
  */
 package domein;
 
+import java.util.ArrayList;
 import javafx.scene.image.Image;
 
 /**
@@ -16,13 +17,15 @@ public class Leerling {
     private String famillieNaam;
     private String voorNaam;
     private String email;
-    //attribuut foto
     //Implementatie foto via tablet?
     private Image foto;
     
+    //Gegevens knoppen
     private DashboardDom dashboardDom;
     private RijtechniekDom rijtechniekDom;
     private VerkeerstechniekDom verkeerstechniekDom;
+    //Opmerkingen Atttiude
+    private ArrayList<AttitudeOpmerking> standaardOpmerkingenList;
     
     public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email, Image foto) {
         this.famillieNaam = famillieNaam;
@@ -33,6 +36,7 @@ public class Leerling {
         dashboardDom = new DashboardDom();
         rijtechniekDom = new RijtechniekDom();
         verkeerstechniekDom = new VerkeerstechniekDom();
+        maakStandaardOpmerkingenList();
     }
 
     public String getInschrijvingsNr() {
@@ -98,7 +102,36 @@ public class Leerling {
     public VerkeerstechniekDom getVerkeerstechniekDom() {
         return verkeerstechniekDom;
     }
+
+    public ArrayList<AttitudeOpmerking> getStandaardOpmerkingenList() {
+        return standaardOpmerkingenList;
+    }
     
     
+    
+    private void maakStandaardOpmerkingenList(){
+        standaardOpmerkingenList = new ArrayList<>();
+        
+         //standaardOpmerkingen
+         AttitudeOpmerking Zenuwachtig = new AttitudeOpmerking("Zenuwachtig", "");
+         AttitudeOpmerking Concentratie = new AttitudeOpmerking("Concentratie", "");
+         AttitudeOpmerking Schrik = new AttitudeOpmerking("Schrik", "");
+         AttitudeOpmerking Asociaal = new AttitudeOpmerking("Asociaal", "");
+         AttitudeOpmerking Verkeersgevaarlijk = new AttitudeOpmerking("Verkeersgevaarlijk", "");
+         AttitudeOpmerking AgressiefRijgedrag = new AttitudeOpmerking("Agressief rijgedrag", "");
+         AttitudeOpmerking Inzet = new AttitudeOpmerking("Inzet", "");
+         AttitudeOpmerking Verstrooid = new AttitudeOpmerking("Verstrooid", "");
+         AttitudeOpmerking Eigenwijs = new AttitudeOpmerking("Eigenwijs", "");
+         
+         standaardOpmerkingenList.add(Zenuwachtig);
+         standaardOpmerkingenList.add(Concentratie);
+         standaardOpmerkingenList.add(Schrik);
+         standaardOpmerkingenList.add(Asociaal);
+         standaardOpmerkingenList.add(Verkeersgevaarlijk);
+         standaardOpmerkingenList.add(AgressiefRijgedrag);
+         standaardOpmerkingenList.add(Inzet);
+         standaardOpmerkingenList.add(Verstrooid);
+         standaardOpmerkingenList.add(Eigenwijs);
+    }
     
 }

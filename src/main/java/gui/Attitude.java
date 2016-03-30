@@ -105,30 +105,10 @@ public class Attitude extends GridPane{
          OpmerkingenPane.add(opmerkingVeld, 0, 2);
          
          Button bewaarOpmerking = new Button("Bewaar");
-         OpmerkingenPane.add(bewaarOpmerking, 0, 3);
-         
-         //listview
-         //standaardOpmerkingen
-         AttitudeOpmerking Zenuwachtig = new AttitudeOpmerking("Zenuwachtig", "");
-         AttitudeOpmerking Concentratie = new AttitudeOpmerking("Concentratie", "");
-         AttitudeOpmerking Schrik = new AttitudeOpmerking("Schrik", "");
-         AttitudeOpmerking Asociaal = new AttitudeOpmerking("Asociaal", "");
-         AttitudeOpmerking Verkeersgevaarlijk = new AttitudeOpmerking("Verkeersgevaarlijk", "");
-         AttitudeOpmerking AgressiefRijgedrag = new AttitudeOpmerking("Agressief rijgedrag", "");
-         AttitudeOpmerking Inzet = new AttitudeOpmerking("Inzet", "");
-         AttitudeOpmerking Verstrooid = new AttitudeOpmerking("Verstrooid", "");
-         AttitudeOpmerking Eigenwijs = new AttitudeOpmerking("Eigenwijs", "");
-         
-         ArrayList<AttitudeOpmerking> StandaardOpmerkingenList = new ArrayList<>();
-         StandaardOpmerkingenList.add(Zenuwachtig);
-         StandaardOpmerkingenList.add(Concentratie);
-         StandaardOpmerkingenList.add(Schrik);
-         StandaardOpmerkingenList.add(Asociaal);
-         StandaardOpmerkingenList.add(Verkeersgevaarlijk);
-         StandaardOpmerkingenList.add(AgressiefRijgedrag);
-         StandaardOpmerkingenList.add(Inzet);
-         StandaardOpmerkingenList.add(Verstrooid);
-         StandaardOpmerkingenList.add(Eigenwijs);
+         OpmerkingenPane.add(bewaarOpmerking, 0, 3);  
+
+         //List met standaardOpmerkingen
+         ArrayList<AttitudeOpmerking> standaardOpmerkingenList = dashboard.getLeerling().getStandaardOpmerkingenList();
          
          //Listview
          ListView opmerkingenList = new ListView();
@@ -136,7 +116,7 @@ public class Attitude extends GridPane{
          ObservableList<String> standaardOpmerkingen = 
                  FXCollections.observableArrayList();
          
-         for (AttitudeOpmerking opm : StandaardOpmerkingenList) {
+         for (AttitudeOpmerking opm : standaardOpmerkingenList) {
             standaardOpmerkingen.add(opm.getNaam());
         }
          
@@ -145,7 +125,7 @@ public class Attitude extends GridPane{
          opmerkingenList.setOnMouseClicked(event ->{
              
              String selectedOpmerking2 = opmerkingenList.getSelectionModel().getSelectedItem().toString();
-             for (AttitudeOpmerking opm : StandaardOpmerkingenList) {
+             for (AttitudeOpmerking opm : standaardOpmerkingenList) {
                  if(opm.getNaam().equals(selectedOpmerking2)){
                      
                      opmerkingVeld.setText(opm.getOpmerking());
@@ -170,7 +150,7 @@ public class Attitude extends GridPane{
              
              String selectedOpmerking = opmerkingenList.getSelectionModel().getSelectedItem().toString();
              
-             for (AttitudeOpmerking opm : StandaardOpmerkingenList) {
+             for (AttitudeOpmerking opm : standaardOpmerkingenList) {
                  if(opm.getNaam().equals(selectedOpmerking)){
                      opm.setOpmerking(opmerkingVeld.getText());
                  }
@@ -232,7 +212,7 @@ public class Attitude extends GridPane{
                  
              }else{
              AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
-             StandaardOpmerkingenList.add(nieuweStand);
+             standaardOpmerkingenList.add(nieuweStand);
              standaardOpmerkingen.add(nieuweStand.getNaam());
              nieuw.clear();
              opmerkingVeld.clear();

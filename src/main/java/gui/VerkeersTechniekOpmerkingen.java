@@ -35,9 +35,11 @@ import javafx.util.Duration;
 public class VerkeersTechniekOpmerkingen extends GridPane{
   
     private Scene scene;
+    private ArrayList<AttitudeOpmerking> opmerkingenList;
     
     public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> standaardOpmerkingenList, String icoonPad, Dashboard dashboard) {
         
+        this.opmerkingenList = standaardOpmerkingenList;
         
         //HoofdGrid
          gridLinesVisibleProperty().set(false);
