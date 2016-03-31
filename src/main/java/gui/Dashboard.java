@@ -1,6 +1,5 @@
 package gui;
 
-import domein.DashboardDom;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
 import domein.Leerling;
@@ -27,30 +26,34 @@ import javafx.util.Duration;
 public class Dashboard extends GridPane {
 
     private Scene scene;
-    private EvaluatieGrafiek evaGraf = new EvaluatieGrafiek();
-//    private DashboardDom dashboardDom = new DashboardDom();
 
-    private Rectangle blok1 = new Rectangle(15, 30, Color.BLUE);
-    private Rectangle blok2 = new Rectangle(15, 40, Color.BLACK);
-    private Rectangle blok3 = new Rectangle(15, 50, Color.BLACK);
-    private Rectangle blok4 = new Rectangle(15, 60, Color.BLACK);
-    private Rectangle blok5 = new Rectangle(15, 70, Color.BLACK);
-    private Rectangle blok6 = new Rectangle(15, 80, Color.BLACK);
-    private Rectangle blok7 = new Rectangle(15, 90, Color.BLACK);
-    private Rectangle blok8 = new Rectangle(15, 100, Color.BLACK);
-    private Rectangle blok9 = new Rectangle(15, 110, Color.BLACK);
-    private Rectangle blok10 = new Rectangle(15, 120, Color.BLACK);
-    private Rectangle blok11 = new Rectangle(15, 130, Color.BLACK);
-    private Rectangle blok12 = new Rectangle(15, 140, Color.BLACK);
+    private EvaluatieGrafiek evaGraf;
 
-    Rectangle[] grafiek = {blok12, blok11, blok10, blok9, blok8, blok7, blok6, blok5, blok4, blok3, blok2, blok1};
 
-    private Label voortgang = new Label();
+    Rectangle[] grafiek;
+
+    private Label voortgang;
     private Leerling leerling;
     
-    public Dashboard(Leerling leerling) {
+    public Dashboard(Beginscherm beginscherm,Leerling leerling) {
         
         this.leerling = leerling;
+        this.evaGraf = leerling.getEvaGraf();
+        
+        this.voortgang = evaGraf.getVoortgangLabel();
+        
+        this.grafiek = new Rectangle[] {evaGraf.getBlok12(),
+            evaGraf.getBlok11(),
+            evaGraf.getBlok10(),
+            evaGraf.getBlok9(),
+            evaGraf.getBlok8(),
+            evaGraf.getBlok7(),
+            evaGraf.getBlok6(),
+            evaGraf.getBlok5(),
+            evaGraf.getBlok4(),
+            evaGraf.getBlok3(),
+            evaGraf.getBlok2(),
+            evaGraf.getBlok1()};   
         
         Menu menu = new Menu();
 
@@ -124,9 +127,8 @@ public class Dashboard extends GridPane {
         });
         
         menu.getDashboardTerug().setOnAction(e ->{
-            Beginscherm begin = new Beginscherm();
-            begin.setScene(scene);
-            scene.setRoot(begin);
+            beginscherm.setScene(scene);
+            scene.setRoot(beginscherm);
         });
 
         //LEFT
@@ -207,14 +209,15 @@ public class Dashboard extends GridPane {
         HBox icoontjesLinks = new HBox();
         icoontjesLinks.setId("icoontjesLinks");
 
-        Image bandenSpanningWit = new Image("images/bandenspanning.png");
-        ImageView bandenSpanningImageView = new ImageView(bandenSpanningWit);
+        Image bandenSpanningBegin = new Image("images/icoontjesDashboard/bandenspanning" + leerling.getDashboardDom().getBanden() + ".png");
+        ImageView bandenSpanningImageView = new ImageView(bandenSpanningBegin);
         bandenSpanningImageView.setFitWidth(25);
         bandenSpanningImageView.setFitHeight(25);
         Button bandenSpanningBtn = new Button("", bandenSpanningImageView);
         bandenSpanningBtn.setId("icoontjesBtns");
 
-        Image bandenSpanningGroen = new Image("images/bandenspanningGroen.png");
+        Image bandenSpanningWit = new Image("images/icoontjesDashboard/bandenspanningNIETGEZIEN.png");
+        Image bandenSpanningGroen = new Image("images/icoontjesDashboard/bandenspanningGEZIEN.png");
 
         bandenSpanningBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getBanden() == GezienNietGezien.NIETGEZIEN) {
@@ -226,14 +229,15 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image vloeistoffenWit = new Image("images/olieWit.png");
-        ImageView vloeistoffenImageView = new ImageView(vloeistoffenWit);
+        Image vloeistoffenBegin = new Image("images/icoontjesDashboard/olie" + leerling.getDashboardDom().getVloeistoffen()+ ".png");
+        ImageView vloeistoffenImageView = new ImageView(vloeistoffenBegin);
         vloeistoffenImageView.setFitWidth(25);
         vloeistoffenImageView.setFitHeight(25);
         Button vloeistoffenBtn = new Button("", vloeistoffenImageView);
         vloeistoffenBtn.setId("icoontjesBtns");
 
-        Image vloeistoffenGroen = new Image("images/olieGroen.png");
+        Image vloeistoffenWit = new Image("images/icoontjesDashboard/olieNIETGEZIEN.png");
+        Image vloeistoffenGroen = new Image("images/icoontjesDashboard/olieGEZIEN.png");
 
         vloeistoffenBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getVloeistoffen() == GezienNietGezien.NIETGEZIEN) {
@@ -245,14 +249,15 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image schakelaarsWit = new Image("images/schakelaarsWit.png");
-        ImageView schakelaarsImageView = new ImageView(schakelaarsWit);
+        Image schakelaarsBegin = new Image("images/icoontjesDashboard/schakelaars" + leerling.getDashboardDom().getSchakelaars()+ ".png");
+        ImageView schakelaarsImageView = new ImageView(schakelaarsBegin);
         schakelaarsImageView.setFitWidth(25);
         schakelaarsImageView.setFitHeight(25);
         Button schakelaarsBtn = new Button("", schakelaarsImageView);
         schakelaarsBtn.setId("icoontjesBtns");
 
-        Image schakelaarsGroen = new Image("images/schakelaarsGroen.png");
+        Image schakelaarsWit = new Image("images/icoontjesDashboard/schakelaarsNIETGEZIEN.png");
+        Image schakelaarsGroen = new Image("images/icoontjesDashboard/schakelaarsGEZIEN.png");
 
         schakelaarsBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getSchakelaars() == GezienNietGezien.NIETGEZIEN) {
@@ -269,14 +274,15 @@ public class Dashboard extends GridPane {
         HBox icoontjesMidden = new HBox();
         icoontjesMidden.setId("icoontjesMidden");
 
-        Image rotondeWit = new Image("images/rotondeWit.png");
-        ImageView rotondeImageView = new ImageView(rotondeWit);
+        Image rotondeBegin = new Image("images/icoontjesDashboard/rotonde" + leerling.getDashboardDom().getRotonde()+ ".png");
+        ImageView rotondeImageView = new ImageView(rotondeBegin);
         rotondeImageView.setFitWidth(25);
         rotondeImageView.setFitHeight(25);
         Button rotondeBtn = new Button("", rotondeImageView);
         rotondeBtn.setId("icoontjesBtns");
 
-        Image rotondeGroen = new Image("images/rotondeGroen.png");
+        Image rotondeWit = new Image("images/icoontjesDashboard/rotondeNIETGEZIEN.png");
+        Image rotondeGroen = new Image("images/icoontjesDashboard/rotondeGEZIEN.png");
 
         rotondeBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getRotonde() == GezienNietGezien.NIETGEZIEN) {
@@ -288,14 +294,15 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image rijbaanWit = new Image("images/rijbaanWit.png");
-        ImageView rijbaanImageView = new ImageView(rijbaanWit);
+        Image rijbaanBegin = new Image("images/icoontjesDashboard/rijbaan" + leerling.getDashboardDom().getRijbaan()+ ".png");
+        ImageView rijbaanImageView = new ImageView(rijbaanBegin);
         rijbaanImageView.setFitWidth(25);
         rijbaanImageView.setFitHeight(25);
         Button rijbaanBtn = new Button("", rijbaanImageView);
         rijbaanBtn.setId("icoontjesBtns");
 
-        Image rijbaanGroen = new Image("images/rijbaanGroen.png");
+        Image rijbaanWit = new Image("images/icoontjesDashboard/rijbaanNIETGEZIEN.png");
+        Image rijbaanGroen = new Image("images/icoontjesDashboard/rijbaanGEZIEN.png");
 
         rijbaanBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getRijbaan() == GezienNietGezien.NIETGEZIEN) {
@@ -307,14 +314,15 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image stadWit = new Image("images/stadWit.png");
-        ImageView stadImageView = new ImageView(stadWit);
+        Image stadBegin = new Image("images/icoontjesDashboard/stad" + leerling.getDashboardDom().getStad()+ ".png");
+        ImageView stadImageView = new ImageView(stadBegin);
         stadImageView.setFitWidth(25);
         stadImageView.setFitHeight(25);
         Button stadBtn = new Button("", stadImageView);
         stadBtn.setId("icoontjesBtns");
 
-        Image stadGroen = new Image("images/stadGroen.png");
+        Image stadWit = new Image("images/icoontjesDashboard/stadNIETGEZIEN.png");
+        Image stadGroen = new Image("images/icoontjesDashboard/stadGEZIEN.png");
 
         stadBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getStad() == GezienNietGezien.NIETGEZIEN) {
@@ -326,14 +334,15 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image autosnelwegWit = new Image("images/autosnelwegWit.png");
-        ImageView autosnelwegImageView = new ImageView(autosnelwegWit);
+        Image autosnelwegBegin = new Image("images/icoontjesDashboard/autosnelweg" + leerling.getDashboardDom().getAutosnelweg()+ ".png");
+        ImageView autosnelwegImageView = new ImageView(autosnelwegBegin);
         autosnelwegImageView.setFitWidth(25);
         autosnelwegImageView.setFitHeight(25);
         Button autosnelwegBtn = new Button("", autosnelwegImageView);
         autosnelwegBtn.setId("icoontjesBtns");
 
-        Image autosnelwegGroen = new Image("images/autosnelwegGroen.png");
+        Image autosnelwegWit = new Image("images/icoontjesDashboard/autosnelwegNIETGEZIEN.png");
+        Image autosnelwegGroen = new Image("images/icoontjesDashboard/autosnelwegGEZIEN.png");
 
         autosnelwegBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getAutosnelweg() == GezienNietGezien.NIETGEZIEN) {
@@ -350,14 +359,15 @@ public class Dashboard extends GridPane {
         HBox icoontjesRechts = new HBox();
         icoontjesRechts.setId("icoontjesRechts");
 
-        Image tankenWit = new Image("images/tankenWit.png");
-        ImageView tankenImageView = new ImageView(tankenWit);
+        Image tankenBegin = new Image("images/icoontjesDashboard/tanken" + leerling.getDashboardDom().getTanken()+ ".png");
+        ImageView tankenImageView = new ImageView(tankenBegin);
         tankenImageView.setFitWidth(25);
         tankenImageView.setFitHeight(25);
         Button tankenBtn = new Button("", tankenImageView);
         tankenBtn.setId("icoontjesBtns");
 
-        Image tankenGroen = new Image("images/tankenGroen.png");
+        Image tankenWit = new Image("images/icoontjesDashboard/tankenNIETGEZIEN.png");
+        Image tankenGroen = new Image("images/icoontjesDashboard/tankenGEZIEN.png");
 
         tankenBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getTanken() == GezienNietGezien.NIETGEZIEN) {
@@ -369,14 +379,15 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image gpsWit = new Image("images/gpsWit.png");
-        ImageView gpsImageView = new ImageView(gpsWit);
+        Image gpsBegin = new Image("images/icoontjesDashboard/gps" + leerling.getDashboardDom().getGps()+ ".png");
+        ImageView gpsImageView = new ImageView(gpsBegin);
         gpsImageView.setFitWidth(25);
         gpsImageView.setFitHeight(25);
         Button gpsBtn = new Button("", gpsImageView);
         gpsBtn.setId("icoontjesBtns");
 
-        Image gpsGroen = new Image("images/gpsGroen.png");
+        Image gpsWit = new Image("images/icoontjesDashboard/gpsNIETGEZIEN.png");
+        Image gpsGroen = new Image("images/icoontjesDashboard/gpsGEZIEN.png");
 
         gpsBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getGps() == GezienNietGezien.NIETGEZIEN) {
@@ -388,14 +399,15 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image noodstopWit = new Image("images/noodstopWit.png");
-        ImageView stopImageView = new ImageView(noodstopWit);
+        Image noodstopBegin = new Image("images/icoontjesDashboard/noodstop" + leerling.getDashboardDom().getStop()+ ".png");
+        ImageView stopImageView = new ImageView(noodstopBegin);
         stopImageView.setFitWidth(25);
         stopImageView.setFitHeight(25);
         Button stopBtn = new Button("", stopImageView);
         stopBtn.setId("icoontjesBtns");
 
-        Image noodstopGroen = new Image("images/noodstopGroen.png");
+        Image noodstopWit = new Image("images/icoontjesDashboard/noodstopNIETGEZIEN.png");
+        Image noodstopGroen = new Image("images/icoontjesDashboard/noodstopGEZIEN.png");
 
         stopBtn.setOnAction(e -> {
             if (leerling.getDashboardDom().getStop() == GezienNietGezien.NIETGEZIEN) {

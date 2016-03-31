@@ -1,7 +1,6 @@
 package gui;
 
 import domein.Leerling;
-import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -240,7 +239,7 @@ public class Beginscherm extends HBox {
                 Leerling leerling = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
                 //haal leerling op uit db/backend
 
-                Dashboard dashboard = new Dashboard(leerling);
+                Dashboard dashboard = new Dashboard(this, leerling);
                 dashboard.setScene(scene);
                 scene.setRoot(dashboard);
             }
@@ -293,6 +292,10 @@ public class Beginscherm extends HBox {
         Image MiltonFoto = new Image("images/testLeerlingen/3.png");
         Leerling Milton = new Leerling(null, null, "Milton", null, MiltonFoto);
         leerlingen.add(Milton);
+    }
+
+    public ObservableList<Leerling> getLeerlingen() {
+        return leerlingen;
     }
 
 }

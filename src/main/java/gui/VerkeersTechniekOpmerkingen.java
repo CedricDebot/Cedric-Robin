@@ -23,7 +23,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -35,13 +34,15 @@ import javafx.util.Duration;
 public class VerkeersTechniekOpmerkingen extends GridPane{
   
     private Scene scene;
-    private ArrayList<AttitudeOpmerking> opmerkingenList;
+    private Dashboard dashboard;
+    private String icoonPad;
     
-    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> standaardOpmerkingenList, String icoonPad, Dashboard dashboard) {
+    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, Dashboard dashboard, String icoonPad) {  
         
-        this.opmerkingenList = standaardOpmerkingenList;
-        
+        this.icoonPad = icoonPad;
+        this.dashboard = dashboard;
         //HoofdGrid
+        
          gridLinesVisibleProperty().set(false);
          ColumnConstraints col0 = new ColumnConstraints();
          col0.setPercentWidth(40);
@@ -113,21 +114,21 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
          OpmerkingenPane.add(bewaarOpmerking, 0, 3);      
          
          //Listview
-         ListView opmerkingenList = new ListView();
-         opmerkingenList.setId("OpmerkingenListVerkeer");
+         ListView opmerkingenListView = new ListView();
+         opmerkingenListView.setId("OpmerkingenListVerkeer");
          ObservableList<String> standaarOpmerkingen = 
                  FXCollections.observableArrayList();
          
-         for (AttitudeOpmerking opm : standaardOpmerkingenList) {
+         for (AttitudeOpmerking opm : opmerkingenList) {
              standaarOpmerkingen.add(opm.getNaam());
          }
          
-         opmerkingenList.setItems(standaarOpmerkingen);
+         opmerkingenListView.setItems(standaarOpmerkingen);
          
-         opmerkingenList.setOnMouseClicked(event ->{
+         opmerkingenListView.setOnMouseClicked(event ->{
              
-             String selectedOpmerking2 = opmerkingenList.getSelectionModel().getSelectedItem().toString();
-             for (AttitudeOpmerking opmerkingske : standaardOpmerkingenList) {
+             String selectedOpmerking2 = opmerkingenListView.getSelectionModel().getSelectedItem().toString();
+             for (AttitudeOpmerking opmerkingske : opmerkingenList) {
                  if(opmerkingske.getNaam().equals(selectedOpmerking2)){
                      
                      opmerkingVeld.setText(opmerkingske.getOpmerking());
@@ -151,14 +152,14 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
          Image Icoon = new Image(icoonPad);
          ImageView IcoonView = new ImageView(Icoon);
          
-         attitudeList.getChildren().addAll(IcoonView, opmerkingenList, nieuwHB);
+         attitudeList.getChildren().addAll(IcoonView, opmerkingenListView, nieuwHB);
          
          
          bewaarOpmerking.setOnAction(e ->{
              
-             String selectedOpmerking = opmerkingenList.getSelectionModel().getSelectedItem().toString();
+             String selectedOpmerking = opmerkingenListView.getSelectionModel().getSelectedItem().toString();
              
-             for (AttitudeOpmerking opm : standaardOpmerkingenList) {
+             for (AttitudeOpmerking opm : opmerkingenList) {
                  if(opm.getNaam().equals(selectedOpmerking)){
                      opm.setOpmerking(opmerkingVeld.getText());
                  }
@@ -219,12 +220,20 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
                  
              }else{
              AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
-             standaardOpmerkingenList.add(nieuweStand);
+             opmerkingenList.add(nieuweStand);
              standaarOpmerkingen.add(nieuweStand.getNaam());
              nieuw.clear();
              opmerkingVeld.clear();
              }
-         });
+         }); 
+    }
+    
+    public void setIcoonPad(String icoonPad) {
+        this.icoonPad = icoonPad;
+    }
+
+    public void setDashboard(Dashboard dashboard) {
+        this.dashboard = dashboard;
     }
     
     public void setScene(Scene scene) {
