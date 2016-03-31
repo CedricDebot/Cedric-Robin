@@ -281,7 +281,7 @@ public class Beginscherm extends HBox {
         Leerling Cedric = new Leerling(null, null, "Cédric", null, CedricFoto);
         leerlingen.add(Cedric);
 
-        Image RobinFoto = new Image("images/testLeerlingen/pepe.jpg");
+        Image RobinFoto = new Image("images/testLeerlingen/4.png");
         Leerling Robin = new Leerling(null, null, "Robin", null, RobinFoto);
         leerlingen.add(Robin);
 
