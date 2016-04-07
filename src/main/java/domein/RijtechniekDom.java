@@ -2,7 +2,7 @@ package domein;
 
 public class RijtechniekDom {
     
-    private Toestand zithouding ;
+    private Toestand zithouding = Toestand.WIT ;
 
     public Toestand getZithouding() {
         return zithouding;
@@ -12,7 +12,7 @@ public class RijtechniekDom {
         this.zithouding = zithouding;
     }
     
-    private Toestand koppeling ;
+    private Toestand koppeling = Toestand.WIT ;
 
     public Toestand getKoppeling() {
         return koppeling;
@@ -22,7 +22,7 @@ public class RijtechniekDom {
         this.koppeling = koppeling;
     }
     
-    private Toestand remtechniek ;
+    private Toestand remtechniek = Toestand.WIT;
 
     public Toestand getRemtechniek() {
         return remtechniek;
@@ -32,7 +32,7 @@ public class RijtechniekDom {
         this.remtechniek = remtechniek;
     }
    
-    private Toestand stuurTechniek ;
+    private Toestand stuurTechniek = Toestand.WIT;
 
     public Toestand getStuurTechniek() {
         return stuurTechniek;
@@ -42,7 +42,7 @@ public class RijtechniekDom {
         this.stuurTechniek = stuurTechniek;
     }
     
-    private Toestand schakelTechniek ;
+    private Toestand schakelTechniek = Toestand.WIT;
 
     public Toestand getSchakelTechniek() {
         return schakelTechniek;
@@ -52,7 +52,7 @@ public class RijtechniekDom {
         this.schakelTechniek = schakelTechniek;
     }
     
-    private Toestand kijkTechniek ;
+    private Toestand kijkTechniek = Toestand.WIT;
 
     public Toestand getKijkTechniek() {
         return kijkTechniek;
@@ -62,7 +62,7 @@ public class RijtechniekDom {
         this.kijkTechniek = kijkTechniek;
     }
     
-    private Toestand parkeren ;
+    private Toestand parkeren = Toestand.WIT;
 
     public Toestand getParkeren() {
         return parkeren;
@@ -72,7 +72,7 @@ public class RijtechniekDom {
         this.parkeren = parkeren;
     }
     
-    private Toestand keren ;
+    private Toestand keren = Toestand.WIT;
 
     public Toestand getKeren() {
         return keren;
@@ -82,7 +82,7 @@ public class RijtechniekDom {
         this.keren = keren;
     }
     
-    private Toestand garage ;
+    private Toestand garage = Toestand.WIT;
 
     public Toestand getGarage() {
         return garage;
@@ -92,7 +92,7 @@ public class RijtechniekDom {
         this.garage = garage;
     }
     
-    private Toestand achteruit ;
+    private Toestand achteruit = Toestand.WIT;
 
     public Toestand getAchteruit() {
         return achteruit;
@@ -102,7 +102,7 @@ public class RijtechniekDom {
         this.achteruit = achteruit;
     }
     
-    private Toestand acht ;
+    private Toestand acht = Toestand.WIT;
 
     public Toestand getAcht() {
         return acht;
@@ -112,7 +112,7 @@ public class RijtechniekDom {
         this.acht = acht;
     }
     
-    private Toestand helling ;
+    private Toestand helling = Toestand.WIT;
 
     public Toestand getHelling() {
         return helling;
@@ -136,6 +136,5 @@ public class RijtechniekDom {
         this.acht = acht;
         this.helling = helling;
     }
-    
     
 }

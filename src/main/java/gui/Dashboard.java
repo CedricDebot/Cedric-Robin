@@ -564,12 +564,12 @@ public class Dashboard extends GridPane {
     }
 
     public void setVoortgang() {
-        if (evaGraf.getPositie() >= 3 && evaGraf.getPositie() <= 8) {
+        if (evaGraf.getPositie() <= 9 && evaGraf.getPositie() >= 4) {
             evaGraf.setVoortgang("Klaar om met begeleider te oefenen");
             voortgang.setText(evaGraf.getVoortgang());
         }
 
-        if (evaGraf.getPositie() >= 9 && evaGraf.getPositie() <= 10) {
+        if (evaGraf.getPositie() <= 3 && evaGraf.getPositie() >= 1) {
             evaGraf.setVoortgang("Klaar om alleen te oefenen");
             voortgang.setText(evaGraf.getVoortgang());
         }
@@ -577,10 +577,6 @@ public class Dashboard extends GridPane {
         if (evaGraf.getPositie() == 0) {
             evaGraf.setVoortgang("Klaar voor praktijk examen");
             voortgang.setText(evaGraf.getVoortgang());
-        }
-
-        if (evaGraf.getPositie() < 3) {
-            voortgang.setText("");
         }
     }
 
