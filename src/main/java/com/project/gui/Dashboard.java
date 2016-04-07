@@ -1,8 +1,8 @@
-package gui;
+package com.project.gui;
 
-import domein.DashboardDom;
-import domein.EvaluatieGrafiek;
-import domein.GezienNietGezien;
+import com.project.domein.DashboardDom;
+import com.project.domein.EvaluatieGrafiek;
+import com.project.domein.GezienNietGezien;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

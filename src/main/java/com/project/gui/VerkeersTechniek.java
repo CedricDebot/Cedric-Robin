@@ -1,8 +1,8 @@
-package gui;
+package com.project.gui;
 
-import domein.AttitudeOpmerking;
-import domein.Toestand;
-import domein.VerkeerstechniekDom;
+import com.project.domein.AttitudeOpmerking;
+import com.project.domein.Toestand;
+import com.project.domein.VerkeerstechniekDom;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;

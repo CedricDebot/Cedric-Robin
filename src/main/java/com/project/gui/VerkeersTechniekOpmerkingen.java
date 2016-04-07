@@ -1,6 +1,6 @@
-package gui;
+package com.project.gui;
 
-import domein.AttitudeOpmerking;
+import com.project.domein.AttitudeOpmerking;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -18,15 +18,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class Attitude extends GridPane{
-
+public class VerkeersTechniekOpmerkingen extends GridPane{
+  
     private Scene scene;
     
-    public Attitude() {
+    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> standaardOpmerkingenList, String icoonPad) {
         
         //HoofdGrid
          gridLinesVisibleProperty().set(false);
@@ -59,7 +60,7 @@ public class Attitude extends GridPane{
          row0Terug.setPercentHeight(22.5);
          
          RowConstraints row1Label = new RowConstraints();
-         row1Label.setPercentHeight(10);
+         row1Label.setPercentHeight(20);
          row1Label.setValignment(VPos.BOTTOM);
          
          RowConstraints row2Text = new RowConstraints();
@@ -67,7 +68,7 @@ public class Attitude extends GridPane{
          row2Text.setValignment(VPos.CENTER);
          
          RowConstraints row3Bewaar = new RowConstraints();
-         row3Bewaar.setPercentHeight(22.5);
+         row3Bewaar.setPercentHeight(12.5);
          row3Bewaar.setValignment(VPos.TOP);
          
          OpmerkingenPane.getColumnConstraints().add(col0OpmerkingPane);
@@ -83,9 +84,9 @@ public class Attitude extends GridPane{
          OpmerkingenPane.add(terugBtn,0 , 0);
          
          terugBtn.setOnAction(e -> {
-            Dashboard dashboard = new Dashboard();
-            dashboard.setScene(scene);
-            scene.setRoot(dashboard);
+            VerkeersTechniek verkeersTechniek = new VerkeersTechniek();
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
         });
          
          Label opmerking = new Label("Opmerking");
@@ -97,39 +98,16 @@ public class Attitude extends GridPane{
          OpmerkingenPane.add(opmerkingVeld, 0, 2);
          
          Button bewaarOpmerking = new Button("Bewaar");
-         OpmerkingenPane.add(bewaarOpmerking, 0, 3);
-         
-         //listview
-         //standaardOpmerkingen
-         AttitudeOpmerking Zenuwachtig = new AttitudeOpmerking("Zenuwachtig", "");
-         AttitudeOpmerking Concentratie = new AttitudeOpmerking("Concentratie", "");
-         AttitudeOpmerking Schrik = new AttitudeOpmerking("Schrik", "");
-         AttitudeOpmerking Asociaal = new AttitudeOpmerking("Asociaal", "");
-         AttitudeOpmerking Verkeersgevaarlijk = new AttitudeOpmerking("Verkeersgevaarlijk", "");
-         AttitudeOpmerking AgressiefRijgedrag = new AttitudeOpmerking("Agressief rijgedrag", "");
-         AttitudeOpmerking Inzet = new AttitudeOpmerking("Inzet", "");
-         AttitudeOpmerking Verstrooid = new AttitudeOpmerking("Verstrooid", "");
-         AttitudeOpmerking Eigenwijs = new AttitudeOpmerking("Eigenwijs", "");
-         
-         ArrayList<AttitudeOpmerking> standaardOpmerkingenList = new ArrayList<>();
-         standaardOpmerkingenList.add(Zenuwachtig);
-         standaardOpmerkingenList.add(Concentratie);
-         standaardOpmerkingenList.add(Schrik);
-         standaardOpmerkingenList.add(Asociaal);
-         standaardOpmerkingenList.add(Verkeersgevaarlijk);
-         standaardOpmerkingenList.add(AgressiefRijgedrag);
-         standaardOpmerkingenList.add(Inzet);
-         standaardOpmerkingenList.add(Verstrooid);
-         standaardOpmerkingenList.add(Eigenwijs);
+         OpmerkingenPane.add(bewaarOpmerking, 0, 3);      
          
          //Listview
          ListView opmerkingenList = new ListView();
-         opmerkingenList.setId("OpmerkingenList");
+         opmerkingenList.setId("OpmerkingenListVerkeer");
          ObservableList<String> standaarOpmerkingen = 
                  FXCollections.observableArrayList();
          
-        for (AttitudeOpmerking attitudeOpm : standaardOpmerkingenList) {
-            standaarOpmerkingen.add(attitudeOpm.getNaam());
+         for (AttitudeOpmerking attidueopm : standaardOpmerkingenList) {
+            standaarOpmerkingen.add(attidueopm.getNaam());
         }
          
          opmerkingenList.setItems(standaarOpmerkingen);
@@ -156,7 +134,13 @@ public class Attitude extends GridPane{
          VBox attitudeList = new VBox();
          attitudeList.setId("attitudeList");
          
-         attitudeList.getChildren().addAll(opmerkingenList, nieuwHB);
+         
+         
+         //Icon
+         Image Icoon = new Image(icoonPad);
+         ImageView IcoonView = new ImageView(Icoon);
+         
+         attitudeList.getChildren().addAll(IcoonView, opmerkingenList, nieuwHB);
          
          
          bewaarOpmerking.setOnAction(e ->{
@@ -168,7 +152,6 @@ public class Attitude extends GridPane{
                      attitudeOpm.setOpmerking(opmerkingVeld.getText());
                  }
              }
-             
              opmerkingVeld.clear();
          });
          

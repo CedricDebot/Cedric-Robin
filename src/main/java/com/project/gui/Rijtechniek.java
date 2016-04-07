@@ -1,9 +1,9 @@
-package gui;
+package com.project.gui;
 
-import domein.AttitudeOpmerking;
-import domein.RijtechniekDom;
-import domein.RijtechniekIcoon;
-import domein.Toestand;
+import com.project.domein.AttitudeOpmerking;
+import com.project.domein.RijtechniekDom;
+import com.project.domein.RijtechniekIcoon;
+import com.project.domein.Toestand;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;

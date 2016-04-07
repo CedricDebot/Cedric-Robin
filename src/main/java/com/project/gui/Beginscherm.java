@@ -1,6 +1,6 @@
-package gui;
+package com.project.gui;
 
-import domein.Leerling;
+import com.project.domein.Leerling;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;

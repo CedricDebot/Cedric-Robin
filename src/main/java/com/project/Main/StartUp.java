@@ -1,7 +1,7 @@
-package Main;
+package com.project.Main;
 
 
-import gui.Beginscherm;
+import com.project.gui.Beginscherm;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;

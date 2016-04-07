@@ -1,6 +1,6 @@
-package gui;
+package com.project.gui;
 
-import domein.AttitudeOpmerking;
+import com.project.domein.AttitudeOpmerking;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;

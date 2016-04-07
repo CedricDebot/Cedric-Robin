@@ -1,4 +1,4 @@
-package domein;
+package com.project.domein;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
