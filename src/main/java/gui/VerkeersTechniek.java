@@ -22,10 +22,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-/**
- *
- * @author Robin
- */
 public class VerkeersTechniek extends HBox {
 
     private Scene scene;
