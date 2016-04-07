@@ -43,7 +43,7 @@ public class Beginscherm extends HBox {
         //ButtonLeft
         HBox buttons = new HBox();
         buttons.setId("buttons");
-        Button nieuw = new Button("Nieuw");
+        Button nieuw = new Button("aangepast");
         Button start = new Button("Start");
 
         buttons.getChildren().addAll(nieuw, start);
