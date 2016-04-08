@@ -23,11 +23,11 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class VerkeersTechniekOpmerkingen extends GridPane{
+public class RijtechniekOpmerkingen extends GridPane{
   
     private Scene scene;
     
-    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> StandaardOpmerkingenList, String icoonPad) {
+    public RijtechniekOpmerkingen(ArrayList<AttitudeOpmerking> StandaardOpmerkingenList, String icoonPad) {
         
         //HoofdGrid
          gridLinesVisibleProperty().set(false);
@@ -84,9 +84,9 @@ public class VerkeersTechniekOpmerkingen extends GridPane{
          OpmerkingenPane.add(terugBtn,0 , 0);
          
          terugBtn.setOnAction(e -> {
-            VerkeersTechniek verkeersTechniek = new VerkeersTechniek();
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
+            Rijtechniek rijtechniek = new Rijtechniek();
+            rijtechniek.setScene(scene);
+            scene.setRoot(rijtechniek);
         });
          
          Label opmerking = new Label("Opmerking");
