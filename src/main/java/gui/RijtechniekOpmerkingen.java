@@ -27,7 +27,7 @@ public class RijtechniekOpmerkingen extends GridPane{
   
     private Scene scene;
     
-    public RijtechniekOpmerkingen(ArrayList<AttitudeOpmerking> StandaardOpmerkingenList, String icoonPad) {
+    public RijtechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList,Dashboard dashboard, String icoonPad) {
         
         //HoofdGrid
          gridLinesVisibleProperty().set(false);
@@ -84,7 +84,7 @@ public class RijtechniekOpmerkingen extends GridPane{
          OpmerkingenPane.add(terugBtn,0 , 0);
          
          terugBtn.setOnAction(e -> {
-            Rijtechniek rijtechniek = new Rijtechniek();
+            Rijtechniek rijtechniek = new Rijtechniek(dashboard);
             rijtechniek.setScene(scene);
             scene.setRoot(rijtechniek);
         });
@@ -101,26 +101,26 @@ public class RijtechniekOpmerkingen extends GridPane{
          OpmerkingenPane.add(bewaarOpmerking, 0, 3);      
          
          //Listview
-         ListView opmerkingenList = new ListView();
-         opmerkingenList.setId("OpmerkingenListVerkeer");
+         ListView opmerkingenListView = new ListView();
+         opmerkingenListView.setId("OpmerkingenListVerkeer");
          ObservableList<String> standaarOpmerkingen = 
                  FXCollections.observableArrayList();
          
-         StandaardOpmerkingenList.stream().forEach((Opmerking) -> {
-             standaarOpmerkingen.add(Opmerking.getNaam());
-        });
+         for (AttitudeOpmerking opm : opmerkingenList) {
+             standaarOpmerkingen.add(opm.getNaam());
+         }
          
-         opmerkingenList.setItems(standaarOpmerkingen);
+         opmerkingenListView.setItems(standaarOpmerkingen);
          
-         opmerkingenList.setOnMouseClicked(event ->{
+         opmerkingenListView.setOnMouseClicked(event ->{
              
-             String selectedOpmerking2 = opmerkingenList.getSelectionModel().getSelectedItem().toString();
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
+             String selectedOpmerking2 = opmerkingenListView.getSelectionModel().getSelectedItem().toString();
+             for (AttitudeOpmerking opmerkingske : opmerkingenList) {
                  if(opmerkingske.getNaam().equals(selectedOpmerking2)){
                      
                      opmerkingVeld.setText(opmerkingske.getOpmerking());
                  }
-             });
+             }
          });
          //voegtoe
          Button voegToe = new Button("Voeg Toe");
@@ -139,18 +139,18 @@ public class RijtechniekOpmerkingen extends GridPane{
          Image Icoon = new Image(icoonPad);
          ImageView IcoonView = new ImageView(Icoon);
          
-         attitudeList.getChildren().addAll(IcoonView, opmerkingenList, nieuwHB);
+         attitudeList.getChildren().addAll(IcoonView, opmerkingenListView, nieuwHB);
          
          
          bewaarOpmerking.setOnAction(e ->{
              
-             String selectedOpmerking = opmerkingenList.getSelectionModel().getSelectedItem().toString();
+             String selectedOpmerking = opmerkingenListView.getSelectionModel().getSelectedItem().toString();
              
-             StandaardOpmerkingenList.stream().forEach((opmerkingske) ->{
-                 if(opmerkingske.getNaam().equals(selectedOpmerking)){
-                     opmerkingske.setOpmerking(opmerkingVeld.getText());
+             for (AttitudeOpmerking opm : opmerkingenList) {
+                 if(opm.getNaam().equals(selectedOpmerking)){
+                     opm.setOpmerking(opmerkingVeld.getText());
                  }
-             });
+             }
              opmerkingVeld.clear();
          });
          
@@ -159,12 +159,12 @@ public class RijtechniekOpmerkingen extends GridPane{
         //RIGHT
         VBox right = new VBox();
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuStandaard();
+        VBox menuStandaard = menu.buildMenuStandaard(dashboard.getLeerling());
         right.getChildren().add(menuStandaard);
         
         
         //Menu
-        VBox menuBalk = menu.buildMenu();
+        VBox menuBalk = menu.buildMenu(dashboard);
         
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
@@ -207,7 +207,7 @@ public class RijtechniekOpmerkingen extends GridPane{
                  
              }else{
              AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
-             StandaardOpmerkingenList.add(nieuweStand);
+             opmerkingenList.add(nieuweStand);
              standaarOpmerkingen.add(nieuweStand.getNaam());
              nieuw.clear();
              opmerkingVeld.clear();
