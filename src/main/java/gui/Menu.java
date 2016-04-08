@@ -5,6 +5,7 @@
  */
 package gui;
 
+import domein.Leerling;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -53,7 +54,7 @@ public class Menu {
         return moment3;
     }
 
-    public VBox buildMenu() {
+    public VBox buildMenu(Dashboard dashboard) {
 
         VBox menuBalk = new VBox();
         menuBalk.setId("menuBox");
@@ -66,7 +67,7 @@ public class Menu {
         attitude.setId("menuButton");
 
         attitude.setOnAction(e -> {
-            Attitude attitudeScherm = new Attitude();
+            Attitude attitudeScherm = new Attitude(dashboard);
             attitudeScherm.setScene(scene);
             scene.setRoot(attitudeScherm);
         });
@@ -79,7 +80,7 @@ public class Menu {
         rijTechniek.setId("menuButton");
 
         rijTechniek.setOnAction(e -> {
-            Rijtechniek rijtechniekScherm = new Rijtechniek();
+            Rijtechniek rijtechniekScherm = new Rijtechniek(dashboard);
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
         });
@@ -93,7 +94,7 @@ public class Menu {
         verkeersTechniek.setId("menuButton");
 
         verkeersTechniek.setOnAction(e -> {
-            VerkeersTechniek verkeersTechniekScherm = new VerkeersTechniek();
+            VerkeersTechniek verkeersTechniekScherm = new VerkeersTechniek(dashboard);
             verkeersTechniekScherm.setScene(scene);
             scene.setRoot(verkeersTechniekScherm);
         });
@@ -110,7 +111,7 @@ public class Menu {
         return menuBalk;
     }
 
-    public VBox buildMenuDashboard() {
+    public VBox buildMenuDashboard(Leerling leerling) {
         VBox menuDashboard = new VBox();
         menuDashboard.setId("menuTest");
         
@@ -133,12 +134,12 @@ public class Menu {
 
         menuKnoppenDashboard.getChildren().addAll(menuKnop, dashboardTerug);
 
-        menuDashboard.getChildren().addAll(InfoLeerling(), EvaluatieMoment(), menuKnoppenDashboard);
+        menuDashboard.getChildren().addAll(InfoLeerling(leerling), EvaluatieMoment(), menuKnoppenDashboard);
 
         return menuDashboard;
     }
 
-    public VBox buildMenuStandaard() {
+    public VBox buildMenuStandaard(Leerling leerling) {
 
         VBox menuStandaard = new VBox();
         menuStandaard.setId("menuStandaard");
@@ -162,7 +163,7 @@ public class Menu {
 
         menuKnoppen.getChildren().addAll(menuKnop);
 
-        menuStandaard.getChildren().addAll(InfoLeerling(), menuKnoppen);
+        menuStandaard.getChildren().addAll(InfoLeerling(leerling), menuKnoppen);
 
         return menuStandaard;
     }
@@ -190,11 +191,11 @@ public class Menu {
         return evaluatieMoment;
     }
 
-    public VBox InfoLeerling() {
+    public VBox InfoLeerling(Leerling leerling) {
         VBox infoLeerling = new VBox();
         infoLeerling.setId("infoLeerling");
 
-        Image fotoLeerling = new Image("images/character.png");
+        Image fotoLeerling = leerling.getFoto();
         ImageView leerlingImageView = new ImageView(fotoLeerling);
         leerlingImageView.setId("leerlingImageView");
 
@@ -202,7 +203,7 @@ public class Menu {
         leerlingImageView.setFitWidth(130);
         leerlingImageView.setFitHeight(150);
 
-        Label naamLeerling = new Label("Jules");
+        Label naamLeerling = new Label(leerling.getVoorNaam());
         naamLeerling.setId("lblNaamLeerling");
 
         //Inner border
