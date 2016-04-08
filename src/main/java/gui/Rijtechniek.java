@@ -616,7 +616,7 @@ public class Rijtechniek extends HBox {
         middenGridImageView.setFitHeight(150);
 
         rijtechniekIcoonGroup = new Group();
-        rijtechniekIcoonGroup.setId("rijtechniekIcoonGroup");
+        //rijtechniekIcoonGroup.setId("rijtechniekIcoonGroup");
         rijtechniekIcoonGroup.getChildren().add(middenGridImageView);
         grid.add(rijtechniekIcoonGroup, 2, 2, 2, 2);
 
