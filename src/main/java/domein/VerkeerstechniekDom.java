@@ -104,4 +104,64 @@ public class VerkeerstechniekDom {
     public void setRechtsaf(Toestand rechtsaf) {
         this.rechtsaf = rechtsaf;
     }
+    
+    private Toestand verkeerstechniekIcoonLinks;
+
+    public Toestand getVerkeerstechniekIcoonLinks() {
+        return verkeerstechniekIcoonLinks;
+    }
+
+    public void setVerkeerstechniekIcoonLinks(Toestand verkeerstechniekIcoonLinks) {
+        this.verkeerstechniekIcoonLinks = verkeerstechniekIcoonLinks;
+    }
+    
+    public void bepaalToestandLinks(){
+        if(richtingaanwijzers == Toestand.GROEN && kruisen == Toestand.GROEN && inhalen == Toestand.GROEN){
+            setVerkeerstechniekIcoonLinks(Toestand.GROEN);
+        }else if(richtingaanwijzers == Toestand.ROOD || kruisen == Toestand.ROOD || inhalen == Toestand.ROOD){
+            setVerkeerstechniekIcoonLinks(Toestand.ROOD);
+        }else {
+            setVerkeerstechniekIcoonLinks(Toestand.ORANJE);
+        }
+    }
+    
+    private Toestand verkeerstechniekIcoonRechts;
+
+    public Toestand getVerkeerstechniekIcoonRechts() {
+        return verkeerstechniekIcoonRechts;
+    }
+
+    public void setVerkeerstechniekIcoonRechts(Toestand verkeerstechniekIcoonRechts) {
+        this.verkeerstechniekIcoonRechts = verkeerstechniekIcoonRechts;
+    }
+    
+    public void bepaalToestandRechts(){
+        if(openbareWeg == Toestand.GROEN && linksaf == Toestand.GROEN && rechtsaf == Toestand.GROEN && afstandHouden == Toestand.GROEN){
+            setVerkeerstechniekIcoonRechts(Toestand.GROEN);
+        }else if(openbareWeg == Toestand.ROOD || linksaf == Toestand.ROOD || rechtsaf == Toestand.ROOD || afstandHouden == Toestand.ROOD){
+            setVerkeerstechniekIcoonRechts(Toestand.ROOD);
+        }else {
+            setVerkeerstechniekIcoonRechts(Toestand.ORANJE);
+        }
+    }
+    
+    private Toestand verkeerstechniekIcoonBeneden;
+
+    public Toestand getVerkeerstechniekIcoonBeneden() {
+        return verkeerstechniekIcoonBeneden;
+    }
+
+    public void setVerkeerstechniekIcoonBeneden(Toestand verkeerstechniekIcoonBeneden) {
+        this.verkeerstechniekIcoonBeneden = verkeerstechniekIcoonBeneden;
+    }
+    
+    public void bepaalToestandBeneden(){
+        if(voorrang == Toestand.GROEN && verkeerstekens == Toestand.GROEN && snelheid == Toestand.GROEN){
+            setVerkeerstechniekIcoonBeneden(Toestand.GROEN);
+        }else if (voorrang == Toestand.ROOD || verkeerstekens == Toestand.ROOD || snelheid == Toestand.ROOD){
+            setVerkeerstechniekIcoonBeneden(Toestand.ROOD);
+        }else {
+            setVerkeerstechniekIcoonBeneden(Toestand.ORANJE);
+        }
+    }
 }
