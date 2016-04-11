@@ -493,26 +493,6 @@ public class Dashboard extends GridPane {
             setVoortgang();
         });
 
-//    public void minEen() {
-//        if (niveau != 11) {
-//            Rectangle blokDelete = grafiek[niveau];
-//            blokDelete.setFill(Color.BLACK);
-//            grafiek[niveau] = blokDelete;
-//            
-//            niveau++;
-//            Rectangle blokAdd = grafiek[niveau];
-//            blokAdd.setFill(Color.BLUE);
-//            grafiek[niveau] = blokAdd;
-//        }
-//    }
-//    public void plusEen() {
-//        if (niveau != 0) {
-//            niveau--;
-//            Rectangle blokAdd = grafiek[niveau];
-//            blokAdd.setFill(Color.BLUE);
-//            grafiek[niveau] = blokAdd;
-//        }
-//    }
         //button plus
         plusBtn.setOnAction(e -> {
             evaGraf.plusEen();
@@ -589,12 +569,12 @@ public class Dashboard extends GridPane {
     }
 
     public void setVoortgang() {
-        if (evaGraf.getPositie() >= 3 && evaGraf.getPositie() <= 8) {
+        if (evaGraf.getPositie() <= 9 && evaGraf.getPositie() >= 4) {
             evaGraf.setVoortgang("Klaar om met begeleider te oefenen");
             voortgang.setText(evaGraf.getVoortgang());
         }
 
-        if (evaGraf.getPositie() >= 9 && evaGraf.getPositie() <= 10) {
+        if (evaGraf.getPositie() <= 3 && evaGraf.getPositie() >= 1) {
             evaGraf.setVoortgang("Klaar om alleen te oefenen");
             voortgang.setText(evaGraf.getVoortgang());
         }
@@ -604,8 +584,9 @@ public class Dashboard extends GridPane {
             voortgang.setText(evaGraf.getVoortgang());
         }
 
-        if (evaGraf.getPositie() < 3) {
-            voortgang.setText("");
+        if (evaGraf.getPositie() > 9) {
+            evaGraf.setVoortgang("");
+            voortgang.setText(evaGraf.getVoortgang());
         }
     }
 

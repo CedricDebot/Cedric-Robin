@@ -199,7 +199,6 @@ public class Menu {
         ImageView leerlingImageView = new ImageView(fotoLeerling);
         leerlingImageView.setId("leerlingImageView");
 
-        //lay-out (nog proberen in css te zetten)
         leerlingImageView.setFitWidth(130);
         leerlingImageView.setFitHeight(150);
 
