@@ -200,7 +200,7 @@
 }
 
 #grafiekMetLbl{
-    -fx-alignment: TOP_CENTER;
+    -fx-alignment: CENTER;
 }
 
 #groteBtnsDashboard{
@@ -327,9 +327,6 @@
     -fx-alignment: CENTER;
     -fx-spacing: 25;
 }
-#attitudeVoegToe{
-
-}
 #nieuwHB{
     -fx-spacing: 15;
 }
@@ -432,4 +429,64 @@
 #OWHBox{
     -fx-padding: 10 0 0 -10;
     -fx-spacing: -10;
+}
+#opmerkingenDashboard{
+    -fx-max-height: 150;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+}
+#opmerkingenDashboard:focused{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+#opmerkingenTechniek{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+}
+#opmerkingenTechniek:focused{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+#pijl{
+    -fx-background-color: none;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+    -fx-border-color: none;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-alignment: CENTER;
+}
+#recenteOpmerkingenONDLabel{
+    -fx-background-color: #22567B;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-alignment: CENTER;
+    -fx-max-width: 330;
+    -fx-min-width: 330;
+    -fx-text-fill: white;
+}
+
+#recenteOpmerkingenLabel{
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-alignment: CENTER;
+    -fx-max-width: 330;
+    -fx-min-width: 330;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
