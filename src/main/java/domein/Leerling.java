@@ -6,6 +6,7 @@
 package domein;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 import javafx.scene.image.Image;
 
 public class Leerling {
@@ -25,6 +26,8 @@ public class Leerling {
     private ArrayList<AttitudeOpmerking> standaardOpmerkingenList;
     //Grafiek
     private EvaluatieGrafiek evaGraf;
+    //Opmerkingen dashboard
+    private ArrayList<AttitudeOpmerking> recenteOpmerkingen;
 
     public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email, Image foto) {
         this.famillieNaam = famillieNaam;
@@ -38,6 +41,7 @@ public class Leerling {
         maakStandaardOpmerkingenList();
         maakOpmerkingSchermen();
         evaGraf = new EvaluatieGrafiek();
+        recenteOpmerkingen = new ArrayList<>();
 
     }
 
@@ -111,6 +115,15 @@ public class Leerling {
 
     public EvaluatieGrafiek getEvaGraf() {
         return evaGraf;
+    }
+
+    public ArrayList<AttitudeOpmerking> getRecenteOpmerkingen() {
+        return recenteOpmerkingen;
+    }
+    
+    public ListIterator<AttitudeOpmerking> maakIteratorRecenteOpmerkingen(){
+        ListIterator<AttitudeOpmerking> it = recenteOpmerkingen.listIterator();
+        return it;
     }
 
     private void maakStandaardOpmerkingenList() {

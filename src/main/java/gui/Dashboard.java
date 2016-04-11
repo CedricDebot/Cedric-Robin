@@ -1,17 +1,21 @@
 package gui;
 
-import domein.DashboardDom;
+import domein.AttitudeOpmerking;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
 import domein.Leerling;
+import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,20 +34,19 @@ public class Dashboard extends GridPane {
 
     private EvaluatieGrafiek evaGraf;
 
-
     Rectangle[] grafiek;
 
     private Label voortgang;
     private Leerling leerling;
-    
-    public Dashboard(Beginscherm beginscherm,Leerling leerling) {
-        
+
+    public Dashboard(Beginscherm beginscherm, Leerling leerling) {
+
         this.leerling = leerling;
         this.evaGraf = leerling.getEvaGraf();
-        
+
         this.voortgang = evaGraf.getVoortgangLabel();
-        
-        this.grafiek = new Rectangle[] {evaGraf.getBlok12(),
+
+        this.grafiek = new Rectangle[]{evaGraf.getBlok12(),
             evaGraf.getBlok11(),
             evaGraf.getBlok10(),
             evaGraf.getBlok9(),
@@ -54,8 +57,8 @@ public class Dashboard extends GridPane {
             evaGraf.getBlok4(),
             evaGraf.getBlok3(),
             evaGraf.getBlok2(),
-            evaGraf.getBlok1()};   
-        
+            evaGraf.getBlok1()};
+
         //Menu
         Menu menu = new Menu();
 
@@ -67,7 +70,7 @@ public class Dashboard extends GridPane {
         //right.setId("dashboardRight");
 
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuDashboard(this.getLeerling());
+        VBox menuStandaard = menu.buildMenuDashboard(leerling);
         menuStandaard.setId("dashboardRight");
         right.getChildren().add(menuStandaard);
 
@@ -78,10 +81,10 @@ public class Dashboard extends GridPane {
             menu.setScene(scene);
             right.getChildren().remove(menuStandaard);
 
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
 
             tt.setFromX(100.0 + menuBalk.getLayoutX());
-            tt.setByX(-107);
+            tt.setByX(-100);
             tt.setCycleCount(1);
 
             tt.play();
@@ -90,14 +93,14 @@ public class Dashboard extends GridPane {
         });
 
         menu.getMenuTerug().setOnAction(e -> {
-            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), menuBalk);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), menuBalk);
             tt.setOnFinished(ev -> {
                 right.getChildren().removeAll(menuBalk);
                 right.getChildren().add(menuStandaard);
             });
 
             tt.setFromX(menuBalk.getLayoutX());
-            tt.setByX(107);
+            tt.setByX(100);
             tt.setCycleCount(1);
 
             tt.play();
@@ -127,8 +130,8 @@ public class Dashboard extends GridPane {
                 menu.getMoment3().setText(" ");
             }
         });
-        
-        menu.getDashboardTerug().setOnAction(e ->{
+
+        menu.getDashboardTerug().setOnAction(e -> {
             beginscherm.setScene(scene);
             scene.setRoot(beginscherm);
         });
@@ -231,7 +234,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image vloeistoffenBegin = new Image("images/dashboard/olie" + leerling.getDashboardDom().getVloeistoffen()+ ".png");
+        Image vloeistoffenBegin = new Image("images/dashboard/olie" + leerling.getDashboardDom().getVloeistoffen() + ".png");
         ImageView vloeistoffenImageView = new ImageView(vloeistoffenBegin);
         vloeistoffenImageView.setFitWidth(25);
         vloeistoffenImageView.setFitHeight(25);
@@ -251,7 +254,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image schakelaarsBegin = new Image("images/dashboard/schakelaars" + leerling.getDashboardDom().getSchakelaars()+ ".png");
+        Image schakelaarsBegin = new Image("images/dashboard/schakelaars" + leerling.getDashboardDom().getSchakelaars() + ".png");
         ImageView schakelaarsImageView = new ImageView(schakelaarsBegin);
         schakelaarsImageView.setFitWidth(25);
         schakelaarsImageView.setFitHeight(25);
@@ -276,7 +279,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesMidden = new HBox();
         icoontjesMidden.setId("icoontjesMidden");
 
-        Image rotondeBegin = new Image("images/dashboard/rotonde" + leerling.getDashboardDom().getRotonde()+ ".png");
+        Image rotondeBegin = new Image("images/dashboard/rotonde" + leerling.getDashboardDom().getRotonde() + ".png");
         ImageView rotondeImageView = new ImageView(rotondeBegin);
         rotondeImageView.setFitWidth(25);
         rotondeImageView.setFitHeight(25);
@@ -296,7 +299,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image rijbaanBegin = new Image("images/dashboard/rijbaan" + leerling.getDashboardDom().getRijbaan()+ ".png");
+        Image rijbaanBegin = new Image("images/dashboard/rijbaan" + leerling.getDashboardDom().getRijbaan() + ".png");
         ImageView rijbaanImageView = new ImageView(rijbaanBegin);
         rijbaanImageView.setFitWidth(25);
         rijbaanImageView.setFitHeight(25);
@@ -316,7 +319,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image stadBegin = new Image("images/dashboard/stad" + leerling.getDashboardDom().getStad()+ ".png");
+        Image stadBegin = new Image("images/dashboard/stad" + leerling.getDashboardDom().getStad() + ".png");
         ImageView stadImageView = new ImageView(stadBegin);
         stadImageView.setFitWidth(25);
         stadImageView.setFitHeight(25);
@@ -336,7 +339,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image autosnelwegBegin = new Image("images/dashboard/autosnelweg" + leerling.getDashboardDom().getAutosnelweg()+ ".png");
+        Image autosnelwegBegin = new Image("images/dashboard/autosnelweg" + leerling.getDashboardDom().getAutosnelweg() + ".png");
         ImageView autosnelwegImageView = new ImageView(autosnelwegBegin);
         autosnelwegImageView.setFitWidth(25);
         autosnelwegImageView.setFitHeight(25);
@@ -361,7 +364,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesRechts = new HBox();
         icoontjesRechts.setId("icoontjesRechts");
 
-        Image tankenBegin = new Image("images/dashboard/tanken" + leerling.getDashboardDom().getTanken()+ ".png");
+        Image tankenBegin = new Image("images/dashboard/tanken" + leerling.getDashboardDom().getTanken() + ".png");
         ImageView tankenImageView = new ImageView(tankenBegin);
         tankenImageView.setFitWidth(25);
         tankenImageView.setFitHeight(25);
@@ -381,7 +384,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image gpsBegin = new Image("images/dashboard/gps" + leerling.getDashboardDom().getGps()+ ".png");
+        Image gpsBegin = new Image("images/dashboard/gps" + leerling.getDashboardDom().getGps() + ".png");
         ImageView gpsImageView = new ImageView(gpsBegin);
         gpsImageView.setFitWidth(25);
         gpsImageView.setFitHeight(25);
@@ -401,7 +404,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image noodstopBegin = new Image("images/dashboard/noodstop" + leerling.getDashboardDom().getStop()+ ".png");
+        Image noodstopBegin = new Image("images/dashboard/noodstop" + leerling.getDashboardDom().getStop() + ".png");
         ImageView stopImageView = new ImageView(noodstopBegin);
         stopImageView.setFitWidth(25);
         stopImageView.setFitHeight(25);
@@ -418,7 +421,7 @@ public class Dashboard extends GridPane {
             } else if (leerling.getDashboardDom().getStop() == GezienNietGezien.GEZIEN) {
                 leerling.getDashboardDom().setStop(GezienNietGezien.NIETGEZIEN);
                 stopImageView.setImage(noodstopWit);
-                }
+            }
         });
 
         icoontjesRechts.getChildren().addAll(tankenBtn, gpsBtn, stopBtn);
@@ -504,14 +507,61 @@ public class Dashboard extends GridPane {
 
         //OpmerkingVak
         VBox opmerkingenBox = new VBox();
-        Label opmerkingen = new Label("OPMERKINGEN:");
-        opmerkingen.setId("OpmerkingLabel");
-        TextField opmerkingField = new TextField();
-        opmerkingField.setId("OpmerkingVeld");
-        opmerkingField.setEditable(false);
+        opmerkingenBox.setAlignment(Pos.TOP_CENTER);
+        Label opmerkingenLbl = new Label("OPMERKINGEN:");
+        opmerkingenLbl.setId("OpmerkingLabel");
 
-        opmerkingenBox.getChildren().addAll(opmerkingen, opmerkingField);
+        Label opmerkingenOnderwerp = new Label("Onderwerp");
+        opmerkingenOnderwerp.setId("recenteOpmerkingenONDLabel");
+        TextArea opmerkingen = new TextArea("Hier komen de recente opmerkingen");
+        opmerkingen.setId("recenteOpmerkingenLabel");
+        opmerkingen.setEditable(false);
+        opmerkingen.setMinHeight(100);
+        opmerkingen.setWrapText(true);
 
+        HBox pijlen = new HBox();
+        pijlen.setSpacing(20);
+        pijlen.setAlignment(Pos.CENTER);
+
+        ImageView pijlLinksView = new ImageView("images/dashboard/dashboardPijlLinks.png");
+        pijlLinksView.maxHeight(50);
+        pijlLinksView.maxWidth(50);
+        Button pijlLinks = new Button("", pijlLinksView);
+        pijlLinks.setId("pijl");
+
+        ImageView pijlRechtsView = new ImageView("images/dashboard/dashboardPijlRechts.png");
+        pijlRechtsView.maxHeight(50);
+        pijlRechtsView.maxWidth(50);
+        Button pijlRechts = new Button("", pijlRechtsView);
+        pijlRechts.setId("pijl");
+
+        pijlen.getChildren().addAll(pijlLinks, pijlRechts);
+
+        opmerkingenBox.getChildren().addAll(opmerkingenLbl, opmerkingenOnderwerp, opmerkingen, pijlen);
+
+        pijlLinks.setOnAction(e -> {
+            try {
+                opmerkingenOnderwerp.setText(leerling.maakIteratorRecenteOpmerkingen().previous().getNaam());
+                opmerkingen.setText(leerling.maakIteratorRecenteOpmerkingen().previous().getOpmerking());
+
+            } catch (NoSuchElementException NSEE) {
+                opmerkingenOnderwerp.setText("Geen opmerking");
+                opmerkingen.setText("Geen vorige opmerking meer.");
+            }
+        });
+
+        pijlRechts.setOnAction(e -> {
+            try {
+                opmerkingenOnderwerp.setText(leerling.maakIteratorRecenteOpmerkingen().next().getNaam());
+                opmerkingen.setText(leerling.maakIteratorRecenteOpmerkingen().next().getOpmerking());
+
+            } catch (NoSuchElementException NSEE) {
+                opmerkingenOnderwerp.setText("Geen opmerking");
+                opmerkingen.setText("Geen volgende opmerking meer.");
+            }
+        });
+
+        //Grafiek
         grafiekOuter.getChildren().addAll(minusBtn, grafiekInner, plusBtn);
 
         voortgang.setId("voortgangLbl");
@@ -533,10 +583,10 @@ public class Dashboard extends GridPane {
         subCol0.setHalignment(HPos.CENTER);
 
         RowConstraints subRow0 = new RowConstraints();
-        subRow0.setPercentHeight(70);
+        subRow0.setPercentHeight(60);
         subRow0.setValignment(VPos.CENTER);
         RowConstraints subRow1 = new RowConstraints();
-        subRow1.setPercentHeight(30);
+        subRow1.setPercentHeight(40);
         subRow1.setValignment(VPos.CENTER);
 
         dashboardGrid.getColumnConstraints().add(subCol0);
@@ -561,10 +611,10 @@ public class Dashboard extends GridPane {
         getRowConstraints().add(hoofdRow0);
 
         add(dashboardGrid, 0, 0);
-        add(menuStandaard, 1, 0);
+        add(right, 1, 0);
 
-        setGridLinesVisible(true);
-        dashboardGrid.setGridLinesVisible(true);
+        setGridLinesVisible(false);
+        dashboardGrid.setGridLinesVisible(false);
 
     }
 
@@ -593,7 +643,7 @@ public class Dashboard extends GridPane {
     public Leerling getLeerling() {
         return leerling;
     }
-    
+
     public void setScene(Scene scene) {
         this.scene = scene;
     }
