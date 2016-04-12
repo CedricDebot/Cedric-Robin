@@ -841,7 +841,7 @@ public class Rijtechniek extends HBox {
 
         right.getChildren().add(menuStandaard);
 
-        VBox menuBalk = menu.buildMenu(dashboard);
+        VBox menuBalk = menu.buildMenu(dashboard, 2);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);

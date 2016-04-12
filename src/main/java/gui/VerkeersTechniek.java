@@ -787,7 +787,7 @@ public class VerkeersTechniek extends HBox {
 
         right.getChildren().add(menuStandaard);
 
-        VBox menuBalk = menu.buildMenu(dashboard);
+        VBox menuBalk = menu.buildMenu(dashboard, 4);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);

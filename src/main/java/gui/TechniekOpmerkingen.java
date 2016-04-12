@@ -181,7 +181,7 @@ public class TechniekOpmerkingen extends GridPane {
         right.getChildren().add(menuStandaard);
 
         //Menu
-        VBox menuBalk = menu.buildMenu(dashboard);
+        VBox menuBalk = menu.buildMenu(dashboard, 1);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);

@@ -114,9 +114,9 @@ public class IcoonStuurOpm extends GridPane{
          ObservableList<String> standaarOpmerkingen = 
                  FXCollections.observableArrayList();
          
-         standaardOpmerkingenList.stream().forEach((Opmerking) -> {
-             standaarOpmerkingen.add(Opmerking.getNaam());
-        });
+         for (String standaardOpmerking : standaarOpmerkingen) {
+            standaarOpmerkingen.add(standaardOpmerking);
+        }
          
          opmerkingenList.setItems(standaarOpmerkingen);
          
@@ -167,7 +167,7 @@ public class IcoonStuurOpm extends GridPane{
         
         
         //Menu
-        VBox menuBalk = menu.buildMenu(dashboard);
+        VBox menuBalk = menu.buildMenu(dashboard, 1);
         
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
