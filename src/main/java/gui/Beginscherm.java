@@ -81,7 +81,7 @@ public class Beginscherm extends HBox {
                     protected void updateItem(Leerling l, boolean bln) {
                         super.updateItem(l, bln);
                         if (l != null) {
-                            setText(l.getVoorNaam());
+                            setText(l.getVoorNaam() + " " + l.getFamillieNaam());
                         }
                     }
                 };
@@ -281,7 +281,7 @@ ok.setOnAction(e -> {
 
     private void VulLeerlingen() {
         Image CedricFoto = new Image("images/testLeerlingen/1.png");
-        Leerling Cedric = new Leerling(null, null, "Cédric", null, CedricFoto);
+        Leerling Cedric = new Leerling(null, "Debot", "Cédric", null, CedricFoto);
         leerlingen.add(Cedric);
 
         Image RobinFoto = new Image("images/testLeerlingen/4.png");

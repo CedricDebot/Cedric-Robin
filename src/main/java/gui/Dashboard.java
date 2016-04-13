@@ -504,6 +504,8 @@ public class Dashboard extends GridPane {
 
         //OpmerkingVak
         VBox opmerkingenBox = new VBox();
+        opmerkingenBox.setId("opmerkingenBox");
+        
         opmerkingenBox.setAlignment(Pos.TOP_CENTER);
         Label opmerkingenLbl = new Label("OPMERKINGEN:");
         opmerkingenLbl.setId("OpmerkingLabel");
