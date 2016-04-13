@@ -490,3 +490,16 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
+#uitroeptekenKnop{
+    -fx-background-color: none;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+    -fx-border-color: none;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-alignment: CENTER;
+    -fx-max-height: 100;
+    -fx-max-width: 100;
+    -fx-min-height: 100;
+    -fx-min-widht: 100;
+}

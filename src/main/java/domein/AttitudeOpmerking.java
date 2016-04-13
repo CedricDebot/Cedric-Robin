@@ -13,6 +13,7 @@ public class AttitudeOpmerking {
     
     private String naam;
     private String opmerking;
+    private boolean uitroeptekenActive = false;
 
     public AttitudeOpmerking(String naam, String opmerking) {
         this.naam = naam;
@@ -34,6 +35,12 @@ public class AttitudeOpmerking {
     public String getOpmerking() {
         return opmerking;
     }
-    
-    
+
+    public boolean isUitroeptekenActive() {
+        return uitroeptekenActive;
+    }
+
+    public void setUitroeptekenActive(boolean uitroeptekenActive) {
+        this.uitroeptekenActive = uitroeptekenActive;
+    }
 }

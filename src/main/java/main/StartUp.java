@@ -24,7 +24,7 @@ public class StartUp extends Application
         stage.setTitle("App rijschool");
         scene.getStylesheets().add("css/Beginscherm.css");
         stage.show();
-        stage.setFullScreen(false); 
+        stage.setFullScreen(true); 
     }
     
     public static void main(String[] args)

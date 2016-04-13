@@ -541,8 +541,9 @@ public class Dashboard extends GridPane {
 
         pijlLinks.setOnAction(e -> {
             try {
-                opmerkingenOnderwerp.setText(leerling.maakIteratorRecenteOpmerkingen().previous().getNaam());
-                opmerkingen.setText(leerling.maakIteratorRecenteOpmerkingen().previous().getOpmerking());
+                ListIterator<AttitudeOpmerking> it = leerling.maakIteratorRecenteOpmerkingen();
+                opmerkingenOnderwerp.setText(it.previous().getNaam());
+                opmerkingen.setText(it.previous().getOpmerking());
 
             } catch (NoSuchElementException NSEE) {
                 opmerkingenOnderwerp.setText("Geen opmerking");
@@ -552,9 +553,9 @@ public class Dashboard extends GridPane {
 
         pijlRechts.setOnAction(e -> {
             try {
-                opmerkingenOnderwerp.setText(leerling.maakIteratorRecenteOpmerkingen().next().getNaam());
-                opmerkingen.setText(leerling.maakIteratorRecenteOpmerkingen().next().getOpmerking());
-
+                ListIterator<AttitudeOpmerking> it = leerling.maakIteratorRecenteOpmerkingen();
+                opmerkingenOnderwerp.setText(it.next().getNaam());
+                opmerkingen.setText(it.next().getOpmerking());
             } catch (NoSuchElementException NSEE) {
                 opmerkingenOnderwerp.setText("Geen opmerking");
                 opmerkingen.setText("Geen volgende opmerking meer.");
