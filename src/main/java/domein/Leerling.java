@@ -6,7 +6,9 @@
 package domein;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import javafx.scene.image.Image;
 
 public class Leerling {
@@ -29,6 +31,8 @@ public class Leerling {
     //Opmerkingen dashboard
     private ArrayList<AttitudeOpmerking> recenteOpmerkingen;
 
+    private int huidigeOpmerking = 0;
+
     public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email, Image foto) {
         this.famillieNaam = famillieNaam;
         this.voorNaam = voorNaam;
@@ -39,10 +43,10 @@ public class Leerling {
         rijtechniekDom = new RijtechniekDom();
         verkeerstechniekDom = new VerkeerstechniekDom();
         maakStandaardOpmerkingenList();
-        maakOpmerkingSchermen();
+        maakOpmerkingSchermLists();
         evaGraf = new EvaluatieGrafiek();
-        recenteOpmerkingen = new ArrayList<>();
-
+        recenteOpmerkingen = new ArrayList();
+        recenteOpmerkingen.add(new AttitudeOpmerking("Opmerking", "Hier komen de speciaal aangeduide opmerkingen"));
     }
 
     public String getInschrijvingsNr() {
@@ -120,11 +124,43 @@ public class Leerling {
     public ArrayList<AttitudeOpmerking> getRecenteOpmerkingen() {
         return recenteOpmerkingen;
     }
-    
-    public ListIterator<AttitudeOpmerking> maakIteratorRecenteOpmerkingen(){
-        ListIterator<AttitudeOpmerking> it = recenteOpmerkingen.listIterator();
-        return it;
+
+    public AttitudeOpmerking volgendeRecenteOpmerking() {
+        if (huidigeOpmerking == recenteOpmerkingen.size()) {
+            return recenteOpmerkingen.get(huidigeOpmerking);
+        } else {
+            huidigeOpmerking++;
+            return recenteOpmerkingen.get(huidigeOpmerking);
+        }
     }
+
+    public AttitudeOpmerking vorigeRecenteOpmerking() {
+        if (huidigeOpmerking == 0) {
+            return recenteOpmerkingen.get(0);
+        } else {
+            huidigeOpmerking--;
+            return recenteOpmerkingen.get(huidigeOpmerking);
+        }
+    }
+    
+    public void verwijderRecenteOpmerking(AttitudeOpmerking attitudeOpmerking){
+        for (int i = 0; i < recenteOpmerkingen.size(); i++) {
+            if(recenteOpmerkingen.get(i) == attitudeOpmerking){
+                if(i >= huidigeOpmerking){
+                    huidigeOpmerking--;
+                    recenteOpmerkingen.remove(i);
+                }else{
+                    recenteOpmerkingen.remove(i);
+                }
+            }
+        }
+    }
+
+    public int getHuidigeOpmerking() {
+        return huidigeOpmerking;
+    }
+    
+    
 
     private void maakStandaardOpmerkingenList() {
         standaardOpmerkingenList = new ArrayList<>();
@@ -177,7 +213,7 @@ public class Leerling {
     private ArrayList<AttitudeOpmerking> remtechniekOpmerkingen;
     private ArrayList<AttitudeOpmerking> embrayageOpmerkingen;
 
-    private void maakOpmerkingSchermen() {
+    private void maakOpmerkingSchermLists() {
 
         //Verkeerstechniek
         //Voorrang
@@ -428,7 +464,5 @@ public class Leerling {
     public ArrayList<AttitudeOpmerking> getEmbrayageOpmerkingen() {
         return embrayageOpmerkingen;
     }
-    
-    
 
 }

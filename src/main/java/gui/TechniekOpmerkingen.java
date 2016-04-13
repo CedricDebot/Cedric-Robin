@@ -169,7 +169,7 @@ public class TechniekOpmerkingen extends GridPane {
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
             if (geselecteerdeOpmerking.isUitroeptekenActive()) {
                 geselecteerdeOpmerking.setUitroeptekenActive(false);
-                dashboard.getLeerling().getRecenteOpmerkingen().remove(geselecteerdeOpmerking);
+                dashboard.getLeerling().verwijderRecenteOpmerking(geselecteerdeOpmerking);
                 Image uitroeptekenImage = new Image("images/uitroepTeken.png");
                 uitroepteken.setImage(uitroeptekenImage);
             } else {
