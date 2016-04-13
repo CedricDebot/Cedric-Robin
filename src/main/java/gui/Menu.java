@@ -20,6 +20,11 @@ import javafx.scene.layout.VBox;
  */
 public class Menu {
 
+    private Rijtechniek rijtechniek;
+    private VerkeersTechniek verkeerstechniek;
+    private Attitude attitude;
+    private Dashboard dashboard;
+
     private Scene scene;
 
     private Button menuTerug;
@@ -54,7 +59,7 @@ public class Menu {
         return moment3;
     }
 
-    public VBox buildMenu(Dashboard dashboard) {
+    public VBox buildMenu(Dashboard dashboard, int klasse) {
 
         VBox menuBalk = new VBox();
         menuBalk.setId("menuBox");
@@ -84,8 +89,7 @@ public class Menu {
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
         });
-        
-        
+
         Image verkeersImageM = new Image("images/menuVerkeerstechniek.PNG");
         ImageView verkeersImageViewM = new ImageView(verkeersImageM);
         verkeersImageViewM.setFitWidth(100);
@@ -105,16 +109,28 @@ public class Menu {
         menuTerugImageViewM.setFitHeight(50);
         menuTerug = new Button("", menuTerugImageViewM);
         menuTerug.setId("menuButton");
+        
+        if (klasse == 1) {
+            menuBalk.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
+        }
+        if (klasse == 2 ) {
+            menuBalk.getChildren().addAll(attitude, verkeersTechniek, menuTerug);
+        }
 
-        menuBalk.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
-          
+        if (klasse == 3) {
+            menuBalk.getChildren().addAll(rijTechniek, verkeersTechniek, menuTerug);
+        }
+
+        if (klasse == 4) {
+            menuBalk.getChildren().addAll(attitude, rijTechniek, menuTerug);
+        }
         return menuBalk;
     }
 
     public VBox buildMenuDashboard(Leerling leerling) {
         VBox menuDashboard = new VBox();
         menuDashboard.setId("menuTest");
-        
+
         //MenuKnoppenDashboard
         VBox menuKnoppenDashboard = new VBox();
         menuKnoppenDashboard.setId("menuKnoppen");

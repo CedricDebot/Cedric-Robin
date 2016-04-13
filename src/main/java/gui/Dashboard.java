@@ -75,7 +75,7 @@ public class Dashboard extends GridPane {
         right.getChildren().add(menuStandaard);
 
         //Menu
-        VBox menuBalk = menu.buildMenu(this);
+        VBox menuBalk = menu.buildMenu(this, 1);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
@@ -166,7 +166,7 @@ public class Dashboard extends GridPane {
 
         dashboard.getRowConstraints().addAll(row1, row2);
 
-        Image rijtechniek = new Image("images/rijtechniekWit.png");
+        Image rijtechniek = new Image("images/rijtechniekIcoon/stuurWit.png");
         ImageView rijtechniekImageView = new ImageView(rijtechniek);
         rijtechniekImageView.setFitWidth(100);
         rijtechniekImageView.setFitHeight(100);
