@@ -507,10 +507,10 @@ public class Dashboard extends GridPane {
 
         //OpmerkingVak
         VBox opmerkingenBox = new VBox();
+        opmerkingenBox.setId("opmerkingenBox");
+        
         opmerkingenBox.setAlignment(Pos.TOP_CENTER);
-        Label opmerkingenLbl = new Label("OPMERKINGEN:");
-        opmerkingenLbl.setId("OpmerkingLabel");
-
+        
         Label opmerkingenOnderwerp = new Label("Onderwerp");
         opmerkingenOnderwerp.setId("recenteOpmerkingenONDLabel");
         TextArea opmerkingen = new TextArea("Hier komen de recente opmerkingen");
@@ -537,7 +537,7 @@ public class Dashboard extends GridPane {
 
         pijlen.getChildren().addAll(pijlLinks, pijlRechts);
 
-        opmerkingenBox.getChildren().addAll(opmerkingenLbl, opmerkingenOnderwerp, opmerkingen, pijlen);
+        opmerkingenBox.getChildren().addAll(opmerkingenOnderwerp, opmerkingen, pijlen);
 
         pijlLinks.setOnAction(e -> {
             try {
@@ -577,7 +577,7 @@ public class Dashboard extends GridPane {
 //        getChildren().add(rootDashboard);
         //HoofdGrid
         GridPane dashboardGrid = new GridPane();
-
+  
         ColumnConstraints subCol0 = new ColumnConstraints();
         subCol0.setPercentWidth(100);
         subCol0.setHalignment(HPos.CENTER);

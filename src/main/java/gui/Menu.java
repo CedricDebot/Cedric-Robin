@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.Leerling;
@@ -14,10 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-/**
- *
- * @author Robin
- */
 public class Menu {
 
     private Rijtechniek rijtechniek;
@@ -129,7 +120,7 @@ public class Menu {
 
     public VBox buildMenuDashboard(Leerling leerling) {
         VBox menuDashboard = new VBox();
-        menuDashboard.setId("menuTest");
+        menuDashboard.setId("menuDashboard");
 
         //MenuKnoppenDashboard
         VBox menuKnoppenDashboard = new VBox();
@@ -218,7 +209,7 @@ public class Menu {
         leerlingImageView.setFitWidth(130);
         leerlingImageView.setFitHeight(150);
 
-        Label naamLeerling = new Label(leerling.getVoorNaam());
+        Label naamLeerling = new Label(leerling.getVoorNaam() + " " + leerling.getFamillieNaam());
         naamLeerling.setId("lblNaamLeerling");
 
         //Inner border
