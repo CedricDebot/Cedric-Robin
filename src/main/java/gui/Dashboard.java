@@ -507,8 +507,6 @@ public class Dashboard extends GridPane {
         opmerkingenBox.setId("opmerkingenBox");
         
         opmerkingenBox.setAlignment(Pos.TOP_CENTER);
-        Label opmerkingenLbl = new Label("OPMERKINGEN:");
-        opmerkingenLbl.setId("OpmerkingLabel");
         
         Label opmerkingenOnderwerp = new Label(leerling.getRecenteOpmerkingen().get(leerling.getHuidigeOpmerking()).getNaam());
         opmerkingenOnderwerp.setId("recenteOpmerkingenONDLabel");
@@ -536,7 +534,7 @@ public class Dashboard extends GridPane {
         
         pijlen.getChildren().addAll(pijlLinks, pijlRechts);
         
-        opmerkingenBox.getChildren().addAll(opmerkingenLbl, opmerkingenOnderwerp, opmerkingen, pijlen);
+        opmerkingenBox.getChildren().addAll(opmerkingenOnderwerp, opmerkingen, pijlen);
         
         pijlLinks.setOnAction(e -> {
             try {

@@ -36,7 +36,7 @@ public class TechniekOpmerkingen extends GridPane {
     public TechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, Dashboard dashboard, String icoonPad, SchermType schermtype) {
 
         //HoofdGrid
-        gridLinesVisibleProperty().set(true);
+        gridLinesVisibleProperty().set(false);
         ColumnConstraints col0 = new ColumnConstraints();
         col0.setPercentWidth(40);
 
@@ -57,7 +57,7 @@ public class TechniekOpmerkingen extends GridPane {
 
         //OpmerkingPane
         GridPane OpmerkingenPane = new GridPane();
-        OpmerkingenPane.gridLinesVisibleProperty().set(true);
+        OpmerkingenPane.gridLinesVisibleProperty().set(false);
         ColumnConstraints col0OpmerkingPane = new ColumnConstraints();
         col0OpmerkingPane.setPercentWidth(100);
         col0OpmerkingPane.setHalignment(HPos.CENTER);
