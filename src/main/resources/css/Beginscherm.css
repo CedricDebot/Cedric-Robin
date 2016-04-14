@@ -1,3 +1,4 @@
+
 .root{
     -fx-background-color: #EAEAEA;
     -fx-alignment: CENTER;
@@ -82,6 +83,7 @@
 
 .list-cell:selected{ 
     -fx-background-color: #22567B;
+    -fx-text-fill: white;
 }
 
 #buttonsRight{
@@ -150,7 +152,7 @@
 }
 
 #dashboardRight{
-    -fx-spacing: 120;
+    -fx-spacing: 100;
     -fx-padding: 40 10 10 10;
     -fx-alignment: CENTER;
 }
@@ -239,11 +241,11 @@
 }
 
 #dashboardGroup{
-    -fx-padding: 150 50 150 50;
+    -fx-padding: 200 50 150 0;
 }
 
 #hBoxOnder {
-   -fx-alignment: CENTER;
+   -fx-alignment: CENTER;   
 }
 
 #opmerkingenBox {
@@ -286,7 +288,7 @@
 }
 
 #hBoxOnder{
-    -fx-spacing: 100;
+    -fx-spacing: -15;
 }
 
 #infoLeerling{

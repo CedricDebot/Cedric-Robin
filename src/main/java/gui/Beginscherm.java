@@ -285,15 +285,15 @@ ok.setOnAction(e -> {
         leerlingen.add(Cedric);
 
         Image RobinFoto = new Image("images/testLeerlingen/4.png");
-        Leerling Robin = new Leerling(null, null, "Robin", null, RobinFoto);
+        Leerling Robin = new Leerling(null, "Lanneer", "Robin", null, RobinFoto);
         leerlingen.add(Robin);
 
         Image DriesFoto = new Image("images/testLeerlingen/2.png");
-        Leerling Dries = new Leerling(null, null, "Dries", null, DriesFoto);
+        Leerling Dries = new Leerling(null, "Meert", "Dries", null, DriesFoto);
         leerlingen.add(Dries);
 
         Image MiltonFoto = new Image("images/testLeerlingen/3.png");
-        Leerling Milton = new Leerling(null, null, "Milton", null, MiltonFoto);
+        Leerling Milton = new Leerling(null, "Hooft", "Milton", null, MiltonFoto);
         leerlingen.add(Milton);
     }
 
