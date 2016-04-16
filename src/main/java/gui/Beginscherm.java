@@ -151,7 +151,13 @@ public class Beginscherm extends HBox {
         //schermNieuwLeerling
         VBox rightNieuw = new VBox();
         rightNieuw.setId("right");
-        rightNieuw.getChildren().addAll(titel, nieuweLeerling, knoppenNieuw);
+        
+        VBox nieuweLeerlingWithLabel = new VBox();
+        nieuweLeerlingWithLabel.setId("listViewWithLabel");
+        
+        nieuweLeerlingWithLabel.getChildren().addAll(titel, nieuweLeerling);
+        
+        rightNieuw.getChildren().addAll(nieuweLeerlingWithLabel, knoppenNieuw);
 
         //LinkerScherm
         VBox left = new VBox();
@@ -172,10 +178,13 @@ public class Beginscherm extends HBox {
         VBox right = new VBox();
         right.setId("right");
 
+        VBox listViewWithLabel = new VBox();
+        listViewWithLabel.setId("listViewWithLabel");
         Label listViewTitle = new Label("Leerlingen");
         listViewTitle.setId("listViewTitle");
 
-        right.getChildren().addAll(listViewTitle, lijstLeerlingen, buttonsRight, allesVerwijderen);
+        listViewWithLabel.getChildren().addAll(listViewTitle, lijstLeerlingen);
+        right.getChildren().addAll(listViewWithLabel, buttonsRight, allesVerwijderen);
 
         getChildren().addAll(left, right);
 
