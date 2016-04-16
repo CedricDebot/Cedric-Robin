@@ -1,15 +1,13 @@
 package gui;
 
+import domein.DomeinController;
 import domein.Leerling;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +20,7 @@ public class Beginscherm extends HBox {
     private ListView lijstLeerlingen = new ListView();
 
     private Scene scene;
+    private DomeinController controller;
 
     public Beginscherm() {
         //Labels
@@ -242,7 +241,9 @@ ok.setOnAction(e -> {
                 Leerling leerling = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
                 //haal leerling op uit db/backend
 
-                Dashboard dashboard = new Dashboard(this, leerling);
+                controller = new DomeinController(this, leerling);
+                Dashboard dashboard = new Dashboard(controller);
+                controller.setDashboard(dashboard);
                 dashboard.setScene(scene);
                 scene.setRoot(dashboard);
             }

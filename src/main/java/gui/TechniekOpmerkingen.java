@@ -1,7 +1,7 @@
 package gui;
 
 import domein.AttitudeOpmerking;
-import domein.Leerling;
+import domein.DomeinController;
 import domein.SchermType;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
@@ -29,12 +29,13 @@ import javafx.util.Duration;
 
 public class TechniekOpmerkingen extends GridPane {
 
+    private DomeinController controller;
     private Scene scene;
-    private Dashboard dashboard;
     ImageView uitroepteken;
 
-    public TechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, Dashboard dashboard, String icoonPad, SchermType schermtype) {
+    public TechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, DomeinController controller, String icoonPad, SchermType schermtype) {
 
+        this.controller = controller;
         //HoofdGrid
         gridLinesVisibleProperty().set(false);
         ColumnConstraints col0 = new ColumnConstraints();
@@ -91,11 +92,11 @@ public class TechniekOpmerkingen extends GridPane {
 
         terugBtn.setOnAction(e -> {
             if (schermtype == SchermType.VERKEERSTECHNIEK) {
-                VerkeersTechniek verkeersTechniek = new VerkeersTechniek(dashboard);
+                VerkeersTechniek verkeersTechniek = new VerkeersTechniek(controller);
                 verkeersTechniek.setScene(scene);
                 scene.setRoot(verkeersTechniek);
             } else {
-                Rijtechniek rijTechniek = new Rijtechniek(dashboard);
+                Rijtechniek rijTechniek = new Rijtechniek(controller);
                 rijTechniek.setScene(scene);
                 scene.setRoot(rijTechniek);
             }
@@ -169,12 +170,12 @@ public class TechniekOpmerkingen extends GridPane {
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
             if (geselecteerdeOpmerking.isUitroeptekenActive()) {
                 geselecteerdeOpmerking.setUitroeptekenActive(false);
-                dashboard.getLeerling().verwijderRecenteOpmerking(geselecteerdeOpmerking);
+                controller.getLeerling().verwijderRecenteOpmerking(geselecteerdeOpmerking);
                 Image uitroeptekenImage = new Image("images/uitroepTeken.png");
                 uitroepteken.setImage(uitroeptekenImage);
             } else {
                 geselecteerdeOpmerking.setUitroeptekenActive(true);
-                dashboard.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
+                controller.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
                 Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
                 uitroepteken.setImage(uitroeptekenImage);
             }
@@ -209,11 +210,11 @@ public class TechniekOpmerkingen extends GridPane {
         //RIGHT
         VBox right = new VBox();
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuStandaard(dashboard.getLeerling());
+        VBox menuStandaard = menu.buildMenuStandaard(controller.getLeerling());
         right.getChildren().add(menuStandaard);
 
         //Menu
-        VBox menuBalk = menu.buildMenu(dashboard, 1);
+        VBox menuBalk = menu.buildMenu(controller, 1);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);

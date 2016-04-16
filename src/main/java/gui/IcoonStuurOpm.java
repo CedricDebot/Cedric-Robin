@@ -1,6 +1,7 @@
 package gui;
 
 import domein.AttitudeOpmerking;
+import domein.DomeinController;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -25,7 +26,7 @@ import javafx.util.Duration;
 public class IcoonStuurOpm extends GridPane{
     private Scene scene;
     
-    public IcoonStuurOpm(Dashboard dashboard) {
+    public IcoonStuurOpm(DomeinController controller) {
         
         //HoofdGrid
          gridLinesVisibleProperty().set(false);
@@ -82,7 +83,7 @@ public class IcoonStuurOpm extends GridPane{
          OpmerkingenPane.add(terugBtn,0 , 0);
          
          terugBtn.setOnAction(e -> {
-            Rijtechniek rijtechniek = new Rijtechniek(dashboard);
+            Rijtechniek rijtechniek = new Rijtechniek(controller);
             rijtechniek.setScene(scene);
             scene.setRoot(rijtechniek);
         });
@@ -162,12 +163,12 @@ public class IcoonStuurOpm extends GridPane{
         //RIGHT
         VBox right = new VBox();
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuStandaard(dashboard.getLeerling());
+        VBox menuStandaard = menu.buildMenuStandaard(controller.getLeerling());
         right.getChildren().add(menuStandaard);
         
         
         //Menu
-        VBox menuBalk = menu.buildMenu(dashboard, 1);
+        VBox menuBalk = menu.buildMenu(controller , 1);
         
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);

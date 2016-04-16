@@ -1,6 +1,7 @@
 package gui;
 
 import domein.AttitudeOpmerking;
+import domein.DomeinController;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
 import domein.Leerling;
@@ -34,12 +35,10 @@ public class Dashboard extends GridPane {
     Rectangle[] grafiek;
     
     private Label voortgang;
-    private Leerling leerling;
     
-    public Dashboard(Beginscherm beginscherm, Leerling leerling) {
-        
-        this.leerling = leerling;
-        this.evaGraf = leerling.getEvaGraf();
+    public Dashboard(DomeinController controller) {
+
+        this.evaGraf = controller.getLeerling().getEvaGraf();
         
         this.voortgang = evaGraf.getVoortgangLabel();
         
@@ -67,12 +66,12 @@ public class Dashboard extends GridPane {
         //right.setId("dashboardRight");
 
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuDashboard(leerling);
+        VBox menuStandaard = menu.buildMenuDashboard(controller.getLeerling());
         menuStandaard.setId("dashboardRight");
         right.getChildren().add(menuStandaard);
 
         //Menu
-        VBox menuBalk = menu.buildMenu(this, 1);
+        VBox menuBalk = menu.buildMenu(controller, 1);
         
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
@@ -129,8 +128,8 @@ public class Dashboard extends GridPane {
         });
         
         menu.getDashboardTerug().setOnAction(e -> {
-            beginscherm.setScene(scene);
-            scene.setRoot(beginscherm);
+            controller.getBeginscherm().setScene(scene);
+            scene.setRoot(controller.getBeginscherm());
         });
 
         //LEFT
@@ -172,7 +171,7 @@ public class Dashboard extends GridPane {
         dashboard.add(rijtechniekBtn, 0, 0);
         
         rijtechniekBtn.setOnAction(e -> {
-            Rijtechniek rijtechniekScherm = new Rijtechniek(this);
+            Rijtechniek rijtechniekScherm = new Rijtechniek(controller);
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
         });
@@ -185,7 +184,7 @@ public class Dashboard extends GridPane {
         dashboard.add(attitudeBtn, 1, 0);
         
         attitudeBtn.setOnAction(e -> {
-            Attitude attitude = new Attitude(this);
+            Attitude attitude = new Attitude(controller);
             attitude.setScene(scene);
             scene.setRoot(attitude);
         });
@@ -199,7 +198,7 @@ public class Dashboard extends GridPane {
         dashboard.add(verkeerstechniekBtn, 2, 0);
         
         verkeerstechniekBtn.setOnAction(e -> {
-            VerkeersTechniek verkeersTechniek = new VerkeersTechniek(this);
+            VerkeersTechniek verkeersTechniek = new VerkeersTechniek(controller);
             verkeersTechniek.setScene(scene);
             scene.setRoot(verkeersTechniek);
         });
@@ -211,7 +210,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesLinks = new HBox();
         icoontjesLinks.setId("icoontjesLinks");
         
-        Image bandenSpanningBegin = new Image("images/dashboard/bandenspanning" + leerling.getDashboardDom().getBanden() + ".png");
+        Image bandenSpanningBegin = new Image("images/dashboard/bandenspanning" + controller.getLeerling().getDashboardDom().getBanden() + ".png");
         ImageView bandenSpanningImageView = new ImageView(bandenSpanningBegin);
         bandenSpanningImageView.setFitWidth(25);
         bandenSpanningImageView.setFitHeight(25);
@@ -222,16 +221,16 @@ public class Dashboard extends GridPane {
         Image bandenSpanningGroen = new Image("images/dashboard/bandenspanningGEZIEN.png");
         
         bandenSpanningBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getBanden() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setBanden(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getBanden() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setBanden(GezienNietGezien.GEZIEN);
                 bandenSpanningImageView.setImage(bandenSpanningGroen);
-            } else if (leerling.getDashboardDom().getBanden() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setBanden(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getBanden() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setBanden(GezienNietGezien.NIETGEZIEN);
                 bandenSpanningImageView.setImage(bandenSpanningWit);
             }
         });
         
-        Image vloeistoffenBegin = new Image("images/dashboard/olie" + leerling.getDashboardDom().getVloeistoffen() + ".png");
+        Image vloeistoffenBegin = new Image("images/dashboard/olie" + controller.getLeerling().getDashboardDom().getVloeistoffen() + ".png");
         ImageView vloeistoffenImageView = new ImageView(vloeistoffenBegin);
         vloeistoffenImageView.setFitWidth(25);
         vloeistoffenImageView.setFitHeight(25);
@@ -242,16 +241,16 @@ public class Dashboard extends GridPane {
         Image vloeistoffenGroen = new Image("images/dashboard/olieGEZIEN.png");
         
         vloeistoffenBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getVloeistoffen() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setVloeistoffen(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getVloeistoffen() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setVloeistoffen(GezienNietGezien.GEZIEN);
                 vloeistoffenImageView.setImage(vloeistoffenGroen);
-            } else if (leerling.getDashboardDom().getVloeistoffen() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setVloeistoffen(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getVloeistoffen() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setVloeistoffen(GezienNietGezien.NIETGEZIEN);
                 vloeistoffenImageView.setImage(vloeistoffenWit);
             }
         });
         
-        Image schakelaarsBegin = new Image("images/dashboard/schakelaars" + leerling.getDashboardDom().getSchakelaars() + ".png");
+        Image schakelaarsBegin = new Image("images/dashboard/schakelaars" + controller.getLeerling().getDashboardDom().getSchakelaars() + ".png");
         ImageView schakelaarsImageView = new ImageView(schakelaarsBegin);
         schakelaarsImageView.setFitWidth(25);
         schakelaarsImageView.setFitHeight(25);
@@ -262,11 +261,11 @@ public class Dashboard extends GridPane {
         Image schakelaarsGroen = new Image("images/dashboard/schakelaarsGEZIEN.png");
         
         schakelaarsBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getSchakelaars() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setSchakelaars(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getSchakelaars() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setSchakelaars(GezienNietGezien.GEZIEN);
                 schakelaarsImageView.setImage(schakelaarsGroen);
-            } else if (leerling.getDashboardDom().getSchakelaars() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setSchakelaars(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getSchakelaars() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setSchakelaars(GezienNietGezien.NIETGEZIEN);
                 schakelaarsImageView.setImage(schakelaarsWit);
             }
         });
@@ -276,7 +275,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesMidden = new HBox();
         icoontjesMidden.setId("icoontjesMidden");
         
-        Image rotondeBegin = new Image("images/dashboard/rotonde" + leerling.getDashboardDom().getRotonde() + ".png");
+        Image rotondeBegin = new Image("images/dashboard/rotonde" + controller.getLeerling().getDashboardDom().getRotonde() + ".png");
         ImageView rotondeImageView = new ImageView(rotondeBegin);
         rotondeImageView.setFitWidth(25);
         rotondeImageView.setFitHeight(25);
@@ -287,16 +286,16 @@ public class Dashboard extends GridPane {
         Image rotondeGroen = new Image("images/dashboard/rotondeGEZIEN.png");
         
         rotondeBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getRotonde() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setRotonde(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getRotonde() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setRotonde(GezienNietGezien.GEZIEN);
                 rotondeImageView.setImage(rotondeGroen);
-            } else if (leerling.getDashboardDom().getRotonde() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setRotonde(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getRotonde() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setRotonde(GezienNietGezien.NIETGEZIEN);
                 rotondeImageView.setImage(rotondeWit);
             }
         });
         
-        Image rijbaanBegin = new Image("images/dashboard/rijbaan" + leerling.getDashboardDom().getRijbaan() + ".png");
+        Image rijbaanBegin = new Image("images/dashboard/rijbaan" + controller.getLeerling().getDashboardDom().getRijbaan() + ".png");
         ImageView rijbaanImageView = new ImageView(rijbaanBegin);
         rijbaanImageView.setFitWidth(25);
         rijbaanImageView.setFitHeight(25);
@@ -307,16 +306,16 @@ public class Dashboard extends GridPane {
         Image rijbaanGroen = new Image("images/dashboard/rijbaanGEZIEN.png");
         
         rijbaanBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getRijbaan() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setRijbaan(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getRijbaan() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setRijbaan(GezienNietGezien.GEZIEN);
                 rijbaanImageView.setImage(rijbaanGroen);
-            } else if (leerling.getDashboardDom().getRijbaan() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setRijbaan(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getRijbaan() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setRijbaan(GezienNietGezien.NIETGEZIEN);
                 rijbaanImageView.setImage(rijbaanWit);
             }
         });
         
-        Image stadBegin = new Image("images/dashboard/stad" + leerling.getDashboardDom().getStad() + ".png");
+        Image stadBegin = new Image("images/dashboard/stad" + controller.getLeerling().getDashboardDom().getStad() + ".png");
         ImageView stadImageView = new ImageView(stadBegin);
         stadImageView.setFitWidth(25);
         stadImageView.setFitHeight(25);
@@ -327,16 +326,16 @@ public class Dashboard extends GridPane {
         Image stadGroen = new Image("images/dashboard/stadGEZIEN.png");
         
         stadBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getStad() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setStad(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getStad() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setStad(GezienNietGezien.GEZIEN);
                 stadImageView.setImage(stadGroen);
-            } else if (leerling.getDashboardDom().getStad() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setStad(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getStad() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setStad(GezienNietGezien.NIETGEZIEN);
                 stadImageView.setImage(stadWit);
             }
         });
         
-        Image autosnelwegBegin = new Image("images/dashboard/autosnelweg" + leerling.getDashboardDom().getAutosnelweg() + ".png");
+        Image autosnelwegBegin = new Image("images/dashboard/autosnelweg" + controller.getLeerling().getDashboardDom().getAutosnelweg() + ".png");
         ImageView autosnelwegImageView = new ImageView(autosnelwegBegin);
         autosnelwegImageView.setFitWidth(25);
         autosnelwegImageView.setFitHeight(25);
@@ -347,11 +346,11 @@ public class Dashboard extends GridPane {
         Image autosnelwegGroen = new Image("images/dashboard/autosnelwegGEZIEN.png");
         
         autosnelwegBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getAutosnelweg() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setAutosnelweg(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getAutosnelweg() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setAutosnelweg(GezienNietGezien.GEZIEN);
                 autosnelwegImageView.setImage(autosnelwegGroen);
-            } else if (leerling.getDashboardDom().getAutosnelweg() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setAutosnelweg(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getAutosnelweg() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setAutosnelweg(GezienNietGezien.NIETGEZIEN);
                 autosnelwegImageView.setImage(autosnelwegWit);
             }
         });
@@ -361,7 +360,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesRechts = new HBox();
         icoontjesRechts.setId("icoontjesRechts");
         
-        Image tankenBegin = new Image("images/dashboard/tanken" + leerling.getDashboardDom().getTanken() + ".png");
+        Image tankenBegin = new Image("images/dashboard/tanken" + controller.getLeerling().getDashboardDom().getTanken() + ".png");
         ImageView tankenImageView = new ImageView(tankenBegin);
         tankenImageView.setFitWidth(25);
         tankenImageView.setFitHeight(25);
@@ -372,16 +371,16 @@ public class Dashboard extends GridPane {
         Image tankenGroen = new Image("images/dashboard/tankenGEZIEN.png");
         
         tankenBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getTanken() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setTanken(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getTanken() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setTanken(GezienNietGezien.GEZIEN);
                 tankenImageView.setImage(tankenGroen);
-            } else if (leerling.getDashboardDom().getTanken() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setTanken(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getTanken() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setTanken(GezienNietGezien.NIETGEZIEN);
                 tankenImageView.setImage(tankenWit);
             }
         });
         
-        Image gpsBegin = new Image("images/dashboard/gps" + leerling.getDashboardDom().getGps() + ".png");
+        Image gpsBegin = new Image("images/dashboard/gps" + controller.getLeerling().getDashboardDom().getGps() + ".png");
         ImageView gpsImageView = new ImageView(gpsBegin);
         gpsImageView.setFitWidth(25);
         gpsImageView.setFitHeight(25);
@@ -392,16 +391,16 @@ public class Dashboard extends GridPane {
         Image gpsGroen = new Image("images/dashboard/gpsGEZIEN.png");
         
         gpsBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getGps() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setGps(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getGps() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setGps(GezienNietGezien.GEZIEN);
                 gpsImageView.setImage(gpsGroen);
-            } else if (leerling.getDashboardDom().getGps() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setGps(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getGps() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setGps(GezienNietGezien.NIETGEZIEN);
                 gpsImageView.setImage(gpsWit);
             }
         });
         
-        Image noodstopBegin = new Image("images/dashboard/noodstop" + leerling.getDashboardDom().getStop() + ".png");
+        Image noodstopBegin = new Image("images/dashboard/noodstop" + controller.getLeerling().getDashboardDom().getStop() + ".png");
         ImageView stopImageView = new ImageView(noodstopBegin);
         stopImageView.setFitWidth(25);
         stopImageView.setFitHeight(25);
@@ -412,11 +411,11 @@ public class Dashboard extends GridPane {
         Image noodstopGroen = new Image("images/dashboard/noodstopGEZIEN.png");
         
         stopBtn.setOnAction(e -> {
-            if (leerling.getDashboardDom().getStop() == GezienNietGezien.NIETGEZIEN) {
-                leerling.getDashboardDom().setStop(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getStop() == GezienNietGezien.NIETGEZIEN) {
+                controller.getLeerling().getDashboardDom().setStop(GezienNietGezien.GEZIEN);
                 stopImageView.setImage(noodstopGroen);
-            } else if (leerling.getDashboardDom().getStop() == GezienNietGezien.GEZIEN) {
-                leerling.getDashboardDom().setStop(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getStop() == GezienNietGezien.GEZIEN) {
+                controller.getLeerling().getDashboardDom().setStop(GezienNietGezien.NIETGEZIEN);
                 stopImageView.setImage(noodstopWit);
             }
         });
@@ -508,9 +507,9 @@ public class Dashboard extends GridPane {
         
         opmerkingenBox.setAlignment(Pos.TOP_CENTER);
         
-        Label opmerkingenOnderwerp = new Label(leerling.getRecenteOpmerkingen().get(leerling.getHuidigeOpmerking()).getNaam());
+        Label opmerkingenOnderwerp = new Label(controller.getLeerling().getRecenteOpmerkingen().get(controller.getLeerling().getHuidigeOpmerking()).getNaam());
         opmerkingenOnderwerp.setId("recenteOpmerkingenONDLabel");
-        TextArea opmerkingen = new TextArea(leerling.getRecenteOpmerkingen().get(leerling.getHuidigeOpmerking()).getOpmerking());
+        TextArea opmerkingen = new TextArea(controller.getLeerling().getRecenteOpmerkingen().get(controller.getLeerling().getHuidigeOpmerking()).getOpmerking());
         opmerkingen.setId("recenteOpmerkingenLabel");
         opmerkingen.setEditable(false);
         opmerkingen.setMinHeight(100);
@@ -538,7 +537,7 @@ public class Dashboard extends GridPane {
         
         pijlLinks.setOnAction(e -> {
             try {
-                AttitudeOpmerking huidigeOpmerking = leerling.vorigeRecenteOpmerking();
+                AttitudeOpmerking huidigeOpmerking = controller.getLeerling().vorigeRecenteOpmerking();
                 opmerkingenOnderwerp.setText(huidigeOpmerking.getNaam());
                 opmerkingen.setText(huidigeOpmerking.getOpmerking());
             } catch (IndexOutOfBoundsException IOBE) {
@@ -549,7 +548,7 @@ public class Dashboard extends GridPane {
         
         pijlRechts.setOnAction(e -> {
             try{
-                AttitudeOpmerking huidigeOpmerking = leerling.volgendeRecenteOpmerking();
+                AttitudeOpmerking huidigeOpmerking = controller.getLeerling().volgendeRecenteOpmerking();
             opmerkingenOnderwerp.setText(huidigeOpmerking.getNaam());
             opmerkingen.setText(huidigeOpmerking.getOpmerking());
             }catch(IndexOutOfBoundsException IOBE){
@@ -636,11 +635,6 @@ public class Dashboard extends GridPane {
             voortgang.setText(evaGraf.getVoortgang());
         }
     }
-    
-    public Leerling getLeerling() {
-        return leerling;
-    }
-    
     public void setScene(Scene scene) {
         this.scene = scene;
     }

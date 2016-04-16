@@ -1,5 +1,6 @@
 package gui;
 
+import domein.DomeinController;
 import domein.Leerling;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,11 +11,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Menu {
+    
+    private DomeinController controller;
 
     private Rijtechniek rijtechniek;
     private VerkeersTechniek verkeerstechniek;
     private Attitude attitude;
-    private Dashboard dashboard;
 
     private Scene scene;
 
@@ -50,7 +52,8 @@ public class Menu {
         return moment3;
     }
 
-    public VBox buildMenu(Dashboard dashboard, int klasse) {
+    public VBox buildMenu(DomeinController controller, int klasse) {
+        this.controller = controller;
 
         VBox menuBalk = new VBox();
         menuBalk.setId("menuBox");
@@ -63,7 +66,7 @@ public class Menu {
         attitude.setId("menuButton");
 
         attitude.setOnAction(e -> {
-            Attitude attitudeScherm = new Attitude(dashboard);
+            Attitude attitudeScherm = new Attitude(controller);
             attitudeScherm.setScene(scene);
             scene.setRoot(attitudeScherm);
         });
@@ -76,7 +79,7 @@ public class Menu {
         rijTechniek.setId("menuButton");
 
         rijTechniek.setOnAction(e -> {
-            Rijtechniek rijtechniekScherm = new Rijtechniek(dashboard);
+            Rijtechniek rijtechniekScherm = new Rijtechniek(controller);
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
         });
@@ -89,7 +92,7 @@ public class Menu {
         verkeersTechniek.setId("menuButton");
 
         verkeersTechniek.setOnAction(e -> {
-            VerkeersTechniek verkeersTechniekScherm = new VerkeersTechniek(dashboard);
+            VerkeersTechniek verkeersTechniekScherm = new VerkeersTechniek(controller);
             verkeersTechniekScherm.setScene(scene);
             scene.setRoot(verkeersTechniekScherm);
         });
