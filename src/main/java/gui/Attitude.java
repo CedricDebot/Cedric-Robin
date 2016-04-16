@@ -6,6 +6,7 @@
 package gui;
 
 import domein.AttitudeOpmerking;
+import domein.DomeinController;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -37,7 +38,7 @@ public class Attitude extends GridPane {
 
     private Scene scene;
 
-    public Attitude(Dashboard dashboard) {
+    public Attitude(DomeinController controller) {
 
         //HoofdGrid
         gridLinesVisibleProperty().set(false);
@@ -94,8 +95,8 @@ public class Attitude extends GridPane {
         OpmerkingenPane.add(terugBtn, 0, 0);
 
         terugBtn.setOnAction(e -> {
-            dashboard.setScene(scene);
-            scene.setRoot(dashboard);
+            controller.getDashboard().setScene(scene);
+            scene.setRoot(controller.getDashboard());
         });
 
         Label opmerking = new Label("Opmerking");
@@ -110,7 +111,7 @@ public class Attitude extends GridPane {
         OpmerkingenPane.add(bewaarOpmerking, 0, 3);
 
         //List met standaardOpmerkingen
-        ArrayList<AttitudeOpmerking> standaardOpmerkingenList = dashboard.getLeerling().getStandaardOpmerkingenList();
+        ArrayList<AttitudeOpmerking> standaardOpmerkingenList = controller.getLeerling().getStandaardOpmerkingenList();
 
         //Listview
         ListView opmerkingenList = new ListView();
@@ -167,7 +168,7 @@ public class Attitude extends GridPane {
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenList.getSelectionModel().getSelectedItem();
 
             geselecteerdeOpmerking.setOpmerking(opmerkingVeld.getText());
-            dashboard.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
+            controller.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
 
             opmerkingVeld.clear();
         });
@@ -177,11 +178,11 @@ public class Attitude extends GridPane {
         //RIGHT
         VBox right = new VBox();
         //MenuStandaard
-        VBox menuStandaard = menu.buildMenuStandaard(dashboard.getLeerling());
+        VBox menuStandaard = menu.buildMenuStandaard(controller.getLeerling());
         right.getChildren().add(menuStandaard);
 
         //Menu
-        VBox menuBalk = menu.buildMenu(dashboard, 3);
+        VBox menuBalk = menu.buildMenu(controller, 3);
 
         menu.getMenuKnop().setOnAction(e -> {
             menu.setScene(scene);
