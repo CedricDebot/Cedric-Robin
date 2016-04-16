@@ -175,6 +175,7 @@ public class Dashboard extends GridPane {
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
         });
+        
         Image attitudeD = new Image("images/attitude.png");
         ImageView attitudeImageView = new ImageView(attitudeD);
         attitudeImageView.setFitWidth(100);
@@ -284,6 +285,8 @@ public class Dashboard extends GridPane {
         
         Image rotondeWit = new Image("images/dashboard/rotondeNIETGEZIEN.png");
         Image rotondeGroen = new Image("images/dashboard/rotondeGEZIEN.png");
+        Image rotondeOranje = new Image("images/dashboard/rotondeOranje.png");
+        Image rotondeRood = new Image("images/dashboard/rotondeRood.png");
         
         rotondeBtn.setOnAction(e -> {
             if (controller.getLeerling().getDashboardDom().getRotonde() == GezienNietGezien.NIETGEZIEN) {
@@ -292,7 +295,7 @@ public class Dashboard extends GridPane {
             } else if (controller.getLeerling().getDashboardDom().getRotonde() == GezienNietGezien.GEZIEN) {
                 controller.getLeerling().getDashboardDom().setRotonde(GezienNietGezien.NIETGEZIEN);
                 rotondeImageView.setImage(rotondeWit);
-            }
+            } 
         });
         
         Image rijbaanBegin = new Image("images/dashboard/rijbaan" + controller.getLeerling().getDashboardDom().getRijbaan() + ".png");
@@ -505,6 +508,9 @@ public class Dashboard extends GridPane {
         VBox opmerkingenBox = new VBox();
         opmerkingenBox.setId("opmerkingenBox");
         
+        VBox  opmerkingenWithLabel = new VBox();
+        opmerkingenWithLabel.setId("opmerkingenWithLabel");
+        
         opmerkingenBox.setAlignment(Pos.TOP_CENTER);
         
         Label opmerkingenOnderwerp = new Label(controller.getLeerling().getRecenteOpmerkingen().get(controller.getLeerling().getHuidigeOpmerking()).getNaam());
@@ -514,6 +520,8 @@ public class Dashboard extends GridPane {
         opmerkingen.setEditable(false);
         opmerkingen.setMinHeight(100);
         opmerkingen.setWrapText(true);
+        
+        opmerkingenWithLabel.getChildren().addAll(opmerkingenOnderwerp, opmerkingen);
         
         HBox pijlen = new HBox();
         pijlen.setSpacing(20);
@@ -533,7 +541,7 @@ public class Dashboard extends GridPane {
         
         pijlen.getChildren().addAll(pijlLinks, pijlRechts);
         
-        opmerkingenBox.getChildren().addAll(opmerkingenOnderwerp, opmerkingen, pijlen);
+        opmerkingenBox.getChildren().addAll(opmerkingenWithLabel, pijlen);
         
         pijlLinks.setOnAction(e -> {
             try {

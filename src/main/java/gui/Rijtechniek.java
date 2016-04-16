@@ -81,11 +81,6 @@ public class Rijtechniek extends HBox {
         Button stuurBtn = new Button("", stuurImageView);
         stuurBtn.setId("icoontjesBtns");
 
-        stuurBtn.setOnMouseDragged(e -> {
-            IcoonStuurOpm icoonStuur = new IcoonStuurOpm(controller);
-            icoonStuur.setScene(scene);
-            scene.setRoot(icoonStuur);
-        });
         Image stuurWit = new Image("images/rijtechniek/stuurWit.png");
         Image stuurRood = new Image("images/rijtechniek/stuurRood.png");
         Image stuurOranje = new Image("images/rijtechniek/stuurOranje.png");

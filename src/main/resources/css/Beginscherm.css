@@ -64,13 +64,24 @@
 #right {
     -fx-padding: 100 50 100 100;
     -fx-min-width: 500;
+/*    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;*/
 }
 
-#lijstLeerlingen {
+#listViewWithLabel {
     -fx-background-radius: 5;
     -fx-border-color: black;
     -fx-border-radius: 5;
     -fx-border-width: 3;
+}
+
+#lijstLeerlingen {
+    /*-fx-background-radius: 5;*/
+/*    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 3;*/
     -fx-max-height: 300;
 }
 
@@ -106,10 +117,10 @@
 }
 #schermNieuweLeerling{
     -fx-background-color: white;
-    -fx-border-color: black;
+/*    -fx-border-color: black;
     -fx-border-radius: 5;
     -fx-border-width: 3;
-    -fx-background-radius: 15;
+    -fx-background-radius: 15;*/
     -fx-padding: 10 10 10 10;
     -fx-spacing: 5;
 }
@@ -124,10 +135,10 @@
 
 #listViewTitle{
     -fx-background-color: #4B4B4B;
-    -fx-background-radius: 5;
-    -fx-border-color: black;
+    /*-fx-background-radius: 5;*/
+/*    -fx-border-color: black;
     -fx-border-radius: 5;
-    -fx-border-width: 3;
+    -fx-border-width: 3;*/
     -fx-max-width: 400;
     -fx-min-height: 40;
     -fx-alignment: CENTER;
@@ -251,6 +262,13 @@
 #opmerkingenBox {
     -fx-padding: 50;
 }
+
+#opmerkingenWithLabel{
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+}
+
 #dashboardLeft{
     /*    -fx-padding: 25 5 0 25;*/
 }
@@ -476,11 +494,11 @@
 }
 #recenteOpmerkingenONDLabel{
     -fx-background-color: #22567B;
-    -fx-background-radius: 5;
+/*    -fx-background-radius: 5;*/
     -fx-padding: 10;
-    -fx-border-color: black;
+/*    -fx-border-color: black;
     -fx-border-radius: 5;
-    -fx-border-width: 2;
+    -fx-border-width: 2;*/
     -fx-alignment: CENTER;
     -fx-max-width: 330;
     -fx-min-width: 330;
@@ -489,11 +507,11 @@
 
 #recenteOpmerkingenLabel{
     -fx-background-color: white;
-    -fx-background-radius: 5;
+/*    -fx-background-radius: 5;*/
     -fx-padding: 10;
-    -fx-border-color: black;
+/*    -fx-border-color: black;
     -fx-border-radius: 5;
-    -fx-border-width: 2;
+    -fx-border-width: 2;*/
     -fx-alignment: CENTER;
     -fx-max-width: 330;
     -fx-min-width: 330;
