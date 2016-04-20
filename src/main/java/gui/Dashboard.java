@@ -5,6 +5,7 @@ import domein.DomeinController;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
 import domein.Leerling;
+import domein.Toestand;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -289,11 +290,17 @@ public class Dashboard extends GridPane {
         Image rotondeRood = new Image("images/dashboard/rotondeRood.png");
         
         rotondeBtn.setOnAction(e -> {
-            if (controller.getLeerling().getDashboardDom().getRotonde() == GezienNietGezien.NIETGEZIEN) {
-                controller.getLeerling().getDashboardDom().setRotonde(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getRotonde() == Toestand.WIT) {
+                controller.getLeerling().getDashboardDom().setRotonde(Toestand.ROOD);
+                rotondeImageView.setImage(rotondeRood);
+            } else if(controller.getLeerling().getDashboardDom().getRotonde() == Toestand.ROOD){
+                controller.getLeerling().getDashboardDom().setRotonde(Toestand.ORANJE);
+                rotondeImageView.setImage(rotondeOranje);
+            } else if(controller.getLeerling().getDashboardDom().getRotonde() == Toestand.ORANJE){
+                controller.getLeerling().getDashboardDom().setRotonde(Toestand.GROEN);
                 rotondeImageView.setImage(rotondeGroen);
-            } else if (controller.getLeerling().getDashboardDom().getRotonde() == GezienNietGezien.GEZIEN) {
-                controller.getLeerling().getDashboardDom().setRotonde(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getRotonde() == Toestand.GROEN) {
+                controller.getLeerling().getDashboardDom().setRotonde(Toestand.WIT);
                 rotondeImageView.setImage(rotondeWit);
             } 
         });
@@ -307,13 +314,21 @@ public class Dashboard extends GridPane {
         
         Image rijbaanWit = new Image("images/dashboard/rijbaanNIETGEZIEN.png");
         Image rijbaanGroen = new Image("images/dashboard/rijbaanGEZIEN.png");
+        Image rijbaanOranje = new Image("images/dashboard/rijbaanOranje.png");
+        Image rijbaanRood = new Image("images/dashboard/rijbaanRood.png");
         
         rijbaanBtn.setOnAction(e -> {
-            if (controller.getLeerling().getDashboardDom().getRijbaan() == GezienNietGezien.NIETGEZIEN) {
-                controller.getLeerling().getDashboardDom().setRijbaan(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getRijbaan() == Toestand.WIT) {
+                controller.getLeerling().getDashboardDom().setRijbaan(Toestand.ROOD);
+                rijbaanImageView.setImage(rijbaanRood);
+            } else if (controller.getLeerling().getDashboardDom().getRijbaan() == Toestand.ROOD) {
+                controller.getLeerling().getDashboardDom().setRijbaan(Toestand.ORANJE);
+                rijbaanImageView.setImage(rijbaanOranje);
+            } else if (controller.getLeerling().getDashboardDom().getRijbaan() == Toestand.ORANJE){
+                controller.getLeerling().getDashboardDom().setRijbaan(Toestand.GROEN);
                 rijbaanImageView.setImage(rijbaanGroen);
-            } else if (controller.getLeerling().getDashboardDom().getRijbaan() == GezienNietGezien.GEZIEN) {
-                controller.getLeerling().getDashboardDom().setRijbaan(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getRijbaan() == Toestand.GROEN){
+                controller.getLeerling().getDashboardDom().setRijbaan(Toestand.WIT);
                 rijbaanImageView.setImage(rijbaanWit);
             }
         });
@@ -327,13 +342,21 @@ public class Dashboard extends GridPane {
         
         Image stadWit = new Image("images/dashboard/stadNIETGEZIEN.png");
         Image stadGroen = new Image("images/dashboard/stadGEZIEN.png");
+        Image stadOranje = new Image("images/dashboard/stadOranje.png");
+        Image stadRood = new Image("images/dashboard/stadRood.png");
         
         stadBtn.setOnAction(e -> {
-            if (controller.getLeerling().getDashboardDom().getStad() == GezienNietGezien.NIETGEZIEN) {
-                controller.getLeerling().getDashboardDom().setStad(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getStad() == Toestand.WIT) {
+                controller.getLeerling().getDashboardDom().setStad(Toestand.ROOD);
+                stadImageView.setImage(stadRood);
+            } else if (controller.getLeerling().getDashboardDom().getStad() == Toestand.ROOD) {
+                controller.getLeerling().getDashboardDom().setStad(Toestand.ORANJE);
+                stadImageView.setImage(stadOranje);
+            } else if (controller.getLeerling().getDashboardDom().getStad() == Toestand.ORANJE){
+                controller.getLeerling().getDashboardDom().setStad(Toestand.GROEN);
                 stadImageView.setImage(stadGroen);
-            } else if (controller.getLeerling().getDashboardDom().getStad() == GezienNietGezien.GEZIEN) {
-                controller.getLeerling().getDashboardDom().setStad(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getStad() == Toestand.GROEN){
+                controller.getLeerling().getDashboardDom().setStad(Toestand.WIT);
                 stadImageView.setImage(stadWit);
             }
         });
@@ -347,13 +370,21 @@ public class Dashboard extends GridPane {
         
         Image autosnelwegWit = new Image("images/dashboard/autosnelwegNIETGEZIEN.png");
         Image autosnelwegGroen = new Image("images/dashboard/autosnelwegGEZIEN.png");
+        Image autosnelwegOranje = new Image("images/dashboard/autosnelwegOranje.png");
+        Image autosnelwegRood = new Image("images/dashboard/autosnelwegRood.png");
         
         autosnelwegBtn.setOnAction(e -> {
-            if (controller.getLeerling().getDashboardDom().getAutosnelweg() == GezienNietGezien.NIETGEZIEN) {
-                controller.getLeerling().getDashboardDom().setAutosnelweg(GezienNietGezien.GEZIEN);
+            if (controller.getLeerling().getDashboardDom().getAutosnelweg() == Toestand.WIT) {
+                controller.getLeerling().getDashboardDom().setAutosnelweg(Toestand.ROOD);
+                autosnelwegImageView.setImage(autosnelwegRood);
+            } else if (controller.getLeerling().getDashboardDom().getAutosnelweg() == Toestand.ROOD) {
+                controller.getLeerling().getDashboardDom().setAutosnelweg(Toestand.ORANJE);
+                autosnelwegImageView.setImage(autosnelwegOranje);
+            } else if (controller.getLeerling().getDashboardDom().getAutosnelweg() == Toestand.ORANJE){
+                controller.getLeerling().getDashboardDom().setAutosnelweg(Toestand.GROEN);
                 autosnelwegImageView.setImage(autosnelwegGroen);
-            } else if (controller.getLeerling().getDashboardDom().getAutosnelweg() == GezienNietGezien.GEZIEN) {
-                controller.getLeerling().getDashboardDom().setAutosnelweg(GezienNietGezien.NIETGEZIEN);
+            } else if (controller.getLeerling().getDashboardDom().getAutosnelweg() == Toestand.GROEN){
+                controller.getLeerling().getDashboardDom().setAutosnelweg(Toestand.WIT);
                 autosnelwegImageView.setImage(autosnelwegWit);
             }
         });

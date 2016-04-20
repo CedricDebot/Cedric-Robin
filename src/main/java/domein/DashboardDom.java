@@ -61,43 +61,43 @@ public class DashboardDom {
         this.stop = stop;
     }
     
-    private GezienNietGezien rotonde = GezienNietGezien.NIETGEZIEN;
+    private Toestand rotonde = Toestand.WIT;
 
-    public GezienNietGezien getRotonde() {
+    public Toestand getRotonde() {
         return rotonde;
     }
 
-    public void setRotonde(GezienNietGezien rotonde) {
+    public void setRotonde(Toestand rotonde) {
         this.rotonde = rotonde;
     }
     
-    private GezienNietGezien rijbaan = GezienNietGezien.NIETGEZIEN;
+    private Toestand rijbaan = Toestand.WIT;
 
-    public GezienNietGezien getRijbaan() {
+    public Toestand getRijbaan() {
         return rijbaan;
     }
 
-    public void setRijbaan(GezienNietGezien rijbaan) {
+    public void setRijbaan(Toestand rijbaan) {
         this.rijbaan = rijbaan;
     }
     
-    private GezienNietGezien stad = GezienNietGezien.NIETGEZIEN;
+    private Toestand stad = Toestand.WIT;
 
-    public GezienNietGezien getStad() {
+    public Toestand getStad() {
         return stad;
     }
 
-    public void setStad(GezienNietGezien stad) {
+    public void setStad(Toestand stad) {
         this.stad = stad;
     }
     
-    private GezienNietGezien autosnelweg = GezienNietGezien.NIETGEZIEN;
+    private Toestand autosnelweg = Toestand.WIT;
 
-    public GezienNietGezien getAutosnelweg() {
+    public Toestand getAutosnelweg() {
         return autosnelweg;
     }
 
-    public void setAutosnelweg(GezienNietGezien autosnelweg) {
+    public void setAutosnelweg(Toestand autosnelweg) {
         this.autosnelweg = autosnelweg;
     }
 
