@@ -12,6 +12,7 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,6 +38,8 @@ import javafx.util.Duration;
 public class Attitude extends GridPane {
 
     private Scene scene;
+    
+    ImageView uitroepteken;
 
     public Attitude(DomeinController controller) {
 
@@ -107,8 +110,19 @@ public class Attitude extends GridPane {
         opmerkingVeld.setId("OpmerkingenVeld");
         OpmerkingenPane.add(opmerkingVeld, 0, 2);
 
+        
+        HBox bewaren = new HBox();
+        bewaren.setSpacing(20);
+        bewaren.setAlignment(Pos.CENTER);
+        
         Button bewaarOpmerking = new Button("Bewaar");
-        OpmerkingenPane.add(bewaarOpmerking, 0, 3);
+        
+        uitroepteken = new ImageView("images/uitroepTeken.png");
+        Button uitroeptekenBtn = new Button("", uitroepteken);
+        uitroeptekenBtn.setId("uitroeptekenKnop");
+        bewaren.getChildren().addAll(bewaarOpmerking, uitroeptekenBtn);
+        
+        OpmerkingenPane.add(bewaren, 0, 3);
 
         //List met standaardOpmerkingen
         ArrayList<AttitudeOpmerking> standaardOpmerkingenList = controller.getLeerling().getStandaardOpmerkingenList();
@@ -148,6 +162,13 @@ public class Attitude extends GridPane {
 
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenList.getSelectionModel().getSelectedItem();
             opmerkingVeld.setText(geselecteerdeOpmerking.getOpmerking());
+            if (geselecteerdeOpmerking.isUitroeptekenActive()) {
+                Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
+                uitroepteken.setImage(uitroeptekenImage);
+            } else {
+                Image uitroeptekenImage = new Image("images/uitroepTeken.png");
+                uitroepteken.setImage(uitroeptekenImage);
+            }
 
         });
         //voegtoe
@@ -168,9 +189,22 @@ public class Attitude extends GridPane {
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenList.getSelectionModel().getSelectedItem();
 
             geselecteerdeOpmerking.setOpmerking(opmerkingVeld.getText());
-            controller.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
 
-            opmerkingVeld.clear();
+        });
+        
+        uitroeptekenBtn.setOnAction(e -> {
+            AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenList.getSelectionModel().getSelectedItem();
+            if (geselecteerdeOpmerking.isUitroeptekenActive()) {
+                geselecteerdeOpmerking.setUitroeptekenActive(false);
+                controller.getLeerling().verwijderRecenteOpmerking(geselecteerdeOpmerking);
+                Image uitroeptekenImage = new Image("images/uitroepTeken.png");
+                uitroepteken.setImage(uitroeptekenImage);
+            } else {
+                geselecteerdeOpmerking.setUitroeptekenActive(true);
+                controller.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
+                Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
+                uitroepteken.setImage(uitroeptekenImage);
+            }
         });
 
         //Menu

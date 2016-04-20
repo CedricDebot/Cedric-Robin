@@ -2,20 +2,16 @@ package gui;
 
 import domein.AttitudeOpmerking;
 import domein.DomeinController;
-import domein.SchermType;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,23 +23,23 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
-public class TechniekOpmerkingen extends GridPane {
+public class VerkeersTechniekOpmerkingen extends GridPane {
 
     private DomeinController controller;
     private Scene scene;
     ImageView uitroepteken;
 
-    public TechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, DomeinController controller, String icoonPad, SchermType schermtype) {
+    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, DomeinController controller, String icoonPad) {
 
         this.controller = controller;
         //HoofdGrid
-        gridLinesVisibleProperty().set(true);
+        gridLinesVisibleProperty().set(false);
         ColumnConstraints col0 = new ColumnConstraints();
         col0.setPercentWidth(40);
 
         ColumnConstraints col1 = new ColumnConstraints();
         col1.setPercentWidth(40);
-        col1.setHalignment(HPos.CENTER);
+        col1.setHalignment(HPos.LEFT);
 
         ColumnConstraints col2 = new ColumnConstraints();
         col2.setPercentWidth(20);
@@ -58,7 +54,7 @@ public class TechniekOpmerkingen extends GridPane {
 
         //OpmerkingPane
         GridPane OpmerkingenPane = new GridPane();
-        OpmerkingenPane.gridLinesVisibleProperty().set(true);
+        OpmerkingenPane.gridLinesVisibleProperty().set(false);
         ColumnConstraints col0OpmerkingPane = new ColumnConstraints();
         col0OpmerkingPane.setPercentWidth(100);
         col0OpmerkingPane.setHalignment(HPos.CENTER);
@@ -91,48 +87,22 @@ public class TechniekOpmerkingen extends GridPane {
         OpmerkingenPane.add(terugBtn, 0, 0);
 
         terugBtn.setOnAction(e -> {
-            if (schermtype == SchermType.VERKEERSTECHNIEK) {
                 VerkeersTechniek verkeersTechniek = new VerkeersTechniek(controller);
                 verkeersTechniek.setScene(scene);
                 scene.setRoot(verkeersTechniek);
-            } else {
-                Rijtechniek rijTechniek = new Rijtechniek(controller);
-                rijTechniek.setScene(scene);
-                scene.setRoot(rijTechniek);
-            }
         });
-
-        Label opmerking = new Label("Opmerking");
-        opmerking.setId("OpmerkingLabel");
-        OpmerkingenPane.add(opmerking, 0, 1);
-
-        TextArea opmerkingVeld = new TextArea();
-        opmerkingVeld.setId("OpmerkingenVeld");
-        OpmerkingenPane.add(opmerkingVeld, 0, 2);
-
-        HBox bewaren = new HBox();
-        bewaren.setSpacing(20);
-        bewaren.setAlignment(Pos.CENTER);
-        Button bewaarOpmerking = new Button("Bewaar");
-
-        uitroepteken = new ImageView("images/uitroepTeken.png");
-        Button uitroeptekenBtn = new Button("", uitroepteken);
-        uitroeptekenBtn.setId("uitroeptekenKnop");
-        bewaren.getChildren().addAll(bewaarOpmerking, uitroeptekenBtn);
-
-        OpmerkingenPane.add(bewaren, 0, 3);
-
+        
         //Listview
         ListView opmerkingenListView = new ListView();
         opmerkingenListView.setId("opmerkingenTechniek");
-        ObservableList<AttitudeOpmerking> standaarOpmerkingen
+        ObservableList<AttitudeOpmerking> standaardOpmerkingen
                 = FXCollections.observableArrayList();
 
         for (AttitudeOpmerking opm : opmerkingenList) {
-            standaarOpmerkingen.add(opm);
+            standaardOpmerkingen.add(opm);
         }
 
-        opmerkingenListView.setItems(standaarOpmerkingen);
+        opmerkingenListView.setItems(standaardOpmerkingen);
 
         opmerkingenListView.setCellFactory(new Callback<ListView<AttitudeOpmerking>, ListCell<AttitudeOpmerking>>() {
 
@@ -153,10 +123,32 @@ public class TechniekOpmerkingen extends GridPane {
             }
         });
 
+        
+        //voegtoe
+        Button voegToe = new Button("Voeg Toe");
+        TextField nieuw = new TextField();
+        
+        uitroepteken = new ImageView("images/uitroepTeken.png");
+        Button uitroeptekenBtn = new Button("", uitroepteken);
+        uitroeptekenBtn.setId("uitroeptekenKnop");
+        
+        HBox nieuwHB = new HBox();
+        nieuwHB.setId("nieuwHB");
+        nieuwHB.getChildren().addAll(nieuw, voegToe);
+
+        voegToe.setId("attitudeVoegToe");
+        VBox attitudeList = new VBox();
+        attitudeList.setId("attitudeList");
+
+        //Icon
+        Image Icoon = new Image(icoonPad);
+        ImageView IcoonView = new ImageView(Icoon);
+
+        attitudeList.getChildren().addAll(IcoonView, opmerkingenListView, nieuwHB, uitroeptekenBtn);
+        
         opmerkingenListView.setOnMouseClicked(event -> {
 
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
-            opmerkingVeld.setText(geselecteerdeOpmerking.getOpmerking());
             if (geselecteerdeOpmerking.isUitroeptekenActive()) {
                 Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
                 uitroepteken.setImage(uitroeptekenImage);
@@ -180,28 +172,16 @@ public class TechniekOpmerkingen extends GridPane {
                 uitroepteken.setImage(uitroeptekenImage);
             }
         });
-        //voegtoe
-        Button voegToe = new Button("Voeg Toe");
-        TextField nieuw = new TextField();
-        HBox nieuwHB = new HBox();
-        nieuwHB.setId("nieuwHB");
-        nieuwHB.getChildren().addAll(nieuw, voegToe);
+        
+        voegToe.setOnAction(e -> {
+            if (nieuw.getText().equalsIgnoreCase("")) {
 
-        voegToe.setId("attitudeVoegToe");
-        VBox attitudeList = new VBox();
-        attitudeList.setId("attitudeList");
-
-        //Icon
-        Image Icoon = new Image(icoonPad);
-        ImageView IcoonView = new ImageView(Icoon);
-
-        attitudeList.getChildren().addAll(IcoonView, opmerkingenListView, nieuwHB);
-
-        bewaarOpmerking.setOnAction(e -> {
-
-            AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
-            geselecteerdeOpmerking.setOpmerking(opmerkingVeld.getText());
-            
+            } else {
+                AttitudeOpmerking nieuweOpmerking = new AttitudeOpmerking(nieuw.getText(), null);
+                opmerkingenList.add(nieuweOpmerking);   //NODIG?
+                standaardOpmerkingen.add(nieuweOpmerking);
+                nieuw.clear();
+            }
         });
 
         //Menu
@@ -250,17 +230,7 @@ public class TechniekOpmerkingen extends GridPane {
         add(attitudeList, 1, 0);
         add(right, 2, 0);
 
-        voegToe.setOnAction(e -> {
-            if (nieuw.getText().equalsIgnoreCase("")) {
-
-            } else {
-                AttitudeOpmerking nieuweStand = new AttitudeOpmerking(nieuw.getText(), "");
-                opmerkingenList.add(nieuweStand);
-                standaarOpmerkingen.add(nieuweStand);
-                nieuw.clear();
-                opmerkingVeld.clear();
-            }
-        });
+        
     }
 
     public void setScene(Scene scene) {

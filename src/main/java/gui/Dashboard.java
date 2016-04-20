@@ -4,17 +4,21 @@ import domein.AttitudeOpmerking;
 import domein.DomeinController;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
-import domein.Leerling;
 import domein.Toestand;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +29,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class Dashboard extends GridPane {
@@ -539,61 +544,47 @@ public class Dashboard extends GridPane {
         VBox opmerkingenBox = new VBox();
         opmerkingenBox.setId("opmerkingenBox");
         
-        VBox  opmerkingenWithLabel = new VBox();
-        opmerkingenWithLabel.setId("opmerkingenWithLabel");
-        
-        opmerkingenBox.setAlignment(Pos.TOP_CENTER);
-        
-        Label opmerkingenOnderwerp = new Label(controller.getLeerling().getRecenteOpmerkingen().get(controller.getLeerling().getHuidigeOpmerking()).getNaam());
-        opmerkingenOnderwerp.setId("recenteOpmerkingenONDLabel");
-        TextArea opmerkingen = new TextArea(controller.getLeerling().getRecenteOpmerkingen().get(controller.getLeerling().getHuidigeOpmerking()).getOpmerking());
-        opmerkingen.setId("recenteOpmerkingenLabel");
-        opmerkingen.setEditable(false);
-        opmerkingen.setMinHeight(100);
-        opmerkingen.setWrapText(true);
-        
-        opmerkingenWithLabel.getChildren().addAll(opmerkingenOnderwerp, opmerkingen);
-        
-        HBox pijlen = new HBox();
-        pijlen.setSpacing(20);
-        pijlen.setAlignment(Pos.CENTER);
-        
-        ImageView pijlLinksView = new ImageView("images/dashboard/dashboardPijlLinks.png");
-        pijlLinksView.maxHeight(50);
-        pijlLinksView.maxWidth(50);
-        Button pijlLinks = new Button("", pijlLinksView);
-        pijlLinks.setId("pijl");
-        
-        ImageView pijlRechtsView = new ImageView("images/dashboard/dashboardPijlRechts.png");
-        pijlRechtsView.maxHeight(50);
-        pijlRechtsView.maxWidth(50);
-        Button pijlRechts = new Button("", pijlRechtsView);
-        pijlRechts.setId("pijl");
-        
-        pijlen.getChildren().addAll(pijlLinks, pijlRechts);
-        
-        opmerkingenBox.getChildren().addAll(opmerkingenWithLabel, pijlen);
-        
-        pijlLinks.setOnAction(e -> {
-            try {
-                AttitudeOpmerking huidigeOpmerking = controller.getLeerling().vorigeRecenteOpmerking();
-                opmerkingenOnderwerp.setText(huidigeOpmerking.getNaam());
-                opmerkingen.setText(huidigeOpmerking.getOpmerking());
-            } catch (IndexOutOfBoundsException IOBE) {
-                opmerkingenOnderwerp.setText("Geen opmerking");
-                opmerkingen.setText("Er is geen vorige Opmerking");
+        Label opmerking = new Label("Opmerkingen");
+        //Listview
+        ListView opmerkingenListView = new ListView();
+        opmerkingenListView.setId("opmerkingenTechniek");
+        ObservableList<AttitudeOpmerking> standaardOpmerkingen
+                = controller.getLeerling().getRecenteOpmerkingen();
+
+        opmerkingenListView.setItems(standaardOpmerkingen);
+
+        opmerkingenListView.setCellFactory(new Callback<ListView<AttitudeOpmerking>, ListCell<AttitudeOpmerking>>() {
+
+            @Override
+            public ListCell<AttitudeOpmerking> call(ListView<AttitudeOpmerking> p) {
+
+                ListCell<AttitudeOpmerking> cell = new ListCell<AttitudeOpmerking>() {
+
+                    @Override
+                    protected void updateItem(AttitudeOpmerking a, boolean bln) {
+                        super.updateItem(a, bln);
+                        if (a != null) {
+                            setText(a.getNaam());
+                        }
+                    }
+                };
+                return cell;
             }
         });
         
-        pijlRechts.setOnAction(e -> {
-            try{
-                AttitudeOpmerking huidigeOpmerking = controller.getLeerling().volgendeRecenteOpmerking();
-            opmerkingenOnderwerp.setText(huidigeOpmerking.getNaam());
-            opmerkingen.setText(huidigeOpmerking.getOpmerking());
-            }catch(IndexOutOfBoundsException IOBE){
-                opmerkingenOnderwerp.setText("Geen opmerking");
-                opmerkingen.setText("Er is geen volgende Opmerking");
-            }
+        opmerkingenBox.getChildren().addAll(opmerking, opmerkingenListView);
+        
+        opmerkingenListView.setOnMouseClicked(event -> {
+            AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
+            
+            Dialog dialog = new Dialog();
+            dialog.setTitle(geselecteerdeOpmerking.getNaam());
+            dialog.setHeaderText(null);
+            dialog.setContentText(geselecteerdeOpmerking.getOpmerking());
+            ButtonType Ok = new ButtonType("Ok", ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().add(Ok);
+            dialog.showAndWait();
+            
         });
 
         //Grafiek

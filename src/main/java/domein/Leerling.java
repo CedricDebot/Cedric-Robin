@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 public class Leerling {
@@ -29,7 +31,7 @@ public class Leerling {
     //Grafiek
     private EvaluatieGrafiek evaGraf;
     //Opmerkingen dashboard
-    private ArrayList<AttitudeOpmerking> recenteOpmerkingen;
+    private ObservableList<AttitudeOpmerking> recenteOpmerkingen;
 
     private int huidigeOpmerking = 0;
 
@@ -45,8 +47,7 @@ public class Leerling {
         maakStandaardOpmerkingenList();
         maakOpmerkingSchermLists();
         evaGraf = new EvaluatieGrafiek();
-        recenteOpmerkingen = new ArrayList();
-        recenteOpmerkingen.add(new AttitudeOpmerking("Opmerking", "Hier komen de speciaal aangeduide opmerkingen"));
+        recenteOpmerkingen = FXCollections.observableArrayList();
     }
 
     public String getInschrijvingsNr() {
@@ -121,7 +122,7 @@ public class Leerling {
         return evaGraf;
     }
 
-    public ArrayList<AttitudeOpmerking> getRecenteOpmerkingen() {
+    public ObservableList<AttitudeOpmerking> getRecenteOpmerkingen() {
         return recenteOpmerkingen;
     }
 
