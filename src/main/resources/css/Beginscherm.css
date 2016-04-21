@@ -64,10 +64,10 @@
 #right {
     -fx-padding: 100 50 100 100;
     -fx-min-width: 500;
-/*    -fx-background-radius: 5;
-    -fx-border-color: black;
-    -fx-border-radius: 5;
-    -fx-border-width: 3;*/
+    /*    -fx-background-radius: 5;
+        -fx-border-color: black;
+        -fx-border-radius: 5;
+        -fx-border-width: 3;*/
 }
 
 #listViewWithLabel {
@@ -79,10 +79,12 @@
 
 #lijstLeerlingen {
     /*-fx-background-radius: 5;*/
-/*    -fx-border-color: black;
-    -fx-border-radius: 5;
-    -fx-border-width: 3;*/
+    /*    -fx-border-color: black;
+        -fx-border-radius: 5;
+        -fx-border-width: 3;*/
     -fx-max-height: 300;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .list-cell{ 
@@ -90,11 +92,15 @@
     -fx-background-color: white;
     -fx-border-color: black;
     -fx-border-width: 0 0 3 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .list-cell:selected{ 
     -fx-background-color: #22567B;
     -fx-text-fill: white;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 #buttonsRight{
@@ -117,10 +123,10 @@
 }
 #schermNieuweLeerling{
     -fx-background-color: white;
-/*    -fx-border-color: black;
-    -fx-border-radius: 5;
-    -fx-border-width: 3;
-    -fx-background-radius: 15;*/
+    /*    -fx-border-color: black;
+        -fx-border-radius: 5;
+        -fx-border-width: 3;
+        -fx-background-radius: 15;*/
     -fx-padding: 10 10 10 10;
     -fx-spacing: 5;
 }
@@ -136,9 +142,9 @@
 #listViewTitle{
     -fx-background-color: #4B4B4B;
     /*-fx-background-radius: 5;*/
-/*    -fx-border-color: black;
-    -fx-border-radius: 5;
-    -fx-border-width: 3;*/
+    /*    -fx-border-color: black;
+        -fx-border-radius: 5;
+        -fx-border-width: 3;*/
     -fx-max-width: 400;
     -fx-min-height: 40;
     -fx-alignment: CENTER;
@@ -256,7 +262,7 @@
 }
 
 #hBoxOnder {
-   -fx-alignment: CENTER;   
+    -fx-alignment: CENTER;   
 }
 
 #opmerkingenBox {
@@ -341,7 +347,8 @@
     -fx-border-color: black;
     -fx-border-radius: 5;
     -fx-border-width: 2;
-    -fx-focus-color: none;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 #OpmerkingenList{
     -fx-background-radius: 5;
@@ -471,34 +478,33 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
+#opmerkingenTechniekDashboard{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+#opmerkingenTechniekDashboard:focused{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
 #opmerkingenTechniek{
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-background-radius: 5;
     -fx-border-color: black;
-    -fx-border-radius: 5;
-    -fx-border-width: 3;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
 }
 #opmerkingenTechniek:focused{
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
-#pijl{
-    -fx-background-color: none;
-    -fx-background-radius: 0;
-    -fx-padding: 0;
-    -fx-border-color: none;
-    -fx-border-radius: 0;
-    -fx-border-width: 0;
-    -fx-alignment: CENTER;
-}
 #recenteOpmerkingenONDLabel{
     -fx-background-color: #22567B;
-/*    -fx-background-radius: 5;*/
+    /*    -fx-background-radius: 5;*/
     -fx-padding: 10;
-/*    -fx-border-color: black;
-    -fx-border-radius: 5;
-    -fx-border-width: 2;*/
+    /*    -fx-border-color: black;
+        -fx-border-radius: 5;
+        -fx-border-width: 2;*/
     -fx-alignment: CENTER;
     -fx-max-width: 330;
     -fx-min-width: 330;
@@ -507,11 +513,11 @@
 
 #recenteOpmerkingenLabel{
     -fx-background-color: white;
-/*    -fx-background-radius: 5;*/
+    /*    -fx-background-radius: 5;*/
     -fx-padding: 10;
-/*    -fx-border-color: black;
-    -fx-border-radius: 5;
-    -fx-border-width: 2;*/
+    /*    -fx-border-color: black;
+        -fx-border-radius: 5;
+        -fx-border-width: 2;*/
     -fx-alignment: CENTER;
     -fx-max-width: 330;
     -fx-min-width: 330;
@@ -530,4 +536,13 @@
     -fx-max-width: 100;
     -fx-min-height: 100;
     -fx-min-widht: 100;
+}
+#tekstNieuw{
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: black;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }

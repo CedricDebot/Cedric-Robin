@@ -150,12 +150,12 @@ public class Beginscherm extends HBox {
         //schermNieuwLeerling
         VBox rightNieuw = new VBox();
         rightNieuw.setId("right");
-        
+
         VBox nieuweLeerlingWithLabel = new VBox();
         nieuweLeerlingWithLabel.setId("listViewWithLabel");
-        
+
         nieuweLeerlingWithLabel.getChildren().addAll(titel, nieuweLeerling);
-        
+
         rightNieuw.getChildren().addAll(nieuweLeerlingWithLabel, knoppenNieuw);
 
         //LinkerScherm
@@ -201,7 +201,7 @@ public class Beginscherm extends HBox {
             }
         });
 
-ok.setOnAction(e -> {
+        ok.setOnAction(e -> {
 //            int geldig = 0;
 //
 //            if (geldig != 5) {
@@ -232,14 +232,14 @@ ok.setOnAction(e -> {
 //                    geldig++;
 //                }
 //            } else {
-                Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText(), null);
+            Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText(), null);
 //            names.add(leerling.getVoorNaam());
-                leerlingen.add(leerling);
+            leerlingen.add(leerling);
 
-                if (getChildren().contains(rightNieuw)) {
-                    getChildren().remove(rightNieuw);
-                    getChildren().add(right);
-                }
+            if (getChildren().contains(rightNieuw)) {
+                getChildren().remove(rightNieuw);
+                getChildren().add(right);
+            }
 //            }
         });
 
@@ -257,7 +257,7 @@ ok.setOnAction(e -> {
                 scene.setRoot(dashboard);
             }
         });
-        
+
         //textfields nog leeg maken 
         annuleer.setOnAction(e -> {
             getChildren().remove(rightNieuw);
@@ -273,7 +273,7 @@ ok.setOnAction(e -> {
 
         ObservableList<Leerling> searchNames = FXCollections.observableArrayList();
         for (Leerling leerling : leerlingen) {
-            String entryText = (String)leerling.getVoorNaam();
+            String entryText = (String) leerling.getVoorNaam();
             if (entryText.toLowerCase().contains(newVal)) {
                 searchNames.add(leerling);
             }
