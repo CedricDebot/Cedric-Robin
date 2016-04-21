@@ -8,9 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class Beginscherm extends HBox {
@@ -47,6 +49,21 @@ public class Beginscherm extends HBox {
         Button start = new Button("Start");
 
         buttons.getChildren().addAll(nieuw, start);
+
+        DropShadow shadow = new DropShadow();
+        nieuw.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            nieuw.setEffect(shadow);
+        });
+        nieuw.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            nieuw.setEffect(null);
+        });
+
+        start.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            start.setEffect(shadow);
+        });
+        start.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            start.setEffect(null);
+        });
 
 //Feedback
         Label feedbackInlog = new Label("");
@@ -96,10 +113,31 @@ public class Beginscherm extends HBox {
         Button sync = new Button("Synchroniseer");
         sync.setId("btnSync");
         buttonsRight.getChildren().addAll(verwijder, sync);
+        
+        verwijder.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            verwijder.setEffect(shadow);
+        });
+        verwijder.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            verwijder.setEffect(null);
+        });
+
+        sync.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            sync.setEffect(shadow);
+        });
+        sync.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            sync.setEffect(null);
+        });
 
         //ButtonsAllesVerwijderen
         Button allesVerwijderen = new Button("Alles verwijderen");
         allesVerwijderen.setId("btnAllesVerwijderen");
+        
+        allesVerwijderen.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            allesVerwijderen.setEffect(shadow);
+        });
+        allesVerwijderen.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            allesVerwijderen.setEffect(null);
+        });
 
         //NieuweLeerling
         VBox nieuweLeerling = new VBox();
@@ -146,6 +184,20 @@ public class Beginscherm extends HBox {
         knoppenNieuw.setId("buttonsRight");
 
         knoppenNieuw.getChildren().addAll(ok, annuleer);
+
+        ok.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            ok.setEffect(shadow);
+        });
+        ok.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            ok.setEffect(null);
+        });
+
+        annuleer.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            annuleer.setEffect(shadow);
+        });
+        annuleer.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            annuleer.setEffect(null);
+        });
 
         //schermNieuwLeerling
         VBox rightNieuw = new VBox();

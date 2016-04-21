@@ -15,8 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -128,6 +130,16 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
         
         //voegtoe
         Button voegToe = new Button("Voeg Toe");
+        
+        DropShadow shadow = new DropShadow();
+        
+        voegToe.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            voegToe.setEffect(shadow);
+        });
+        voegToe.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            voegToe.setEffect(null);
+        });
+        
         TextField nieuw = new TextField();
         nieuw.setId("tekstNieuw");
         

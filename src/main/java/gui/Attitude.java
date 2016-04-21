@@ -21,8 +21,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -118,6 +120,15 @@ public class Attitude extends GridPane {
         
         Button bewaarOpmerking = new Button("Bewaar");
         
+        DropShadow shadow = new DropShadow();
+        
+        bewaarOpmerking.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            bewaarOpmerking.setEffect(shadow);
+        });
+        bewaarOpmerking.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            bewaarOpmerking.setEffect(null);
+        });
+        
         uitroepteken = new ImageView("images/uitroepTeken.png");
         Button uitroeptekenBtn = new Button("", uitroepteken);
         uitroeptekenBtn.setId("uitroeptekenKnop");
@@ -174,6 +185,14 @@ public class Attitude extends GridPane {
         });
         //voegtoe
         Button voegToe = new Button("Voeg Toe");
+        
+        voegToe.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            voegToe.setEffect(shadow);
+        });
+        voegToe.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            voegToe.setEffect(null);
+        });
+        
         TextField nieuw = new TextField();
         nieuw.setId("tekstNieuw");
         HBox nieuwHB = new HBox();
