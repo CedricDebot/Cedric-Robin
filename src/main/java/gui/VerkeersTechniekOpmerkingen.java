@@ -2,6 +2,7 @@ package gui;
 
 import domein.AttitudeOpmerking;
 import domein.DomeinController;
+import domein.IcoonType;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -29,7 +31,7 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
     private Scene scene;
     ImageView uitroepteken;
 
-    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, DomeinController controller, String icoonPad) {
+    public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, DomeinController controller, IcoonType icoonType) {
 
         this.controller = controller;
         //HoofdGrid
@@ -127,6 +129,7 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
         //voegtoe
         Button voegToe = new Button("Voeg Toe");
         TextField nieuw = new TextField();
+        nieuw.setId("tekstNieuw");
         
         uitroepteken = new ImageView("images/uitroepTeken.png");
         Button uitroeptekenBtn = new Button("", uitroepteken);
@@ -141,10 +144,18 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
         attitudeList.setId("attitudeList");
 
         //Icon
-        Image Icoon = new Image(icoonPad);
+        Image Icoon = new Image(icoonType.getIcoonPad());
         ImageView IcoonView = new ImageView(Icoon);
+        
+        Label soortIcoon = new Label(icoonType.getNaam());
+        soortIcoon.setId("listViewTitle");
+        
+        VBox ListViewMetLabel = new VBox();
+        ListViewMetLabel.setId("listViewWithLabel");
 
-        attitudeList.getChildren().addAll(IcoonView, opmerkingenListView, nieuwHB, uitroeptekenBtn);
+        ListViewMetLabel.getChildren().addAll(soortIcoon, opmerkingenListView);
+
+        attitudeList.getChildren().addAll(IcoonView, ListViewMetLabel, nieuwHB, uitroeptekenBtn);
         
         opmerkingenListView.setOnMouseClicked(event -> {
 

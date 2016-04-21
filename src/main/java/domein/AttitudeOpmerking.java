@@ -17,8 +17,8 @@ public class AttitudeOpmerking {
 
     public AttitudeOpmerking(String naam, String opmerking) {
         this.naam = naam;
-        if(opmerking == null || opmerking.equalsIgnoreCase("")){
-            this.opmerking = naam;
+        if(opmerking.equalsIgnoreCase(" ") || opmerking.equalsIgnoreCase("")){
+            this.opmerking = null;
         }else{
             this.opmerking = opmerking;
         }

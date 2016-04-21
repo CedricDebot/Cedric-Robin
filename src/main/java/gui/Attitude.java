@@ -107,6 +107,7 @@ public class Attitude extends GridPane {
         OpmerkingenPane.add(opmerking, 0, 1);
 
         TextArea opmerkingVeld = new TextArea();
+        opmerkingVeld.setWrapText(true);
         opmerkingVeld.setId("OpmerkingenVeld");
         OpmerkingenPane.add(opmerkingVeld, 0, 2);
 
@@ -174,6 +175,7 @@ public class Attitude extends GridPane {
         //voegtoe
         Button voegToe = new Button("Voeg Toe");
         TextField nieuw = new TextField();
+        nieuw.setId("tekstNieuw");
         HBox nieuwHB = new HBox();
         nieuwHB.setId("nieuwHB");
         nieuwHB.getChildren().addAll(nieuw, voegToe);
