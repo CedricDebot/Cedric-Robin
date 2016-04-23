@@ -25,9 +25,10 @@ import javafx.util.Duration;
 public class VerkeersTechniek extends HBox {
     
     private DomeinController controller;
-
+    private VerkeerstechniekIcoon verkeerstechniekIcoon;
+    
     private Scene scene;
-    private ImageView middenGridImageView;
+//    private ImageView middenGridImageView;
     private Group verkeerstechniekGroup;
 
     private boolean roodLichtActive = false;
@@ -36,6 +37,9 @@ public class VerkeersTechniek extends HBox {
 
     public VerkeersTechniek(DomeinController controller) {
         this.controller = controller;
+        
+        verkeerstechniekIcoon = new VerkeerstechniekIcoon(controller);
+        verkeerstechniekIcoon.kleurRotonde();
         
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
@@ -92,22 +96,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setVoorrang(Toestand.ROOD);
                 voorrangImageView.setImage(voorrangRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getVoorrang() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setVoorrang(Toestand.ORANJE);
                 voorrangImageView.setImage(voorrangOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getVoorrang() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setVoorrang(Toestand.GROEN);
                 voorrangImageView.setImage(voorrangGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getVoorrang() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setVoorrang(Toestand.WIT);
                 voorrangImageView.setImage(voorrangWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -142,22 +146,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setVerkeerstekens(Toestand.ROOD);
                 ordersOpvolgenView.setImage(orderOpvolgenRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstekens() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setVerkeerstekens(Toestand.ORANJE);
                 ordersOpvolgenView.setImage(orderOpvolgenOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstekens() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setVerkeerstekens(Toestand.GROEN);
                 ordersOpvolgenView.setImage(orderOpvolgenGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstekens() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setVerkeerstekens(Toestand.WIT);
                 ordersOpvolgenView.setImage(orderOpvolgenWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -192,22 +196,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setSnelheid(Toestand.ROOD);
                 snelheidView.setImage(snelheidRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getSnelheid() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setSnelheid(Toestand.ORANJE);
                 snelheidView.setImage(snelheidOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getSnelheid() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setSnelheid(Toestand.GROEN);
                 snelheidView.setImage(snelheidGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getSnelheid() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setSnelheid(Toestand.WIT);
                 snelheidView.setImage(snelheidWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandBeneden();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -242,22 +246,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setAfstandHouden(Toestand.ROOD);
                 afstandView.setImage(afstandRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getAfstandHouden() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setAfstandHouden(Toestand.ORANJE);
                 afstandView.setImage(afstandOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getAfstandHouden() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setAfstandHouden(Toestand.GROEN);
                 afstandView.setImage(afstandGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getAfstandHouden() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setAfstandHouden(Toestand.WIT);
                 afstandView.setImage(afstandWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -293,22 +297,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setInhalen(Toestand.ROOD);
                 inhalenView.setImage(inhalenRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getInhalen() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setInhalen(Toestand.ORANJE);
                 inhalenView.setImage(inhalenOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getInhalen() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setInhalen(Toestand.GROEN);
                 inhalenView.setImage(inhalenGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getInhalen() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setInhalen(Toestand.WIT);
                 inhalenView.setImage(inhalenWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -344,22 +348,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setKruisen(Toestand.ROOD);
                 kruisenView.setImage(kruisenRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getKruisen() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setKruisen(Toestand.ORANJE);
                 kruisenView.setImage(kruisenOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getKruisen() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setKruisen(Toestand.GROEN);
                 kruisenView.setImage(kruisenGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getKruisen() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setKruisen(Toestand.WIT);
                 kruisenView.setImage(kruisenWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -395,22 +399,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setLinksaf(Toestand.ROOD);
                 linksAfslaanView.setImage(linksAfslaanRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getLinksaf() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setLinksaf(Toestand.ORANJE);
                 linksAfslaanView.setImage(linksAfslaanOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getLinksaf() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setLinksaf(Toestand.GROEN);
                 linksAfslaanView.setImage(linksAfslaanGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getLinksaf() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setLinksaf(Toestand.WIT);
                 linksAfslaanView.setImage(linksAfslaanWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -446,22 +450,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setRechtsaf(Toestand.ROOD);
                 rechtsAfslaanView.setImage(rechtsAfslaanRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getRechtsaf() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setRechtsaf(Toestand.ORANJE);
                 rechtsAfslaanView.setImage(rechtsAfslaanOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getRechtsaf() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setRechtsaf(Toestand.GROEN);
                 rechtsAfslaanView.setImage(rechtsAfslaanGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getRechtsaf() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setRechtsaf(Toestand.WIT);
                 rechtsAfslaanView.setImage(rechtsAfslaanWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -497,22 +501,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setRichtingaanwijzers(Toestand.ROOD);
                 pinkersView.setImage(pinkersRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getRichtingaanwijzers() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setRichtingaanwijzers(Toestand.ORANJE);
                 pinkersView.setImage(pinkersOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getRichtingaanwijzers() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setRichtingaanwijzers(Toestand.GROEN);
                 pinkersView.setImage(pinkersGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getRichtingaanwijzers() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setRichtingaanwijzers(Toestand.WIT);
                 pinkersView.setImage(pinkersWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandLinks();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -548,22 +552,22 @@ public class VerkeersTechniek extends HBox {
                 controller.getLeerling().getVerkeerstechniekDom().setOpenbareWeg(Toestand.ROOD);
                 OWView.setImage(OWRood);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getOpenbareWeg() == Toestand.ROOD) {
                 controller.getLeerling().getVerkeerstechniekDom().setOpenbareWeg(Toestand.ORANJE);
                 OWView.setImage(OWOranje);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getOpenbareWeg() == Toestand.ORANJE) {
                 controller.getLeerling().getVerkeerstechniekDom().setOpenbareWeg(Toestand.GROEN);
                 OWView.setImage(OWGroen);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             } else if (controller.getLeerling().getVerkeerstechniekDom().getOpenbareWeg() == Toestand.GROEN) {
                 controller.getLeerling().getVerkeerstechniekDom().setOpenbareWeg(Toestand.WIT);
                 OWView.setImage(OWWit);
                 controller.getLeerling().getVerkeerstechniekDom().bepaalToestandRechts();
-                kleurRotonde();
+                verkeerstechniekIcoon.kleurRotonde();
             }
         });
 
@@ -579,14 +583,14 @@ public class VerkeersTechniek extends HBox {
 
         grid.add(OWHBox, 1, 1);
 
-        Image middenGrid = new Image("images/verkeerstechniekIcoon/verkeerstechniekWit.png");
-        middenGridImageView = new ImageView(middenGrid);
-        middenGridImageView.setFitWidth(150);
-        middenGridImageView.setFitHeight(150);
+//        Image middenGrid = new Image("images/verkeerstechniekIcoon/verkeerstechniekWit.png");
+//        middenGridImageView = new ImageView(middenGrid);
+//        middenGridImageView.setFitWidth(150);
+//        middenGridImageView.setFitHeight(150);
 
-        verkeerstechniekGroup = new Group();
-        verkeerstechniekGroup.getChildren().add(middenGridImageView);
-        grid.add(verkeerstechniekGroup, 2, 2, 2, 2);
+//        verkeerstechniekGroup = new Group();
+//        verkeerstechniekGroup.getChildren().add(middenGridImageView);
+        grid.add(verkeerstechniekIcoon.getVerkeerstechniekGroup(), 2, 2, 2, 2);
 
         Image cirkel = new Image("images/verkeersTechniek/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
@@ -1033,80 +1037,80 @@ public class VerkeersTechniek extends HBox {
         });
     }
 
-    public void kleurRotonde() {
-        kleurRotondeLinks();
-        kleurRotondeRechts();
-        kleurRotondeBeneden();
-    }
-
-    public void kleurRotondeLinks() {
-        ImageView rotondeLinks = new ImageView();
-        rotondeLinks.setFitWidth(150);
-        rotondeLinks.setFitHeight(150);
-
-        if (verkeerstechniekGroup.getChildren().contains(rotondeLinks)) {
-            verkeerstechniekGroup.getChildren().remove(rotondeLinks);
-        }
-
-        if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonLinks() == Toestand.GROEN) {
-            Image rotondeGroenLinks = new Image("images/verkeerstechniekIcoon/rotondeGroenLinks.png");
-            rotondeLinks.setImage(rotondeGroenLinks);
-        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonLinks() == Toestand.ORANJE) {
-            Image rotondeOranjeLinks = new Image("images/verkeerstechniekIcoon/rotondeOranjeLinks.png");
-            rotondeLinks.setImage(rotondeOranjeLinks);
-        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonLinks() == Toestand.ROOD) {
-            Image rotondeRoodLinks = new Image("images/verkeerstechniekIcoon/rotondeRoodLinks.png");
-            rotondeLinks.setImage(rotondeRoodLinks);
-        }
-
-        verkeerstechniekGroup.getChildren().add(rotondeLinks);
-    }
-
-    public void kleurRotondeRechts() {
-        ImageView rotondeRechts = new ImageView();
-        rotondeRechts.setFitWidth(150);
-        rotondeRechts.setFitHeight(150);
-
-        if (verkeerstechniekGroup.getChildren().contains(rotondeRechts)) {
-            verkeerstechniekGroup.getChildren().remove(rotondeRechts);
-        }
-
-        if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonRechts() == Toestand.GROEN) {
-            Image rotondeGroenRechts = new Image("images/verkeerstechniekIcoon/rotondeGroenRechts.png");
-            rotondeRechts.setImage(rotondeGroenRechts);
-        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonRechts() == Toestand.ORANJE) {
-            Image rotondeOranjeRechts = new Image("images/verkeerstechniekIcoon/rotondeOranjeRechts.png");
-            rotondeRechts.setImage(rotondeOranjeRechts);
-        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonRechts() == Toestand.ROOD) {
-            Image rotondeRoodRechts = new Image("images/verkeerstechniekIcoon/rotondeRoodRechts.png");
-            rotondeRechts.setImage(rotondeRoodRechts);
-        }
-
-        verkeerstechniekGroup.getChildren().add(rotondeRechts);
-    }
-
-    public void kleurRotondeBeneden() {
-        ImageView rotondeBeneden = new ImageView();
-        rotondeBeneden.setFitWidth(150);
-        rotondeBeneden.setFitHeight(150);
-
-        if (verkeerstechniekGroup.getChildren().contains(rotondeBeneden)) {
-            verkeerstechniekGroup.getChildren().remove(rotondeBeneden);
-        }
-
-        if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonBeneden() == Toestand.GROEN) {
-            Image rotondeGroenBeneden = new Image("images/verkeerstechniekIcoon/rotondeGroenBeneden.png");
-            rotondeBeneden.setImage(rotondeGroenBeneden);
-        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonBeneden() == Toestand.ORANJE) {
-            Image rotondeOranjeBeneden = new Image("images/verkeerstechniekIcoon/rotondeOranjeBeneden.png");
-            rotondeBeneden.setImage(rotondeOranjeBeneden);
-        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonBeneden() == Toestand.ROOD) {
-            Image rotondeRoodBeneden = new Image("images/verkeerstechniekIcoon/rotondeRoodBeneden.png");
-            rotondeBeneden.setImage(rotondeRoodBeneden);
-        }
-
-        verkeerstechniekGroup.getChildren().add(rotondeBeneden);
-    }
+//    public void kleurRotonde() {
+//        kleurRotondeLinks();
+//        kleurRotondeRechts();
+//        kleurRotondeBeneden();
+//    }
+//
+//    public void kleurRotondeLinks() {
+//        ImageView rotondeLinks = new ImageView();
+//        rotondeLinks.setFitWidth(150);
+//        rotondeLinks.setFitHeight(150);
+//
+//        if (verkeerstechniekGroup.getChildren().contains(rotondeLinks)) {
+//            verkeerstechniekGroup.getChildren().remove(rotondeLinks);
+//        }
+//
+//        if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonLinks() == Toestand.GROEN) {
+//            Image rotondeGroenLinks = new Image("images/verkeerstechniekIcoon/rotondeGroenLinks.png");
+//            rotondeLinks.setImage(rotondeGroenLinks);
+//        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonLinks() == Toestand.ORANJE) {
+//            Image rotondeOranjeLinks = new Image("images/verkeerstechniekIcoon/rotondeOranjeLinks.png");
+//            rotondeLinks.setImage(rotondeOranjeLinks);
+//        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonLinks() == Toestand.ROOD) {
+//            Image rotondeRoodLinks = new Image("images/verkeerstechniekIcoon/rotondeRoodLinks.png");
+//            rotondeLinks.setImage(rotondeRoodLinks);
+//        }
+//
+//        verkeerstechniekGroup.getChildren().add(rotondeLinks);
+//    }
+//
+//    public void kleurRotondeRechts() {
+//        ImageView rotondeRechts = new ImageView();
+//        rotondeRechts.setFitWidth(150);
+//        rotondeRechts.setFitHeight(150);
+//
+//        if (verkeerstechniekGroup.getChildren().contains(rotondeRechts)) {
+//            verkeerstechniekGroup.getChildren().remove(rotondeRechts);
+//        }
+//
+//        if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonRechts() == Toestand.GROEN) {
+//            Image rotondeGroenRechts = new Image("images/verkeerstechniekIcoon/rotondeGroenRechts.png");
+//            rotondeRechts.setImage(rotondeGroenRechts);
+//        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonRechts() == Toestand.ORANJE) {
+//            Image rotondeOranjeRechts = new Image("images/verkeerstechniekIcoon/rotondeOranjeRechts.png");
+//            rotondeRechts.setImage(rotondeOranjeRechts);
+//        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonRechts() == Toestand.ROOD) {
+//            Image rotondeRoodRechts = new Image("images/verkeerstechniekIcoon/rotondeRoodRechts.png");
+//            rotondeRechts.setImage(rotondeRoodRechts);
+//        }
+//
+//        verkeerstechniekGroup.getChildren().add(rotondeRechts);
+//    }
+//
+//    public void kleurRotondeBeneden() {
+//        ImageView rotondeBeneden = new ImageView();
+//        rotondeBeneden.setFitWidth(150);
+//        rotondeBeneden.setFitHeight(150);
+//
+//        if (verkeerstechniekGroup.getChildren().contains(rotondeBeneden)) {
+//            verkeerstechniekGroup.getChildren().remove(rotondeBeneden);
+//        }
+//
+//        if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonBeneden() == Toestand.GROEN) {
+//            Image rotondeGroenBeneden = new Image("images/verkeerstechniekIcoon/rotondeGroenBeneden.png");
+//            rotondeBeneden.setImage(rotondeGroenBeneden);
+//        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonBeneden() == Toestand.ORANJE) {
+//            Image rotondeOranjeBeneden = new Image("images/verkeerstechniekIcoon/rotondeOranjeBeneden.png");
+//            rotondeBeneden.setImage(rotondeOranjeBeneden);
+//        } else if (controller.getLeerling().getVerkeerstechniekDom().getVerkeerstechniekIcoonBeneden() == Toestand.ROOD) {
+//            Image rotondeRoodBeneden = new Image("images/verkeerstechniekIcoon/rotondeRoodBeneden.png");
+//            rotondeBeneden.setImage(rotondeRoodBeneden);
+//        }
+//
+//        verkeerstechniekGroup.getChildren().add(rotondeBeneden);
+//    }
 
     public void setScene(Scene scene) {
         this.scene = scene;
