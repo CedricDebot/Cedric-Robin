@@ -38,7 +38,10 @@ public class Dashboard extends GridPane {
     Rectangle[] grafiek;
 
     private Label voortgang;
-
+    
+    private RijtechniekIcoon rijtechniekIcoon;
+    private VerkeerstechniekIcoon verkeerstechniekIcoon;
+    
     public Dashboard(DomeinController controller) {
 
         this.evaGraf = controller.getLeerling().getEvaGraf();
@@ -57,6 +60,9 @@ public class Dashboard extends GridPane {
             evaGraf.getBlok3(),
             evaGraf.getBlok2(),
             evaGraf.getBlok1()};
+        
+        rijtechniekIcoon = new RijtechniekIcoon(controller);
+        verkeerstechniekIcoon = new VerkeerstechniekIcoon(controller);
 
         //Menu
         Menu menu = new Menu();
@@ -165,11 +171,13 @@ public class Dashboard extends GridPane {
 
         dashboard.getRowConstraints().addAll(row1, row2);
 
-        Image rijtechniek = new Image("images/rijtechniekIcoon/stuurWit.png");
-        ImageView rijtechniekImageView = new ImageView(rijtechniek);
-        rijtechniekImageView.setFitWidth(100);
-        rijtechniekImageView.setFitHeight(100);
-        Button rijtechniekBtn = new Button("", rijtechniekImageView);
+          rijtechniekIcoon.kleurStuur();
+        verkeerstechniekIcoon.kleurRotonde();
+//        Image rijtechniek = new Image("images/rijtechniekIcoon/stuurWit.png");
+//        ImageView rijtechniekImageView = new ImageView(rijtechniek);
+//        rijtechniekImageView.setFitWidth(100);
+//        rijtechniekImageView.setFitHeight(100);
+        Button rijtechniekBtn = new Button("", rijtechniekIcoon.getRijtechniekIcoonGroup());
         rijtechniekBtn.setId("groteBtnsDashboard");
         dashboard.add(rijtechniekBtn, 0, 0);
 

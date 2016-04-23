@@ -34,11 +34,15 @@ public class Rijtechniek extends HBox {
     private boolean roodLichtActive = false;
     private boolean oranjeLichtActive = false;
     private boolean groenLichtActive = false;
+    
+    private RijtechniekIcoon rijtechniekIcoon;
 
     public Rijtechniek(DomeinController controller) {
-
+        
         this.controller = controller;
 
+        rijtechniekIcoon = new RijtechniekIcoon(controller);
+        
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
         //grid.setGridLinesVisible(true);
@@ -92,22 +96,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setStuurTechniek(Toestand.ROOD);
                 stuurImageView.setImage(stuurRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getStuurTechniek() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setStuurTechniek(Toestand.ORANJE);
                 stuurImageView.setImage(stuurOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getStuurTechniek() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setStuurTechniek(Toestand.GROEN);
                 stuurImageView.setImage(stuurGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getStuurTechniek() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setStuurTechniek(Toestand.WIT);
                 stuurImageView.setImage(stuurWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -142,22 +146,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setSchakelTechniek(Toestand.ROOD);
                 schakelenImageView.setImage(schakelenRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getSchakelTechniek() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setSchakelTechniek(Toestand.ORANJE);
                 schakelenImageView.setImage(schakelenOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getSchakelTechniek() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setSchakelTechniek(Toestand.GROEN);
                 schakelenImageView.setImage(schakelenGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getSchakelTechniek() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setSchakelTechniek(Toestand.WIT);
                 schakelenImageView.setImage(schakelenWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -193,22 +197,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setKijkTechniek(Toestand.ROOD);
                 kijkenImageView.setImage(kijkenRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKijkTechniek() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setKijkTechniek(Toestand.ORANJE);
                 kijkenImageView.setImage(kijkenOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKijkTechniek() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setKijkTechniek(Toestand.GROEN);
                 kijkenImageView.setImage(kijkenGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKijkTechniek() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setKijkTechniek(Toestand.WIT);
                 kijkenImageView.setImage(kijkenWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -246,22 +250,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setParkeren(Toestand.ROOD);
                 parkerenImageView.setImage(parkerenRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getParkeren() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setParkeren(Toestand.ORANJE);
                 parkerenImageView.setImage(parkerenOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getParkeren() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setParkeren(Toestand.GROEN);
                 parkerenImageView.setImage(parkerenGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getParkeren() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setParkeren(Toestand.WIT);
                 parkerenImageView.setImage(parkerenWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -285,22 +289,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setKeren(Toestand.ROOD);
                 kerenImageView.setImage(kerenRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKeren() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setKeren(Toestand.ORANJE);
                 kerenImageView.setImage(kerenOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKeren() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setKeren(Toestand.GROEN);
                 kerenImageView.setImage(kerenGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKeren() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setKeren(Toestand.WIT);
                 kerenImageView.setImage(kerenWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandRechts();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -324,22 +328,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setGarage(Toestand.ROOD);
                 garageImageView.setImage(garageRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getGarage() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setGarage(Toestand.ORANJE);
                 garageImageView.setImage(garageOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getGarage() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setGarage(Toestand.GROEN);
                 garageImageView.setImage(garageGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getGarage() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setGarage(Toestand.WIT);
                 garageImageView.setImage(garageWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -363,22 +367,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setAchteruit(Toestand.ROOD);
                 achteruitImageView.setImage(achteruitRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getAchteruit() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setAchteruit(Toestand.ORANJE);
                 achteruitImageView.setImage(achteruitOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getAchteruit() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setAchteruit(Toestand.GROEN);
                 achteruitImageView.setImage(achteruitGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getAchteruit() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setAchteruit(Toestand.WIT);
                 achteruitImageView.setImage(achteruitWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -402,22 +406,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setAcht(Toestand.ROOD);
                 achtImageView.setImage(achtRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getAcht() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setAcht(Toestand.ORANJE);
                 achtImageView.setImage(achtOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getAcht() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setAcht(Toestand.GROEN);
                 achtImageView.setImage(achtGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getAcht() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setAcht(Toestand.WIT);
                 achtImageView.setImage(achtWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -440,22 +444,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setHelling(Toestand.ROOD);
                 hellingImageView.setImage(hellingRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getHelling() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setHelling(Toestand.ORANJE);
                 hellingImageView.setImage(hellingOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getHelling() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setHelling(Toestand.GROEN);
                 hellingImageView.setImage(hellingGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getHelling() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setHelling(Toestand.WIT);
                 hellingImageView.setImage(hellingWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandLinks();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -490,22 +494,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setZithouding(Toestand.ROOD);
                 zithoudingImageView.setImage(zithoudingRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getZithouding() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setZithouding(Toestand.ORANJE);
                 zithoudingImageView.setImage(zithoudingOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getZithouding() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setZithouding(Toestand.GROEN);
                 zithoudingImageView.setImage(zithoudingGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getZithouding() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setZithouding(Toestand.WIT);
                 zithoudingImageView.setImage(zithoudingWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -540,22 +544,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setRemtechniek(Toestand.ROOD);
                 remtechniekImageView.setImage(remtechniekRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getRemtechniek() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setRemtechniek(Toestand.ORANJE);
                 remtechniekImageView.setImage(remtechniekOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getRemtechniek() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setRemtechniek(Toestand.GROEN);
                 remtechniekImageView.setImage(remtechniekGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getRemtechniek() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setRemtechniek(Toestand.WIT);
                 remtechniekImageView.setImage(remtechniekWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -590,22 +594,22 @@ public class Rijtechniek extends HBox {
                 controller.getLeerling().getRijtechniekDom().setKoppeling(Toestand.ROOD);
                 embrayageImageView.setImage(embrayageRood);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKoppeling() == Toestand.ROOD) {
                 controller.getLeerling().getRijtechniekDom().setKoppeling(Toestand.ORANJE);
                 embrayageImageView.setImage(embrayageOranje);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKoppeling() == Toestand.ORANJE) {
                 controller.getLeerling().getRijtechniekDom().setKoppeling(Toestand.GROEN);
                 embrayageImageView.setImage(embrayageGroen);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             } else if (controller.getLeerling().getRijtechniekDom().getKoppeling() == Toestand.GROEN) {
                 controller.getLeerling().getRijtechniekDom().setKoppeling(Toestand.WIT);
                 embrayageImageView.setImage(embrayageWit);
                 controller.getLeerling().getRijtechniekDom().bepaalToestandBoven();
-                kleurStuur();
+                rijtechniekIcoon.kleurStuur();
             }
         });
 
@@ -621,15 +625,15 @@ public class Rijtechniek extends HBox {
 
         grid.add(embrayageHBox, 2, 0);
 
-        Image middenGrid = new Image("images/rijtechniekIcoon/stuurWit.png");
-        middenGridImageView = new ImageView(middenGrid);
-        middenGridImageView.setFitWidth(150);
-        middenGridImageView.setFitHeight(150);
+//        Image middenGrid = new Image("images/rijtechniekIcoon/stuurWit.png");
+//        middenGridImageView = new ImageView(middenGrid);
+//        middenGridImageView.setFitWidth(150);
+//        middenGridImageView.setFitHeight(150);
 
-        rijtechniekIcoonGroup = new Group();
+        //rijtechniekIcoonGroup = new Group();
         //rijtechniekIcoonGroup.setId("rijtechniekIcoonGroup");
-        rijtechniekIcoonGroup.getChildren().add(middenGridImageView);
-        grid.add(rijtechniekIcoonGroup, 2, 2, 2, 2);
+        //rijtechniekIcoonGroup.getChildren().add(middenGridImageView);
+        grid.add(rijtechniekIcoon.getRijtechniekIcoonGroup(), 2, 2, 2, 2);
 
         Image cirkel = new Image("images/verkeersTechniek/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
@@ -1119,67 +1123,67 @@ public class Rijtechniek extends HBox {
 
     }
 
-    public void kleurStuur() {
-        kleurStuurBoven();
-        kleurStuurRechts();
-        kleurStuurLinks();
-    }
-
-    public void kleurStuurBoven() {
-        ImageView stuurBoven = new ImageView();
-        stuurBoven.setFitWidth(150);
-        stuurBoven.setFitHeight(150);
-        if (rijtechniekIcoonGroup.getChildren().contains(stuurBoven)) {
-            rijtechniekIcoonGroup.getChildren().remove(stuurBoven);
-        }
-
-        if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonBoven() == Toestand.GROEN) {
-            Image stuurGroenBoven = new Image("images/rijtechniekIcoon/stuurGroenBoven.png");
-            stuurBoven.setImage(stuurGroenBoven);
-        } else if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonBoven() == Toestand.ORANJE) {
-            Image stuurOranjeBoven = new Image("images/rijtechniekIcoon/stuurOranjeBoven.png");
-            stuurBoven.setImage(stuurOranjeBoven);
-        }
-        rijtechniekIcoonGroup.getChildren().add(stuurBoven);
-    }
-
-    public void kleurStuurRechts() {
-        ImageView stuurRechts = new ImageView();
-        stuurRechts.setFitWidth(150);
-        stuurRechts.setFitHeight(150);
-        if (rijtechniekIcoonGroup.getChildren().contains(stuurRechts)) {
-            rijtechniekIcoonGroup.getChildren().remove(stuurRechts);
-        }
-
-        if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonRechts() == Toestand.GROEN) {
-            Image stuurGroenRechts = new Image("images/rijtechniekIcoon/stuurGroenRechts.png");
-            stuurRechts.setImage(stuurGroenRechts);
-        } else if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonRechts() == Toestand.ORANJE) {
-            Image stuurOranjeRechts = new Image("images/rijtechniekIcoon/stuurOranjeRechts.png");
-            stuurRechts.setImage(stuurOranjeRechts);
-        }
-
-        rijtechniekIcoonGroup.getChildren().add(stuurRechts);
-    }
-
-    public void kleurStuurLinks() {
-        ImageView stuurLinks = new ImageView();
-        stuurLinks.setFitWidth(150);
-        stuurLinks.setFitHeight(150);
-        if (rijtechniekIcoonGroup.getChildren().contains(stuurLinks)) {
-            rijtechniekIcoonGroup.getChildren().remove(stuurLinks);
-        }
-
-        if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonLinks() == Toestand.GROEN) {
-            Image stuurGroenLinks = new Image("images/rijtechniekIcoon/stuurGroenLinks.png");
-            stuurLinks.setImage(stuurGroenLinks);
-        } else if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonLinks() == Toestand.ORANJE) {
-            Image stuurOranjeLinks = new Image("images/rijtechniekIcoon/stuurOranjeLinks.png");
-            stuurLinks.setImage(stuurOranjeLinks);
-        }
-
-        rijtechniekIcoonGroup.getChildren().add(stuurLinks);
-    }
+//    public void kleurStuur() {
+//        kleurStuurBoven();
+//        kleurStuurRechts();
+//        kleurStuurLinks();
+//    }
+//
+//    public void kleurStuurBoven() {
+//        ImageView stuurBoven = new ImageView();
+//        stuurBoven.setFitWidth(150);
+//        stuurBoven.setFitHeight(150);
+//        if (rijtechniekIcoonGroup.getChildren().contains(stuurBoven)) {
+//            rijtechniekIcoonGroup.getChildren().remove(stuurBoven);
+//        }
+//
+//        if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonBoven() == Toestand.GROEN) {
+//            Image stuurGroenBoven = new Image("images/rijtechniekIcoon/stuurGroenBoven.png");
+//            stuurBoven.setImage(stuurGroenBoven);
+//        } else if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonBoven() == Toestand.ORANJE) {
+//            Image stuurOranjeBoven = new Image("images/rijtechniekIcoon/stuurOranjeBoven.png");
+//            stuurBoven.setImage(stuurOranjeBoven);
+//        }
+//        rijtechniekIcoonGroup.getChildren().add(stuurBoven);
+//    }
+//
+//    public void kleurStuurRechts() {
+//        ImageView stuurRechts = new ImageView();
+//        stuurRechts.setFitWidth(150);
+//        stuurRechts.setFitHeight(150);
+//        if (rijtechniekIcoonGroup.getChildren().contains(stuurRechts)) {
+//            rijtechniekIcoonGroup.getChildren().remove(stuurRechts);
+//        }
+//
+//        if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonRechts() == Toestand.GROEN) {
+//            Image stuurGroenRechts = new Image("images/rijtechniekIcoon/stuurGroenRechts.png");
+//            stuurRechts.setImage(stuurGroenRechts);
+//        } else if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonRechts() == Toestand.ORANJE) {
+//            Image stuurOranjeRechts = new Image("images/rijtechniekIcoon/stuurOranjeRechts.png");
+//            stuurRechts.setImage(stuurOranjeRechts);
+//        }
+//
+//        rijtechniekIcoonGroup.getChildren().add(stuurRechts);
+//    }
+//
+//    public void kleurStuurLinks() {
+//        ImageView stuurLinks = new ImageView();
+//        stuurLinks.setFitWidth(150);
+//        stuurLinks.setFitHeight(150);
+//        if (rijtechniekIcoonGroup.getChildren().contains(stuurLinks)) {
+//            rijtechniekIcoonGroup.getChildren().remove(stuurLinks);
+//        }
+//
+//        if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonLinks() == Toestand.GROEN) {
+//            Image stuurGroenLinks = new Image("images/rijtechniekIcoon/stuurGroenLinks.png");
+//            stuurLinks.setImage(stuurGroenLinks);
+//        } else if (controller.getLeerling().getRijtechniekDom().getRijtechniekIcoonLinks() == Toestand.ORANJE) {
+//            Image stuurOranjeLinks = new Image("images/rijtechniekIcoon/stuurOranjeLinks.png");
+//            stuurLinks.setImage(stuurOranjeLinks);
+//        }
+//
+//        rijtechniekIcoonGroup.getChildren().add(stuurLinks);
+//    }
 
     public void setScene(Scene scene) {
         this.scene = scene;

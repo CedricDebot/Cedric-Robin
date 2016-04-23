@@ -6,9 +6,6 @@
 package domein;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -465,5 +462,4 @@ public class Leerling {
     public ArrayList<AttitudeOpmerking> getEmbrayageOpmerkingen() {
         return embrayageOpmerkingen;
     }
-
 }

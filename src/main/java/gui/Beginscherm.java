@@ -325,11 +325,12 @@ public class Beginscherm extends HBox {
 
         ObservableList<Leerling> searchNames = FXCollections.observableArrayList();
         for (Leerling leerling : leerlingen) {
-            String entryText = (String) leerling.getVoorNaam();
+            String entryText =  leerling.getVoorNaam() + " " + leerling.getFamillieNaam();
             if (entryText.toLowerCase().contains(newVal)) {
                 searchNames.add(leerling);
             }
         }
+        
         lijstLeerlingen.setItems(searchNames);
     }
 
