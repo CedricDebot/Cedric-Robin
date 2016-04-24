@@ -73,7 +73,7 @@ public class Beginscherm extends HBox {
         zoekscherm.setId("zoekscherm");
         zoekscherm.getChildren().addAll(labels, buttons, feedbackInlog);
 
-        //ListViewShenanigans
+        //ListViewLln
         VulLeerlingen();
 
         lijstLeerlingen.setId("lijstLeerlingen");

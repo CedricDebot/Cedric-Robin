@@ -6,9 +6,6 @@
 package domein;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -24,8 +21,7 @@ public class Leerling {
 
     //Gegevens knoppen
     private DashboardDom dashboardDom;
-    private RijtechniekDom rijtechniekDom;
-    private VerkeerstechniekDom verkeerstechniekDom;
+    private ButtonHolder buttonHolder;
     //Opmerkingen Atttiude
     private ArrayList<AttitudeOpmerking> standaardOpmerkingenList;
     //Grafiek
@@ -33,7 +29,6 @@ public class Leerling {
     //Opmerkingen dashboard
     private ObservableList<AttitudeOpmerking> recenteOpmerkingen;
 
-    private int huidigeOpmerking = 0;
 
     public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email, Image foto) {
         this.famillieNaam = famillieNaam;
@@ -42,12 +37,11 @@ public class Leerling {
         this.inschrijvingsNr = inschrijvingsNr;
         this.foto = foto;
         dashboardDom = new DashboardDom();
-        rijtechniekDom = new RijtechniekDom();
-        verkeerstechniekDom = new VerkeerstechniekDom();
         maakStandaardOpmerkingenList();
         maakOpmerkingSchermLists();
         evaGraf = new EvaluatieGrafiek();
         recenteOpmerkingen = FXCollections.observableArrayList();
+        buttonHolder = new ButtonHolder();
     }
 
     public String getInschrijvingsNr() {
@@ -97,23 +91,11 @@ public class Leerling {
     public void setDashboardDom(DashboardDom dashboardDom) {
         this.dashboardDom = dashboardDom;
     }
-
-    public void setRijtechniekDom(RijtechniekDom rijtechniekDom) {
-        this.rijtechniekDom = rijtechniekDom;
+    
+    public ButtonHolder getButtonHolder() {
+        return buttonHolder;
     }
-
-    public RijtechniekDom getRijtechniekDom() {
-        return rijtechniekDom;
-    }
-
-    public void setVerkeerstechniekDom(VerkeerstechniekDom verkeerstechniekDom) {
-        this.verkeerstechniekDom = verkeerstechniekDom;
-    }
-
-    public VerkeerstechniekDom getVerkeerstechniekDom() {
-        return verkeerstechniekDom;
-    }
-
+    
     public ArrayList<AttitudeOpmerking> getStandaardOpmerkingenList() {
         return standaardOpmerkingenList;
     }
@@ -125,43 +107,13 @@ public class Leerling {
     public ObservableList<AttitudeOpmerking> getRecenteOpmerkingen() {
         return recenteOpmerkingen;
     }
-
-    public AttitudeOpmerking volgendeRecenteOpmerking() {
-        if (huidigeOpmerking == recenteOpmerkingen.size()) {
-            return recenteOpmerkingen.get(huidigeOpmerking);
-        } else {
-            huidigeOpmerking++;
-            return recenteOpmerkingen.get(huidigeOpmerking);
-        }
-    }
-
-    public AttitudeOpmerking vorigeRecenteOpmerking() {
-        if (huidigeOpmerking == 0) {
-            return recenteOpmerkingen.get(0);
-        } else {
-            huidigeOpmerking--;
-            return recenteOpmerkingen.get(huidigeOpmerking);
-        }
-    }
     
-    public void verwijderRecenteOpmerking(AttitudeOpmerking attitudeOpmerking){
-        for (int i = 0; i < recenteOpmerkingen.size(); i++) {
-            if(recenteOpmerkingen.get(i) == attitudeOpmerking){
-                if(i >= huidigeOpmerking){
-                    huidigeOpmerking--;
-                    recenteOpmerkingen.remove(i);
-                }else{
-                    recenteOpmerkingen.remove(i);
-                }
-            }
-        }
+    public ButtonTechniekDomein getButtonRijTechniek(int index){
+        return buttonHolder.getButtonRijTechniek(index);
     }
-
-    public int getHuidigeOpmerking() {
-        return huidigeOpmerking;
+    public ButtonTechniekDomein getButtonVerkeersTechniek(int index){
+        return buttonHolder.getButtonVerkeersTechniek(index);
     }
-    
-    
 
     private void maakStandaardOpmerkingenList() {
         standaardOpmerkingenList = new ArrayList<>();

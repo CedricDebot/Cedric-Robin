@@ -10,7 +10,7 @@ public class EvaluatieGrafiek {
     private String voortgang = "";
     private Label voortgangLabel;
     
-    private Rectangle blok1 = new Rectangle(15, 30, Color.BLUE);
+    private Rectangle blok1 = new Rectangle(15, 30, Color.web("#22567b"));
     private Rectangle blok2 = new Rectangle(15, 40, Color.BLACK);
     private Rectangle blok3 = new Rectangle(15, 50, Color.BLACK);
     private Rectangle blok4 = new Rectangle(15, 60, Color.BLACK);

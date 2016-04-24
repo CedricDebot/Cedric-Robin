@@ -111,6 +111,7 @@ public class Dashboard extends GridPane {
         menu.getMoment1().setOnAction(e -> {
             if (menu.getMoment1().getText().equals(" ")) {
                 menu.getMoment1().setText("1");
+                controller.setEva1();
             } else {
                 menu.getMoment1().setText(" ");
             }
@@ -118,6 +119,7 @@ public class Dashboard extends GridPane {
         menu.getMoment2().setOnAction(e -> {
             if (menu.getMoment2().getText().equals(" ")) {
                 menu.getMoment2().setText("2");
+                controller.setEva2();
             } else {
                 menu.getMoment2().setText(" ");
             }
@@ -125,6 +127,7 @@ public class Dashboard extends GridPane {
         menu.getMoment3().setOnAction(e -> {
             if (menu.getMoment3().getText().equals(" ")) {
                 menu.getMoment3().setText("3");
+                controller.setEva3();
             } else {
                 menu.getMoment3().setText(" ");
             }
@@ -523,7 +526,7 @@ public class Dashboard extends GridPane {
             evaGraf.minEen();
 
             Rectangle blokAdd = grafiek[evaGraf.getPositie()];
-            blokAdd.setFill(Color.BLUE);
+            blokAdd.setFill(Color.web("#22567b"));
             grafiek[evaGraf.getPositie()] = blokAdd;
             setVoortgang();
         });
@@ -532,7 +535,7 @@ public class Dashboard extends GridPane {
         plusBtn.setOnAction(e -> {
             evaGraf.plusEen();
             Rectangle blokAdd = grafiek[evaGraf.getPositie()];
-            blokAdd.setFill(Color.BLUE);
+            blokAdd.setFill(Color.web("#22567b"));
             grafiek[evaGraf.getPositie()] = blokAdd;
             setVoortgang();
         });

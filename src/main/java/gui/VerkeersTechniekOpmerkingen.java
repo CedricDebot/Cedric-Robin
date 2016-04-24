@@ -185,7 +185,7 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
             if (geselecteerdeOpmerking.isUitroeptekenActive()) {
                 geselecteerdeOpmerking.setUitroeptekenActive(false);
-                controller.getLeerling().verwijderRecenteOpmerking(geselecteerdeOpmerking);
+                controller.getLeerling().getRecenteOpmerkingen().remove(geselecteerdeOpmerking);
                 Image uitroeptekenImage = new Image("images/uitroepTeken.png");
                 uitroepteken.setImage(uitroeptekenImage);
             } else {

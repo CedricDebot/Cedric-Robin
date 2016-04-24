@@ -39,9 +39,20 @@ public class DomeinController {
         this.dashboard = dashboard;
     }
     
+    public ButtonTechniekDomein getButtonRijTechniek(int index){
+        return leerling.getButtonRijTechniek(index);
+    }
+    public ButtonTechniekDomein getButtonVerkeersTechniek(int index){
+        return leerling.getButtonVerkeersTechniek(index);
+    }
     
-    
-    
-    
-    
+    public void setEva1(){
+        leerling.getButtonHolder().setEva1();
+    }
+    public void setEva2(){
+        leerling.getButtonHolder().setEva2();
+    }
+    public void setEva3(){
+        leerling.getButtonHolder().setEva3();
+    }
 }
