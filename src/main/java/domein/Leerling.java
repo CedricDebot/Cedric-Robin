@@ -29,6 +29,10 @@ public class Leerling {
     //Opmerkingen dashboard
     private ObservableList<AttitudeOpmerking> recenteOpmerkingen;
 
+    //EvaluatieMomenten
+    private boolean evaluatieMoment1 = true;
+    private boolean evaluatieMoment2 = false;
+    private boolean evaluatieMoment3 = false;
 
     public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email, Image foto) {
         this.famillieNaam = famillieNaam;
@@ -114,6 +118,32 @@ public class Leerling {
     public ButtonTechniekDomein getButtonVerkeersTechniek(int index){
         return buttonHolder.getButtonVerkeersTechniek(index);
     }
+
+    public boolean isEvaluatieMoment1() {
+        return evaluatieMoment1;
+    }
+
+    public void setEvaluatieMoment1(boolean evaluatieMoment1) {
+        this.evaluatieMoment1 = evaluatieMoment1;
+    }
+
+    public boolean isEvaluatieMoment2() {
+        return evaluatieMoment2;
+    }
+
+    public void setEvaluatieMoment2(boolean evaluatieMoment2) {
+        this.evaluatieMoment2 = evaluatieMoment2;
+    }
+
+    public boolean isEvaluatieMoment3() {
+        return evaluatieMoment3;
+    }
+
+    public void setEvaluatieMoment3(boolean evaluatieMoment3) {
+        this.evaluatieMoment3 = evaluatieMoment3;
+    }
+    
+    
 
     private void maakStandaardOpmerkingenList() {
         standaardOpmerkingenList = new ArrayList<>();

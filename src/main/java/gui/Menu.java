@@ -27,6 +27,7 @@ public class Menu {
     private Button moment1;
     private Button moment2;
     private Button moment3;
+    
 
     public Button getMenuTerug() {
         return menuTerug;

@@ -2,7 +2,6 @@ package gui;
 
 import domein.DomeinController;
 import domein.IcoonType;
-import domein.SchermType;
 import domein.Toestand;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
@@ -18,8 +17,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class VerkeersTechniek extends HBox {
