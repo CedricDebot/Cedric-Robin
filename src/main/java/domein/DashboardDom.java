@@ -100,9 +100,10 @@ public class DashboardDom {
     public void setAutosnelweg(Toestand autosnelweg) {
         this.autosnelweg = autosnelweg;
     }
+    
+    private ButtonHolder buttonHolder;
 
     public DashboardDom() {
+        
     }
-    
-    
 }

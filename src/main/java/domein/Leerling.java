@@ -40,12 +40,12 @@ public class Leerling {
         this.email = email;
         this.inschrijvingsNr = inschrijvingsNr;
         this.foto = foto;
-        dashboardDom = new DashboardDom();
         maakStandaardOpmerkingenList();
         maakOpmerkingSchermLists();
         evaGraf = new EvaluatieGrafiek();
         recenteOpmerkingen = FXCollections.observableArrayList();
         buttonHolder = new ButtonHolder();
+        dashboardDom = new DashboardDom();
     }
 
     public String getInschrijvingsNr() {
