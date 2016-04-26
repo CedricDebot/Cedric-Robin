@@ -2,6 +2,7 @@ package gui;
 
 import domein.DomeinController;
 import domein.IcoonType;
+import domein.SchermType;
 import domein.Toestand;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
@@ -70,7 +71,8 @@ public class VerkeersTechniek extends HBox {
 
         //Buttons met images
         //Voorrang
-        ButtonTechniek voorrang = new ButtonTechniek(controller.getButtonVerkeersTechniek(0), true);
+        ButtonTechniek voorrang = new ButtonTechniek(controller.getButtonVerkeersTechniek(0), true, SchermType.VERKEERSTECHNIEK);
+        voorrang.setVerkeerstechniek(this);
         voorrang.setId("voorrangHBox");
 
         voorrang.getButton().setOnMouseDragged(e -> {
@@ -83,7 +85,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(voorrang, 2, 0, 2, 1);
 
         //OrdersOpvolgen
-        ButtonTechniek orders = new ButtonTechniek(controller.getButtonVerkeersTechniek(1), true);
+        ButtonTechniek orders = new ButtonTechniek(controller.getButtonVerkeersTechniek(1), true, SchermType.VERKEERSTECHNIEK);
+        orders.setVerkeerstechniek(this);
         orders.setId("orderOpvolgenHBox");
 
         orders.getButton().setOnMouseDragged(e -> {
@@ -96,7 +99,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(orders, 4, 1);
 
         //snelheid
-        ButtonTechniek snelheid = new ButtonTechniek(controller.getButtonVerkeersTechniek(2), true);
+        ButtonTechniek snelheid = new ButtonTechniek(controller.getButtonVerkeersTechniek(2), true, SchermType.VERKEERSTECHNIEK);
+        snelheid.setVerkeerstechniek(this);
         snelheid.setId("snelheidHBox");
 
         snelheid.getButton().setOnMouseDragged(e -> {
@@ -109,7 +113,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(snelheid, 5, 2);
 
         //afstand
-        ButtonTechniek afstand = new ButtonTechniek(controller.getButtonVerkeersTechniek(3), true);
+        ButtonTechniek afstand = new ButtonTechniek(controller.getButtonVerkeersTechniek(3), true, SchermType.VERKEERSTECHNIEK);
+        afstand.setVerkeerstechniek(this);
         afstand.setId("afstandHBox");
 
         afstand.getButton().setOnMouseDragged(e -> {
@@ -122,7 +127,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(afstand, 5, 3);
 
         //inhalen
-        ButtonTechniek inhalen = new ButtonTechniek(controller.getButtonVerkeersTechniek(4), true);
+        ButtonTechniek inhalen = new ButtonTechniek(controller.getButtonVerkeersTechniek(4), true, SchermType.VERKEERSTECHNIEK);
+        inhalen.setVerkeerstechniek(this);
         afstand.setId("inhalenHBox");
 
         inhalen.getButton().setOnMouseDragged(e -> {
@@ -135,7 +141,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(inhalen, 4, 4);
 
         //kruisen
-        ButtonTechniek kruisen = new ButtonTechniek(controller.getButtonVerkeersTechniek(5), true);
+        ButtonTechniek kruisen = new ButtonTechniek(controller.getButtonVerkeersTechniek(5), true, SchermType.VERKEERSTECHNIEK);
+        kruisen.setVerkeerstechniek(this);
         kruisen.setId("kruisenHBox");
 
         kruisen.getButton().setOnMouseDragged(e -> {
@@ -148,7 +155,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(kruisen, 2, 5, 2, 1);
 
         //linksaf
-        ButtonTechniek linksaf = new ButtonTechniek(controller.getButtonVerkeersTechniek(6), true);
+        ButtonTechniek linksaf = new ButtonTechniek(controller.getButtonVerkeersTechniek(6), true, SchermType.VERKEERSTECHNIEK);
+        linksaf.setVerkeerstechniek(this);
         linksaf.setId("linksAfslaanHBox");
 
         linksaf.getButton().setOnMouseDragged(e -> {
@@ -161,7 +169,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(linksaf, 1, 4);
 
         //rechtsaf
-        ButtonTechniek rechtsaf = new ButtonTechniek(controller.getButtonVerkeersTechniek(7), true);
+        ButtonTechniek rechtsaf = new ButtonTechniek(controller.getButtonVerkeersTechniek(7), true, SchermType.VERKEERSTECHNIEK);
+        rechtsaf.setVerkeerstechniek(this);
         rechtsaf.setId("rechtsAfslaanHBox");
 
         rechtsaf.getButton().setOnMouseDragged(e -> {
@@ -174,7 +183,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(rechtsaf, 0, 3);
 
         //Richtingsaanwijzers / pinkers
-        ButtonTechniek pinkers = new ButtonTechniek(controller.getButtonVerkeersTechniek(8), true);
+        ButtonTechniek pinkers = new ButtonTechniek(controller.getButtonVerkeersTechniek(8), true, SchermType.VERKEERSTECHNIEK);
+        pinkers.setVerkeerstechniek(this);
         pinkers.setId("pinkersHBox");
 
         pinkers.getButton().setOnMouseDragged(e -> {
@@ -187,7 +197,8 @@ public class VerkeersTechniek extends HBox {
         grid.add(pinkers, 0, 2);
 
         //OpenbareWeg
-        ButtonTechniek openbareWeg = new ButtonTechniek(controller.getButtonVerkeersTechniek(9), true);
+        ButtonTechniek openbareWeg = new ButtonTechniek(controller.getButtonVerkeersTechniek(9), true, SchermType.VERKEERSTECHNIEK);
+        openbareWeg.setVerkeerstechniek(this);
         openbareWeg.setId("OWHBox");
 
         openbareWeg.getButton().setOnMouseDragged(e -> {
@@ -453,4 +464,82 @@ public class VerkeersTechniek extends HBox {
     public void setScene(Scene scene) {
         this.scene = scene;
     }
+    
+    public void kleurRotonde() {
+        controller.getIcoonToestanden().bepaalToestandenVerkeerstechniek();
+        kleurRotondeLinks();
+        kleurRotondeRechts();
+        kleurRotondeBeneden();
+    }
+
+    public void kleurRotondeLinks() {
+        ImageView rotondeLinks = new ImageView();
+        rotondeLinks.setFitWidth(150);
+        rotondeLinks.setFitHeight(150);
+
+        if (verkeerstechniekGroup.getChildren().contains(rotondeLinks)) {
+            verkeerstechniekGroup.getChildren().remove(rotondeLinks);
+        }
+
+        if (controller.getIcoonToestanden().getVerkeerstechniekIcoonLinks() == Toestand.GROEN) {
+            Image rotondeGroenLinks = new Image("images/verkeerstechniekIcoon/rotondeGroenLinks.png");
+            rotondeLinks.setImage(rotondeGroenLinks);
+        } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonLinks() == Toestand.ORANJE) {
+            Image rotondeOranjeLinks = new Image("images/verkeerstechniekIcoon/rotondeOranjeLinks.png");
+            rotondeLinks.setImage(rotondeOranjeLinks);
+        } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonLinks() == Toestand.ROOD) {
+            Image rotondeRoodLinks = new Image("images/verkeerstechniekIcoon/rotondeRoodLinks.png");
+            rotondeLinks.setImage(rotondeRoodLinks);
+        }
+
+        verkeerstechniekGroup.getChildren().add(rotondeLinks);
+    }
+
+    public void kleurRotondeRechts() {
+        ImageView rotondeRechts = new ImageView();
+        rotondeRechts.setFitWidth(150);
+        rotondeRechts.setFitHeight(150);
+
+        if (verkeerstechniekGroup.getChildren().contains(rotondeRechts)) {
+            verkeerstechniekGroup.getChildren().remove(rotondeRechts);
+        }
+
+        if (controller.getIcoonToestanden().getVerkeerstechniekIcoonRechts() == Toestand.GROEN) {
+            Image rotondeGroenRechts = new Image("images/verkeerstechniekIcoon/rotondeGroenRechts.png");
+            rotondeRechts.setImage(rotondeGroenRechts);
+        } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonRechts() == Toestand.ORANJE) {
+            Image rotondeOranjeRechts = new Image("images/verkeerstechniekIcoon/rotondeOranjeRechts.png");
+            rotondeRechts.setImage(rotondeOranjeRechts);
+        } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonRechts() == Toestand.ROOD) {
+            Image rotondeRoodRechts = new Image("images/verkeerstechniekIcoon/rotondeRoodRechts.png");
+            rotondeRechts.setImage(rotondeRoodRechts);
+        }
+
+        verkeerstechniekGroup.getChildren().add(rotondeRechts);
+    }
+
+    public void kleurRotondeBeneden() {
+        ImageView rotondeBeneden = new ImageView();
+        rotondeBeneden.setFitWidth(150);
+        rotondeBeneden.setFitHeight(150);
+
+        if (verkeerstechniekGroup.getChildren().contains(rotondeBeneden)) {
+            verkeerstechniekGroup.getChildren().remove(rotondeBeneden);
+        }
+
+        if (controller.getIcoonToestanden().getVerkeerstechniekIcoonBeneden() == Toestand.GROEN) {
+            Image rotondeGroenBeneden = new Image("images/verkeerstechniekIcoon/rotondeGroenBeneden.png");
+            rotondeBeneden.setImage(rotondeGroenBeneden);
+        } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonBeneden() == Toestand.ORANJE) {
+            Image rotondeOranjeBeneden = new Image("images/verkeerstechniekIcoon/rotondeOranjeBeneden.png");
+            rotondeBeneden.setImage(rotondeOranjeBeneden);
+        } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonBeneden() == Toestand.ROOD) {
+            Image rotondeRoodBeneden = new Image("images/verkeerstechniekIcoon/rotondeRoodBeneden.png");
+            rotondeBeneden.setImage(rotondeRoodBeneden);
+        }
+
+        verkeerstechniekGroup.getChildren().add(rotondeBeneden);
+    }
+    
+    
 }

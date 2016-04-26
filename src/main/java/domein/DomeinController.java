@@ -7,6 +7,9 @@ package domein;
 
 import gui.Beginscherm;
 import gui.Dashboard;
+import gui.IcoonToestanden;
+import gui.Rijtechniek;
+import javafx.scene.Group;
 
 /**
  *
@@ -17,6 +20,7 @@ public class DomeinController {
     private Beginscherm beginscherm;
     private Leerling leerling;
     private Dashboard dashboard;
+    private IcoonToestanden toestanden;
 
     public DomeinController(Beginscherm beginscherm, Leerling leerling) {
         this.beginscherm = beginscherm;
@@ -55,4 +59,15 @@ public class DomeinController {
     public void setEva3(){
         leerling.getButtonHolder().setEva3();
     }
+
+    public IcoonToestanden getIcoonToestanden(){
+        return toestanden;
+    }
+
+    public void setToestanden(IcoonToestanden toestanden) {
+        this.toestanden = toestanden;
+    }
+    
+    
+    
 }

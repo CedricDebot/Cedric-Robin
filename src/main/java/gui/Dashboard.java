@@ -9,7 +9,6 @@ import java.util.Optional;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -23,10 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
@@ -49,15 +45,20 @@ public class Dashboard extends GridPane {
 
     private RijtechniekIcoon rijtechniekIcoon;
     private VerkeerstechniekIcoon verkeerstechniekIcoon;
-
+    DomeinController controller;
+    
+    private IcoonToestanden icoonToestanden;
+    
     private Rijtechniek rijtechniekScherm;
     private VerkeersTechniek verkeerstechniekScherm;
 
     public Dashboard(DomeinController controller) {
+        this.controller = controller;
+        this.rijtechniekScherm = new Rijtechniek(controller);
+        this.verkeerstechniekScherm = new VerkeersTechniek(controller);
         
-        rijtechniekScherm = new Rijtechniek(controller);
-        verkeerstechniekScherm = new VerkeersTechniek(controller);
-
+        icoonToestanden = controller.getIcoonToestanden();
+        
         rijtechniekIcoon = new RijtechniekIcoon(controller);
         verkeerstechniekIcoon = new VerkeerstechniekIcoon(controller);
 
@@ -227,9 +228,6 @@ public class Dashboard extends GridPane {
 //        row3.setValignment(VPos.TOP);
 
         dashboard.getRowConstraints().addAll(row1, row2);
-
-        rijtechniekIcoon.kleurStuur();
-        verkeerstechniekIcoon.kleurRotonde();
 //        Image rijtechniek = new Image("images/rijtechniekIcoon/stuurWit.png");
 //        ImageView rijtechniekImageView = new ImageView(rijtechniek);
 //        rijtechniekImageView.setFitWidth(100);
@@ -733,12 +731,12 @@ public class Dashboard extends GridPane {
         this.scene = scene;
     }
 
-    public Rijtechniek getRijtechniekScherm() {
-        return rijtechniekScherm;
+    public IcoonToestanden getIcoonToestanden() {
+        return icoonToestanden;
     }
 
-    public VerkeersTechniek getVerkeerstechniekScherm() {
-        return verkeerstechniekScherm;
+    public void setIcoonToestanden(IcoonToestanden icoonToestanden) {
+        this.icoonToestanden = icoonToestanden;
     }
     
     

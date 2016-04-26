@@ -303,6 +303,8 @@ public class Beginscherm extends HBox {
                 //haal leerling op uit db/backend
 
                 controller = new DomeinController(this, leerling);
+                IcoonToestanden icoon = new IcoonToestanden(controller);
+                controller.setToestanden(icoon);
                 Dashboard dashboard = new Dashboard(controller);
                 controller.setDashboard(dashboard);
                 dashboard.setScene(scene);

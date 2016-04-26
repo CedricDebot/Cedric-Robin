@@ -2,6 +2,7 @@ package gui;
 
 import domein.DomeinController;
 import domein.IcoonType;
+import domein.SchermType;
 import domein.Toestand;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.HPos;
@@ -30,7 +31,6 @@ public class Rijtechniek extends HBox {
     private boolean roodLichtActive = false;
     private boolean oranjeLichtActive = false;
     private boolean groenLichtActive = false;
-    
 
     public Rijtechniek(DomeinController controller) {
 
@@ -71,7 +71,8 @@ public class Rijtechniek extends HBox {
         grid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6);
 
         //StuurTechniek
-        ButtonTechniek stuur = new ButtonTechniek(controller.getButtonRijTechniek(1), true);
+        ButtonTechniek stuur = new ButtonTechniek(controller.getButtonRijTechniek(1), true, SchermType.RIJTECHNIEK);
+        stuur.setRijtechniek(this);
         stuur.setId("stuurHBox");
 
         stuur.getButton().setOnMouseDragged(e -> {
@@ -84,7 +85,8 @@ public class Rijtechniek extends HBox {
         grid.add(stuur, 3, 0, 2, 1);
 
         //Schakelen
-        ButtonTechniek schakelen = new ButtonTechniek(controller.getButtonRijTechniek(2), true);
+        ButtonTechniek schakelen = new ButtonTechniek(controller.getButtonRijTechniek(2), true, SchermType.RIJTECHNIEK);
+        schakelen.setRijtechniek(this);
         schakelen.setId("schakelenHBox");
 
         schakelen.getButton().setOnMouseDragged(e -> {
@@ -97,7 +99,8 @@ public class Rijtechniek extends HBox {
         grid.add(schakelen, 4, 1);
 
         //Kijken
-        ButtonTechniek kijken = new ButtonTechniek(controller.getButtonRijTechniek(3), true);
+        ButtonTechniek kijken = new ButtonTechniek(controller.getButtonRijTechniek(3), true, SchermType.RIJTECHNIEK);
+        kijken.setRijtechniek(this);
         kijken.setId("kijkenHBox");
 
         kijken.getButton().setOnMouseDragged(e -> {
@@ -110,7 +113,8 @@ public class Rijtechniek extends HBox {
         grid.add(kijken, 5, 2);
 
         //Parkeren
-        ButtonTechniek parkeren = new ButtonTechniek(controller.getButtonRijTechniek(4), false);
+        ButtonTechniek parkeren = new ButtonTechniek(controller.getButtonRijTechniek(4), false, SchermType.RIJTECHNIEK);
+        parkeren.setRijtechniek(this);
         parkeren.setId("");
 
         parkeren.getButton().setOnMouseDragged(e -> {
@@ -123,7 +127,8 @@ public class Rijtechniek extends HBox {
         grid.add(parkeren, 5, 3);
 
         //Keren
-        ButtonTechniek keren = new ButtonTechniek(controller.getButtonRijTechniek(5), false);
+        ButtonTechniek keren = new ButtonTechniek(controller.getButtonRijTechniek(5), false, SchermType.RIJTECHNIEK);
+        keren.setRijtechniek(this);
         keren.setId("");
 
         keren.getButton().setOnMouseDragged(e -> {
@@ -136,7 +141,8 @@ public class Rijtechniek extends HBox {
         grid.add(keren, 4, 4);
 
         //Garage
-        ButtonTechniek garage = new ButtonTechniek(controller.getButtonRijTechniek(6), false);
+        ButtonTechniek garage = new ButtonTechniek(controller.getButtonRijTechniek(6), false, SchermType.RIJTECHNIEK);
+        garage.setRijtechniek(this);
         garage.setId("");
 
         garage.getButton().setOnMouseDragged(e -> {
@@ -147,9 +153,10 @@ public class Rijtechniek extends HBox {
             }
         });
         grid.add(garage, 3, 5);
-        
+
         //Achteruit
-        ButtonTechniek achteruit = new ButtonTechniek(controller.getButtonRijTechniek(7), false);
+        ButtonTechniek achteruit = new ButtonTechniek(controller.getButtonRijTechniek(7), false, SchermType.RIJTECHNIEK);
+        achteruit.setRijtechniek(this);
         achteruit.setId("");
 
         achteruit.getButton().setOnMouseDragged(e -> {
@@ -160,9 +167,10 @@ public class Rijtechniek extends HBox {
             }
         });
         grid.add(achteruit, 2, 5);
-        
+
         //Acht
-        ButtonTechniek acht = new ButtonTechniek(controller.getButtonRijTechniek(8), false);
+        ButtonTechniek acht = new ButtonTechniek(controller.getButtonRijTechniek(8), false, SchermType.RIJTECHNIEK);
+        acht.setRijtechniek(this);
         acht.setId("");
 
         acht.getButton().setOnMouseDragged(e -> {
@@ -173,9 +181,10 @@ public class Rijtechniek extends HBox {
             }
         });
         grid.add(acht, 1, 4);
-        
+
         //Helling
-        ButtonTechniek helling = new ButtonTechniek(controller.getButtonRijTechniek(9),true);
+        ButtonTechniek helling = new ButtonTechniek(controller.getButtonRijTechniek(9), true, SchermType.RIJTECHNIEK);
+        helling.setRijtechniek(this);
         helling.setId("hellingHBox");
 
         helling.getButton().setOnMouseDragged(e -> {
@@ -186,9 +195,10 @@ public class Rijtechniek extends HBox {
             }
         });
         grid.add(helling, 0, 3);
-        
+
         //Zithouding
-        ButtonTechniek zithouding = new ButtonTechniek(controller.getButtonRijTechniek(10),true);
+        ButtonTechniek zithouding = new ButtonTechniek(controller.getButtonRijTechniek(10), true, SchermType.RIJTECHNIEK);
+        zithouding.setRijtechniek(this);
         zithouding.setId("zithoudingHBox");
 
         zithouding.getButton().setOnMouseDragged(e -> {
@@ -199,9 +209,10 @@ public class Rijtechniek extends HBox {
             }
         });
         grid.add(zithouding, 0, 2);
-        
+
         //remTechniek
-        ButtonTechniek remTechniek = new ButtonTechniek(controller.getButtonRijTechniek(11), true);
+        ButtonTechniek remTechniek = new ButtonTechniek(controller.getButtonRijTechniek(11), true, SchermType.RIJTECHNIEK);
+        remTechniek.setRijtechniek(this);
         remTechniek.setId("remtechniekHBox");
 
         remTechniek.getButton().setOnMouseDragged(e -> {
@@ -214,7 +225,8 @@ public class Rijtechniek extends HBox {
         grid.add(remTechniek, 1, 1);
 
         //Koppeling
-        ButtonTechniek koppeling = new ButtonTechniek(controller.getButtonRijTechniek(0),true);
+        ButtonTechniek koppeling = new ButtonTechniek(controller.getButtonRijTechniek(0), true, SchermType.RIJTECHNIEK);
+        koppeling.setRijtechniek(this);
         koppeling.setId("embrayageHBox");
 
         koppeling.getButton().setOnMouseDragged(e -> {
@@ -482,14 +494,77 @@ public class Rijtechniek extends HBox {
         });
 
         getChildren().addAll(left, evaluatieGroup, right);
-
     }
 
     public void setScene(Scene scene) {
         this.scene = scene;
     }
-
     
+    public void kleurStuur() {
+        controller.getIcoonToestanden().bepaalToestandenRijtechniek();
+        kleurStuurBoven();
+        kleurStuurRechts();
+        kleurStuurLinks();
+    }
 
+    public void kleurStuurBoven() {
+        ImageView stuurBoven = new ImageView();
+        stuurBoven.setFitWidth(150);
+        stuurBoven.setFitHeight(150);
+        if (rijtechniekIcoonGroup.getChildren().contains(stuurBoven)) {
+            rijtechniekIcoonGroup.getChildren().remove(stuurBoven);
+        }
+
+        if (controller.getIcoonToestanden().getRijtechniekIcoonBoven() == Toestand.GROEN) {
+            Image stuurGroenBoven = new Image("images/rijtechniekIcoon/stuurGroenBoven.png");
+            stuurBoven.setImage(stuurGroenBoven);
+        } else if (controller.getIcoonToestanden().getRijtechniekIcoonBoven() == Toestand.ORANJE) {
+            Image stuurOranjeBoven = new Image("images/rijtechniekIcoon/stuurOranjeBoven.png");
+            stuurBoven.setImage(stuurOranjeBoven);
+        }
+        rijtechniekIcoonGroup.getChildren().add(stuurBoven);
+    }
+
+    public void kleurStuurRechts() {
+        ImageView stuurRechts = new ImageView();
+        stuurRechts.setFitWidth(150);
+        stuurRechts.setFitHeight(150);
+        if (rijtechniekIcoonGroup.getChildren().contains(stuurRechts)) {
+            rijtechniekIcoonGroup.getChildren().remove(stuurRechts);
+        }
+
+        if (controller.getIcoonToestanden().getRijtechniekIcoonRechts() == Toestand.GROEN) {
+            Image stuurGroenRechts = new Image("images/rijtechniekIcoon/stuurGroenRechts.png");
+            stuurRechts.setImage(stuurGroenRechts);
+        } else if (controller.getIcoonToestanden().getRijtechniekIcoonRechts() == Toestand.ORANJE) {
+            Image stuurOranjeRechts = new Image("images/rijtechniekIcoon/stuurOranjeRechts.png");
+            stuurRechts.setImage(stuurOranjeRechts);
+        }
+
+        rijtechniekIcoonGroup.getChildren().add(stuurRechts);
+    }
+
+    public void kleurStuurLinks() {
+        ImageView stuurLinks = new ImageView();
+        stuurLinks.setFitWidth(150);
+        stuurLinks.setFitHeight(150);
+        if (rijtechniekIcoonGroup.getChildren().contains(stuurLinks)) {
+            rijtechniekIcoonGroup.getChildren().remove(stuurLinks);
+        }
+
+        if (controller.getIcoonToestanden().getRijtechniekIcoonLinks() == Toestand.GROEN) {
+            Image stuurGroenLinks = new Image("images/rijtechniekIcoon/stuurGroenLinks.png");
+            stuurLinks.setImage(stuurGroenLinks);
+        } else if (controller.getIcoonToestanden().getRijtechniekIcoonLinks() == Toestand.ORANJE) {
+            Image stuurOranjeLinks = new Image("images/rijtechniekIcoon/stuurOranjeLinks.png");
+            stuurLinks.setImage(stuurOranjeLinks);
+        }
+
+        rijtechniekIcoonGroup.getChildren().add(stuurLinks);
+    }
+
+    public Group getRijtechniekIcoonGroup() {
+        return rijtechniekIcoonGroup;
+    }
     
 }

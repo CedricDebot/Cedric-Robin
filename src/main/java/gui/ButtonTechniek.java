@@ -1,6 +1,8 @@
 package gui;
 
 import domein.ButtonTechniekDomein;
+import domein.DomeinController;
+import domein.SchermType;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,8 +19,14 @@ public class ButtonTechniek extends HBox {
     private ImageView imageView;
     private Button button;
     private ButtonTechniekDomein btnDomein;
+    private DomeinController controller;
+    private SchermType type;
 
-    public ButtonTechniek(ButtonTechniekDomein btnDomein, boolean eva) {
+    private Rijtechniek rijtechniek;
+    private VerkeersTechniek verkeerstechniek;
+
+    public ButtonTechniek(ButtonTechniekDomein btnDomein, boolean eva, SchermType type) {
+        this.type = type;
         this.btnDomein = btnDomein;
 
         Image image = new Image(btnDomein.getHuidigeKleur());
@@ -33,6 +41,12 @@ public class ButtonTechniek extends HBox {
         button.setOnAction(e -> {
             btnDomein.volgendeKleur();
             imageView.setImage(new Image(btnDomein.getHuidigeKleur()));
+
+            if (type == SchermType.RIJTECHNIEK) {
+                rijtechniek.kleurStuur();
+            }else{
+                verkeerstechniek.kleurRotonde();
+            }
         });
 
         Rectangle rectangle1 = new Rectangle(12, 12, btnDomein.getRectangle1());
@@ -46,12 +60,11 @@ public class ButtonTechniek extends HBox {
 
         EvaMomenten.getChildren().addAll(rectangle1, rectangle2, rectangle3);
 
-        if(eva){
+        if (eva) {
             getChildren().addAll(button, EvaMomenten);
-        }else{
+        } else {
             getChildren().addAll(button);
         }
-        
 
     }
 
@@ -67,4 +80,13 @@ public class ButtonTechniek extends HBox {
         return btnDomein.isGekleurd();
     }
 
+    public void setRijtechniek(Rijtechniek rijtechniek) {
+        this.rijtechniek = rijtechniek;
+    }
+
+    public void setVerkeerstechniek(VerkeersTechniek verkeerstechniek) {
+        this.verkeerstechniek = verkeerstechniek;
+    }
+
+    
 }
