@@ -547,3 +547,43 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
+
+#arrowsVBox{
+    -fx-padding: 125 50 50 50;
+    -fx-spacing: 100;
+}
+
+#syncCenter{
+    -fx-spacing: 100;
+    -fx-padding: 0 40 0 60;
+}
+
+#syncLeft {
+    -fx-spacing: 20;
+    -fx-alignment:CENTER;
+}
+
+#syncRight {
+    -fx-spacing: 20;
+    -fx-alignment:CENTER;
+}
+
+#syncLijst{
+    -fx-margin: 20;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+#syncTextField{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 2;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-max-width: 200;
+    
+}
