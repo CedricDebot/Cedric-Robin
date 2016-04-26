@@ -275,7 +275,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesLinks = new HBox();
         icoontjesLinks.setId("icoontjesLinks");
 
-        Image bandenSpanningBegin = new Image("images/dashboard/bandenspanning" + controller.getLeerling().getDashboardDom().getBanden() + ".png");
+        Image bandenSpanningBegin = new Image("images/dashboard/bandenspanningNIETGEZIEN.png");
         ImageView bandenSpanningImageView = new ImageView(bandenSpanningBegin);
         bandenSpanningImageView.setFitWidth(25);
         bandenSpanningImageView.setFitHeight(25);
@@ -295,7 +295,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image vloeistoffenBegin = new Image("images/dashboard/olie" + controller.getLeerling().getDashboardDom().getVloeistoffen() + ".png");
+        Image vloeistoffenBegin = new Image("images/dashboard/olieNIETGEZIEN.png");
         ImageView vloeistoffenImageView = new ImageView(vloeistoffenBegin);
         vloeistoffenImageView.setFitWidth(25);
         vloeistoffenImageView.setFitHeight(25);
@@ -315,7 +315,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image schakelaarsBegin = new Image("images/dashboard/schakelaars" + controller.getLeerling().getDashboardDom().getSchakelaars() + ".png");
+        Image schakelaarsBegin = new Image("images/dashboard/schakelaarsNIETGEZIEN.png");
         ImageView schakelaarsImageView = new ImageView(schakelaarsBegin);
         schakelaarsImageView.setFitWidth(25);
         schakelaarsImageView.setFitHeight(25);
@@ -340,7 +340,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesMidden = new HBox();
         icoontjesMidden.setId("icoontjesMidden");
 
-        Image rotondeBegin = new Image("images/dashboard/rotonde" + controller.getLeerling().getDashboardDom().getRotonde() + ".png");
+        Image rotondeBegin = new Image("images/dashboard/rotondeNIETGEZIEN.png");
         ImageView rotondeImageView = new ImageView(rotondeBegin);
         rotondeImageView.setFitWidth(25);
         rotondeImageView.setFitHeight(25);
@@ -368,7 +368,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image rijbaanBegin = new Image("images/dashboard/rijbaan" + controller.getLeerling().getDashboardDom().getRijbaan() + ".png");
+        Image rijbaanBegin = new Image("images/dashboard/rijbaanNIETGEZIEN.png");
         ImageView rijbaanImageView = new ImageView(rijbaanBegin);
         rijbaanImageView.setFitWidth(25);
         rijbaanImageView.setFitHeight(25);
@@ -396,7 +396,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image stadBegin = new Image("images/dashboard/stad" + controller.getLeerling().getDashboardDom().getStad() + ".png");
+        Image stadBegin = new Image("images/dashboard/stadNIETGEZIEN.png");
         ImageView stadImageView = new ImageView(stadBegin);
         stadImageView.setFitWidth(25);
         stadImageView.setFitHeight(25);
@@ -424,7 +424,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image autosnelwegBegin = new Image("images/dashboard/autosnelweg" + controller.getLeerling().getDashboardDom().getAutosnelweg() + ".png");
+        Image autosnelwegBegin = new Image("images/dashboard/autosnelwegNIETGEZIEN.png");
         ImageView autosnelwegImageView = new ImageView(autosnelwegBegin);
         autosnelwegImageView.setFitWidth(25);
         autosnelwegImageView.setFitHeight(25);
@@ -457,7 +457,7 @@ public class Dashboard extends GridPane {
         HBox icoontjesRechts = new HBox();
         icoontjesRechts.setId("icoontjesRechts");
 
-        Image tankenBegin = new Image("images/dashboard/tanken" + controller.getLeerling().getDashboardDom().getTanken() + ".png");
+        Image tankenBegin = new Image("images/dashboard/tankenNIETGEZIEN.png");
         ImageView tankenImageView = new ImageView(tankenBegin);
         tankenImageView.setFitWidth(25);
         tankenImageView.setFitHeight(25);
@@ -477,7 +477,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image gpsBegin = new Image("images/dashboard/gps" + controller.getLeerling().getDashboardDom().getGps() + ".png");
+        Image gpsBegin = new Image("images/dashboard/gpsNIETGEZIEN.png");
         ImageView gpsImageView = new ImageView(gpsBegin);
         gpsImageView.setFitWidth(25);
         gpsImageView.setFitHeight(25);
@@ -497,7 +497,7 @@ public class Dashboard extends GridPane {
             }
         });
 
-        Image noodstopBegin = new Image("images/dashboard/noodstop" + controller.getLeerling().getDashboardDom().getStop() + ".png");
+        Image noodstopBegin = new Image("images/dashboard/noodstopNIETGEZIEN.png");
         ImageView stopImageView = new ImageView(noodstopBegin);
         stopImageView.setFitWidth(25);
         stopImageView.setFitHeight(25);
