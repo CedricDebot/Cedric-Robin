@@ -241,7 +241,7 @@ public class Dashboard extends GridPane {
             scene.setRoot(rijtechniekScherm);
         });
 
-        Image attitudeD = new Image("images/attitude.png");
+        Image attitudeD = new Image("images/attitude2.png");
         ImageView attitudeImageView = new ImageView(attitudeD);
         attitudeImageView.setFitWidth(100);
         attitudeImageView.setFitHeight(100);
