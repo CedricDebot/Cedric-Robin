@@ -128,6 +128,12 @@ public class Beginscherm extends HBox {
             sync.setEffect(null);
         });
 
+        sync.setOnAction(e -> {
+            Synchroniseer synchroniseer = new Synchroniseer();
+            synchroniseer.setScene(scene);
+            scene.setRoot(synchroniseer);
+        });
+        
         //ButtonsAllesVerwijderen
         Button allesVerwijderen = new Button("Alles verwijderen");
         allesVerwijderen.setId("btnAllesVerwijderen");
