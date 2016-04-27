@@ -219,7 +219,7 @@ public class VerkeersTechniek extends HBox {
         verkeerstechniekGroup.getChildren().add(middenGridImageView);
         grid.add(verkeerstechniekGroup, 2, 2, 2, 2);
 
-        Image cirkel = new Image("images/verkeersTechniek/cirkel.png");
+        Image cirkel = new Image("images/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
         cirkelImageView.setFitWidth(600);
         cirkelImageView.setFitHeight(600);
