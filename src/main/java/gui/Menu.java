@@ -98,7 +98,7 @@ public class Menu {
             scene.setRoot(verkeersTechniekScherm);
         });
 
-        Image menuTerugImageM = new Image("images/dashboardTerug.PNG");
+        Image menuTerugImageM = new Image("images/dashboardTerug2.png");
         ImageView menuTerugImageViewM = new ImageView(menuTerugImageM);
         menuTerugImageViewM.setFitWidth(100);
         menuTerugImageViewM.setFitHeight(50);
@@ -136,7 +136,7 @@ public class Menu {
         menuKnop = new Button("", dashboardMenuImageView);
         menuKnop.setId("menuButton");
 
-        Image dashboardTerugImage = new Image("images/dashboardTerug.PNG");
+        Image dashboardTerugImage = new Image("images/Home.png");
         ImageView dashboardTerugImageView = new ImageView(dashboardTerugImage);
         dashboardTerugImageView.setFitWidth(60);
         dashboardTerugImageView.setFitHeight(50);
