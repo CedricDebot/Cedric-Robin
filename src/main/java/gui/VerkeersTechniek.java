@@ -37,7 +37,7 @@ public class VerkeersTechniek extends HBox {
 
         setId("rijtechniekHBox");
         GridPane grid = new GridPane();
-        grid.setGridLinesVisible(true);
+        grid.setGridLinesVisible(false);
 
         ColumnConstraints col0 = new ColumnConstraints(100);
         col0.setHalignment(HPos.RIGHT);
@@ -129,7 +129,7 @@ public class VerkeersTechniek extends HBox {
         //inhalen
         ButtonTechniek inhalen = new ButtonTechniek(controller.getButtonVerkeersTechniek(4), true, SchermType.VERKEERSTECHNIEK);
         inhalen.setVerkeerstechniek(this);
-        afstand.setId("inhalenHBox");
+        afstand.setId("afstandHBox");
 
         inhalen.getButton().setOnMouseDragged(e -> {
             if (inhalen.isGekleurd()) {

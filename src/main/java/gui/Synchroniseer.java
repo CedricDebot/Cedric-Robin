@@ -25,13 +25,13 @@ public class Synchroniseer extends GridPane {
         setHgap(50);
 
         ColumnConstraints col0 = new ColumnConstraints();
-        col0.setPercentWidth(20);
+        col0.setPercentWidth(40);
         col0.setHalignment(HPos.CENTER);
         ColumnConstraints col1 = new ColumnConstraints();
         col1.setPercentWidth(15);
         col1.setHalignment(HPos.CENTER);
         ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(20);
+        col2.setPercentWidth(40);
         col2.setHalignment(HPos.CENTER);
         
         getColumnConstraints().addAll(col0, col1, col2);
