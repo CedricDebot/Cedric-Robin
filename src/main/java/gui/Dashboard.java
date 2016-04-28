@@ -1,21 +1,19 @@
 package gui;
 
+import com.gluonhq.charm.glisten.control.Alert;
+import com.gluonhq.charm.glisten.control.Dialog;
 import domein.AttitudeOpmerking;
 import domein.DomeinController;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
 import domein.Toestand;
-import java.util.Optional;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -46,19 +44,18 @@ public class Dashboard extends GridPane {
     private RijtechniekIcoon rijtechniekIcoon;
     private VerkeerstechniekIcoon verkeerstechniekIcoon;
     DomeinController controller;
-    
-    private IcoonToestanden icoonToestanden;
-    
-    private Rijtechniek rijtechniekScherm;
-    private VerkeersTechniek verkeerstechniekScherm;
 
+    private IcoonToestanden icoonToestanden;
+
+//    private Rijtechniek rijtechniekScherm;
+//    private VerkeersTechniek verkeerstechniekScherm;
     public Dashboard(DomeinController controller) {
         this.controller = controller;
-        this.rijtechniekScherm = new Rijtechniek(controller);
-        this.verkeerstechniekScherm = new VerkeersTechniek(controller);
-        
+//        this.rijtechniekScherm = new Rijtechniek(controller);
+//        this.verkeerstechniekScherm = new VerkeersTechniek(controller);
+
         icoonToestanden = controller.getIcoonToestanden();
-        
+
         rijtechniekIcoon = new RijtechniekIcoon(controller);
         verkeerstechniekIcoon = new VerkeerstechniekIcoon(controller);
 
@@ -127,72 +124,86 @@ public class Dashboard extends GridPane {
             tt.onFinishedProperty();
 
         });
-
-        //EvaluatieMoment Buttons
+//
+//        EvaluatieMoment Buttons
         menu.getMoment1().setOnAction(e -> {
-            if (controller.getLeerling().isEvaluatieMoment1()) {
-
-                Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("EvaluatieMoment 1");
-                alert.setHeaderText(null);
-                alert.setContentText("Weet je zeker dat je evaluatiemoment 1 wilt starten?");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    controller.setEva1();
-                    menu.getMoment1().setText("1");
-                    controller.getLeerling().setEvaluatieMoment1(false);
-                    controller.getLeerling().setEvaluatieMoment2(true);
-                } else {
-                    //cancel
-                }
-
-            } else {
-
-            }
+                controller.setEva1();
+                menu.getMoment1().setText("1");
         });
         menu.getMoment2().setOnAction(e -> {
-            if (controller.getLeerling().isEvaluatieMoment2()) {
-
-                Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("EvaluatieMoment 2");
-                alert.setHeaderText(null);
-                alert.setContentText("Weet je zeker dat je evaluatiemoment 2 wilt starten?");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    controller.setEva2();
-                    menu.getMoment2().setText("2");
-                    controller.getLeerling().setEvaluatieMoment2(false);
-                    controller.getLeerling().setEvaluatieMoment3(true);
-                } else {
-                    //cancel
-                }
-
-            } else {
-
-            }
+                controller.setEva2();
+                menu.getMoment2().setText("2");
         });
         menu.getMoment3().setOnAction(e -> {
-            if (controller.getLeerling().isEvaluatieMoment3()) {
-
-                Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("EvaluatieMoment 3");
-                alert.setHeaderText(null);
-                alert.setContentText("Weet je zeker dat je evaluatiemoment 3 wilt starten?");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    controller.setEva3();
-                    menu.getMoment3().setText("3");
-                    controller.getLeerling().setEvaluatieMoment3(false);
-                } else {
-                    //cancel
-                }
-            } else {
-
-            }
+                controller.setEva3();
+                menu.getMoment3().setText("3");
         });
+
+        
+//        menu.getMoment1().setOnAction(e -> {
+//            if (controller.getLeerling().isEvaluatieMoment1()) {
+//
+//                Alert alert = new Alert(AlertType.CONFIRMATION);
+//                alert.setTitle("EvaluatieMoment 1");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Weet je zeker dat je evaluatiemoment 1 wilt starten?");
+//
+//                Optional<ButtonType> result = alert.showAndWait();
+//                if (result.get() == ButtonType.OK) {
+//                    controller.setEva1();
+//                    menu.getMoment1().setText("1");
+//                    controller.getLeerling().setEvaluatieMoment1(false);
+//                    controller.getLeerling().setEvaluatieMoment2(true);
+//                } else {
+//                    //cancel
+//                }
+//
+//            } else {
+//
+//            }
+//        });
+//        menu.getMoment2().setOnAction(e -> {
+//            if (controller.getLeerling().isEvaluatieMoment2()) {
+//
+//                Alert alert = new Alert(AlertType.CONFIRMATION);
+//                alert.setTitle("EvaluatieMoment 2");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Weet je zeker dat je evaluatiemoment 2 wilt starten?");
+//
+//                Optional<ButtonType> result = alert.showAndWait();
+//                if (result.get() == ButtonType.OK) {
+//                    controller.setEva2();
+//                    menu.getMoment2().setText("2");
+//                    controller.getLeerling().setEvaluatieMoment2(false);
+//                    controller.getLeerling().setEvaluatieMoment3(true);
+//                } else {
+//                    //cancel
+//                }
+//
+//            } else {
+//
+//            }
+//        });
+//        menu.getMoment3().setOnAction(e -> {
+//            if (controller.getLeerling().isEvaluatieMoment3()) {
+//
+//                Alert alert = new Alert(AlertType.CONFIRMATION);
+//                alert.setTitle("EvaluatieMoment 3");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Weet je zeker dat je evaluatiemoment 3 wilt starten?");
+//
+//                Optional<ButtonType> result = alert.showAndWait();
+//                if (result.get() == ButtonType.OK) {
+//                    controller.setEva3();
+//                    menu.getMoment3().setText("3");
+//                    controller.getLeerling().setEvaluatieMoment3(false);
+//                } else {
+//                    //cancel
+//                }
+//            } else {
+//
+//            }
+//        });
 
         menu.getDashboardTerug().setOnAction(e -> {
             controller.getBeginscherm().setScene(scene);
@@ -237,11 +248,12 @@ public class Dashboard extends GridPane {
         dashboard.add(rijtechniekBtn, 0, 0);
 
         rijtechniekBtn.setOnAction(e -> {
+            Rijtechniek rijtechniekScherm = new Rijtechniek(controller);
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
         });
 
-        Image attitudeD = new Image("images/attitude2.png");
+        Image attitudeD = new Image("images/Attitude2.png");
         ImageView attitudeImageView = new ImageView(attitudeD);
         attitudeImageView.setFitWidth(100);
         attitudeImageView.setFitHeight(100);
@@ -264,6 +276,7 @@ public class Dashboard extends GridPane {
         dashboard.add(verkeerstechniekBtn, 2, 0);
 
         verkeerstechniekBtn.setOnAction(e -> {
+            VerkeersTechniek verkeerstechniekScherm = new VerkeersTechniek(controller);
             verkeerstechniekScherm.setScene(scene);
             scene.setRoot(verkeerstechniekScherm);
         });
@@ -738,6 +751,5 @@ public class Dashboard extends GridPane {
     public void setIcoonToestanden(IcoonToestanden icoonToestanden) {
         this.icoonToestanden = icoonToestanden;
     }
-    
-    
+
 }

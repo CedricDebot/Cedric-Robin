@@ -94,9 +94,9 @@ public class RijTechniekOpmerkingen extends GridPane {
         OpmerkingenPane.add(terugBtn, 0, 0);
 
         terugBtn.setOnAction(e -> {
-                Rijtechniek rijTechniek = new Rijtechniek(controller);
-                rijTechniek.setScene(scene);
-                scene.setRoot(rijTechniek);
+            Rijtechniek rijTechniek = new Rijtechniek(controller);
+            rijTechniek.setScene(scene);
+            scene.setRoot(rijTechniek);
         });
 
         Label opmerking = new Label("Opmerking");
@@ -112,9 +112,9 @@ public class RijTechniekOpmerkingen extends GridPane {
         bewaren.setSpacing(20);
         bewaren.setAlignment(Pos.CENTER);
         Button bewaarOpmerking = new Button("Bewaar");
-        
+
         DropShadow shadow = new DropShadow();
-        
+
         bewaarOpmerking.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
             bewaarOpmerking.setEffect(shadow);
         });
@@ -161,15 +161,18 @@ public class RijTechniekOpmerkingen extends GridPane {
         });
 
         opmerkingenListView.setOnMouseClicked(event -> {
-
-            AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
-            opmerkingVeld.setText(geselecteerdeOpmerking.getOpmerking());
-            if (geselecteerdeOpmerking.isUitroeptekenActive()) {
-                Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
-                uitroepteken.setImage(uitroeptekenImage);
-            } else {
-                Image uitroeptekenImage = new Image("images/uitroepTeken.png");
-                uitroepteken.setImage(uitroeptekenImage);
+            try {
+                AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
+                opmerkingVeld.setText(geselecteerdeOpmerking.getOpmerking());
+                if (geselecteerdeOpmerking.isUitroeptekenActive()) {
+                    Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
+                    uitroepteken.setImage(uitroeptekenImage);
+                } else {
+                    Image uitroeptekenImage = new Image("images/uitroepTeken.png");
+                    uitroepteken.setImage(uitroeptekenImage);
+                }
+            }catch(NullPointerException npe){
+                
             }
 
         });
@@ -189,14 +192,14 @@ public class RijTechniekOpmerkingen extends GridPane {
         });
         //voegtoe
         Button voegToe = new Button("Voeg Toe");
-        
+
         voegToe.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
             voegToe.setEffect(shadow);
         });
         voegToe.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
             voegToe.setEffect(null);
         });
-        
+
         TextField nieuw = new TextField();
         nieuw.setId("tekstNieuw");
         HBox nieuwHB = new HBox();
@@ -210,15 +213,14 @@ public class RijTechniekOpmerkingen extends GridPane {
         //Icon
         Image Icoon = new Image(icoonType.getIcoonPad());
         ImageView IcoonView = new ImageView(Icoon);
-        
+
         Label soortIcoon = new Label(icoonType.getNaam());
         soortIcoon.setId("listViewTitle");
-        
+
         VBox ListViewMetLabel = new VBox();
         ListViewMetLabel.setId("listViewWithLabel");
 
         ListViewMetLabel.getChildren().addAll(soortIcoon, opmerkingenListView);
-        
 
         attitudeList.getChildren().addAll(IcoonView, ListViewMetLabel, nieuwHB);
 
@@ -226,7 +228,7 @@ public class RijTechniekOpmerkingen extends GridPane {
 
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
             geselecteerdeOpmerking.setOpmerking(opmerkingVeld.getText());
-            
+
         });
 
         //Menu

@@ -276,7 +276,7 @@ public class Beginscherm extends HBox {
                 if (!fnaam.getChildren().contains(famillienaamFout)) {
                     fnaam.getChildren().add(famillienaamFout);
                 }
-                famillienaamFout.setText("Famillienaam is niet ingevuld!");
+                famillienaamFout.setText("Gelieve een familienaam");
                 geldig = false;
             } else if (fnaam.getChildren().contains(famillienaamFout)) {
                 fnaam.getChildren().remove(famillienaamFout);
@@ -287,7 +287,7 @@ public class Beginscherm extends HBox {
                     vnaam.getChildren().add(voornaamFout);
                 }
 
-                voornaamFout.setText("Voornaam is niet ingevuld!");
+                voornaamFout.setText("Gelieve een voornaam");
                 geldig = false;
             } else if (vnaam.getChildren().contains(voornaamFout)) {
                 vnaam.getChildren().remove(voornaamFout);
@@ -297,7 +297,7 @@ public class Beginscherm extends HBox {
                 if (!mail.getChildren().contains(emailFout)) {
                     mail.getChildren().add(emailFout);
                 }
-                emailFout.setText("E-mailadres is niet ingevuld!");
+                emailFout.setText("Gelieve een geldig e-mailadres in te vullen");
                 geldig = false;
             } else if (mail.getChildren().contains(emailFout)) {
                 mail.getChildren().remove(emailFout);
@@ -308,7 +308,7 @@ public class Beginscherm extends HBox {
                     mail.getChildren().add(emailFout);
                 }
 
-                emailFout.setText("Het E-mailAdres is niet correct.");
+                emailFout.setText("Gelieve een geldig e-mailadres in te vullen");
                 geldig = false;
             } else if (mail.getChildren().contains(emailFout)) {
                 mail.getChildren().remove(emailFout);

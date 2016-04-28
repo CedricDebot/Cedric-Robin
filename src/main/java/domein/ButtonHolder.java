@@ -114,8 +114,42 @@ public class ButtonHolder {
             }
             
         }
+        for (ButtonTechniekDomein verkeersTechniekButton : verkeersTechniekButtons) {
+            if(null != verkeersTechniekButton.getHuidigeToestand())switch (verkeersTechniekButton.getHuidigeToestand()) {
+                case WIT:
+                     verkeersTechniekButton.setRectangle1(Color.WHITE);
+                     break;
+                case GROEN:
+                    verkeersTechniekButton.setRectangle1(Color.GREEN);
+                    break;
+                case ORANJE:
+                    verkeersTechniekButton.setRectangle1(Color.ORANGE);
+                    break;
+                default:
+                    verkeersTechniekButton.setRectangle1(Color.RED);
+                    break;
+            }
+            
+        }
     }
     public void setEva2(){
+        for (ButtonTechniekDomein verkeersTechniekButton : verkeersTechniekButtons) {
+            if(null != verkeersTechniekButton.getHuidigeToestand())switch (verkeersTechniekButton.getHuidigeToestand()) {
+                case WIT:
+                     verkeersTechniekButton.setRectangle2(Color.WHITE);
+                     break;
+                case GROEN:
+                    verkeersTechniekButton.setRectangle2(Color.GREEN);
+                    break;
+                case ORANJE:
+                    verkeersTechniekButton.setRectangle2(Color.ORANGE);
+                    break;
+                default:
+                    verkeersTechniekButton.setRectangle2(Color.RED);
+                    break;
+            }
+            
+        }
         for (ButtonTechniekDomein rijTechniekButton : rijTechniekButtons) {
             if(null != rijTechniekButton.getHuidigeToestand())switch (rijTechniekButton.getHuidigeToestand()) {
                 case WIT:
@@ -148,6 +182,23 @@ public class ButtonHolder {
                     break;
                 default:
                     rijTechniekButton.setRectangle3(Color.RED);
+                    break;
+            }
+            
+        }
+        for (ButtonTechniekDomein verkeersTechniekButton : verkeersTechniekButtons) {
+            if(null != verkeersTechniekButton.getHuidigeToestand())switch (verkeersTechniekButton.getHuidigeToestand()) {
+                case WIT:
+                     verkeersTechniekButton.setRectangle3(Color.WHITE);
+                     break;
+                case GROEN:
+                    verkeersTechniekButton.setRectangle3(Color.GREEN);
+                    break;
+                case ORANJE:
+                    verkeersTechniekButton.setRectangle3(Color.ORANGE);
+                    break;
+                default:
+                    verkeersTechniekButton.setRectangle3(Color.RED);
                     break;
             }
             
