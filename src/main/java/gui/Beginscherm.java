@@ -45,6 +45,9 @@ public class Beginscherm extends HBox {
         inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
         labels.getChildren().addAll(naamLeerling, inschrijvingLeerling);
 
+        
+        naamTF.setFocusTraversable(false);
+        inschrijvingsnummerTF.setFocusTraversable(false);
         //ButtonLeft
         HBox buttons = new HBox();
         buttons.setId("buttons");
@@ -276,7 +279,7 @@ public class Beginscherm extends HBox {
                 if (!fnaam.getChildren().contains(famillienaamFout)) {
                     fnaam.getChildren().add(famillienaamFout);
                 }
-                famillienaamFout.setText("Gelieve een familienaam");
+                famillienaamFout.setText("Gelieve een familienaam in te vullen");
                 geldig = false;
             } else if (fnaam.getChildren().contains(famillienaamFout)) {
                 fnaam.getChildren().remove(famillienaamFout);
@@ -287,7 +290,7 @@ public class Beginscherm extends HBox {
                     vnaam.getChildren().add(voornaamFout);
                 }
 
-                voornaamFout.setText("Gelieve een voornaam");
+                voornaamFout.setText("Gelieve een voornaam in te vullen");
                 geldig = false;
             } else if (vnaam.getChildren().contains(voornaamFout)) {
                 vnaam.getChildren().remove(voornaamFout);
@@ -329,7 +332,7 @@ public class Beginscherm extends HBox {
         start.setOnAction(e
                 -> {
             if (lijstLeerlingen.getSelectionModel().getSelectedItem() == null) {
-                feedbackInlog.setText("Geen leerling geselecteerd.");
+                feedbackInlog.setText("Gelieve een leerling te selecteren");
             } else {
                 Leerling leerling = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
                 //haal leerling op uit db/backend

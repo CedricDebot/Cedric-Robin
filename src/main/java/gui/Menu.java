@@ -59,7 +59,7 @@ public class Menu {
         VBox menuBalk = new VBox();
         menuBalk.setId("menuBox");
 
-        Image attitudeImageM = new Image("images/menuAttitude.PNG");
+        Image attitudeImageM = new Image("images/Attitude2.png");
         ImageView attitudeImageViewM = new ImageView(attitudeImageM);
         attitudeImageViewM.setFitWidth(100);
         attitudeImageViewM.setFitHeight(50);
@@ -72,7 +72,7 @@ public class Menu {
             scene.setRoot(attitudeScherm);
         });
 
-        Image rijImageM = new Image("images/menuRijtechniek.PNG");
+        Image rijImageM = new Image("images/rijtechniekIcoon/stuurWit.png");
         ImageView rijImageViewM = new ImageView(rijImageM);
         rijImageViewM.setFitWidth(100);
         rijImageViewM.setFitHeight(50);
@@ -85,7 +85,7 @@ public class Menu {
             scene.setRoot(rijtechniekScherm);
         });
 
-        Image verkeersImageM = new Image("images/menuVerkeerstechniek.PNG");
+        Image verkeersImageM = new Image("images/rotonde.png");
         ImageView verkeersImageViewM = new ImageView(verkeersImageM);
         verkeersImageViewM.setFitWidth(100);
         verkeersImageViewM.setFitHeight(50);
@@ -158,7 +158,7 @@ public class Menu {
         VBox menuKnoppen = new VBox();
         menuKnoppen.setId("menuKnoppen");
 
-        Image menuTerugImage = new Image("images/menuArrowLeft.png");
+        Image menuTerugImage = new Image("images/arrow-left.png");
         ImageView menuTerugImageView = new ImageView(menuTerugImage);
         menuTerugImageView.setFitWidth(60);
         menuTerugImageView.setFitHeight(50);
