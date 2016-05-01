@@ -80,6 +80,7 @@ public class Menu {
         rijTechniek.setId("menuButton");
 
         rijTechniek.setOnAction(e -> {
+            controller.getDashboard().knopRijtechniek();
             Rijtechniek rijtechniekScherm = new Rijtechniek(controller);
             rijtechniekScherm.setScene(scene);
             scene.setRoot(rijtechniekScherm);
@@ -93,6 +94,7 @@ public class Menu {
         verkeersTechniek.setId("menuButton");
 
         verkeersTechniek.setOnAction(e -> {
+            controller.getDashboard().knopVerkeerstechniek();
             VerkeersTechniek verkeersTechniekScherm = new VerkeersTechniek(controller);
             verkeersTechniekScherm.setScene(scene);
             scene.setRoot(verkeersTechniekScherm);
