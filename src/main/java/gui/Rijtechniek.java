@@ -248,6 +248,7 @@ public class Rijtechniek extends HBox {
         //rijtechniekIcoonGroup.setId("rijtechniekIcoonGroup");
         rijtechniekIcoonGroup.getChildren().add(middenGridImageView);
         grid.add(rijtechniekIcoonGroup, 2, 2, 2, 2);
+        kleurStuur();
 
         Image cirkel = new Image("images/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
@@ -521,6 +522,8 @@ public class Rijtechniek extends HBox {
         } else if (controller.getIcoonToestanden().getRijtechniekIcoonBoven() == Toestand.ORANJE) {
             Image stuurOranjeBoven = new Image("images/rijtechniekIcoon/stuurOranjeBoven.png");
             stuurBoven.setImage(stuurOranjeBoven);
+        }else{
+            //Doe niets/ laat wit
         }
         rijtechniekIcoonGroup.getChildren().add(stuurBoven);
     }
@@ -539,6 +542,8 @@ public class Rijtechniek extends HBox {
         } else if (controller.getIcoonToestanden().getRijtechniekIcoonRechts() == Toestand.ORANJE) {
             Image stuurOranjeRechts = new Image("images/rijtechniekIcoon/stuurOranjeRechts.png");
             stuurRechts.setImage(stuurOranjeRechts);
+        }else{
+            //Doe niets / laat wit
         }
 
         rijtechniekIcoonGroup.getChildren().add(stuurRechts);
@@ -558,6 +563,8 @@ public class Rijtechniek extends HBox {
         } else if (controller.getIcoonToestanden().getRijtechniekIcoonLinks() == Toestand.ORANJE) {
             Image stuurOranjeLinks = new Image("images/rijtechniekIcoon/stuurOranjeLinks.png");
             stuurLinks.setImage(stuurOranjeLinks);
+        }else{
+            //doe niets, laat wit
         }
 
         rijtechniekIcoonGroup.getChildren().add(stuurLinks);

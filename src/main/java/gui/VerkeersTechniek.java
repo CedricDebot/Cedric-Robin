@@ -218,6 +218,7 @@ public class VerkeersTechniek extends HBox {
         verkeerstechniekGroup = new Group();
         verkeerstechniekGroup.getChildren().add(middenGridImageView);
         grid.add(verkeerstechniekGroup, 2, 2, 2, 2);
+        kleurRotonde();
 
         Image cirkel = new Image("images/cirkel.png");
         ImageView cirkelImageView = new ImageView(cirkel);
@@ -490,6 +491,8 @@ public class VerkeersTechniek extends HBox {
         } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonLinks() == Toestand.ROOD) {
             Image rotondeRoodLinks = new Image("images/verkeerstechniekIcoon/rotondeRoodLinks.png");
             rotondeLinks.setImage(rotondeRoodLinks);
+        }else{
+            //Doe niets/laat wit
         }
 
         verkeerstechniekGroup.getChildren().add(rotondeLinks);
@@ -513,6 +516,8 @@ public class VerkeersTechniek extends HBox {
         } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonRechts() == Toestand.ROOD) {
             Image rotondeRoodRechts = new Image("images/verkeerstechniekIcoon/rotondeRoodRechts.png");
             rotondeRechts.setImage(rotondeRoodRechts);
+        }else{
+            //doe niets / laat wit
         }
 
         verkeerstechniekGroup.getChildren().add(rotondeRechts);
@@ -536,6 +541,8 @@ public class VerkeersTechniek extends HBox {
         } else if (controller.getIcoonToestanden().getVerkeerstechniekIcoonBeneden() == Toestand.ROOD) {
             Image rotondeRoodBeneden = new Image("images/verkeerstechniekIcoon/rotondeRoodBeneden.png");
             rotondeBeneden.setImage(rotondeRoodBeneden);
+        }else{
+            //doe niets/ laat  wit
         }
 
         verkeerstechniekGroup.getChildren().add(rotondeBeneden);

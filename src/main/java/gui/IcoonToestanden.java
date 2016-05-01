@@ -13,28 +13,28 @@ import domein.Toestand;
  * @author Robin
  */
 public class IcoonToestanden {
-
+    
     private DomeinController controller;
-
+    
     private Toestand RijtechniekIcoonBoven;
     private Toestand RijtechniekIcoonRechts;
     private Toestand RijtechniekIcoonLinks;
-
+    
     private Toestand verkeerstechniekIcoonLinks;
     private Toestand verkeerstechniekIcoonRechts;
     private Toestand verkeerstechniekIcoonBeneden;
-
+    
     public IcoonToestanden(DomeinController controller) {
         this.controller = controller;
-
+        
     }
-
+    
     public void bepaalToestandenRijtechniek() {
         bepaalToestandBovenRijtechniek();
-        bepaalToestandLinksVerkeersrechniek();
+        bepaalToestandLinksRijtechniek();
         bepaalToestandRechtsRijtechniek();
     }
-
+    
     public void bepaalToestandBovenRijtechniek() {
         //10 = zithouding
         //0 = koppelng
@@ -49,11 +49,20 @@ public class IcoonToestanden {
                 && controller.getButtonRijTechniek(2).getHuidigeToestand() == Toestand.GROEN
                 && controller.getButtonRijTechniek(3).getHuidigeToestand() == Toestand.GROEN) {
             RijtechniekIcoonBoven = Toestand.GROEN;
+        } else if (controller.getButtonRijTechniek(10).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(11).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(0).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(1).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(2).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(3).getHuidigeToestand() == Toestand.WIT) {
+            
+            RijtechniekIcoonBoven = Toestand.WIT;
+            
         } else {
             RijtechniekIcoonBoven = Toestand.ORANJE;
         }
     }
-
+    
     public void bepaalToestandRechtsRijtechniek() {
         // 4 = parkeren
         // 5 = keren
@@ -61,12 +70,15 @@ public class IcoonToestanden {
         if (controller.getButtonRijTechniek(4).getHuidigeToestand() == Toestand.GROEN
                 && controller.getButtonRijTechniek(5).getHuidigeToestand() == Toestand.GROEN) {
             RijtechniekIcoonRechts = Toestand.GROEN;
+        } else if (controller.getButtonRijTechniek(4).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(5).getHuidigeToestand() == Toestand.WIT) {
+            RijtechniekIcoonRechts = Toestand.WIT;
         } else {
             RijtechniekIcoonRechts = Toestand.ORANJE;
         }
     }
-
-    public void bepaalToestandLinksVerkeersrechniek() {
+    
+    public void bepaalToestandLinksRijtechniek() {
         //6 = garage
         //7 = achteruit
         //8 = acht
@@ -76,39 +88,43 @@ public class IcoonToestanden {
                 && controller.getButtonRijTechniek(8).getHuidigeToestand() == Toestand.GROEN
                 && controller.getButtonRijTechniek(9).getHuidigeToestand() == Toestand.GROEN) {
             RijtechniekIcoonLinks = Toestand.GROEN;
+        } else if (controller.getButtonRijTechniek(6).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(7).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(8).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonRijTechniek(9).getHuidigeToestand() == Toestand.WIT) {
+            RijtechniekIcoonLinks = Toestand.WIT;
+            
         } else {
             RijtechniekIcoonLinks = Toestand.ORANJE;
         }
     }
-
+    
     public Toestand getRijtechniekIcoonBoven() {
         return RijtechniekIcoonBoven;
     }
-
+    
     public Toestand getRijtechniekIcoonRechts() {
         return RijtechniekIcoonRechts;
     }
-
+    
     public Toestand getRijtechniekIcoonLinks() {
         return RijtechniekIcoonLinks;
     }
-
+    
     public Toestand getVerkeerstechniekIcoonLinks() {
         return verkeerstechniekIcoonLinks;
     }
-
+    
     public void setVerkeerstechniekIcoonLinks(Toestand verkeerstechniekIcoonLinks) {
         this.verkeerstechniekIcoonLinks = verkeerstechniekIcoonLinks;
     }
     
-    
-    
-    public void bepaalToestandenVerkeerstechniek(){
+    public void bepaalToestandenVerkeerstechniek() {
         bepaalToestandLinks();
         bepaalToestandBeneden();
         bepaalToestandRechts();
     }
-
+    
     public void bepaalToestandLinks() {
         //8 = pinkers
         //5 = kruisen
@@ -121,13 +137,16 @@ public class IcoonToestanden {
                 || controller.getButtonVerkeersTechniek(5).getHuidigeToestand() == Toestand.ROOD
                 || controller.getButtonVerkeersTechniek(4).getHuidigeToestand() == Toestand.ROOD) {
             setVerkeerstechniekIcoonLinks(Toestand.ROOD);
+        } else if (controller.getButtonVerkeersTechniek(8).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonVerkeersTechniek(5).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonVerkeersTechniek(4).getHuidigeToestand() == Toestand.WIT) {
+            setVerkeerstechniekIcoonLinks(Toestand.WIT);
+            
         } else {
             setVerkeerstechniekIcoonLinks(Toestand.ORANJE);
         }
     }
-
     
-
     public void bepaalToestandRechts() {
         //9 = OpenbareWeg
         //6 = linksaf
@@ -143,13 +162,16 @@ public class IcoonToestanden {
                 || controller.getButtonVerkeersTechniek(7).getHuidigeToestand() == Toestand.ROOD
                 || controller.getButtonVerkeersTechniek(3).getHuidigeToestand() == Toestand.ROOD) {
             setVerkeerstechniekIcoonRechts(Toestand.ROOD);
+        }else if(controller.getButtonVerkeersTechniek(9).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonVerkeersTechniek(6).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonVerkeersTechniek(7).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonVerkeersTechniek(3).getHuidigeToestand() == Toestand.WIT){
+            setVerkeerstechniekIcoonRechts(Toestand.WIT);
         } else {
             setVerkeerstechniekIcoonRechts(Toestand.ORANJE);
         }
     }
-
     
-
     public void bepaalToestandBeneden() {
         //0 = voorrang
         //1 = orders
@@ -162,6 +184,10 @@ public class IcoonToestanden {
                 || controller.getButtonVerkeersTechniek(1).getHuidigeToestand() == Toestand.ROOD
                 || controller.getButtonVerkeersTechniek(2).getHuidigeToestand() == Toestand.ROOD) {
             setVerkeerstechniekIcoonBeneden(Toestand.ROOD);
+        }else if(controller.getButtonVerkeersTechniek(0).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonVerkeersTechniek(1).getHuidigeToestand() == Toestand.WIT
+                && controller.getButtonVerkeersTechniek(2).getHuidigeToestand() == Toestand.WIT){
+            setVerkeerstechniekIcoonBeneden(Toestand.WIT);
         } else {
             setVerkeerstechniekIcoonBeneden(Toestand.ORANJE);
         }
@@ -170,15 +196,15 @@ public class IcoonToestanden {
     public Toestand getVerkeerstechniekIcoonBeneden() {
         return verkeerstechniekIcoonBeneden;
     }
-
+    
     public void setVerkeerstechniekIcoonBeneden(Toestand verkeerstechniekIcoonBeneden) {
         this.verkeerstechniekIcoonBeneden = verkeerstechniekIcoonBeneden;
     }
-
+    
     public Toestand getVerkeerstechniekIcoonRechts() {
         return verkeerstechniekIcoonRechts;
     }
-
+    
     public void setVerkeerstechniekIcoonRechts(Toestand verkeerstechniekIcoonRechts) {
         this.verkeerstechniekIcoonRechts = verkeerstechniekIcoonRechts;
     }
