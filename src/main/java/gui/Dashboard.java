@@ -47,6 +47,8 @@ public class Dashboard extends GridPane {
 
     private IcoonToestanden icoonToestanden;
 
+    private GridPane dashboard;
+
 //    private Rijtechniek rijtechniekScherm;
 //    private VerkeersTechniek verkeerstechniekScherm;
     public Dashboard(DomeinController controller) {
@@ -127,19 +129,18 @@ public class Dashboard extends GridPane {
 //
 //        EvaluatieMoment Buttons
         menu.getMoment1().setOnAction(e -> {
-                controller.setEva1();
-                menu.getMoment1().setText("1");
+            controller.setEva1();
+            menu.getMoment1().setText("1");
         });
         menu.getMoment2().setOnAction(e -> {
-                controller.setEva2();
-                menu.getMoment2().setText("2");
+            controller.setEva2();
+            menu.getMoment2().setText("2");
         });
         menu.getMoment3().setOnAction(e -> {
-                controller.setEva3();
-                menu.getMoment3().setText("3");
+            controller.setEva3();
+            menu.getMoment3().setText("3");
         });
 
-        
 //        menu.getMoment1().setOnAction(e -> {
 //            if (controller.getLeerling().isEvaluatieMoment1()) {
 //
@@ -204,7 +205,6 @@ public class Dashboard extends GridPane {
 //
 //            }
 //        });
-
         menu.getDashboardTerug().setOnAction(e -> {
             controller.getBeginscherm().setScene(scene);
             scene.setRoot(controller.getBeginscherm());
@@ -217,7 +217,7 @@ public class Dashboard extends GridPane {
         dashboardLayer1ImageView.setFitWidth(800);
         dashboardLayer1ImageView.setFitHeight(400);
 
-        GridPane dashboard = new GridPane();
+        dashboard = new GridPane();
         dashboard.setId("dashboard");
         dashboard.setHgap(5);
         dashboard.setVgap(50);
@@ -243,15 +243,16 @@ public class Dashboard extends GridPane {
 //        ImageView rijtechniekImageView = new ImageView(rijtechniek);
 //        rijtechniekImageView.setFitWidth(100);
 //        rijtechniekImageView.setFitHeight(100);
-        Button rijtechniekBtn = new Button("", rijtechniekIcoon.getRijtechniekIcoonGroup());
-        rijtechniekBtn.setId("groteBtnsDashboard");
-        dashboard.add(rijtechniekBtn, 0, 0);
 
-        rijtechniekBtn.setOnAction(e -> {
-            Rijtechniek rijtechniekScherm = new Rijtechniek(controller);
-            rijtechniekScherm.setScene(scene);
-            scene.setRoot(rijtechniekScherm);
-        });
+        //rijtechniekIcoonGroup.setId("rijtechniekIcoonGroup");
+//        rijtechniekIcoonGroup.getChildren().add(middenGridImageView);
+//
+//        controller.getIcoonToestanden().kleurStuur();
+//        rijtechniekIcoon.kleurStuur();
+//        Button rijtechniekBtn = rijtechniekIcoon.getRijtechniekKnop();
+//        rijtechniekBtn.setId("groteBtnsDashboard");
+//        dashboard.add(rijtechniekBtn, 0, 0);
+        knopRijtechniek();
 
         Image attitudeD = new Image("images/Attitude2.png");
         ImageView attitudeImageView = new ImageView(attitudeD);
@@ -267,19 +268,15 @@ public class Dashboard extends GridPane {
             scene.setRoot(attitude);
         });
 
-        Image verkeerstechniek = new Image("images/verkeerstechniekWit.png");
-        ImageView verkeerstechniekImageView = new ImageView(verkeerstechniek);
-        verkeerstechniekImageView.setFitWidth(100);
-        verkeerstechniekImageView.setFitHeight(100);
-        Button verkeerstechniekBtn = new Button("", verkeerstechniekImageView);
-        verkeerstechniekBtn.setId("groteBtnsDashboard");
-        dashboard.add(verkeerstechniekBtn, 2, 0);
+//        Image verkeerstechniek = new Image("images/verkeerstechniekWit.png");
+//        ImageView verkeerstechniekImageView = new ImageView(verkeerstechniek);
+//        verkeerstechniekImageView.setFitWidth(100);
+//        verkeerstechniekImageView.setFitHeight(100);
+//        Button verkeerstechniekBtn = new Button("", verkeerstechniekImageView);
+//        verkeerstechniekBtn.setId("groteBtnsDashboard");
+//        dashboard.add(verkeerstechniekBtn, 2, 0);
 
-        verkeerstechniekBtn.setOnAction(e -> {
-            VerkeersTechniek verkeerstechniekScherm = new VerkeersTechniek(controller);
-            verkeerstechniekScherm.setScene(scene);
-            scene.setRoot(verkeerstechniekScherm);
-        });
+        knopVerkeerstechniek();
 
         //hBox met icoontjes
         HBox icoontjes = new HBox();
@@ -752,4 +749,31 @@ public class Dashboard extends GridPane {
         this.icoonToestanden = icoonToestanden;
     }
 
+    public void knopRijtechniek() {
+        controller.getIcoonToestanden().kleurStuur();
+        rijtechniekIcoon.kleurStuur();
+        Button rijtechniekBtn = rijtechniekIcoon.getRijtechniekKnop();
+        rijtechniekBtn.setId("groteBtnsDashboard");
+        dashboard.add(rijtechniekBtn, 0, 0);
+
+        rijtechniekBtn.setOnAction(e -> {
+            Rijtechniek rijtechniekScherm = new Rijtechniek(controller);
+            rijtechniekScherm.setScene(scene);
+            scene.setRoot(rijtechniekScherm);
+        });
+    }
+
+    public void knopVerkeerstechniek() {
+        controller.getIcoonToestanden().kleurRotonde();
+        verkeerstechniekIcoon.kleurRotonde();
+        Button verkeerstechniekBtn = verkeerstechniekIcoon.getVerkeerstechniekKnop();
+        verkeerstechniekBtn.setId("groteBtnsDashboard");
+        dashboard.add(verkeerstechniekBtn, 2, 0);
+
+        verkeerstechniekBtn.setOnAction(e -> {
+            VerkeersTechniek verkeerstechniekScherm = new VerkeersTechniek(controller);
+            verkeerstechniekScherm.setScene(scene);
+            scene.setRoot(verkeerstechniekScherm);
+        });
+    }
 }

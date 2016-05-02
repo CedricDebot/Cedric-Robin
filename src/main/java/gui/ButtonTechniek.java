@@ -25,7 +25,8 @@ public class ButtonTechniek extends HBox {
     private Rijtechniek rijtechniek;
     private VerkeersTechniek verkeerstechniek;
 
-    public ButtonTechniek(ButtonTechniekDomein btnDomein, boolean eva, SchermType type) {
+    public ButtonTechniek(ButtonTechniekDomein btnDomein, boolean eva, SchermType type, DomeinController controller) {
+        this.controller = controller;
         this.type = type;
         this.btnDomein = btnDomein;
 
@@ -43,9 +44,9 @@ public class ButtonTechniek extends HBox {
             imageView.setImage(new Image(btnDomein.getHuidigeKleur()));
 
             if (type == SchermType.RIJTECHNIEK) {
-                rijtechniek.kleurStuur();
+                controller.getIcoonToestanden().kleurStuur();
             }else{
-                verkeerstechniek.kleurRotonde();
+                 controller.getIcoonToestanden().kleurRotonde();
             }
         });
 
