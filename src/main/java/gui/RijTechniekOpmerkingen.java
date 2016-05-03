@@ -3,6 +3,7 @@ package gui;
 import domein.AttitudeOpmerking;
 import domein.DomeinController;
 import domein.IcoonType;
+import domein.OpmerkingListCell;
 import domein.SchermType;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
@@ -141,24 +142,25 @@ public class RijTechniekOpmerkingen extends GridPane {
 
         opmerkingenListView.setItems(standaarOpmerkingen);
 
-        opmerkingenListView.setCellFactory(new Callback<ListView<AttitudeOpmerking>, ListCell<AttitudeOpmerking>>() {
-
-            @Override
-            public ListCell<AttitudeOpmerking> call(ListView<AttitudeOpmerking> p) {
-
-                ListCell<AttitudeOpmerking> cell = new ListCell<AttitudeOpmerking>() {
-
-                    @Override
-                    protected void updateItem(AttitudeOpmerking a, boolean bln) {
-                        super.updateItem(a, bln);
-                        if (a != null) {
-                            setText(a.getNaam());
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
+//        opmerkingenListView.setCellFactory(new Callback<ListView<AttitudeOpmerking>, ListCell<AttitudeOpmerking>>() {
+//
+//            @Override
+//            public ListCell<AttitudeOpmerking> call(ListView<AttitudeOpmerking> p) {
+//
+//                ListCell<AttitudeOpmerking> cell = new ListCell<AttitudeOpmerking>() {
+//
+//                    @Override
+//                    protected void updateItem(AttitudeOpmerking a, boolean bln) {
+//                        super.updateItem(a, bln);
+//                        if (a != null) {
+//                            setText(a.getNaam());
+//                        }
+//                    }
+//                };
+//                return cell;
+//            }
+//        });
+        opmerkingenListView.setCellFactory(c -> new OpmerkingListCell());
 
         opmerkingenListView.setOnMouseClicked(event -> {
             try {
