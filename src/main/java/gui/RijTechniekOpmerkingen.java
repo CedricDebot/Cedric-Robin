@@ -160,7 +160,7 @@ public class RijTechniekOpmerkingen extends GridPane {
 //                return cell;
 //            }
 //        });
-        opmerkingenListView.setCellFactory(c -> new OpmerkingListCell());
+        opmerkingenListView.setCellFactory(c -> new OpmerkingListCell(controller));
 
         opmerkingenListView.setOnMouseClicked(event -> {
             try {
@@ -180,6 +180,7 @@ public class RijTechniekOpmerkingen extends GridPane {
         });
         uitroeptekenBtn.setOnAction(e -> {
             AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
+         
             if (geselecteerdeOpmerking.isUitroeptekenActive()) {
                 geselecteerdeOpmerking.setUitroeptekenActive(false);
                 controller.getLeerling().getRecenteOpmerkingen().remove(geselecteerdeOpmerking);
