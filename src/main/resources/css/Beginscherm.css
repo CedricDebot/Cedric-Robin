@@ -585,5 +585,15 @@
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-max-width: 200;
-    
+
+}
+#uitroeptekenBtn{
+    -fx-background-color: none;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-alignment: CENTER;
+    -fx-pref-width: 0;
+    -fx-background-insets: 0, 0;
 }
