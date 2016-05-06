@@ -16,13 +16,14 @@ public class OpmerkingListCell extends ListCell<AttitudeOpmerking> {
     private final ImageView uitroepteken;
     private final Button uitroeptekenBtn;
     private DomeinController controller;
-    
+
     public OpmerkingListCell(DomeinController controller) {
         this.controller = controller;
         inhoud = new HBox();
         inhoud.setAlignment(Pos.CENTER_LEFT);
         inhoud.setSpacing(50);
         naam = new Label();
+        naam.setId("cellNaam");
         naam.setMaxWidth(Double.MAX_VALUE);
         inhoud.setHgrow(naam, Priority.ALWAYS);
         uitroepteken = new ImageView("images/uitroepTeken.png");
@@ -43,9 +44,14 @@ public class OpmerkingListCell extends ListCell<AttitudeOpmerking> {
             setGraphic(null);
             return;
         }
-        
+
         naam.setText(item.getNaam());
-        uitroeptekenBtn.setOnAction(e->{
+        if (item.isUitroeptekenActive()) {
+            Image uitroeptekenImage = new Image("images/uitroepTekenActive2.png");
+            uitroepteken.setImage(uitroeptekenImage);
+        }
+        
+        uitroeptekenBtn.setOnAction(e -> {
             if (item.isUitroeptekenActive()) {
                 item.setUitroeptekenActive(false);
                 controller.getLeerling().getRecenteOpmerkingen().remove(item);
@@ -54,7 +60,7 @@ public class OpmerkingListCell extends ListCell<AttitudeOpmerking> {
             } else {
                 item.setUitroeptekenActive(true);
                 controller.getLeerling().getRecenteOpmerkingen().add(item);
-                Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
+                Image uitroeptekenImage = new Image("images/uitroepTekenActive2.png");
                 uitroepteken.setImage(uitroeptekenImage);
             }
         });

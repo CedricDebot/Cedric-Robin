@@ -4,7 +4,6 @@ import domein.AttitudeOpmerking;
 import domein.DomeinController;
 import domein.IcoonType;
 import domein.OpmerkingListCell;
-import domein.SchermType;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -15,7 +14,6 @@ import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -28,14 +26,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class RijTechniekOpmerkingen extends GridPane {
 
     private DomeinController controller;
     private Scene scene;
-    ImageView uitroepteken;
 
     public RijTechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, DomeinController controller, IcoonType icoonType) {
 
@@ -123,10 +119,7 @@ public class RijTechniekOpmerkingen extends GridPane {
             bewaarOpmerking.setEffect(null);
         });
 
-        uitroepteken = new ImageView("images/uitroepTeken.png");
-        Button uitroeptekenBtn = new Button("", uitroepteken);
-        uitroeptekenBtn.setId("uitroeptekenKnop");
-        bewaren.getChildren().addAll(bewaarOpmerking, uitroeptekenBtn);
+        bewaren.getChildren().addAll(bewaarOpmerking);
 
         OpmerkingenPane.add(bewaren, 0, 3);
 
@@ -142,56 +135,16 @@ public class RijTechniekOpmerkingen extends GridPane {
 
         opmerkingenListView.setItems(standaarOpmerkingen);
 
-//        opmerkingenListView.setCellFactory(new Callback<ListView<AttitudeOpmerking>, ListCell<AttitudeOpmerking>>() {
-//
-//            @Override
-//            public ListCell<AttitudeOpmerking> call(ListView<AttitudeOpmerking> p) {
-//
-//                ListCell<AttitudeOpmerking> cell = new ListCell<AttitudeOpmerking>() {
-//
-//                    @Override
-//                    protected void updateItem(AttitudeOpmerking a, boolean bln) {
-//                        super.updateItem(a, bln);
-//                        if (a != null) {
-//                            setText(a.getNaam());
-//                        }
-//                    }
-//                };
-//                return cell;
-//            }
-//        });
         opmerkingenListView.setCellFactory(c -> new OpmerkingListCell(controller));
 
         opmerkingenListView.setOnMouseClicked(event -> {
             try {
                 AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
                 opmerkingVeld.setText(geselecteerdeOpmerking.getOpmerking());
-                if (geselecteerdeOpmerking.isUitroeptekenActive()) {
-                    Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
-                    uitroepteken.setImage(uitroeptekenImage);
-                } else {
-                    Image uitroeptekenImage = new Image("images/uitroepTeken.png");
-                    uitroepteken.setImage(uitroeptekenImage);
-                }
             }catch(NullPointerException npe){
                 
             }
 
-        });
-        uitroeptekenBtn.setOnAction(e -> {
-            AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
-         
-            if (geselecteerdeOpmerking.isUitroeptekenActive()) {
-                geselecteerdeOpmerking.setUitroeptekenActive(false);
-                controller.getLeerling().getRecenteOpmerkingen().remove(geselecteerdeOpmerking);
-                Image uitroeptekenImage = new Image("images/uitroepTeken.png");
-                uitroepteken.setImage(uitroeptekenImage);
-            } else {
-                geselecteerdeOpmerking.setUitroeptekenActive(true);
-                controller.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
-                Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
-                uitroepteken.setImage(uitroeptekenImage);
-            }
         });
         //voegtoe
         Button voegToe = new Button("Voeg Toe");

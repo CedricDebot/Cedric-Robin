@@ -3,6 +3,7 @@ package gui;
 import domein.AttitudeOpmerking;
 import domein.DomeinController;
 import domein.IcoonType;
+import domein.OpmerkingListCell;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -31,7 +32,6 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
 
     private DomeinController controller;
     private Scene scene;
-    ImageView uitroepteken;
 
     public VerkeersTechniekOpmerkingen(ArrayList<AttitudeOpmerking> opmerkingenList, DomeinController controller, IcoonType icoonType) {
 
@@ -108,24 +108,7 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
 
         opmerkingenListView.setItems(standaardOpmerkingen);
 
-        opmerkingenListView.setCellFactory(new Callback<ListView<AttitudeOpmerking>, ListCell<AttitudeOpmerking>>() {
-
-            @Override
-            public ListCell<AttitudeOpmerking> call(ListView<AttitudeOpmerking> p) {
-
-                ListCell<AttitudeOpmerking> cell = new ListCell<AttitudeOpmerking>() {
-
-                    @Override
-                    protected void updateItem(AttitudeOpmerking a, boolean bln) {
-                        super.updateItem(a, bln);
-                        if (a != null) {
-                            setText(a.getNaam());
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
+        opmerkingenListView.setCellFactory(c -> new OpmerkingListCell(controller));
 
         //voegtoe
         Button voegToe = new Button("Voeg Toe");
@@ -142,9 +125,7 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
         TextField nieuw = new TextField();
         nieuw.setId("tekstNieuw");
 
-        uitroepteken = new ImageView("images/uitroepTeken.png");
-        Button uitroeptekenBtn = new Button("", uitroepteken);
-        uitroeptekenBtn.setId("uitroeptekenKnop");
+
 
         HBox nieuwHB = new HBox();
         nieuwHB.setId("nieuwHB");
@@ -166,36 +147,15 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
 
         ListViewMetLabel.getChildren().addAll(soortIcoon, opmerkingenListView);
 
-        attitudeList.getChildren().addAll(IcoonView, ListViewMetLabel, nieuwHB, uitroeptekenBtn);
+        attitudeList.getChildren().addAll(IcoonView, ListViewMetLabel, nieuwHB);
 
         opmerkingenListView.setOnMouseClicked(event -> {
             try {
                 AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
-                if (geselecteerdeOpmerking.isUitroeptekenActive()) {
-                    Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
-                    uitroepteken.setImage(uitroeptekenImage);
-                } else {
-                    Image uitroeptekenImage = new Image("images/uitroepTeken.png");
-                    uitroepteken.setImage(uitroeptekenImage);
-                }
             }catch(NullPointerException npe){
                 
             }
 
-        });
-        uitroeptekenBtn.setOnAction(e -> {
-            AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
-            if (geselecteerdeOpmerking.isUitroeptekenActive()) {
-                geselecteerdeOpmerking.setUitroeptekenActive(false);
-                controller.getLeerling().getRecenteOpmerkingen().remove(geselecteerdeOpmerking);
-                Image uitroeptekenImage = new Image("images/uitroepTeken.png");
-                uitroepteken.setImage(uitroeptekenImage);
-            } else {
-                geselecteerdeOpmerking.setUitroeptekenActive(true);
-                controller.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
-                Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
-                uitroepteken.setImage(uitroeptekenImage);
-            }
         });
 
         voegToe.setOnAction(e -> {

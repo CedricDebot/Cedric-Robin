@@ -7,6 +7,7 @@ package gui;
 
 import domein.AttitudeOpmerking;
 import domein.DomeinController;
+import domein.OpmerkingListCell;
 import java.util.ArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -41,7 +42,6 @@ public class Attitude extends GridPane {
 
     private Scene scene;
 
-    ImageView uitroepteken;
 
     public Attitude(DomeinController controller) {
 
@@ -128,10 +128,7 @@ public class Attitude extends GridPane {
             bewaarOpmerking.setEffect(null);
         });
 
-        uitroepteken = new ImageView("images/uitroepTeken.png");
-        Button uitroeptekenBtn = new Button("", uitroepteken);
-        uitroeptekenBtn.setId("uitroeptekenKnop");
-        bewaren.getChildren().addAll(bewaarOpmerking, uitroeptekenBtn);
+        bewaren.getChildren().addAll(bewaarOpmerking);
 
         OpmerkingenPane.add(bewaren, 0, 3);
 
@@ -150,38 +147,14 @@ public class Attitude extends GridPane {
 
         opmerkingenList.setItems(standaardOpmerkingen);
 
-        opmerkingenList.setCellFactory(new Callback<ListView<AttitudeOpmerking>, ListCell<AttitudeOpmerking>>() {
-
-            @Override
-            public ListCell<AttitudeOpmerking> call(ListView<AttitudeOpmerking> p) {
-
-                ListCell<AttitudeOpmerking> cell = new ListCell<AttitudeOpmerking>() {
-
-                    @Override
-                    protected void updateItem(AttitudeOpmerking a, boolean bln) {
-                        super.updateItem(a, bln);
-                        if (a != null) {
-                            setText(a.getNaam());
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
+        opmerkingenList.setCellFactory(c -> new OpmerkingListCell(controller));
 
         opmerkingenList.setOnMouseClicked(event -> {
             try {
                 AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenList.getSelectionModel().getSelectedItem();
                 opmerkingVeld.setText(geselecteerdeOpmerking.getOpmerking());
-                if (geselecteerdeOpmerking.isUitroeptekenActive()) {
-                    Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
-                    uitroepteken.setImage(uitroeptekenImage);
-                } else {
-                    Image uitroeptekenImage = new Image("images/uitroepTeken.png");
-                    uitroepteken.setImage(uitroeptekenImage);
-                }
-            }catch(NullPointerException npe){
-                
+            } catch (NullPointerException npe) {
+
             }
 
         });
@@ -213,21 +186,6 @@ public class Attitude extends GridPane {
 
             geselecteerdeOpmerking.setOpmerking(opmerkingVeld.getText());
 
-        });
-
-        uitroeptekenBtn.setOnAction(e -> {
-            AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenList.getSelectionModel().getSelectedItem();
-            if (geselecteerdeOpmerking.isUitroeptekenActive()) {
-                geselecteerdeOpmerking.setUitroeptekenActive(false);
-                controller.getLeerling().getRecenteOpmerkingen().remove(geselecteerdeOpmerking);
-                Image uitroeptekenImage = new Image("images/uitroepTeken.png");
-                uitroepteken.setImage(uitroeptekenImage);
-            } else {
-                geselecteerdeOpmerking.setUitroeptekenActive(true);
-                controller.getLeerling().getRecenteOpmerkingen().add(geselecteerdeOpmerking);
-                Image uitroeptekenImage = new Image("images/uitroepTekenActive.png");
-                uitroepteken.setImage(uitroeptekenImage);
-            }
         });
 
         //Menu
