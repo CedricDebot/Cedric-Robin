@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -18,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class VerkeersTechniek extends HBox {
@@ -267,6 +269,19 @@ public class VerkeersTechniek extends HBox {
         roodLichtButton.setId("icoontjesBtns");
 
         roodLichtButton.setOnAction(e -> {
+            
+            DropShadow ds = new DropShadow();
+            ds.setOffsetY(3.0);
+            ds.setOffsetX(3.0);
+            ds.setColor(Color.LIGHTGREY);
+
+            if (roodLichtButton.getEffect() == null) {
+                roodLichtButton.setEffect(ds);
+
+            } else {
+                roodLichtButton.setEffect(null);
+            }
+            
             Toestand[] icoontjesToestand = {
                 controller.getLeerling().getButtonVerkeersTechniek(0).getHuidigeToestand(),
                 controller.getLeerling().getButtonVerkeersTechniek(1).getHuidigeToestand(),
@@ -318,6 +333,19 @@ public class VerkeersTechniek extends HBox {
         oranjeLichtButton.setId("icoontjesBtns");
 
         oranjeLichtButton.setOnAction(e -> {
+            
+            DropShadow ds = new DropShadow();
+            ds.setOffsetY(3.0);
+            ds.setOffsetX(3.0);
+            ds.setColor(Color.LIGHTGREY);
+
+            if (oranjeLichtButton.getEffect() == null) {
+                oranjeLichtButton.setEffect(ds);
+
+            } else {
+                oranjeLichtButton.setEffect(null);
+            }
+            
             Toestand[] icoontjesToestand = {
                 controller.getLeerling().getButtonVerkeersTechniek(0).getHuidigeToestand(),
                 controller.getLeerling().getButtonVerkeersTechniek(1).getHuidigeToestand(),
@@ -368,6 +396,19 @@ public class VerkeersTechniek extends HBox {
         groenLichtButton.setId("icoontjesBtns");
 
         groenLichtButton.setOnAction(e -> {
+            
+            DropShadow ds = new DropShadow();
+            ds.setOffsetY(3.0);
+            ds.setOffsetX(3.0);
+            ds.setColor(Color.LIGHTGREY);
+
+            if (groenLichtButton.getEffect() == null) {
+                groenLichtButton.setEffect(ds);
+
+            } else {
+                groenLichtButton.setEffect(null);
+            }
+            
             Toestand[] icoontjesToestand = {
                 controller.getLeerling().getButtonVerkeersTechniek(0).getHuidigeToestand(),
                 controller.getLeerling().getButtonVerkeersTechniek(1).getHuidigeToestand(),
