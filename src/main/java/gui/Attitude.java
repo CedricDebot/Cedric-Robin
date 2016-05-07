@@ -90,19 +90,20 @@ public class Attitude extends GridPane {
         OpmerkingenPane.getColumnConstraints().add(col0OpmerkingPane);
         OpmerkingenPane.getRowConstraints().addAll(row0Terug, row1Label, row2Text, row3Bewaar);
 
-        Image terugPijl = new Image("images/terug-pijl.png");
-        ImageView terugPijlImageView = new ImageView(terugPijl);
-        terugPijlImageView.setFitWidth(100);
-        terugPijlImageView.setFitHeight(50);
-        Button terugBtn = new Button("", terugPijlImageView);
-        terugBtn.setId("menuButton");
+//        Image terugPijl = new Image("images/terug-pijl.png");
+//        ImageView terugPijlImageView = new ImageView(terugPijl);
+//        terugPijlImageView.setFitWidth(100);
+//        terugPijlImageView.setFitHeight(50);
+//        Button terugBtn = new Button("", terugPijlImageView);
+//        terugBtn.setId("menuButton");
+//
+//        OpmerkingenPane.add(terugBtn, 0, 0);
+//
+//        terugBtn.setOnAction(e -> {
+//            controller.getDashboard().setScene(scene);
+//            scene.setRoot(controller.getDashboard());
+//        });
 
-        OpmerkingenPane.add(terugBtn, 0, 0);
-
-        terugBtn.setOnAction(e -> {
-            controller.getDashboard().setScene(scene);
-            scene.setRoot(controller.getDashboard());
-        });
 
         Label opmerking = new Label("Opmerking");
         opmerking.setId("OpmerkingLabel");
@@ -228,6 +229,11 @@ public class Attitude extends GridPane {
             tt.play();
             tt.onFinishedProperty();
 
+        });
+        
+        menu.getVorigScherm().setOnAction(e->{
+            controller.getDashboard().setScene(scene);
+            scene.setRoot(controller.getDashboard());
         });
 
         add(OpmerkingenPane, 0, 0);

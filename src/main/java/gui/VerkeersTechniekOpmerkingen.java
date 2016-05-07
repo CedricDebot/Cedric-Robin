@@ -81,21 +81,20 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
         OpmerkingenPane.getColumnConstraints().add(col0OpmerkingPane);
         OpmerkingenPane.getRowConstraints().addAll(row0Terug, row1Label, row2Text, row3Bewaar);
 
-        Image terugPijl = new Image("images/terug-pijl.png");
-        ImageView terugPijlImageView = new ImageView(terugPijl);
-        terugPijlImageView.setFitWidth(100);
-        terugPijlImageView.setFitHeight(50);
-        Button terugBtn = new Button("", terugPijlImageView);
-        terugBtn.setId("menuButton");
-
-        OpmerkingenPane.add(terugBtn, 0, 0);
-
-        terugBtn.setOnAction(e -> {
-            VerkeersTechniek verkeersTechniek = new VerkeersTechniek(controller);
-            verkeersTechniek.setScene(scene);
-            scene.setRoot(verkeersTechniek);
-        });
-
+//        Image terugPijl = new Image("images/terug-pijl.png");
+//        ImageView terugPijlImageView = new ImageView(terugPijl);
+//        terugPijlImageView.setFitWidth(100);
+//        terugPijlImageView.setFitHeight(50);
+//        Button terugBtn = new Button("", terugPijlImageView);
+//        terugBtn.setId("menuButton");
+//
+//        OpmerkingenPane.add(terugBtn, 0, 0);
+//
+//        terugBtn.setOnAction(e -> {
+//            VerkeersTechniek verkeersTechniek = new VerkeersTechniek(controller);
+//            verkeersTechniek.setScene(scene);
+//            scene.setRoot(verkeersTechniek);
+//        });
         //Listview
         ListView opmerkingenListView = new ListView();
         opmerkingenListView.setId("opmerkingenTechniek");
@@ -125,8 +124,6 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
         TextField nieuw = new TextField();
         nieuw.setId("tekstNieuw");
 
-
-
         HBox nieuwHB = new HBox();
         nieuwHB.setId("nieuwHB");
         nieuwHB.getChildren().addAll(nieuw, voegToe);
@@ -152,8 +149,8 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
         opmerkingenListView.setOnMouseClicked(event -> {
             try {
                 AttitudeOpmerking geselecteerdeOpmerking = (AttitudeOpmerking) opmerkingenListView.getSelectionModel().getSelectedItem();
-            }catch(NullPointerException npe){
-                
+            } catch (NullPointerException npe) {
+
             }
 
         });
@@ -209,6 +206,12 @@ public class VerkeersTechniekOpmerkingen extends GridPane {
             tt.play();
             tt.onFinishedProperty();
 
+        });
+
+        menu.getVorigScherm().setOnAction(e -> {
+            VerkeersTechniek verkeersTechniek = new VerkeersTechniek(controller);
+            verkeersTechniek.setScene(scene);
+            scene.setRoot(verkeersTechniek);
         });
 
         add(OpmerkingenPane, 0, 0);
