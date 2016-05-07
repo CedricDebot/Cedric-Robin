@@ -2,6 +2,7 @@ package gui;
 
 import domein.DomeinController;
 import domein.Leerling;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,15 +15,12 @@ public class Menu {
     
     private DomeinController controller;
 
-    private Rijtechniek rijtechniek;
-    private VerkeersTechniek verkeerstechniek;
-    private Attitude attitude;
-
     private Scene scene;
 
     private Button menuTerug;
     private Button menuKnop;
     private Button dashboardTerug;
+    private Button vorigScherm;
 
     private Button moment1;
     private Button moment2;
@@ -53,6 +51,12 @@ public class Menu {
         return moment3;
     }
 
+    public Button getVorigScherm() {
+        return vorigScherm;
+    }
+    
+    
+
     public VBox buildMenu(DomeinController controller, int klasse) {
         this.controller = controller;
 
@@ -61,7 +65,7 @@ public class Menu {
 
         Image attitudeImageM = new Image("images/Attitude2.png");
         ImageView attitudeImageViewM = new ImageView(attitudeImageM);
-        attitudeImageViewM.setFitWidth(100);
+        attitudeImageViewM.setFitWidth(70);
         attitudeImageViewM.setFitHeight(50);
         Button attitude = new Button("", attitudeImageViewM);
         attitude.setId("menuButton");
@@ -74,7 +78,7 @@ public class Menu {
 
         Image rijImageM = new Image("images/rijtechniekIcoon/stuurWit.png");
         ImageView rijImageViewM = new ImageView(rijImageM);
-        rijImageViewM.setFitWidth(100);
+        rijImageViewM.setFitWidth(70);
         rijImageViewM.setFitHeight(50);
         Button rijTechniek = new Button("", rijImageViewM);
         rijTechniek.setId("menuButton");
@@ -88,7 +92,7 @@ public class Menu {
 
         Image verkeersImageM = new Image("images/rotonde.png");
         ImageView verkeersImageViewM = new ImageView(verkeersImageM);
-        verkeersImageViewM.setFitWidth(100);
+        verkeersImageViewM.setFitWidth(70);
         verkeersImageViewM.setFitHeight(50);
         Button verkeersTechniek = new Button("", verkeersImageViewM);
         verkeersTechniek.setId("menuButton");
@@ -99,27 +103,40 @@ public class Menu {
             verkeersTechniekScherm.setScene(scene);
             scene.setRoot(verkeersTechniekScherm);
         });
+        
+        VBox terugKnoppen = new VBox();
 
-        Image menuTerugImageM = new Image("images/dashboardTerug2.png");
+        Image menuTerugImageM = new Image("images/menusluiten.png");
         ImageView menuTerugImageViewM = new ImageView(menuTerugImageM);
-        menuTerugImageViewM.setFitWidth(100);
+        menuTerugImageViewM.setFitWidth(70);
         menuTerugImageViewM.setFitHeight(50);
         menuTerug = new Button("", menuTerugImageViewM);
         menuTerug.setId("menuButton");
         
+        Image vorigSchermI = new Image("images/dashboardTerug2.png");
+        ImageView vorigSchermIV = new ImageView(vorigSchermI);
+        vorigSchermIV.setFitWidth(70);
+        vorigSchermIV.setFitHeight(50);
+        vorigScherm = new Button("", vorigSchermIV);
+        vorigScherm.setId("menuButton");
+        
+        terugKnoppen.getChildren().addAll(vorigScherm, menuTerug);
+        terugKnoppen.setSpacing(90);
+        terugKnoppen.setAlignment(Pos.CENTER);
+        
         if (klasse == 1) {
-            menuBalk.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, menuTerug);
+            menuBalk.getChildren().addAll(attitude, rijTechniek, verkeersTechniek,terugKnoppen);
         }
         if (klasse == 2 ) {
-            menuBalk.getChildren().addAll(attitude, verkeersTechniek, menuTerug);
+            menuBalk.getChildren().addAll(attitude, verkeersTechniek, terugKnoppen);
         }
 
         if (klasse == 3) {
-            menuBalk.getChildren().addAll(rijTechniek, verkeersTechniek, menuTerug);
+            menuBalk.getChildren().addAll(rijTechniek, verkeersTechniek,terugKnoppen);
         }
 
         if (klasse == 4) {
-            menuBalk.getChildren().addAll(attitude, rijTechniek, menuTerug);
+            menuBalk.getChildren().addAll(attitude, rijTechniek,terugKnoppen);
         }
         return menuBalk;
     }

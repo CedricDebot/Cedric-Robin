@@ -126,6 +126,11 @@ public class Dashboard extends GridPane {
             tt.onFinishedProperty();
 
         });
+        
+        menu.getVorigScherm().setOnAction(e ->{
+            controller.getBeginscherm().setScene(scene);
+            scene.setRoot(controller.getBeginscherm());
+        });
 //
 //        EvaluatieMoment Buttons
         menu.getMoment1().setOnAction(e -> {

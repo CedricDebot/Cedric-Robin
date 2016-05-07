@@ -240,18 +240,18 @@ public class VerkeersTechniek extends HBox {
         VBox left = new VBox();
         left.setId("randinfoLeft");
 
-        Image terugPijl = new Image("images/terug-pijl.png");
-        ImageView terugPijlImageView = new ImageView(terugPijl);
-        terugPijlImageView.setFitWidth(100);
-        terugPijlImageView.setFitHeight(50);
-        Button terugBtn = new Button("", terugPijlImageView);
-        terugBtn.setId("menuButton");
-
-        terugBtn.setOnAction(e -> {
-            controller.getDashboard().knopVerkeerstechniek();
-            controller.getDashboard().setScene(scene);
-            scene.setRoot(controller.getDashboard());
-        });
+//        Image terugPijl = new Image("images/terug-pijl.png");
+//        ImageView terugPijlImageView = new ImageView(terugPijl);
+//        terugPijlImageView.setFitWidth(100);
+//        terugPijlImageView.setFitHeight(50);
+//        Button terugBtn = new Button("", terugPijlImageView);
+//        terugBtn.setId("menuButton");
+//
+//        terugBtn.setOnAction(e -> {
+//            controller.getDashboard().knopVerkeerstechniek();
+//            controller.getDashboard().setScene(scene);
+//            scene.setRoot(controller.getDashboard());
+//        });
         Image rechthoek = new Image("images/verkeerslicht.png");
         ImageView rechthoekImageView = new ImageView(rechthoek);
         rechthoekImageView.setFitWidth(70);
@@ -460,7 +460,7 @@ public class VerkeersTechniek extends HBox {
         verkeerslicht.getChildren().add(rechthoekImageView);
         verkeerslicht.getChildren().add(lichten);
 
-        left.getChildren().addAll(terugBtn, verkeerslicht);
+        left.getChildren().addAll( verkeerslicht);
 
         //Menu
         Menu menu = new Menu();
@@ -499,6 +499,12 @@ public class VerkeersTechniek extends HBox {
 
             tt.play();
             tt.onFinishedProperty();
+        });
+        
+        menu.getVorigScherm().setOnAction(e->{
+            controller.getDashboard().knopVerkeerstechniek();
+            controller.getDashboard().setScene(scene);
+            scene.setRoot(controller.getDashboard());
         });
 
         getChildren().addAll(left, evaluatieGroup, right);
