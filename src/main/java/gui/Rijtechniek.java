@@ -219,7 +219,7 @@ public class Rijtechniek extends HBox {
 
         remTechniek.getButton().setOnMouseDragged(e -> {
             if (zithouding.isGekleurd()) {
-                RijTechniekOpmerkingen rijtechniek = new RijTechniekOpmerkingen(controller.getLeerling().getRemtechniekOpmerkingen(), controller, new IcoonType(remTechniek.getKleur(), "RemTechniek"));
+                RijTechniekOpmerkingen rijtechniek = new RijTechniekOpmerkingen(controller.getLeerling().getRemtechniekOpmerkingen(), controller, new IcoonType(remTechniek.getKleur(), "Rem techniek"));
                 rijtechniek.setScene(scene);
                 scene.setRoot(rijtechniek);
             }
