@@ -95,11 +95,11 @@ public class Leerling {
     public void setDashboardDom(DashboardDom dashboardDom) {
         this.dashboardDom = dashboardDom;
     }
-    
+
     public ButtonHolder getButtonHolder() {
         return buttonHolder;
     }
-    
+
     public ArrayList<AttitudeOpmerking> getStandaardOpmerkingenList() {
         return standaardOpmerkingenList;
     }
@@ -111,11 +111,12 @@ public class Leerling {
     public ObservableList<AttitudeOpmerking> getRecenteOpmerkingen() {
         return recenteOpmerkingen;
     }
-    
-    public ButtonTechniekDomein getButtonRijTechniek(int index){
+
+    public ButtonTechniekDomein getButtonRijTechniek(int index) {
         return buttonHolder.getButtonRijTechniek(index);
     }
-    public ButtonTechniekDomein getButtonVerkeersTechniek(int index){
+
+    public ButtonTechniekDomein getButtonVerkeersTechniek(int index) {
         return buttonHolder.getButtonVerkeersTechniek(index);
     }
 
@@ -142,13 +143,20 @@ public class Leerling {
     public void setEvaluatieMoment3(boolean evaluatieMoment3) {
         this.evaluatieMoment3 = evaluatieMoment3;
     }
-    
-    
 
     private void maakStandaardOpmerkingenList() {
         standaardOpmerkingenList = new ArrayList<>();
 
         //standaardOpmerkingen
+        AttitudeOpmerking DefensiefRijden1 = new AttitudeOpmerking("Defensief Rijden:   Gedrag t.o.v. anderen", "");
+        AttitudeOpmerking DefensiefRijden2 = new AttitudeOpmerking("Defensief Rijden:   Risicoperceptie", "");
+        AttitudeOpmerking DefensiefRijden3 = new AttitudeOpmerking("Defensief Rijden:   Beslissingen nemen", "");
+        AttitudeOpmerking DefensiefRijden4 = new AttitudeOpmerking("Defensief Rijden:   Voorspelbaar rijgedrag", "");
+        AttitudeOpmerking DefensiefRijden5 = new AttitudeOpmerking("Defensief Rijden:   Rijgedrag i.f.v. externe factoren", "");
+        AttitudeOpmerking Eco = new AttitudeOpmerking("Ecologisch rijden", "");
+        AttitudeOpmerking Zelfreflectie = new AttitudeOpmerking("Zelfreflectie", "");
+        AttitudeOpmerking Ongeval = new AttitudeOpmerking("Gedrag bij ongeval", "");
+        
         AttitudeOpmerking Zenuwachtig = new AttitudeOpmerking("Zenuwachtig", "");
         AttitudeOpmerking Concentratie = new AttitudeOpmerking("Concentratie", "");
         AttitudeOpmerking Schrik = new AttitudeOpmerking("Schrik", "");
@@ -159,6 +167,17 @@ public class Leerling {
         AttitudeOpmerking Verstrooid = new AttitudeOpmerking("Verstrooid", "");
         AttitudeOpmerking Eigenwijs = new AttitudeOpmerking("Eigenwijs", "");
 
+        
+        
+        standaardOpmerkingenList.add(DefensiefRijden1);
+        standaardOpmerkingenList.add(DefensiefRijden2);
+        standaardOpmerkingenList.add(DefensiefRijden3);
+        standaardOpmerkingenList.add(DefensiefRijden4);
+        standaardOpmerkingenList.add(DefensiefRijden5);
+        standaardOpmerkingenList.add(Eco);
+        standaardOpmerkingenList.add(Zelfreflectie);
+        standaardOpmerkingenList.add(Ongeval);
+        
         standaardOpmerkingenList.add(Zenuwachtig);
         standaardOpmerkingenList.add(Concentratie);
         standaardOpmerkingenList.add(Schrik);
@@ -278,17 +297,17 @@ public class Leerling {
         //Schakelen
         schakelenOpmerking = new ArrayList<>();
         AttitudeOpmerking bediening = new AttitudeOpmerking("Bediening", "");
-        AttitudeOpmerking gebruik2 = new AttitudeOpmerking("Gebruik", "");
+        AttitudeOpmerking gebruik2 = new AttitudeOpmerking("Aangepaste versnelling", "");
         schakelenOpmerking.add(bediening);
         schakelenOpmerking.add(gebruik2);
 
         //kijken
         kijkenOpmerkingen = new ArrayList<>();
-        AttitudeOpmerking beterVergewissen = new AttitudeOpmerking("Beter vergewissen", "");
-        AttitudeOpmerking spiegels = new AttitudeOpmerking("spiegels", "");
-        AttitudeOpmerking dodeHoek = new AttitudeOpmerking("Dode hoek", "");
-        AttitudeOpmerking verGenoeg = new AttitudeOpmerking("Ver genoeg", "");
-        AttitudeOpmerking selecteren = new AttitudeOpmerking("selecteren", "");
+        AttitudeOpmerking verGenoeg = new AttitudeOpmerking("Ver/Dichtbij", "");
+        AttitudeOpmerking beterVergewissen = new AttitudeOpmerking("Meer vergewissen", "");
+        AttitudeOpmerking spiegels = new AttitudeOpmerking("Spiegels", "");
+        AttitudeOpmerking dodeHoek = new AttitudeOpmerking("Dode hoeken", "");
+        AttitudeOpmerking selecteren = new AttitudeOpmerking("Scannen/Selecteren", "");
         kijkenOpmerkingen.add(beterVergewissen);
         kijkenOpmerkingen.add(spiegels);
         kijkenOpmerkingen.add(dodeHoek);
@@ -297,8 +316,8 @@ public class Leerling {
 
         //Parkeren
         parkerenOpmerkingen = new ArrayList<>();
-        AttitudeOpmerking tussenTweeVoertuigen = new AttitudeOpmerking("Tussen 2 voertuigen", "");
-        AttitudeOpmerking AchterVoertuigen = new AttitudeOpmerking("Achter voertuigen", "");
+        AttitudeOpmerking tussenTweeVoertuigen = new AttitudeOpmerking("Tussen twee voertuigen", "");
+        AttitudeOpmerking AchterVoertuigen = new AttitudeOpmerking("Achter een voertuig", "");
         AttitudeOpmerking links = new AttitudeOpmerking("Links", "");
         parkerenOpmerkingen.add(tussenTweeVoertuigen);
         parkerenOpmerkingen.add(AchterVoertuigen);
@@ -346,17 +365,27 @@ public class Leerling {
 
         //RemTechniek
         remtechniekOpmerkingen = new ArrayList<>();
-        AttitudeOpmerking bediening3 = new AttitudeOpmerking("Bediening ", "");
-        AttitudeOpmerking gebruik3 = new AttitudeOpmerking("Gebruik", "");
-        remtechniekOpmerkingen.add(bediening3);
-        remtechniekOpmerkingen.add(gebruik3);
+        AttitudeOpmerking bedieningRem1 = new AttitudeOpmerking("Bediening:     Dosering ", "");
+        AttitudeOpmerking bedieningRem2 = new AttitudeOpmerking("Bediening:     Volgorde ", "");
+        AttitudeOpmerking gebruikRem1 = new AttitudeOpmerking("Gebruik:     Te laat", "");
+        AttitudeOpmerking gebruikRem2 = new AttitudeOpmerking("Gebruik:     Afremmen op de motor", "");
+        remtechniekOpmerkingen.add(bedieningRem1);
+        remtechniekOpmerkingen.add(bedieningRem2);
+        remtechniekOpmerkingen.add(gebruikRem1);
+        remtechniekOpmerkingen.add(gebruikRem2);
 
-        //embrayageO
+        //embrayageO / koppeling
         embrayageOpmerkingen = new ArrayList<>();
-        AttitudeOpmerking bediening4 = new AttitudeOpmerking("Bediening", "");
-        AttitudeOpmerking gebruik4 = new AttitudeOpmerking("Gebruik", "");
-        embrayageOpmerkingen.add(bediening4);
-        embrayageOpmerkingen.add(gebruik4);
+        AttitudeOpmerking bedieningKop1 = new AttitudeOpmerking("Bediening:     Dosering ", "");
+        AttitudeOpmerking bedieningKop2 = new AttitudeOpmerking("Bediening:     Volledig ", "");
+        AttitudeOpmerking bedieningKop3 = new AttitudeOpmerking("Bediening:     Plaatsing voet ", "");
+        AttitudeOpmerking gebruikKop1 = new AttitudeOpmerking("Gebruik:     Onnodig", "");
+        AttitudeOpmerking gebruikKop2 = new AttitudeOpmerking("Gebruik:     Bocht", "");
+        embrayageOpmerkingen.add(bedieningKop1);
+        embrayageOpmerkingen.add(bedieningKop2);
+        embrayageOpmerkingen.add(bedieningKop3);
+        embrayageOpmerkingen.add(gebruikKop1);
+        embrayageOpmerkingen.add(gebruikKop2);
     }
 
     //VerkeersTechniek
