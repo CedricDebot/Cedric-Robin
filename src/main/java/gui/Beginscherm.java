@@ -4,8 +4,6 @@ import domein.DomeinController;
 import domein.Leerling;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -33,13 +31,20 @@ public class Beginscherm extends HBox {
         labels.setId("labels");
         HBox naamLeerling = new HBox();
         naamLeerling.setId("naamLeerling");
+        
         Label naam = new Label("Naam: ");
+        naam.setMaxWidth(Double.MAX_VALUE);
+        naamLeerling.setHgrow(naam, Priority.ALWAYS);
         TextField naamTF = new TextField();
         naamTF.setId("textField");
         naamLeerling.getChildren().addAll(naam, naamTF);
+        
         HBox inschrijvingLeerling = new HBox();
         inschrijvingLeerling.setId("inschrijvingLeerling");
+        
         Label inschrijvingsnummer = new Label("Inschrijvingsnummer:");
+        inschrijvingsnummer.setMaxWidth(Double.MAX_VALUE);
+        inschrijvingLeerling.setHgrow(inschrijvingsnummer, Priority.ALWAYS);
         TextField inschrijvingsnummerTF = new TextField();
         inschrijvingsnummerTF.setId("textField");
         inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
@@ -71,7 +76,7 @@ public class Beginscherm extends HBox {
             start.setEffect(null);
         });
 
-//Feedback
+        //Feedback
         Label feedbackInlog = new Label("");
         feedbackInlog.setId("feedbackLogin");
         //ZoekScherm
@@ -84,13 +89,6 @@ public class Beginscherm extends HBox {
 
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(leerlingen);
-//        lijstLeerlingen.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>() {
-//
-//            @Override
-//            public ObservableValue<Boolean> call(String item) {
-//                return null;
-//            }
-//        }));
 
         lijstLeerlingen.setCellFactory(new Callback<ListView<Leerling>, ListCell<Leerling>>() {
 
@@ -108,6 +106,17 @@ public class Beginscherm extends HBox {
                     }
                 };
                 return cell;
+            }
+        });
+        
+        lijstLeerlingen.setOnMouseClicked(e->{
+            try{
+                Leerling leerlingSelected = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
+                naamTF.setText(leerlingSelected.getVoorNaam() + " " + leerlingSelected.getFamillieNaam());
+                inschrijvingsnummerTF.setText(leerlingSelected.getInschrijvingsNr());
+                
+            }catch(NullPointerException npe){
+                
             }
         });
 
@@ -266,12 +275,12 @@ public class Beginscherm extends HBox {
             }
         });
 
-        naamTF.textProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                ZoekFunctie((String) oldValue, (String) newValue);
-            }
-        });
+//        naamTF.textProperty().addListener(new ChangeListener() {
+//            @Override
+//            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+//                ZoekFunctie((String) oldValue, (String) newValue);
+//            }
+//        });
 
         ok.setOnAction(e -> {
             boolean geldig = true;
@@ -357,21 +366,21 @@ public class Beginscherm extends HBox {
         );
     }
 
-    public void ZoekFunctie(String oldVal, String newVal) {
-        //if (oldVal != null && (newVal.length() <= oldVal.length())) {
-//        lijstLeerlingen.setItems(leerlingen);
-        //}
-        newVal = newVal.toLowerCase();
-
-        ObservableList<Leerling> searchNames = FXCollections.observableArrayList();
-        for (Leerling leerling : leerlingen) {
-            String entryText = (String) leerling.getVoorNaam();
-            if (entryText.toLowerCase().contains(newVal)) {
-                searchNames.add(leerling);
-            }
-        }
-        lijstLeerlingen.setItems(searchNames);
-    }
+//    public void ZoekFunctie(String oldVal, String newVal) {
+//        //if (oldVal != null && (newVal.length() <= oldVal.length())) {
+////        lijstLeerlingen.setItems(leerlingen);
+//        //}
+//        newVal = newVal.toLowerCase();
+//
+//        ObservableList<Leerling> searchNames = FXCollections.observableArrayList();
+//        for (Leerling leerling : leerlingen) {
+//            String entryText = (String) leerling.getVoorNaam();
+//            if (entryText.toLowerCase().contains(newVal)) {
+//                searchNames.add(leerling);
+//            }
+//        }
+//        lijstLeerlingen.setItems(searchNames);
+//    }
 
     public boolean validateEmail(String email) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
@@ -387,19 +396,19 @@ public class Beginscherm extends HBox {
 
     private void VulLeerlingen() {
         Image CedricFoto = new Image("images/testLeerlingen/1.png");
-        Leerling Cedric = new Leerling(null, "Debot", "Cédric", null, CedricFoto);
+        Leerling Cedric = new Leerling("100401", "Debot", "Cédric", null, CedricFoto);
         leerlingen.add(Cedric);
 
         Image RobinFoto = new Image("images/testLeerlingen/4.png");
-        Leerling Robin = new Leerling(null, "Lanneer", "Robin", null, RobinFoto);
+        Leerling Robin = new Leerling("104050", "Lanneer", "Robin", null, RobinFoto);
         leerlingen.add(Robin);
 
         Image DriesFoto = new Image("images/testLeerlingen/2.png");
-        Leerling Dries = new Leerling(null, "Meert", "Dries", null, DriesFoto);
+        Leerling Dries = new Leerling("054501", "Meert", "Dries", null, DriesFoto);
         leerlingen.add(Dries);
 
         Image MiltonFoto = new Image("images/testLeerlingen/3.png");
-        Leerling Milton = new Leerling(null, "Hooft", "Milton", null, MiltonFoto);
+        Leerling Milton = new Leerling("254241", "Hooft", "Milton", null, MiltonFoto);
         leerlingen.add(Milton);
     }
 
