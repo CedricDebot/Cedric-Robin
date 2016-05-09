@@ -18,6 +18,7 @@
     -fx-border-radius: 15;
     -fx-border-width: 3;
     -fx-min-width: 350;
+    -fx-alignment: CENTER;
 }
 
 #labels{
@@ -192,7 +193,7 @@
 }
 #evaTitel{
     -fx-alignment: CENTER;
-    -fx-pref-width: 100;
+    -fx-pref-width: 150;
 }
 #momentKnop{
     -fx-background-color: #EAEAEA;
@@ -356,7 +357,7 @@
     -fx-border-color: black;
     -fx-border-radius: 5;
     -fx-border-width: 3;
-    -fx-min-width: 400;
+    -fx-min-width: 500;
 }
 #attitudeList{
     -fx-max-width: 300;
@@ -495,6 +496,7 @@
     -fx-border-color: black;
     -fx-border-radius: 0;
     -fx-border-width: 0;
+    -fx-min-width: 350;
 }
 #opmerkingenTechniek:focused{
     -fx-focus-color: transparent;
@@ -597,4 +599,8 @@
     -fx-alignment: CENTER;
     -fx-pref-width: 0;
     -fx-background-insets: 0, 0;
+}
+#feedbackLogin{
+    -fx-padding: 5;
+    -fx-text-fill: red;
 }
