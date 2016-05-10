@@ -1,21 +1,17 @@
 package gui;
 
-import com.gluonhq.charm.glisten.control.*;
 import domein.AttitudeOpmerking;
 import domein.DomeinController;
 import domein.EvaluatieGrafiek;
 import domein.GezienNietGezien;
 import domein.Toestand;
-import java.util.Optional;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -51,12 +47,8 @@ public class Dashboard extends GridPane {
 
     private GridPane dashboard;
 
-//    private Rijtechniek rijtechniekScherm;
-//    private VerkeersTechniek verkeerstechniekScherm;
     public Dashboard(DomeinController controller) {
         this.controller = controller;
-//        this.rijtechniekScherm = new Rijtechniek(controller);
-//        this.verkeerstechniekScherm = new VerkeersTechniek(controller);
 
         icoonToestanden = controller.getIcoonToestanden();
 
@@ -133,31 +125,32 @@ public class Dashboard extends GridPane {
             controller.getBeginscherm().setScene(scene);
             scene.setRoot(controller.getBeginscherm());
         });
-//
-//        EvaluatieMoment Buttons
-//        menu.getMoment1().setOnAction(e -> {
-//            controller.setEva1();
-//            menu.getMoment1().setText("1");
-//        });
-//        menu.getMoment2().setOnAction(e -> {
-//            controller.setEva2();
-//            menu.getMoment2().setText("2");
-//        });
-//        menu.getMoment3().setOnAction(e -> {
-//            controller.setEva3();
-//            menu.getMoment3().setText("3");
-//        });
 
         menu.getMoment1().setOnAction(e -> {
-            menu.waarschuwing(1);
+            if (controller.getLeerling().isEvaluatieMoment1() == false) {
+                controller.getLeerling().setEvaluatieMoment1(true);
+                menu.waarschuwing(1);
+            } else {
 
+            }
         });
 
         menu.getMoment2().setOnAction(e -> {
-            menu.waarschuwing(2);
+            if (controller.getLeerling().isEvaluatieMoment1() && (controller.getLeerling().isEvaluatieMoment2() == false)) {
+                controller.getLeerling().setEvaluatieMoment2(true);
+                menu.waarschuwing(2);
+            } else {
+
+            }
+
         });
         menu.getMoment3().setOnAction(e -> {
-            menu.waarschuwing(3);
+            if (controller.getLeerling().isEvaluatieMoment1() && controller.getLeerling().isEvaluatieMoment2() && controller.getLeerling().isEvaluatieMoment3() == false) {
+                controller.getLeerling().setEvaluatieMoment3(true);
+                menu.waarschuwing(3);
+            } else {
+                
+            }
         });
 
         menu.getDashboardTerug().setOnAction(e -> {

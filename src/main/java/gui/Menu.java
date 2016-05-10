@@ -25,7 +25,21 @@ public class Menu {
     private Button moment1;
     private Button moment2;
     private Button moment3;
+    
+    //WaarschuwingsBox
+    private VBox menuDashboard;
+    private Label zekerheidLbl;
+    private VBox waarschuwingsBox;
+    private Button ja;
+    private Button nee;
 
+    public Menu() {
+        zekerheidLbl = new Label("");
+        zekerheidLbl.setWrapText(true);
+    }
+
+    
+    
     public Button getMenuTerug() {
         return menuTerug;
     }
@@ -138,11 +152,7 @@ public class Menu {
         return menuBalk;
     }
 
-    private VBox menuDashboard;
-    private Label zekerheidLbl;
-    private VBox waarschuwingsBox;
-    private Button ja;
-    private Button nee;
+    
 
     public VBox buildMenuDashboard(Leerling leerling) {
         menuDashboard = new VBox();
@@ -170,8 +180,6 @@ public class Menu {
         waarschuwingsBox = new VBox();
         waarschuwingsBox.setId("waarschuwingsBox");
 
-        zekerheidLbl = new Label("");
-        zekerheidLbl.setWrapText(true);
 
         HBox knoppen = new HBox();
         knoppen.setId("waarschuwingKnoppen");
