@@ -195,12 +195,12 @@ public class Beginscherm extends HBox {
         emailFout.setId("foutboodschap");
         mail.getChildren().addAll(Email, inputEmail);
 
-        Button foto = new Button("Foto");
+//        Button foto = new Button("Foto");
         Label feedback = new Label("");
 
         HBox fotoEnLabel = new HBox();
         fotoEnLabel.setId("fotoEnLabel");
-        fotoEnLabel.getChildren().addAll(foto, feedback);
+        fotoEnLabel.getChildren().addAll(feedback);
 
         nieuweLeerling.getChildren().addAll(titel, nr, inputNr, fnaam, vnaam, mail, fotoEnLabel);
 

@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Menu {
-    
+
     private DomeinController controller;
 
     private Scene scene;
@@ -25,7 +25,6 @@ public class Menu {
     private Button moment1;
     private Button moment2;
     private Button moment3;
-    
 
     public Button getMenuTerug() {
         return menuTerug;
@@ -54,8 +53,6 @@ public class Menu {
     public Button getVorigScherm() {
         return vorigScherm;
     }
-    
-    
 
     public VBox buildMenu(DomeinController controller, int klasse) {
         this.controller = controller;
@@ -103,7 +100,7 @@ public class Menu {
             verkeersTechniekScherm.setScene(scene);
             scene.setRoot(verkeersTechniekScherm);
         });
-        
+
         VBox terugKnoppen = new VBox();
 
         Image menuTerugImageM = new Image("images/menusluiten.png");
@@ -112,37 +109,43 @@ public class Menu {
         menuTerugImageViewM.setFitHeight(50);
         menuTerug = new Button("", menuTerugImageViewM);
         menuTerug.setId("menuButton");
-        
+
         Image vorigSchermI = new Image("images/dashboardTerug2.png");
         ImageView vorigSchermIV = new ImageView(vorigSchermI);
         vorigSchermIV.setFitWidth(70);
         vorigSchermIV.setFitHeight(50);
         vorigScherm = new Button("", vorigSchermIV);
         vorigScherm.setId("menuButton");
-        
+
         terugKnoppen.getChildren().addAll(vorigScherm, menuTerug);
         terugKnoppen.setSpacing(90);
         terugKnoppen.setAlignment(Pos.CENTER);
-        
+
         if (klasse == 1) {
-            menuBalk.getChildren().addAll(attitude, rijTechniek, verkeersTechniek,terugKnoppen);
+            menuBalk.getChildren().addAll(attitude, rijTechniek, verkeersTechniek, terugKnoppen);
         }
-        if (klasse == 2 ) {
+        if (klasse == 2) {
             menuBalk.getChildren().addAll(attitude, verkeersTechniek, terugKnoppen);
         }
 
         if (klasse == 3) {
-            menuBalk.getChildren().addAll(rijTechniek, verkeersTechniek,terugKnoppen);
+            menuBalk.getChildren().addAll(rijTechniek, verkeersTechniek, terugKnoppen);
         }
 
         if (klasse == 4) {
-            menuBalk.getChildren().addAll(attitude, rijTechniek,terugKnoppen);
+            menuBalk.getChildren().addAll(attitude, rijTechniek, terugKnoppen);
         }
         return menuBalk;
     }
 
+    private VBox menuDashboard;
+    private Label zekerheidLbl;
+    private VBox waarschuwingsBox;
+    private Button ja;
+    private Button nee;
+
     public VBox buildMenuDashboard(Leerling leerling) {
-        VBox menuDashboard = new VBox();
+        menuDashboard = new VBox();
         menuDashboard.setId("menuDashboard");
 
         //MenuKnoppenDashboard
@@ -164,7 +167,24 @@ public class Menu {
 
         menuKnoppenDashboard.getChildren().addAll(menuKnop, dashboardTerug);
 
-        menuDashboard.getChildren().addAll(InfoLeerling(leerling), EvaluatieMoment(), menuKnoppenDashboard);
+        waarschuwingsBox = new VBox();
+        waarschuwingsBox.setId("waarschuwingsBox");
+
+        zekerheidLbl = new Label("");
+        zekerheidLbl.setWrapText(true);
+
+        HBox knoppen = new HBox();
+        knoppen.setId("waarschuwingKnoppen");
+        ja = new Button("Ja");
+        ja.setId("waarschuwingsknop");
+        nee = new Button("Nee");
+        nee.setId("waarschuwingsknop");
+        knoppen.getChildren().addAll(ja, nee);
+
+        waarschuwingsBox.getChildren().addAll(zekerheidLbl, knoppen);
+
+        menuDashboard.getChildren().addAll(InfoLeerling(leerling), EvaluatieMoment(), waarschuwingsBox, menuKnoppenDashboard);
+        waarschuwingsBox.setVisible(false);
 
         return menuDashboard;
     }
@@ -225,13 +245,12 @@ public class Menu {
         VBox infoLeerling = new VBox();
         infoLeerling.setId("infoLeerling");
 
-        Image fotoLeerling = leerling.getFoto();
-        ImageView leerlingImageView = new ImageView(fotoLeerling);
-        leerlingImageView.setId("leerlingImageView");
-
-        leerlingImageView.setFitWidth(130);
-        leerlingImageView.setFitHeight(150);
-
+//        Image fotoLeerling = leerling.getFoto();
+//        ImageView leerlingImageView = new ImageView(fotoLeerling);
+//        leerlingImageView.setId("leerlingImageView");
+//
+//        leerlingImageView.setFitWidth(130);
+//        leerlingImageView.setFitHeight(150);
         Label naamLeerling = new Label(leerling.getVoorNaam() + " " + leerling.getFamillieNaam());
         naamLeerling.setId("lblNaamLeerling");
 
@@ -240,14 +259,47 @@ public class Menu {
 
         //Outter border
         HBox hBox_outter = new HBox();
-        hBox_outter.setId("hBox_outterImage");
+//        hBox_outter.setId("hBox_outterImage");
 
-        hBox_inner.getChildren().add(leerlingImageView);
+//        hBox_inner.getChildren().add(leerlingImageView);
         hBox_outter.getChildren().add(hBox_inner);
 
         infoLeerling.getChildren().addAll(hBox_outter, naamLeerling);
 
         return infoLeerling;
+    }
+
+    public void waarschuwing(int moment) {
+        zekerheidLbl.setText("Weet je zeker dat je evaluatiemoment" + " " + moment + " " + "wilt starten");
+        waarschuwingsBox.setVisible(true);
+
+        switch (moment) {
+            case 1:
+                ja.setOnAction(e -> {
+                    controller.setEva1();
+                    getMoment1().setText("1");
+                    waarschuwingsBox.setVisible(false);
+                }); nee.setOnAction(e -> {
+                    waarschuwingsBox.setVisible(false);
+                }); break;
+            case 2:
+                ja.setOnAction(e -> {
+                    controller.setEva2();
+                    getMoment2().setText("2");
+                    waarschuwingsBox.setVisible(false);
+                }); nee.setOnAction(e -> {
+                    waarschuwingsBox.setVisible(false);
+                }); break;
+            default:
+                ja.setOnAction(e -> {
+                    controller.setEva3();
+                    getMoment3().setText("3");
+                    waarschuwingsBox.setVisible(false);
+                }); nee.setOnAction(e -> {
+                    waarschuwingsBox.setVisible(false);
+                }); break;
+        }
+
     }
 
     public void setScene(Scene scene) {

@@ -149,87 +149,24 @@ public class Dashboard extends GridPane {
 //        });
 
         menu.getMoment1().setOnAction(e -> {
-//            if (controller.getLeerling().isEvaluatieMoment1()) {
-//
-//                Alert alert = new Alert(AlertType.CONFIRMATION);
-//                alert.setTitleText("EvaluatieMoment 1");
-//                alert.setContentText("Weet je zeker dat je evaluatiemoment 1 wilt starten?");
-//
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if (result.get() == ButtonType.OK) {
-//                    controller.setEva1();
-//                    menu.getMoment1().setText("1");
-//                    controller.getLeerling().setEvaluatieMoment1(false);
-//                    controller.getLeerling().setEvaluatieMoment2(true);
-//                } else {
-//                    //cancel
-//                }
-//
-//            } else {
-//
-//            }
+            menu.waarschuwing(1);
 
-//            Dialog dialog = new Dialog("EvaluatieMoment 1", "Weet je zeker dat je evaluatiemoment 1 wilt starten?");
-//            Button okButton = new Button("OK");
-//            okButton.setOnAction(c -> {
-//                controller.setEva1();
-//                menu.getMoment1().setText("1");
-//                controller.getLeerling().setEvaluatieMoment1(false);
-//                controller.getLeerling().setEvaluatieMoment2(true);
-//                dialog.hide();
-//            });
-//            dialog.getButtons().add(okButton);
-//            dialog.showAndWait();
-            
         });
-        
+
         menu.getMoment2().setOnAction(e -> {
-//            if (controller.getLeerling().isEvaluatieMoment2()) {
-//
-//                Alert alert = new Alert(AlertType.CONFIRMATION);
-//                alert.setTitleText("EvaluatieMoment 2");
-//                alert.setContentText("Weet je zeker dat je evaluatiemoment 2 wilt starten?");
-//
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if (result.get() == ButtonType.OK) {
-//                    controller.setEva2();
-//                    menu.getMoment2().setText("2");
-//                    controller.getLeerling().setEvaluatieMoment2(false);
-//                    controller.getLeerling().setEvaluatieMoment3(true);
-//                } else {
-//                    //cancel
-//                }
-//
-//            } else {
-//
-//            }
+            menu.waarschuwing(2);
         });
         menu.getMoment3().setOnAction(e -> {
-//            if (controller.getLeerling().isEvaluatieMoment3()) {
-//
-//                Alert alert = new Alert(AlertType.CONFIRMATION);
-//                alert.setTitleText("EvaluatieMoment 3");
-//                alert.setContentText("Weet je zeker dat je evaluatiemoment 3 wilt starten?");
-//
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if (result.get() == ButtonType.OK) {
-//                    controller.setEva3();
-//                    menu.getMoment3().setText("3");
-//                    controller.getLeerling().setEvaluatieMoment3(false);
-//                } else {
-//                    //cancel
-//                }
-//            } else {
-//
-//            }
+            menu.waarschuwing(3);
         });
+
         menu.getDashboardTerug().setOnAction(e -> {
             controller.getBeginscherm().setScene(scene);
             scene.setRoot(controller.getBeginscherm());
         });
 
         //LEFT
-        Image dashboardLayer1 = new Image("images/dashboardk.png");
+        Image dashboardLayer1 = new Image("images/dashboard.png");
         ImageView dashboardLayer1ImageView = new ImageView(dashboardLayer1);
         dashboardLayer1ImageView.setId("dashboardLayer1ImageView");
         dashboardLayer1ImageView.setFitWidth(800);
