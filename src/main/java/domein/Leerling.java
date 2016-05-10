@@ -30,7 +30,7 @@ public class Leerling {
     private ObservableList<AttitudeOpmerking> recenteOpmerkingen;
 
     //EvaluatieMomenten
-    private boolean evaluatieMoment1 = true;
+    private boolean evaluatieMoment1 = false;
     private boolean evaluatieMoment2 = false;
     private boolean evaluatieMoment3 = false;
 

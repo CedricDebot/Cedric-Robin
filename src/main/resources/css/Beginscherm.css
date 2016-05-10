@@ -604,3 +604,22 @@
     -fx-padding: 5;
     -fx-text-fill: red;
 }
+#waarschuwingKnoppen{
+    -fx-spacing: 15;
+    -fx-alignment: center;
+}
+#waarschuwingsknop{
+    -fx-pref-width: 50;
+    -fx-padding: 5;
+}
+#waarschuwingsBox{
+    -fx-spacing: 10;
+    -fx-alignment: center;
+    -fx-padding: 15;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 2;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
