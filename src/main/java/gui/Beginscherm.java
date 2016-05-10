@@ -1,7 +1,12 @@
 package gui;
 
+import async.AddLeerlingTask;
+import async.DeleteLeerlingTask;
+import async.GetLeerlingenTask;
 import domein.DomeinController;
 import domein.Leerling;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
@@ -17,6 +22,7 @@ import javafx.util.Callback;
 
 public class Beginscherm extends HBox {
 
+    private final ExecutorService service = Executors.newSingleThreadExecutor();
 //    private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
     private ObservableList<Leerling> leerlingen = FXCollections.observableArrayList();
     private ListView lijstLeerlingen = new ListView();
@@ -31,17 +37,17 @@ public class Beginscherm extends HBox {
         labels.setId("labels");
         HBox naamLeerling = new HBox();
         naamLeerling.setId("naamLeerling");
-        
+
         Label naam = new Label("Naam: ");
         naam.setMaxWidth(Double.MAX_VALUE);
         naamLeerling.setHgrow(naam, Priority.ALWAYS);
         TextField naamTF = new TextField();
         naamTF.setId("textField");
         naamLeerling.getChildren().addAll(naam, naamTF);
-        
+
         HBox inschrijvingLeerling = new HBox();
         inschrijvingLeerling.setId("inschrijvingLeerling");
-        
+
         Label inschrijvingsnummer = new Label("Inschrijvingsnummer:");
         inschrijvingsnummer.setMaxWidth(Double.MAX_VALUE);
         inschrijvingLeerling.setHgrow(inschrijvingsnummer, Priority.ALWAYS);
@@ -50,7 +56,6 @@ public class Beginscherm extends HBox {
         inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
         labels.getChildren().addAll(naamLeerling, inschrijvingLeerling);
 
-        
         naamTF.setFocusTraversable(false);
         inschrijvingsnummerTF.setFocusTraversable(false);
         //ButtonLeft
@@ -84,9 +89,6 @@ public class Beginscherm extends HBox {
         zoekscherm.setId("zoekscherm");
         zoekscherm.getChildren().addAll(labels, buttons, feedbackInlog);
 
-        //ListViewLln
-        VulLeerlingen();
-
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(leerlingen);
 
@@ -108,15 +110,15 @@ public class Beginscherm extends HBox {
                 return cell;
             }
         });
-        
-        lijstLeerlingen.setOnMouseClicked(e->{
-            try{
+
+        lijstLeerlingen.setOnMouseClicked(e -> {
+            try {
                 Leerling leerlingSelected = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
                 naamTF.setText(leerlingSelected.getVoorNaam() + " " + leerlingSelected.getFamillieNaam());
                 inschrijvingsnummerTF.setText(leerlingSelected.getInschrijvingsNr());
-                
-            }catch(NullPointerException npe){
-                
+
+            } catch (NullPointerException npe) {
+
             }
         });
 
@@ -144,9 +146,15 @@ public class Beginscherm extends HBox {
         });
 
         sync.setOnAction(e -> {
-            Synchroniseer synchroniseer = new Synchroniseer();
-            synchroniseer.setScene(scene);
-            scene.setRoot(synchroniseer);
+            GetLeerlingenTask task = new GetLeerlingenTask();
+            task.setOnSucceeded(event -> {
+                leerlingen.clear();
+                leerlingen.addAll(task.getValue());
+            });
+            task.setOnFailed(event -> {
+                task.getException().printStackTrace();
+            });
+            service.submit(task);
         });
 
         //ButtonsAllesVerwijderen
@@ -281,7 +289,6 @@ public class Beginscherm extends HBox {
 //                ZoekFunctie((String) oldValue, (String) newValue);
 //            }
 //        });
-
         ok.setOnAction(e -> {
             boolean geldig = true;
             if (inputFamillienaam.getText().equals("")) {
@@ -328,7 +335,14 @@ public class Beginscherm extends HBox {
 
             if (geldig) {
                 Leerling leerling = new Leerling(inputNr.getText(), inputFamillienaam.getText(), inputVoornaam.getText(), inputEmail.getText(), null);
-                leerlingen.add(leerling);
+                AddLeerlingTask task = new AddLeerlingTask(leerling);
+                task.setOnSucceeded(event -> {
+                    leerlingen.add(leerling);
+                });
+                task.setOnFailed(event -> {
+                    task.getException().printStackTrace();
+                });
+                service.submit(task);
 
                 if (getChildren().contains(rightNieuw)) {
                     getChildren().remove(rightNieuw);
@@ -381,7 +395,6 @@ public class Beginscherm extends HBox {
 //        }
 //        lijstLeerlingen.setItems(searchNames);
 //    }
-
     public boolean validateEmail(String email) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
         return matcher.find();
@@ -394,26 +407,39 @@ public class Beginscherm extends HBox {
         this.scene = scene;
     }
 
-    private void VulLeerlingen() {
-        Image CedricFoto = new Image("images/testLeerlingen/1.png");
-        Leerling Cedric = new Leerling("100401", "Debot", "Cédric", null, CedricFoto);
-        leerlingen.add(Cedric);
-
-        Image RobinFoto = new Image("images/testLeerlingen/4.png");
-        Leerling Robin = new Leerling("104050", "Lanneer", "Robin", null, RobinFoto);
-        leerlingen.add(Robin);
-
-        Image DriesFoto = new Image("images/testLeerlingen/2.png");
-        Leerling Dries = new Leerling("054501", "Meert", "Dries", null, DriesFoto);
-        leerlingen.add(Dries);
-
-        Image MiltonFoto = new Image("images/testLeerlingen/3.png");
-        Leerling Milton = new Leerling("254241", "Hooft", "Milton", null, MiltonFoto);
-        leerlingen.add(Milton);
-    }
-
+//    private void VulLeerlingen() {
+//        Image CedricFoto = new Image("images/testLeerlingen/1.png");
+//        Leerling Cedric = new Leerling("100401", "Debot", "Cédric", null, CedricFoto);
+//        leerlingen.add(Cedric);
+//
+//        Image RobinFoto = new Image("images/testLeerlingen/4.png");
+//        Leerling Robin = new Leerling("104050", "Lanneer", "Robin", null, RobinFoto);
+//        leerlingen.add(Robin);
+//
+//        Image DriesFoto = new Image("images/testLeerlingen/2.png");
+//        Leerling Dries = new Leerling("054501", "Meert", "Dries", null, DriesFoto);
+//        leerlingen.add(Dries);
+//
+//        Image MiltonFoto = new Image("images/testLeerlingen/3.png");
+//        Leerling Milton = new Leerling("254241", "Hooft", "Milton", null, MiltonFoto);
+//        leerlingen.add(Milton);
+//    }
     public ObservableList<Leerling> getLeerlingen() {
         return leerlingen;
     }
 
+    public void removeLeerling(Leerling leerling) {
+        DeleteLeerlingTask task = new DeleteLeerlingTask(leerling);
+        task.setOnSucceeded(event -> {
+            leerlingen.remove(leerling);
+        });
+        task.setOnFailed(event -> {
+            task.getException().printStackTrace();
+        });
+        service.submit(task);
+    }
+
+    public void shutdown() {
+        service.shutdown();
+    }
 }
