@@ -14,7 +14,7 @@ public class DeleteLeerlingTask extends Task<Void> {
 
     public DeleteLeerlingTask(Leerling leerling) {
         this.leerlingResource = ClientBuilder.newClient()
-                .target("http://localhost:8080/Backend_Rijschool/api")
+                .target("http://172.20.10.3:8080/Backend_Rijschool/api")
                 .path("leerlingen")
                 .path(leerling.getInschrijvingsNr());
     }

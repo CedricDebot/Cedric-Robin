@@ -11,32 +11,33 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import json.LeerlingWriter;
 
-public class AddLeerlingTask extends Task<Void>{
+public class PutLeerlingTask extends Task<Void>{
 
     private final WebTarget leerlingListResource;
     private final Leerling leerling;
-    
-    public AddLeerlingTask(Leerling leerling) {
-        this.leerling = leerling;
-        leerlingListResource = ClientBuilder.newClient()
+
+    public PutLeerlingTask(Leerling leerling) {
+        this.leerlingListResource = ClientBuilder.newClient()
                 .target("http://172.20.10.3:8080/Backend_Rijschool/api")
                 .path("leerlingen")
+                .path(leerling.getInschrijvingsNr())
                 .register(LeerlingWriter.class);
+        
+        this.leerling = leerling;
     }
-
+    
+    
     @Override
     protected Void call() throws Exception {
-        Response response = leerlingListResource.request().post(Entity.entity(leerling, MediaType.APPLICATION_JSON));
+        Response response = leerlingListResource.request().put(Entity.entity(leerling, MediaType.APPLICATION_JSON));
         switch (response.getStatus()) {
-            case 201:
+            case 204:
                 return null;
-            case 400: 
+            case 400:
                 throw new BadRequestException();
             default:
                 throw new ServerException("");
         }
     }
-    
-    
     
 }

@@ -17,15 +17,15 @@ public class Leerling {
     private String voorNaam;
     private String email;
     //Implementatie foto via tablet?
-    private Image foto;
 
     //Gegevens knoppen
     private DashboardDom dashboardDom;
     private ButtonHolder buttonHolder;
     //Opmerkingen Atttiude
-    private ArrayList<AttitudeOpmerking> standaardOpmerkingenList;
+    private ArrayList<AttitudeOpmerking> standaardOpmerkingenList = new ArrayList<>();
     //Grafiek
     private EvaluatieGrafiek evaGraf;
+    
     //Opmerkingen dashboard
     private ObservableList<AttitudeOpmerking> recenteOpmerkingen;
 
@@ -34,12 +34,15 @@ public class Leerling {
     private boolean evaluatieMoment2 = false;
     private boolean evaluatieMoment3 = false;
 
+    public Leerling() {
+    }
+
+    
     public Leerling(String inschrijvingsNr, String famillieNaam, String voorNaam, String email, Image foto) {
         this.famillieNaam = famillieNaam;
         this.voorNaam = voorNaam;
         this.email = email;
         this.inschrijvingsNr = inschrijvingsNr;
-        this.foto = foto;
         maakStandaardOpmerkingenList();
         maakOpmerkingSchermLists();
         evaGraf = new EvaluatieGrafiek();
@@ -78,14 +81,6 @@ public class Leerling {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setFoto(Image foto) {
-        this.foto = foto;
-    }
-
-    public Image getFoto() {
-        return foto;
     }
 
     public DashboardDom getDashboardDom() {
@@ -477,4 +472,7 @@ public class Leerling {
         return embrayageOpmerkingen;
     }
 
+    public void setEvaGraf(EvaluatieGrafiek evaGraf) {
+        this.evaGraf = evaGraf;
+    }
 }

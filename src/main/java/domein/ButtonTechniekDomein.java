@@ -28,6 +28,14 @@ public class ButtonTechniekDomein {
     private Color rectangle2;
     private Color rectangle3;
 
+    public ButtonTechniekDomein() {
+        this.rood = null;
+        this.oranje = null;
+        this.groen = null;
+        this.wit = null;
+    }
+
+    
     public ButtonTechniekDomein(String wit, String rood, String oranje, String groen) {
         this.rood = rood;
         this.oranje = oranje;
@@ -93,4 +101,9 @@ public class ButtonTechniekDomein {
         return huidigeToestand != Toestand.WIT;
     }
 
+    public void setHuidigeToestand(Toestand huidigeToestand) {
+        this.huidigeToestand = huidigeToestand;
+    }
+
+    
 }

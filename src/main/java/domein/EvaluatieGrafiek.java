@@ -6,9 +6,10 @@ import javafx.scene.shape.Rectangle;
 
 public class EvaluatieGrafiek {
 
+    private int id;
     private int positie = 11;
     private String voortgang = "";
-    private Label voortgangLabel;
+    private Label voortgangLabel = new Label();
     
     private Rectangle blok1 = new Rectangle(15, 30, Color.web("#22567b"));
     private Rectangle blok2 = new Rectangle(15, 40, Color.BLACK);
