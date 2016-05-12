@@ -81,20 +81,20 @@ public class RijTechniekOpmerkingen extends GridPane {
         OpmerkingenPane.getColumnConstraints().add(col0OpmerkingPane);
         OpmerkingenPane.getRowConstraints().addAll(row0Terug, row1Label, row2Text, row3Bewaar);
 
-//        Image terugPijl = new Image("images/terug-pijl.png");
-//        ImageView terugPijlImageView = new ImageView(terugPijl);
-//        terugPijlImageView.setFitWidth(100);
-//        terugPijlImageView.setFitHeight(50);
-//        Button terugBtn = new Button("", terugPijlImageView);
-//        terugBtn.setId("menuButton");
-//
-//        OpmerkingenPane.add(terugBtn, 0, 0);
-//
-//        terugBtn.setOnAction(e -> {
-//            Rijtechniek rijTechniek = new Rijtechniek(controller);
-//            rijTechniek.setScene(scene);
-//            scene.setRoot(rijTechniek);
-//        });
+        Image terugPijl = new Image("images/terug-pijl.png");
+        ImageView terugPijlImageView = new ImageView(terugPijl);
+        terugPijlImageView.setFitWidth(100);
+        terugPijlImageView.setFitHeight(50);
+        Button terugBtn = new Button("", terugPijlImageView);
+        terugBtn.setId("menuButton");
+
+        OpmerkingenPane.add(terugBtn, 0, 0);
+
+        terugBtn.setOnAction(e -> {
+            Rijtechniek rijTechniek = new Rijtechniek(controller);
+            rijTechniek.setScene(scene);
+            scene.setRoot(rijTechniek);
+        });
 
         Label opmerking = new Label("Opmerking");
         opmerking.setId("OpmerkingLabel");

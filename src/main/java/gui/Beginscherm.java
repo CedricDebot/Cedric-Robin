@@ -3,6 +3,8 @@ package gui;
 import async.AddLeerlingTask;
 import async.DeleteLeerlingTask;
 import async.GetLeerlingenTask;
+import async.PutLeerlingTask;
+//import async.PutLeerlingTask;
 import domein.DomeinController;
 import domein.Leerling;
 import java.util.concurrent.ExecutorService;
@@ -22,6 +24,7 @@ import javafx.util.Callback;
 
 public class Beginscherm extends HBox {
 
+    private boolean status = false;
     private final ExecutorService service = Executors.newSingleThreadExecutor();
 //    private ObservableList<String> names = FXCollections.observableArrayList("Cédric", "Robin", "Dries", "Milton");
     private ObservableList<Leerling> leerlingen = FXCollections.observableArrayList();
@@ -33,29 +36,61 @@ public class Beginscherm extends HBox {
 
     public Beginscherm() {
         //Labels
-        VBox labels = new VBox();
-        labels.setId("labels");
-        HBox naamLeerling = new HBox();
-        naamLeerling.setId("naamLeerling");
-
+//        VBox labels = new VBox();
+//        labels.setId("labels");
+//        HBox naamLeerling = new HBox();
+//        naamLeerling.setId("naamLeerling");
+//
+//        Label naam = new Label("Naam: ");
+//        naam.setMaxWidth(Double.MAX_VALUE);
+//        naamLeerling.setHgrow(naam, Priority.ALWAYS);
+//        TextField naamTF = new TextField();
+//        naamTF.setId("textField");
+//        naamLeerling.getChildren().addAll(naam, naamTF);
+//
+//        HBox inschrijvingLeerling = new HBox();
+//        inschrijvingLeerling.setId("inschrijvingLeerling");
+//
+//        Label inschrijvingsnummer = new Label("Inschrijvingsnummer:");
+//        inschrijvingsnummer.setMaxWidth(Double.MAX_VALUE);
+//        inschrijvingLeerling.setHgrow(inschrijvingsnummer, Priority.ALWAYS);
+//        TextField inschrijvingsnummerTF = new TextField();
+//        inschrijvingsnummerTF.setId("textField");
+//        inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
+//        labels.getChildren().addAll(naamLeerling, inschrijvingLeerling);
+//
+GridPane gridNaamNummer = new GridPane();
+        gridNaamNummer.setVgap(10);
+        gridNaamNummer.setId("gridNaamNummer");
+        gridNaamNummer.setGridLinesVisible(false);
+        ColumnConstraints col0 = new ColumnConstraints();
+        col0.setPercentWidth(50);
+        
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(50);
+        
+        RowConstraints row0 = new RowConstraints();
+        row0.setPercentHeight(50);
+        
+        
+        RowConstraints row1 = new RowConstraints();
+        row1.setPercentHeight(50);
+        
+        gridNaamNummer.getColumnConstraints().addAll(col0, col1);
+        gridNaamNummer.getRowConstraints().addAll(row0, row1);
+        
         Label naam = new Label("Naam: ");
-        naam.setMaxWidth(Double.MAX_VALUE);
-        naamLeerling.setHgrow(naam, Priority.ALWAYS);
+        Label inschrijvingsnummer = new Label("Inschrijvingsnummer:");
         TextField naamTF = new TextField();
         naamTF.setId("textField");
-        naamLeerling.getChildren().addAll(naam, naamTF);
-
-        HBox inschrijvingLeerling = new HBox();
-        inschrijvingLeerling.setId("inschrijvingLeerling");
-
-        Label inschrijvingsnummer = new Label("Inschrijvingsnummer:");
-        inschrijvingsnummer.setMaxWidth(Double.MAX_VALUE);
-        inschrijvingLeerling.setHgrow(inschrijvingsnummer, Priority.ALWAYS);
         TextField inschrijvingsnummerTF = new TextField();
         inschrijvingsnummerTF.setId("textField");
-        inschrijvingLeerling.getChildren().addAll(inschrijvingsnummer, inschrijvingsnummerTF);
-        labels.getChildren().addAll(naamLeerling, inschrijvingLeerling);
-
+        
+        gridNaamNummer.add(naam, 0, 0);
+        gridNaamNummer.add(naamTF, 1, 0);
+        gridNaamNummer.add(inschrijvingsnummer, 0, 1);
+        gridNaamNummer.add(inschrijvingsnummerTF, 1, 1);
+        
         naamTF.setFocusTraversable(false);
         inschrijvingsnummerTF.setFocusTraversable(false);
         //ButtonLeft
@@ -87,11 +122,12 @@ public class Beginscherm extends HBox {
         //ZoekScherm
         VBox zoekscherm = new VBox();
         zoekscherm.setId("zoekscherm");
-        zoekscherm.getChildren().addAll(labels, buttons, feedbackInlog);
+        zoekscherm.getChildren().addAll(gridNaamNummer, buttons, feedbackInlog);
 
         lijstLeerlingen.setId("lijstLeerlingen");
         lijstLeerlingen.setItems(leerlingen);
 
+//        VulLeerlingen();
         lijstLeerlingen.setCellFactory(new Callback<ListView<Leerling>, ListCell<Leerling>>() {
 
             @Override
@@ -145,16 +181,31 @@ public class Beginscherm extends HBox {
             sync.setEffect(null);
         });
 
+        
         sync.setOnAction(e -> {
-            GetLeerlingenTask task = new GetLeerlingenTask();
-            task.setOnSucceeded(event -> {
-                leerlingen.clear();
-                leerlingen.addAll(task.getValue());
-            });
-            task.setOnFailed(event -> {
-                task.getException().printStackTrace();
-            });
-            service.submit(task);
+            if (!status) {
+                GetLeerlingenTask task = new GetLeerlingenTask();
+                task.setOnSucceeded(event -> {
+                    leerlingen.clear();
+                    leerlingen.addAll(task.getValue());
+                });
+                task.setOnFailed(event -> {
+                    task.getException().printStackTrace();
+                });
+                status = true;
+                service.submit(task);
+            }else if(status){
+                Leerling selectedLeerling = (Leerling) lijstLeerlingen.getSelectionModel().getSelectedItem();
+                PutLeerlingTask task = new PutLeerlingTask(selectedLeerling);
+                task.setOnSucceeded(event -> {
+                    leerlingen.remove(task.getValue());
+                });
+                task.setOnFailed(event -> {
+                    task.getException().printStackTrace();
+                });
+                status = false;
+                service.submit(task);
+            }
         });
 
         //ButtonsAllesVerwijderen
@@ -434,6 +485,14 @@ public class Beginscherm extends HBox {
             leerlingen.remove(leerling);
         });
         task.setOnFailed(event -> {
+            task.getException().printStackTrace();
+        });
+        service.submit(task);
+    }
+
+    public void updateLeerling(Leerling leerling) {
+        PutLeerlingTask task = new PutLeerlingTask(leerling);
+        task.setOnFailed(e -> {
             task.getException().printStackTrace();
         });
         service.submit(task);

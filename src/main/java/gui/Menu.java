@@ -25,7 +25,7 @@ public class Menu {
     private Button moment1;
     private Button moment2;
     private Button moment3;
-    
+
     //WaarschuwingsBox
     private VBox menuDashboard;
     private Label zekerheidLbl;
@@ -38,8 +38,6 @@ public class Menu {
         zekerheidLbl.setWrapText(true);
     }
 
-    
-    
     public Button getMenuTerug() {
         return menuTerug;
     }
@@ -152,8 +150,6 @@ public class Menu {
         return menuBalk;
     }
 
-    
-
     public VBox buildMenuDashboard(Leerling leerling) {
         menuDashboard = new VBox();
         menuDashboard.setId("menuDashboard");
@@ -179,7 +175,6 @@ public class Menu {
 
         waarschuwingsBox = new VBox();
         waarschuwingsBox.setId("waarschuwingsBox");
-
 
         HBox knoppen = new HBox();
         knoppen.setId("waarschuwingKnoppen");
@@ -278,7 +273,7 @@ public class Menu {
     }
 
     public void waarschuwing(int moment) {
-        zekerheidLbl.setText("Weet je zeker dat je evaluatiemoment" + " " + moment + " " + "wilt starten");
+        zekerheidLbl.setText("Weet je het zeker?");
         waarschuwingsBox.setVisible(true);
 
         switch (moment) {
@@ -287,25 +282,34 @@ public class Menu {
                     controller.setEva1();
                     getMoment1().setText("1");
                     waarschuwingsBox.setVisible(false);
-                }); nee.setOnAction(e -> {
+                    controller.getLeerling().setEvaluatieMoment1(true);
+                });
+                nee.setOnAction(e -> {
                     waarschuwingsBox.setVisible(false);
-                }); break;
+                });
+                break;
             case 2:
                 ja.setOnAction(e -> {
                     controller.setEva2();
                     getMoment2().setText("2");
                     waarschuwingsBox.setVisible(false);
-                }); nee.setOnAction(e -> {
+                    controller.getLeerling().setEvaluatieMoment2(true);
+                });
+                nee.setOnAction(e -> {
                     waarschuwingsBox.setVisible(false);
-                }); break;
+                });
+                break;
             default:
                 ja.setOnAction(e -> {
                     controller.setEva3();
                     getMoment3().setText("3");
                     waarschuwingsBox.setVisible(false);
-                }); nee.setOnAction(e -> {
+                    controller.getLeerling().setEvaluatieMoment3(true);
+                });
+                nee.setOnAction(e -> {
                     waarschuwingsBox.setVisible(false);
-                }); break;
+                });
+                break;
         }
 
     }

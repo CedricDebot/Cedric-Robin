@@ -128,7 +128,7 @@ public class Dashboard extends GridPane {
 
         menu.getMoment1().setOnAction(e -> {
             if (controller.getLeerling().isEvaluatieMoment1() == false) {
-                controller.getLeerling().setEvaluatieMoment1(true);
+                
                 menu.waarschuwing(1);
             } else {
 
@@ -137,7 +137,7 @@ public class Dashboard extends GridPane {
 
         menu.getMoment2().setOnAction(e -> {
             if (controller.getLeerling().isEvaluatieMoment1() && (controller.getLeerling().isEvaluatieMoment2() == false)) {
-                controller.getLeerling().setEvaluatieMoment2(true);
+                
                 menu.waarschuwing(2);
             } else {
 
@@ -146,7 +146,7 @@ public class Dashboard extends GridPane {
         });
         menu.getMoment3().setOnAction(e -> {
             if (controller.getLeerling().isEvaluatieMoment1() && controller.getLeerling().isEvaluatieMoment2() && controller.getLeerling().isEvaluatieMoment3() == false) {
-                controller.getLeerling().setEvaluatieMoment3(true);
+                
                 menu.waarschuwing(3);
             } else {
                 

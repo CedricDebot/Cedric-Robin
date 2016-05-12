@@ -48,10 +48,10 @@ public class Attitude extends GridPane {
         //HoofdGrid
         gridLinesVisibleProperty().set(false);
         ColumnConstraints col0 = new ColumnConstraints();
-        col0.setPercentWidth(40);
+        col0.setPercentWidth(30);
 
         ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(40);
+        col1.setPercentWidth(50);
         col1.setHalignment(HPos.CENTER);
 
         ColumnConstraints col2 = new ColumnConstraints();
